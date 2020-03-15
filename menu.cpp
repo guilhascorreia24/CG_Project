@@ -7,7 +7,7 @@
 // disponíveis no livro "OpenGL SuperBible", 
 // 2nd Edition, de Richard S. e Wright Jr.
 
-#include <gl/glut.h>
+#include "utils.h"
 #include <string.h>
 #include <stdio.h>
 

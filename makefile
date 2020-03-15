@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall
 LDFLAGS = -lm -lGL -lGLU -lglut
 
-SRC2 = world.cpp
+SRC2 = main.cpp Object.cpp RotationHandler.cpp utils.cpp World.cpp
 
 all: hello
 .PHONY: all

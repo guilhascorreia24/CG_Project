@@ -1,5 +1,8 @@
+#pragma once
 #include "World.h"
-#include "GL/glut.h"
+#include "utils.h"
+
+#define ROTATION_PER_FRAME 10 //Degrees
 
 class RotationHandler{
     public:
@@ -17,4 +20,4 @@ class RotationHandler{
 
     private:
         static World* world;
-}
+};

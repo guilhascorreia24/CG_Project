@@ -1,7 +1,15 @@
 #include "RotationHandler.h"
+#include <stdio.h>
+
+World* RotationHandler::world = NULL;
 
 RotationHandler::RotationHandler(World* world){
-    this->world = world;
+    RotationHandler::world = world;
+}
+
+RotationHandler::~RotationHandler(){
+    printf("Destructed\n");
+    Stop();
 }
 
 void RotationHandler::Start(){
@@ -28,26 +36,29 @@ void RotationHandler::keyboardHandler(int key, int x, int y){
             rotateRight();
             break;
     }
+
+    glutPostRedisplay();
 }
 
 void RotationHandler::rotateRight(){
     Object* mainObject = world->getMainObject();
-
-    glRotatef(15.0, 0.0, 0.0, 1.0);
+    AngleRotation rot(0,ROTATION_PER_FRAME,0);
+    mainObject->rotate(rot);
 }
 
 void RotationHandler::rotateLeft(){
     Object* mainObject = world->getMainObject();
+    AngleRotation rot(0,-ROTATION_PER_FRAME,0);
+    mainObject->rotate(rot);
 
-    glRotatef(15.0, 0.0, 0.0, 1.0);
 }
 void RotationHandler::rotateUp(){
     Object* mainObject = world->getMainObject();
-
-    glRotatef(15.0, 0.0, 0.0, 1.0);
+    AngleRotation rot(ROTATION_PER_FRAME,0,0);
+    mainObject->rotate(rot);
 }
 void RotationHandler::rotateDown(){
     Object* mainObject = world->getMainObject();
-
-    glRotatef(15.0, 0.0, 0.0, 1.0);
+    AngleRotation rot(-ROTATION_PER_FRAME,0,0);
+    mainObject->rotate(rot);
 }
