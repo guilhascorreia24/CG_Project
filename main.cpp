@@ -7,19 +7,20 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 #include "World.h"
 #include "RotationHandler.h"
 #include "utils.h"
+#include "Nave.h"
 
 #define PI 3.14159
 static GLfloat spin = 0.0;
 int i;
 
-Object* cube;
+Object* nave;
 World* world;
 RotationHandler* rot;
 
 void init(void)
 {
-    cube = new Cube();
-    world = new World(cube);
+    nave = new Nave();
+    world = new World(nave);
     rot = new RotationHandler(world);
     rot->Start();
     
@@ -42,8 +43,8 @@ void display(void)
 /*    glRotatef(spin, 0.0, 1.0, 0.0); */
     glScalef(3.0, 3.0, 3.0);
 
-    glColor3f (1.0, 0.0, 0.0);
-    cube->draw();
+    glColor3f (1.0, 1.0, 0.0);
+    nave->draw();
 
 
     glPopMatrix();
@@ -92,6 +93,7 @@ int main(int argc, char** argv)
     glutInitWindowSize(250, 250);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
+    glewInit();
     init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);

@@ -15,18 +15,3 @@ class Object{
         AngleRotation rot;
 };
 
-
-
-
-class Cube : public Object{
-    public:
-        Cube();
-        ~Cube();
-
-    protected:
-        void drawShape();
-
-    private:
-        Point* arr;
-        int numPoints;
-};
