@@ -14,8 +14,9 @@ void Object::draw(){
 
 Object::Object() : rot(0,0,0){
     std::vector< glm::vec3 > vertices;
+    std::vector< glm::vec2 > uvs;
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/planeta_com_anel.obj", vertices, normals);
+    bool res = loadObj("objs/nave.obj", vertices, uvs, normals);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
 }
 
