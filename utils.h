@@ -3,13 +3,24 @@
 #include <gl/glut.h>
 #endif
 #ifdef unix
+
+#include <GL/glew.h>
 #include <stdbool.h>
-#include "GL/glut.h"
+#include <GL/glut.h>
+#include <glm/glm.hpp>
 #define TRUE true
 #define FALSE false
+
 #endif
 
 #include <math.h>
+#include <stdio.h>
+#include <vector>
+#include <stdarg.h> 
+#include <string>
+
+#define PRINT_ERRORS TRUE
+#define PRINT_DEBUG TRUE
 
 
 struct AngleRotation{
@@ -45,8 +56,14 @@ struct AngleRotation{
     float x,y,z;
 };
 
+void debugPrint(const char* format, ...);
+
+void errorPrint(const char* format, ...);
+
 
 struct Point{
     Point(float x, float y, float z) : x(x) , y(y) , z(z){}
     float x,y,z;
 };
+//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
+bool loadObj(const char* filename, std::vector<glm::vec3> vertices,std::vector<glm::vec2> uvs,std::vector<glm::vec3> normals);

@@ -1,5 +1,4 @@
 #include "Object.h"
-#include "stdio.h"
 
 void Object::rotate(AngleRotation& rot){
     this->rot += &rot;
@@ -14,6 +13,10 @@ void Object::draw(){
 }
 
 Object::Object() : rot(0,0,0){
+    std::vector< glm::vec3 > vertices;
+    std::vector< glm::vec3 > normals; // Won't be used at the moment.
+    bool res = loadObj("objs/planeta_com_anel.obj", vertices, normals);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
 }
 
 Object::~Object(){
@@ -41,7 +44,7 @@ Cube::~Cube(){
 
 void Cube::drawShape(){
 //Under face
-    glColor3f(255,255,255);
+    /*glColor3f(255,255,255);
     glBegin(GL_QUADS);
         //Under
         glVertex3f(arr[0].x,arr[0].y,arr[0].z);
@@ -92,6 +95,6 @@ void Cube::drawShape(){
         glVertex3f(arr[6].x,arr[6].y,arr[6].z);
         glVertex3f(arr[0].x,arr[0].y,arr[0].z);
         glVertex3f(arr[3].x,arr[3].y,arr[3].z);
-    glEnd();
-
+    glEnd();*/
+    
 }

@@ -1,6 +1,6 @@
 #pragma once
-#include "World.h"
 #include "utils.h"
+#include "World.h"
 
 #define ROTATION_PER_FRAME 10 //Degrees
 

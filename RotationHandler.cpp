@@ -1,5 +1,4 @@
 #include "RotationHandler.h"
-#include <stdio.h>
 
 World* RotationHandler::world = NULL;
 

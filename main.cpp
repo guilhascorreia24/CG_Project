@@ -6,10 +6,7 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 */
 #include "World.h"
 #include "RotationHandler.h"
-#include <GL/glut.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include "utils.h"
 
 #define PI 3.14159
 static GLfloat spin = 0.0;

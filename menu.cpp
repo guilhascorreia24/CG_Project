@@ -8,8 +8,6 @@
 // 2nd Edition, de Richard S. e Wright Jr.
 
 #include "utils.h"
-#include <string.h>
-#include <stdio.h>
 
 // Constantes
 #define ON_IL 0
