@@ -18,32 +18,22 @@ void RotationHandler::Start(){
 void RotationHandler::Stop(){
     glutSpecialFunc(NULL);
 }
-
 void RotationHandler::keyboardHandler(int key,int x, int y){
     switch(key){
         case GLUT_KEY_DOWN:
-            glLoadIdentity();
             rotateDown();
-            glutPostRedisplay();
             break;
         case GLUT_KEY_UP:
-            glLoadIdentity();
             rotateUp();
-            glutPostRedisplay();
             break;
-
         case GLUT_KEY_LEFT:
-            glLoadIdentity();
             rotateLeft();
-            glutPostRedisplay();
             break;
         case GLUT_KEY_RIGHT:
-            glLoadIdentity();
             rotateRight();
-            glutPostRedisplay();
             break;
     }
-
+    glutPostRedisplay();
 }
 
 void RotationHandler::rotateRight(){
