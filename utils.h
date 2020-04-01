@@ -55,7 +55,6 @@ struct AngleRotation{
 
     float x,y,z;
 };
-
 void debugPrint(const char* format, ...);
 
 void errorPrint(const char* format, ...);

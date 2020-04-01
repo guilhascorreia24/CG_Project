@@ -16,6 +16,5 @@ void Object::draw(){
 Object::Object() : rot(0,0,0){
 
 }
-
 Object::~Object(){
 }

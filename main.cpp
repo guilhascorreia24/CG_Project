@@ -8,6 +8,8 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 #include "RotationHandler.h"
 #include "utils.h"
 #include "Nave.h"
+#include "nave_sem_pernas.h"
+#include "RotationHandler.h"
 
 #define PI 3.14159
 static GLfloat spin = 0.0;
@@ -16,13 +18,19 @@ int i;
 Object* nave;
 World* world;
 RotationHandler* rot;
-
+Object* nave_sem_perna;
+World* world1;
+RotationHandler* rot1;
 void init(void)
 {
     nave = new Nave();
+    nave_sem_perna=new nave_sem_pernas();
     world = new World(nave);
+    world1=new World(nave_sem_perna);
     rot = new RotationHandler(world);
+    rot1 = new RotationHandler(world1);
     rot->Start();
+    rot1->Start();
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
     glShadeModel (GL_FLAT);
@@ -32,7 +40,6 @@ void init(void)
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glPolygonMode(GL_FRONT, GL_FILL);
 /*    glFrontFace(GL_CCW);
     glCullFace(GL_FRONT);
     glEnable(GL_CULL_FACE); */
@@ -40,11 +47,12 @@ void display(void)
     glPushMatrix();
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     glLoadIdentity();
-/*    glRotatef(spin, 0.0, 1.0, 0.0); */
+    glRotatef(spin, 0.0, 1.0, 0.0); 
     glScalef(3.0, 3.0, 3.0);
 
     glColor3f (1.0, 1.0, 0.0);
     nave->draw();
+    nave_sem_perna->draw();
 
 
     glPopMatrix();
@@ -54,7 +62,7 @@ void display(void)
 
 void spinDisplay(void)
 {
-    spin=spin+0.1;
+    spin=spin+2;
     if (spin > 360.0)
         spin=spin-360.0; 
     glutPostRedisplay();
@@ -72,18 +80,7 @@ void reshape(int w, int h)
 
 void mouse(int button, int state, int x, int y)
 {
-    switch (button) {
-      case GLUT_LEFT_BUTTON:
-        if (state == GLUT_DOWN)
-	  glutIdleFunc(spinDisplay);
-        break;
-      case GLUT_RIGHT_BUTTON:
-        if (state == GLUT_DOWN)
-	  glutIdleFunc(NULL);
-        break;
-      default:
-        break;
-      }
+    rot->keyboardHandler(button,x,y);
 }
 
 int main(int argc, char** argv)
@@ -97,7 +94,7 @@ int main(int argc, char** argv)
     init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
-    //glutMouseFunc(mouse);
+    glutMouseFunc(mouse);
     glutMainLoop();
     return 0;
 }

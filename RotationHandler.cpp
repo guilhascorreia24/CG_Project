@@ -19,7 +19,7 @@ void RotationHandler::Stop(){
     glutSpecialFunc(NULL);
 }
 
-void RotationHandler::keyboardHandler(int key, int x, int y){
+void RotationHandler::keyboardHandler(int key,int x, int y){
     switch(key){
         case GLUT_KEY_DOWN:
             rotateDown();
