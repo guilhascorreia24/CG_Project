@@ -6,6 +6,7 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 */
 #include "World.h"
 #include "RotationHandler.h"
+#include "Camera.h"
 #include "utils.h"
 #include "Nave.h"
 #include "nave_sem_pernas.h"
@@ -14,23 +15,20 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 #define PI 3.14159
 static GLfloat spin = 0.0;
 int i;
-
+GLfloat angle, fAspect;
 Object* nave;
 World* world;
 RotationHandler* rot;
-Object* nave_sem_perna;
-World* world1;
-RotationHandler* rot1;
+Camera* cam;
 void init(void)
 {
     nave = new Nave();
-    nave_sem_perna=new nave_sem_pernas();
     world = new World(nave);
-    world1=new World(nave_sem_perna);
     rot = new RotationHandler(world);
-    rot1 = new RotationHandler(world1);
+    cam= new Camera();
     rot->Start();
-    rot1->Start();
+    cam->Start();
+
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
     glShadeModel (GL_FLAT);
@@ -44,18 +42,16 @@ void display(void)
     glCullFace(GL_FRONT);
     glEnable(GL_CULL_FACE); */
 
-    glPushMatrix();
 /*    glTranslatef(-10.0,-10.0,0.0);  */
-    glLoadIdentity();
+    //gluLookAt(0,0,100,0,0,0,0,0,0);
     glRotatef(spin, 0.0, 1.0, 0.0); 
     glScalef(3.0, 3.0, 3.0);
 
     glColor3f (1.0, 1.0, 0.0);
     nave->draw();
-    nave_sem_perna->draw();
+    //nave_sem_perna->draw();
 
 
-    glPopMatrix();
     glutSwapBuffers();
 
 }
@@ -68,7 +64,7 @@ void spinDisplay(void)
     glutPostRedisplay();
 }
 
-void reshape(int w, int h)
+/*void reshape(int w, int h)
 {
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
@@ -76,12 +72,50 @@ void reshape(int w, int h)
     glOrtho(-50.0, 50.0, -50.0, 50.0, -100.0, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+}*/
+
+// Função usada para especificar o volume de visualização
+void EspecificaParametrosVisualizacao(void)
+{
+    // Especifica sistema de coordenadas de projeção
+    glMatrixMode(GL_PROJECTION);
+    // Inicializa sistema de coordenadas de projeção
+    glLoadIdentity();
+
+    // Especifica a projeção perspectiva
+    gluPerspective(45,fAspect,0.4,500);
+
+    // Especifica sistema de coordenadas do modelo
+    glMatrixMode(GL_MODELVIEW);
+    // Inicializa sistema de coordenadas do modelo
+    glLoadIdentity();
+
+    // Especifica posição do observador e do alvo
+    gluLookAt(0,0,50, 0,0,0, 0,1,0);
 }
 
-void mouse(int button, int state, int x, int y)
+// Função callback chamada quando o tamanho da janela é alterado 
+void AlteraTamanhoJanela(GLsizei w, GLsizei h)
+{
+    // Para previnir uma divisão por zero
+    if ( h == 0 ) h = 1;
+
+    // Especifica o tamanho da viewport
+    glViewport(0, 0, w, h);
+ 
+    // Calcula a correção de aspecto
+    fAspect = (GLfloat)w/(GLfloat)h;
+
+    EspecificaParametrosVisualizacao();
+}
+
+
+void keypressed(int button, int x, int y)
 {
     rot->keyboardHandler(button,x,y);
+    cam->keyboardCamera(button,x,y);
 }
+
 
 int main(int argc, char** argv)
 {
@@ -90,11 +124,11 @@ int main(int argc, char** argv)
     glutInitWindowSize(250, 250);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
+    glutDisplayFunc(display);
+    glutReshapeFunc(AlteraTamanhoJanela);
+    glutSpecialFunc(keypressed);
     glewInit();
     init();
-    glutDisplayFunc(display);
-    glutReshapeFunc(reshape);
-    glutMouseFunc(mouse);
     glutMainLoop();
     return 0;
 }
