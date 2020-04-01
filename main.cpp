@@ -13,7 +13,7 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 #include "nave_sem_pernas.h"
 
 #define PI 3.14159
-static GLfloat spin = 0.0;
+//static GLfloat spin = 0.0;
 int i;
 GLfloat angle, fAspect;
 World* world;
@@ -106,44 +106,11 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
     //EspecificaParametrosVisualizacao();
 }
 
-void spinDisplay(GLfloat slide){
-    spin+=slide;
-    if (spin > 360.0)
-        spin=spin-360.0;
-    glutPostRedisplay();
-}
-/*void keypressed(unsigned char key, int x, int y)
-{
-    //rot->keyboardHandler(button,x,y);
-    switch(key){
-        case GLUT_KEY_DOWN:
-            printf("1");
-            spinDisplay(-1.0);
-            rotateZ=1.0;
-            break;
-        case GLUT_KEY_UP:
-            spinDisplay(1.0);
-            rotateZ=1.0;
-            break;
-        case GLUT_KEY_LEFT:
-            spinDisplay(-1.0);
-            rotateY=1.0;
-            break;
-        case GLUT_KEY_RIGHT:
-            spinDisplay(1.0);
-            rotateY=1.0;
-            break;
-    }
-    glRotatef(spin,0.0,rotateY,rotateZ); 
-    cam->keyboardCamera(key,x,y);
-}*/
-
-int destroy(){
+void destroy(){
     delete rot;
     delete cam;
     delete world;
 }
-
 
 int main(int argc, char** argv)
 {
@@ -157,5 +124,6 @@ int main(int argc, char** argv)
     glewInit();
     init();
     glutMainLoop();
+    destroy();
     return 0;
 }
