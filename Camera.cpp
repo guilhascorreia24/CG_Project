@@ -17,52 +17,50 @@ void Camera::Stop(){
 void Camera::keyboardCamera(int key, int x, int y){
 	switch(key){
 		case GLUT_KEY_F1:
+		     glLoadIdentity();
 			camera1();
-			printf("entrei\n");
+			    glutPostRedisplay();
 			break;
 		case GLUT_KEY_F2:
+		     glLoadIdentity();
 			camera2();
+			    glutPostRedisplay();
 			break;
 		case GLUT_KEY_F3:
+		     glLoadIdentity();
 			camera3();
+			    glutPostRedisplay();
 			break;
 		case GLUT_KEY_F4:
+		     glLoadIdentity();
 			camera4();
+			    glutPostRedisplay();
 			break;
 		case GLUT_KEY_F5:
+		     glLoadIdentity();
 			camera5();
+			    glutPostRedisplay();
 			break;
 		case GLUT_KEY_F6:
+		     glLoadIdentity();
 			camera6();
+			    glutPostRedisplay();
 			break;		
 	}
-	    glutPostRedisplay();
-}
-void prespective(){
-		// Especifica sistema de coordenadas de projeçã
-
-	// Especifica sistema de coordenadas do modelo
-	glMatrixMode(GL_MODELVIEW);
-	// Inicializa sistema de coordenadas do modelo
-	glLoadIdentity();
 }
 void Camera::camera1(){
-	prespective();
 	gluLookAt(50,0,0,0,0,0,0,1,0);
 }
 void Camera::camera2(){
 	gluLookAt(-50,0,0,0,0,0,0,1,0);
 }
 void Camera::camera3(){
-		prespective();
 	gluLookAt(0,50,0,0,0,0,1,0,0);
 }
 void Camera::camera4(){
-		prespective();
 	gluLookAt(0,-50,0,0,0,0,1,0,0);
 }
 void Camera::camera5(){
-		prespective();
 		gluLookAt(0,0,50,0,0,0,1,0,0);
 }
 void Camera::camera6(){

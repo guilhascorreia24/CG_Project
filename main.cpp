@@ -6,29 +6,30 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 */
 #include "World.h"
 #include "RotationHandler.h"
+#include "Camera.h"
 #include "utils.h"
 #include "Nave.h"
 #include "nave_sem_pernas.h"
 #include "RotationHandler.h"
-#include "Camera.h"
 
 #define PI 3.14159
 static GLfloat spin = 0.0;
 int i;
-
 GLfloat angle, fAspect;
 Object* nave;
 World* world;
 RotationHandler* rot;
 Camera* cam;
+static int rotateY=0.0,rotateZ=0.0;
 void init(void)
 {
     nave = new Nave();
     world = new World(nave);
     rot = new RotationHandler(world);
-    cam=new Camera();
-    rot->Start();
-        cam->Start();
+    cam= new Camera();
+    //rot->Start();
+    cam->Start();
+
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
     glShadeModel (GL_FLAT);
@@ -43,25 +44,28 @@ void display(void)
     glEnable(GL_CULL_FACE); */
 
 /*    glTranslatef(-10.0,-10.0,0.0);  */
-    glLoadIdentity();
-    glRotatef(spin, 0.0, 1.0, 0.0); 
+    //gluLookAt(0,0,100,0,0,0,0,0,0);
     glScalef(3.0, 3.0, 3.0);
 
     glColor3f (1.0, 1.0, 0.0);
     nave->draw();
+    //nave_sem_perna->draw();
 
 
     glutSwapBuffers();
 
 }
 
-void spinDisplay(void)
+
+/*void reshape(int w, int h)
 {
-    spin=spin+2;
-    if (spin > 360.0)
-        spin=spin-360.0; 
-    glutPostRedisplay();
-}
+    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-50.0, 50.0, -50.0, 50.0, -100.0, 100.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}*/
 
 // Função usada para especificar o volume de visualização
 void EspecificaParametrosVisualizacao(void)
@@ -80,11 +84,11 @@ void EspecificaParametrosVisualizacao(void)
     glLoadIdentity();
 
     // Especifica posição do observador e do alvo
-    gluLookAt(0,80,200, 0,0,0, 0,1,0);
+    gluLookAt(0,0,50, 0,0,0, 0,1,0);
 }
 
 // Função callback chamada quando o tamanho da janela é alterado 
-void reshape(GLsizei w, GLsizei h)
+void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 {
     // Para previnir uma divisão por zero
     if ( h == 0 ) h = 1;
@@ -98,38 +102,37 @@ void reshape(GLsizei w, GLsizei h)
     EspecificaParametrosVisualizacao();
 }
 
-void mouse(unsigned char key, int x, int y)
-{
-    rot->keyboardHandler(key,x,y);
-    cam->keyboardCamera(key,x,y);
-        EspecificaParametrosVisualizacao();
+void spinDisplay(GLfloat slide){
+    spin+=slide;
+    if (spin > 360.0)
+        spin=spin-360.0;
     glutPostRedisplay();
 }
 /*
 void MoverLetra(int x, int y)
 {
-
-    if (moving)
-    {
-        glutIdleFunc(SemRotacao);
-        GLdouble model[16];
-        GLdouble proj[16];
-        GLint m_viewport[4];
-
-        glGetDoublev(GL_MODELVIEW_MATRIX, model);
-        glGetDoublev(GL_PROJECTION_MATRIX, proj);
-        glGetIntegerv(GL_VIEWPORT, m_viewport);
-
-        GLdouble rx;
-        GLdouble ry;
-        GLdouble rz;
-        gluUnProject(x, y, 0, model, proj, m_viewport, &rx, &ry, &rz);
-
-        px = rx;
-        py = -ry;
-        printf("x=%d y=%d\n px=%f py=%f\n", x, y, px, py);
-        glutPostRedisplay();
+    //rot->keyboardHandler(button,x,y);
+    switch(key){
+        case GLUT_KEY_DOWN:
+            printf("1");
+            spinDisplay(-1.0);
+            rotateZ=1.0;
+            break;
+        case GLUT_KEY_UP:
+            spinDisplay(1.0);
+            rotateZ=1.0;
+            break;
+        case GLUT_KEY_LEFT:
+            spinDisplay(-1.0);
+            rotateY=1.0;
+            break;
+        case GLUT_KEY_RIGHT:
+            spinDisplay(1.0);
+            rotateY=1.0;
+            break;
     }
+    glRotatef(spin,0.0,rotateY,rotateZ); 
+    cam->keyboardCamera(key,x,y);
 }
 
 */
@@ -140,11 +143,11 @@ int main(int argc, char** argv)
     glutInitWindowSize(250, 250);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
+    glutReshapeFunc(AlteraTamanhoJanela);
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keypressed);
     glewInit();
     init();
-    glutDisplayFunc(display);
-    glutReshapeFunc(reshape);
-    glutKeyboardFunc(mouse);
     glutMainLoop();
     return 0;
 }
