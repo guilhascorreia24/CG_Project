@@ -105,7 +105,7 @@ void mouse(unsigned char key, int x, int y)
         EspecificaParametrosVisualizacao();
     glutPostRedisplay();
 }
-
+/*
 void MoverLetra(int x, int y)
 {
 
@@ -132,7 +132,7 @@ void MoverLetra(int x, int y)
     }
 }
 
-
+*/
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
