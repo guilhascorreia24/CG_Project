@@ -17,3 +17,10 @@ World::~World(){
 Object* World::getMainObject(){
     return main;
 } 
+
+void World::draw(){
+    main->draw();
+    for(Object* object : objects){
+        object->draw();
+    }
+} 

@@ -7,13 +7,16 @@ public:
  void Start();
  void Stop();
  ~Camera();
- static void keyboardCamera(int key,int x, int y);
+ void keyboardCamera(int key,int x, int y);
 private:
-	static void camera1();
-	static void camera2();
-	static void camera3();
-	static void camera4();
-	static void camera5();
-	static void camera6();
+	void camera1();
+	void camera2();
+	void camera3();
+	void camera4();
+	void camera5();
+	void camera6();
+
+private:
+	bool start;
 
 };

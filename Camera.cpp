@@ -9,12 +9,15 @@ Camera::~Camera(){
 }
 
 void Camera::Start(){
-	glutSpecialFunc(keyboardCamera);
+	start = true;
 }
 void Camera::Stop(){
-	glutSpecialFunc(NULL);
+	start = false;
 }
 void Camera::keyboardCamera(int key, int x, int y){
+	if(!start){
+		return;
+	}
 	switch(key){
 		case GLUT_KEY_F1:
 		     glLoadIdentity();

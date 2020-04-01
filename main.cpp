@@ -5,30 +5,36 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 
 */
 #include "World.h"
+#include "Camera.h"
 #include "RotationHandler.h"
 #include "Camera.h"
 #include "utils.h"
 #include "Nave.h"
 #include "nave_sem_pernas.h"
-#include "RotationHandler.h"
 
 #define PI 3.14159
 static GLfloat spin = 0.0;
 int i;
 GLfloat angle, fAspect;
-Object* nave;
 World* world;
 RotationHandler* rot;
 Camera* cam;
-static int rotateY=0.0,rotateZ=0.0;
+
+
+void keyboardHandler(int key,int x, int y){
+    rot->keyboardHandler(key,x,y);
+    cam->keyboardCamera(key,x,y);
+}
+
 void init(void)
 {
-    nave = new Nave();
-    world = new World(nave);
+    world = new World(new Nave());
     rot = new RotationHandler(world);
     cam= new Camera();
-    //rot->Start();
+    rot->Start();
     cam->Start();
+
+    glutSpecialFunc(keyboardHandler);
 
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
@@ -46,18 +52,16 @@ void display(void)
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     //gluLookAt(0,0,100,0,0,0,0,0,0);
     glScalef(3.0, 3.0, 3.0);
-
     glColor3f (1.0, 1.0, 0.0);
-    nave->draw();
+    world->draw();
     //nave_sem_perna->draw();
 
 
     glutSwapBuffers();
-
 }
 
 
-/*void reshape(int w, int h)
+void reshape(int w, int h)
 {
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
@@ -65,10 +69,10 @@ void display(void)
     glOrtho(-50.0, 50.0, -50.0, 50.0, -100.0, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-}*/
+}
 
 // Função usada para especificar o volume de visualização
-void EspecificaParametrosVisualizacao(void)
+/*void EspecificaParametrosVisualizacao(void)
 {
     // Especifica sistema de coordenadas de projeção
     glMatrixMode(GL_PROJECTION);
@@ -85,7 +89,7 @@ void EspecificaParametrosVisualizacao(void)
 
     // Especifica posição do observador e do alvo
     gluLookAt(0,0,50, 0,0,0, 0,1,0);
-}
+}*/
 
 // Função callback chamada quando o tamanho da janela é alterado 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h)
@@ -99,7 +103,7 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
     // Calcula a correção de aspecto
     fAspect = (GLfloat)w/(GLfloat)h;
 
-    EspecificaParametrosVisualizacao();
+    //EspecificaParametrosVisualizacao();
 }
 
 void spinDisplay(GLfloat slide){
@@ -108,7 +112,7 @@ void spinDisplay(GLfloat slide){
         spin=spin-360.0;
     glutPostRedisplay();
 }
-void keypressed(unsigned char key, int x, int y)
+/*void keypressed(unsigned char key, int x, int y)
 {
     //rot->keyboardHandler(button,x,y);
     switch(key){
@@ -132,7 +136,7 @@ void keypressed(unsigned char key, int x, int y)
     }
     glRotatef(spin,0.0,rotateY,rotateZ); 
     cam->keyboardCamera(key,x,y);
-}
+}*/
 
 
 int main(int argc, char** argv)
@@ -142,9 +146,8 @@ int main(int argc, char** argv)
     glutInitWindowSize(250, 250);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
-    glutReshapeFunc(AlteraTamanhoJanela);
+    glutReshapeFunc(reshape);
     glutDisplayFunc(display);
-    glutKeyboardFunc(keypressed);
     glewInit();
     init();
     glutMainLoop();
