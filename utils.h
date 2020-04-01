@@ -55,30 +55,6 @@ struct AngleRotation{
 
     float x,y,z;
 };
-struct Position{
-    Position(float x, float y, float z);
-
-    float getX(){return x;}
-    float getY(){return y;}
-    float getZ(){return z;}
-
-    void setXRotation(float angle){x= x;}
-    void setYRotation(float angle){y= y;}
-    void setZRotation(float angle){z= z;}
-
-    inline void operator+=(AngleRotation* a){
-        setXRotation(x+= a->x);
-        setYRotation(y+= a->y);
-        setZRotation(z+= a->z);
-    }
-    inline void operator-=(AngleRotation* a){
-        setXRotation(x-= a->x);
-        setYRotation(y-= a->y);
-        setZRotation(z-= a->z);
-    }
-
-    float x,y,z;
-};
 void debugPrint(const char* format, ...);
 
 void errorPrint(const char* format, ...);

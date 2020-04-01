@@ -9,9 +9,11 @@ class Object{
         void draw();
         void rotate(AngleRotation &rot);
         AngleRotation getRotation();
+        
     protected:
         void virtual drawShape() = 0;
     private:
         AngleRotation rot;
+
 };
 
