@@ -4,6 +4,9 @@
 void Object::rotate(AngleRotation& rot){
     this->rot += &rot;
 }
+void Object::position(Position& pos){
+	this-pos+=&pos;
+}
 
 void Object::draw(){
     glRotatef(rot.z,1,0,0);
