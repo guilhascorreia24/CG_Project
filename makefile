@@ -9,3 +9,10 @@ all: hello
 
 hello:  $(SRC2) makefile
 	$(CC) $(CFLAGS) $(SRC2) $(LDFLAGS) -o world.out 
+
+
+compile:
+	g++ utils.cpp main.cpp Object.cpp RotationHandler.cpp World.cpp Nave.cpp nave_sem_pernas.cpp -lm -lGLEW -lGLU -lGL -lglut -o a.out
+
+run:
+	./a.out	
