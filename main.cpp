@@ -138,6 +138,12 @@ void spinDisplay(GLfloat slide){
     cam->keyboardCamera(key,x,y);
 }*/
 
+int destroy(){
+    delete rot;
+    delete cam;
+    delete world;
+}
+
 
 int main(int argc, char** argv)
 {
