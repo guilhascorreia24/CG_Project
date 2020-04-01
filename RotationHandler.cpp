@@ -1,9 +1,8 @@
 #include "RotationHandler.h"
 
-World* RotationHandler::world = NULL;
-
 RotationHandler::RotationHandler(World* world){
     RotationHandler::world = world;
+    start = false;
 }
 
 RotationHandler::~RotationHandler(){
@@ -12,14 +11,17 @@ RotationHandler::~RotationHandler(){
 }
 
 void RotationHandler::Start(){
-    glutSpecialFunc(keyboardHandler);
+    start = true;
 }
 
 void RotationHandler::Stop(){
-    glutSpecialFunc(NULL);
+    start = false;
 }
 
 void RotationHandler::keyboardHandler(int key,int x, int y){
+    if(!start){
+        return;
+    }
     switch(key){
         case GLUT_KEY_DOWN:
             glLoadIdentity();

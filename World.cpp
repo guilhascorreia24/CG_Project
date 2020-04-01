@@ -5,6 +5,7 @@ void World::addObject(Object* obj){
 }
 
 World::World(Object* obj) : main(obj){
+    addObject(obj);
 }
 
 World::~World(){
@@ -16,4 +17,10 @@ World::~World(){
 
 Object* World::getMainObject(){
     return main;
+} 
+
+void World::draw(){
+    for(Object* object : objects){
+        object->draw();
+    }
 } 

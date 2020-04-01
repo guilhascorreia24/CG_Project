@@ -10,14 +10,15 @@ class RotationHandler{
         void Start();
         void Stop();
         ~RotationHandler();
-        static void keyboardHandler(int key,int x, int y);
+        void keyboardHandler(int key,int x, int y);
     private:
 
-        static void rotateRight();
-        static void rotateUp();
-        static void rotateLeft();
-        static void rotateDown();
+        void rotateRight();
+        void rotateUp();
+        void rotateLeft();
+        void rotateDown();
 
     private:
-        static World* world;
+        bool start;
+        World* world;
 };
