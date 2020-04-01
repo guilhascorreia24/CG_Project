@@ -1,9 +1,3 @@
-/*
-Em linux, para compilar:
-$ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
-
-
-*/
 #include "World.h"
 #include "RotationHandler.h"
 #include "Camera.h"
@@ -11,6 +5,10 @@ $ gcc -o letraH letraH.c -lGL -lGLU -lglut -lm
 #include "Nave.h"
 #include "nave_sem_pernas.h"
 #include "RotationHandler.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 
 #define PI 3.14159
 static GLfloat spin = 0.0;
@@ -23,6 +21,7 @@ Camera* cam;
 static int rotateY=0.0,rotateZ=0.0;
 void init(void)
 {
+    Nave::inicializarTextura();
     nave = new Nave();
     world = new World(nave);
     rot = new RotationHandler(world);
@@ -38,6 +37,7 @@ void init(void)
 
 void display(void)
 {
+    glEnable(GL_TEXTURE_2D);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 /*    glFrontFace(GL_CCW);
     glCullFace(GL_FRONT);
@@ -108,45 +108,30 @@ void spinDisplay(GLfloat slide){
         spin=spin-360.0;
     glutPostRedisplay();
 }
-/*
-void MoverLetra(int x, int y)
+
+void MoverLetra(unsigned char key,int x, int y)
 {
-    //rot->keyboardHandler(button,x,y);
-    switch(key){
-        case GLUT_KEY_DOWN:
-            printf("1");
-            spinDisplay(-1.0);
-            rotateZ=1.0;
-            break;
-        case GLUT_KEY_UP:
-            spinDisplay(1.0);
-            rotateZ=1.0;
-            break;
-        case GLUT_KEY_LEFT:
-            spinDisplay(-1.0);
-            rotateY=1.0;
-            break;
-        case GLUT_KEY_RIGHT:
-            spinDisplay(1.0);
-            rotateY=1.0;
-            break;
-    }
-    glRotatef(spin,0.0,rotateY,rotateZ); 
     cam->keyboardCamera(key,x,y);
 }
-*/
+
+
+
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(250, 250);
+    glutInitWindowSize(350, 300);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
     glutReshapeFunc(AlteraTamanhoJanela);
     glutDisplayFunc(display);
-    glutKeyboardFunc(keypressed);
+    //MoverLetra(keypressed);
     glewInit();
     init();
+    
     glutMainLoop();
     return 0;
 }
+
+
