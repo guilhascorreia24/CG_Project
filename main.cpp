@@ -134,7 +134,6 @@ void MoverLetra(int x, int y)
     glRotatef(spin,0.0,rotateY,rotateZ); 
     cam->keyboardCamera(key,x,y);
 }
-
 */
 int main(int argc, char** argv)
 {
