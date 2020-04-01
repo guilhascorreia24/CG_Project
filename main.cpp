@@ -27,8 +27,8 @@ void keyboardHandler(int key,int x, int y){
 void init(void)
 {
     Nave::inicializarTextura();
-    nave = new Nave();
-    world = new World(nave);
+    //nave = new Nave();
+    world = new World(new Nave());
     rot = new RotationHandler(world);
     cam= new Camera();
     rot->Start();
