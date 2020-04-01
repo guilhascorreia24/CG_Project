@@ -106,6 +106,33 @@ void mouse(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 
+void MoverLetra(int x, int y)
+{
+
+    if (moving)
+    {
+        glutIdleFunc(SemRotacao);
+        GLdouble model[16];
+        GLdouble proj[16];
+        GLint m_viewport[4];
+
+        glGetDoublev(GL_MODELVIEW_MATRIX, model);
+        glGetDoublev(GL_PROJECTION_MATRIX, proj);
+        glGetIntegerv(GL_VIEWPORT, m_viewport);
+
+        GLdouble rx;
+        GLdouble ry;
+        GLdouble rz;
+        gluUnProject(x, y, 0, model, proj, m_viewport, &rx, &ry, &rz);
+
+        px = rx;
+        py = -ry;
+        printf("x=%d y=%d\n px=%f py=%f\n", x, y, px, py);
+        glutPostRedisplay();
+    }
+}
+
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
