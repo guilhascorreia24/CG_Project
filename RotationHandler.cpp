@@ -33,7 +33,7 @@ void RotationHandler::keyboardHandler(int key,int x, int y){
             break;
 
         case GLUT_KEY_LEFT:
-                     glLoadIdentity();
+            glLoadIdentity();
             rotateLeft();
             glutPostRedisplay();
             break;

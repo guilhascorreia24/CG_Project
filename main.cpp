@@ -44,7 +44,7 @@ void display(void)
 
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     //gluLookAt(0,0,100,0,0,0,0,0,0);
-    glRotatef(spin, 0.0, 1.0, 0.0); 
+    //glRotatef(spin, 0.0, 1.0, 0.0); 
     glScalef(3.0, 3.0, 3.0);
 
     glColor3f (1.0, 1.0, 0.0);
@@ -124,8 +124,8 @@ int main(int argc, char** argv)
     glutInitWindowSize(250, 250);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
-    glutDisplayFunc(display);
     glutReshapeFunc(AlteraTamanhoJanela);
+        glutDisplayFunc(display);
     glutSpecialFunc(keypressed);
     glewInit();
     init();

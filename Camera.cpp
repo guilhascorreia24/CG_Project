@@ -49,13 +49,13 @@ void Camera::keyboardCamera(int key, int x, int y){
 	}
 }
 void Camera::camera1(){
-	gluLookAt(50,0,0,0,0,0,1,0,0);
+	gluLookAt(50,0,0,0,0,0,0,1,0);
 }
 void Camera::camera2(){
-	gluLookAt(-50,0,0,0,0,0,0,0,1);
+	gluLookAt(-50,0,0,0,0,0,0,1,0);
 }
 void Camera::camera3(){
-	gluLookAt(0,50,0,0,0,0,0,1,0);
+	gluLookAt(0,50,0,0,0,0,1,0,0);
 }
 void Camera::camera4(){
 	gluLookAt(0,-50,0,0,0,0,1,0,0);
@@ -64,5 +64,5 @@ void Camera::camera5(){
 		gluLookAt(0,0,50,0,0,0,1,0,0);
 }
 void Camera::camera6(){
-		gluLookAt(0,0,-150,0,0,0,0,0,1);
+		gluLookAt(0,0,-50,0,0,0,1,0,0);
 }
