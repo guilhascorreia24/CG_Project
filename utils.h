@@ -66,3 +66,5 @@ struct Point{
 };
 //http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
 bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals);
+
+int getFileSize(FILE * file);

@@ -15,4 +15,5 @@ class Nave : public Object{
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
         static GLint width, height;
+        static unsigned int texture;
 };
