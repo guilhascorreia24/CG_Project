@@ -18,23 +18,41 @@ World* world;
 RotationHandler* rot;
 Camera* cam;
 GLint Window;
-
+GLfloat win;
 void keyboardHandler(int key,int x, int y){
     rot->keyboardHandler(key,x,y);
     cam->keyboardCamera(key,x,y);
 }
 
-void destroyProgram(unsigned char key, int x,int y){
+void teclas(unsigned char key, int x,int y){
     switch (key)
     {
     case 27:
         glutDestroyWindow(Window);
         exit(0);
+        break;
+    case '+':
+        win -= 1;
+           if (win < 10) win = 10;
+           glMatrixMode(GL_PROJECTION);
+           glLoadIdentity();
+           glOrtho(-win, win, -win, win, -win*2, win*2);
+        break;
+
+    case '-':
+            win += 1;
+           if (win < 10) win = 10;
+           glMatrixMode(GL_PROJECTION);
+           glLoadIdentity();
+           glOrtho(-win, win, -win, win, -win*2, win*2);
+        break;        
     }
+    glutPostRedisplay();
 }
 
 void init(void)
 {
+    win=50;
     Nave::inicializarTextura();
     //nave = new Nave();
     world = new World(new Nave());
@@ -43,8 +61,7 @@ void init(void)
     rot->Start();
     cam->Start();
 
-    glutSpecialFunc(keyboardHandler);
-	glutKeyboardFunc(destroyProgram);
+
 	
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
@@ -77,7 +94,7 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-50.0, 50.0, -50.0, 50.0, -100.0, 100.0);
+    glOrtho(-win, win, -win, win, -win*2, win*2);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -133,8 +150,11 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glewInit();
-    init();
+ 
     
+    glutSpecialFunc(keyboardHandler);
+	glutKeyboardFunc(teclas);
+    init();
     glutMainLoop();
     destroy();
     return 0;
