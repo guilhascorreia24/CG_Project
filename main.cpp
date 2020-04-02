@@ -17,11 +17,20 @@ GLfloat angle, fAspect;
 World* world;
 RotationHandler* rot;
 Camera* cam;
-
+GLint Window;
 
 void keyboardHandler(int key,int x, int y){
     rot->keyboardHandler(key,x,y);
     cam->keyboardCamera(key,x,y);
+}
+
+void destroyProgram(unsigned char key, int x,int y){
+    switch (key)
+    {
+    case 27:
+        glutDestroyWindow(Window);
+        exit(0);
+    }
 }
 
 void init(void)
@@ -35,7 +44,8 @@ void init(void)
     cam->Start();
 
     glutSpecialFunc(keyboardHandler);
-
+	glutKeyboardFunc(destroyProgram);
+	
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
     glShadeModel (GL_FLAT);
@@ -119,7 +129,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(350, 300);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow(argv[0]);
+    Window=glutCreateWindow(argv[0]);
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glewInit();
