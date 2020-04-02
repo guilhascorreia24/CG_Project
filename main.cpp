@@ -12,7 +12,7 @@
 
 #define PI 3.14159
 //static GLfloat spin = 0.0;
-int i;
+int i, more;
 bool pressed=false;
 GLfloat angle, fAspect;
 World* world;
