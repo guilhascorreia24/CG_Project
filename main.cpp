@@ -13,6 +13,7 @@
 #define PI 3.14159
 //static GLfloat spin = 0.0;
 int i;
+bool pressed=false;
 GLfloat angle, fAspect;
 World* world;
 RotationHandler* rot;
@@ -33,6 +34,18 @@ void keyboardHandler(int key,int x, int y){
 void teclas(unsigned char key, int x,int y){
     switch (key)
     {
+    case 'w':
+     glLoadIdentity();
+        if(!pressed){pressed=true;}
+        else{pressed=false;} 
+        glLoadIdentity();
+        break;      
+    case 'a':
+     rot->keyboardSpeed(key, x, y);
+     break;
+    case 'z':
+        rot->keyboardSpeed(key,x,y);
+        break;
     case 27:
         glutDestroyWindow(Window);
         exit(0);
@@ -83,7 +96,7 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-        break;        
+        break; 
     }
     glutPostRedisplay();
 }
@@ -128,8 +141,12 @@ void display(void)
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     //gluLookAt(0,0,100,0,0,0,0,0,0);
     glScalef(3.0, 3.0, 3.0);
-    glPushMatrix();
-    glColor3f(0.0f, 0.0f, 1.0f);
+    glColor3f (1.0, 1.0, 0.0);
+    if(pressed){
+        glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    }else{
+        glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+    }
     world->draw();
     //nave_sem_perna->draw();
 
