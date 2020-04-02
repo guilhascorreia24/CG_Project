@@ -9,7 +9,6 @@ void Object::draw(){
     glRotatef(rot.z,1,0,0);
     glRotatef(rot.y,0,1,0);
     glRotatef(rot.x,0,0,1);
-    //printf("Rotation: Angle: %f - X: %f - Y: %f - Z: %f\n",rot.x,rot.y,rot.z);
     drawShape();
 }
 
