@@ -5,7 +5,7 @@
 #include "utils.h"
 #include "Nave.h"
 #include "nave_sem_pernas.h"
-
+#include <GL/glut.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -19,6 +19,12 @@ RotationHandler* rot;
 Camera* cam;
 GLint Window;
 GLfloat win;
+
+
+bool iluminacao,shading=true,antialiasing=true;
+
+
+
 void keyboardHandler(int key,int x, int y){
     rot->keyboardHandler(key,x,y);
     cam->keyboardCamera(key,x,y);
@@ -82,11 +88,109 @@ void teclas(unsigned char key, int x,int y){
     glutPostRedisplay();
 }
 
+void display(void)
+{
+    
+    
+    // if(iluminacao==true){    
+    //     luzAmbiente[4]={0.2,0.2,0.2,1.0}; 
+    // }
+    // else{
+    //    luzAmbiente[4]={0.0,0.0,0.0,0.0}; 
+    // }
+
+    // if (shading==true)
+    //     glShadeModel (GL_FLAT);
+    // else
+    //     glShadeModel(GL_SMOOTH);
+    
+
+    if (antialiasing==true){
+        glEnable(GL_BLEND);
+        glDisable(GL_DEPTH_TEST);
+        glEnable(GLUT_MULTISAMPLE);
+         glEnable(GL_MULTISAMPLE);
+    }
+    else{
+        //glDisable(GL_BLEND);
+        //glEnable(GL_DEPTH_TEST);
+        glDisable(GL_MULTISAMPLE);
+    }
+         
+    
+
+    //glEnable(GL_TEXTURE_2D);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+/*    glFrontFace(GL_CCW);
+    glCullFace(GL_FRONT);
+    glEnable(GL_CULL_FACE); */
+
+/*    glTranslatef(-10.0,-10.0,0.0);  */
+    //gluLookAt(0,0,100,0,0,0,0,0,0);
+    glScalef(3.0, 3.0, 3.0);
+    glPushMatrix();
+    glColor3f(0.0f, 0.0f, 1.0f);
+    world->draw();
+    //nave_sem_perna->draw();
+
+    glPopMatrix();
+    glutSwapBuffers();
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
+
+}
+
+
 void init(void)
 {
     win=50;
-    Nave::inicializarTextura();
-    //nave = new Nave();
+
+
+    
+    GLfloat luzAmbiente[4]={0.2,0.2,0.2,1.0}; 
+	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor" 
+	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho" 
+	GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
+
+
+    // Capacidade de brilho do material
+	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
+	GLint especMaterial = 120;
+
+
+    // Habilita o modelo de colorização de Gouraud
+    glShadeModel(GL_SMOOTH);
+
+    // Define a refletância do material
+    glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
+    // Define a concentração do brilho
+    glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
+
+    // Ativa o uso da luz ambiente
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+
+
+    // Define os parâmetros da luz de número 0
+    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular);
+    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+
+
+
+
+
+    // Habilita a definição da cor do material a partir da cor corrente
+    glEnable(GL_COLOR_MATERIAL);
+    //Habilita o uso de iluminação
+    glEnable(GL_LIGHTING);
+    // Habilita a luz de número 0
+    glEnable(GL_LIGHT0);
+    // Habilita o depth-buffering
+    glEnable(GL_DEPTH_TEST);
+
+
+    //Nave::inicializarTextura();
+
     world = new World(new Nave());
     rot = new RotationHandler(world);
     cam= new Camera();
@@ -97,28 +201,9 @@ void init(void)
 	glutKeyboardFunc(teclas);
 	
     
-    glClearColor (0.0, 0.0, 1.0, 0.0);
-    glShadeModel (GL_FLAT);
-    glEnable(GL_DEPTH_TEST);
-}
-
-void display(void)
-{
-    glEnable(GL_TEXTURE_2D);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-/*    glFrontFace(GL_CCW);
-    glCullFace(GL_FRONT);
-    glEnable(GL_CULL_FACE); */
-
-/*    glTranslatef(-10.0,-10.0,0.0);  */
-    //gluLookAt(0,0,100,0,0,0,0,0,0);
-    glScalef(3.0, 3.0, 3.0);
-    glColor3f (1.0, 1.0, 0.0);
-    world->draw();
-    //nave_sem_perna->draw();
-
-
-    glutSwapBuffers();
+    //glClearColor (0.0, 0.0, 1.0, 0.0);
+    //glShadeModel (GL_FLAT);
+    //glEnable(GL_DEPTH_TEST);
 }
 
 
