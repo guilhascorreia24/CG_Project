@@ -118,11 +118,11 @@ void display(void)
     //     glShadeModel(GL_SMOOTH);
     
 
-    if (antialiasing==true){
+    if (antialiasing==false){
         glEnable(GL_BLEND);
         glDisable(GL_DEPTH_TEST);
         glEnable(GLUT_MULTISAMPLE);
-         glEnable(GL_MULTISAMPLE);
+        glEnable(GL_MULTISAMPLE);
     }
     else{
         //glDisable(GL_BLEND);
@@ -214,8 +214,7 @@ void init(void)
     rot->Start();
     cam->Start();
 
-    glutSpecialFunc(keyboardHandler);
-	glutKeyboardFunc(teclas);
+
 	
     
     //glClearColor (0.0, 0.0, 1.0, 0.0);
@@ -286,7 +285,8 @@ int main(int argc, char** argv)
     glutDisplayFunc(display);
     glewInit();
  
-    
+    glutSpecialFunc(keyboardHandler);
+	glutKeyboardFunc(teclas);
 
     init();
     glutMainLoop();
