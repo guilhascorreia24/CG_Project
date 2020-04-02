@@ -39,15 +39,18 @@ void teclas(unsigned char key, int x,int y){
         if(!pressed){pressed=true;}
         else{pressed=false;} 
         glLoadIdentity();
+        glutPostRedisplay();
         break;      
     case 'a':
      rot->keyboardSpeed(key, x, y);
      break;
     case 'z':
         rot->keyboardSpeed(key,x,y);
+        glutPostRedisplay();
         break;
     case 27:
         glutDestroyWindow(Window);
+        glutPostRedisplay();
         exit(0);
         break;
     case '+':
@@ -71,6 +74,7 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
+        glutPostRedisplay();
 
         break;
 
@@ -96,9 +100,9 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
+            glutPostRedisplay();
         break; 
     }
-    glutPostRedisplay();
 }
 
 void display(void)

@@ -4,7 +4,6 @@ Camera::Camera(){
 }
 
 Camera::~Camera(){
-	printf("NOp\n");
 	Stop();
 }
 
@@ -70,8 +69,8 @@ void Camera::camera4(){
 	gluLookAt(0,-50,0,0,0,0,1,0,0);
 }
 void Camera::camera5(){
-		gluLookAt(0,0,50,0,0,0,1,0,0);
+	gluLookAt(0,0,50,0,0,0,1,0,0);
 }
 void Camera::camera6(){
-		gluLookAt(0,0,-50,0,0,0,1,0,0);
+	gluLookAt(0,0,-50,0,0,0,1,0,0);
 }
