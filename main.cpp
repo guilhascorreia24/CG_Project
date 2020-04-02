@@ -39,6 +39,20 @@ void teclas(unsigned char key, int x,int y){
            glOrtho(-win, win, -win, win, -win*2, win*2);
            glMatrixMode(GL_MODELVIEW);
            glLoadIdentity();
+           
+            if(cam->camara==1)
+	           gluLookAt(50,0,0,0,0,0,0,1,0);
+            else if(cam->camara==2)
+	           gluLookAt(-50,0,0,0,0,0,0,1,0);
+            else if(cam->camara==3)
+	            gluLookAt(0,50,0,0,0,0,1,0,0);
+            else if(cam->camara==4)
+	            gluLookAt(0,-50,0,0,0,0,1,0,0);
+            else if(cam->camara==5)
+		        gluLookAt(0,0,50,0,0,0,1,0,0);
+            else if(cam->camara==6)
+		        gluLookAt(0,0,-50,0,0,0,1,0,0);
+
         break;
 
     case '-':
@@ -49,6 +63,20 @@ void teclas(unsigned char key, int x,int y){
            glOrtho(-win, win, -win, win, -win*2, win*2);
            glMatrixMode(GL_MODELVIEW);
            glLoadIdentity();
+           
+
+            if(cam->camara==1)
+	           gluLookAt(50,0,0,0,0,0,0,1,0);
+            else if(cam->camara==2)
+	           gluLookAt(-50,0,0,0,0,0,0,1,0);
+            else if(cam->camara==3)
+	            gluLookAt(0,50,0,0,0,0,1,0,0);
+            else if(cam->camara==4)
+	            gluLookAt(0,-50,0,0,0,0,1,0,0);
+            else if(cam->camara==5)
+		        gluLookAt(0,0,50,0,0,0,1,0,0);
+            else if(cam->camara==6)
+		        gluLookAt(0,0,-50,0,0,0,1,0,0);
         break;        
     }
     glutPostRedisplay();
@@ -65,7 +93,8 @@ void init(void)
     rot->Start();
     cam->Start();
 
-
+    glutSpecialFunc(keyboardHandler);
+	glutKeyboardFunc(teclas);
 	
     
     glClearColor (0.0, 0.0, 1.0, 0.0);
@@ -156,8 +185,7 @@ int main(int argc, char** argv)
     glewInit();
  
     
-    glutSpecialFunc(keyboardHandler);
-	glutKeyboardFunc(teclas);
+
     init();
     glutMainLoop();
     destroy();

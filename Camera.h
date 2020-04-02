@@ -8,6 +8,7 @@ public:
  void Stop();
  ~Camera();
  void keyboardCamera(int key,int x, int y);
+ int camara;
 private:
 	void camera1();
 	void camera2();
@@ -18,5 +19,6 @@ private:
 
 private:
 	bool start;
+	
 
 };
