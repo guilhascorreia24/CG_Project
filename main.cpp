@@ -37,6 +37,8 @@ void teclas(unsigned char key, int x,int y){
            glMatrixMode(GL_PROJECTION);
            glLoadIdentity();
            glOrtho(-win, win, -win, win, -win*2, win*2);
+           glMatrixMode(GL_MODELVIEW);
+           glLoadIdentity();
         break;
 
     case '-':
@@ -45,6 +47,8 @@ void teclas(unsigned char key, int x,int y){
            glMatrixMode(GL_PROJECTION);
            glLoadIdentity();
            glOrtho(-win, win, -win, win, -win*2, win*2);
+           glMatrixMode(GL_MODELVIEW);
+           glLoadIdentity();
         break;        
     }
     glutPostRedisplay();
