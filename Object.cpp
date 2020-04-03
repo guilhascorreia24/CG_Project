@@ -12,8 +12,20 @@ void Object::draw(){
     drawShape();
 }
 
-Object::Object() : rot(0,0,0){
+Point Object::getPosition(){
+    return position;
+}
+void Object::setPosition(Point & point){
+    position = point;
+
+}
+
+Object::Object() : rot(0,0,0), position(0,0,0){
 
 }
 Object::~Object(){
+}
+
+Object::Object(Point & pos) : rot(0,0,0) , position(pos){
+
 }

@@ -53,6 +53,7 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
                 int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
                 if (matches != 9){
                     errorPrint("Error parsing, s = 1 line = %d\n",line);
+                    fclose(file); 
                     return false;
                 }
                 vertexIndices.push_back(vertexIndex[0]);
@@ -68,6 +69,7 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
                 int matches = fscanf(file, "%d//%d %d//%d %d//%d\n", &vertexIndex[0], &normalIndex[0], &vertexIndex[1], &normalIndex[1], &vertexIndex[2], &normalIndex[2] );
                 if (matches != 6){
                     errorPrint("Error parsing, s = 1 line = %d\n",line);
+                    fclose(file);
                     return false;
                 }
                 vertexIndices.push_back(vertexIndex[0]);
@@ -101,7 +103,16 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
         normals->push_back(vertex);
     }
         debugPrint("Model %s with %d vertices\n",filename,vertices->size());
+    fclose(file);
     return true;
+}
+
+int getFileSize(FILE * file){
+    int curr = (int)fseek(file, 0, SEEK_CUR);
+    fseek(file, 0, SEEK_END);
+    int size = ftell(file);
+    fseek ( file , 0 , curr);
+    return size;
 }
 
 void debugPrint(const char* format, ...){
