@@ -54,3 +54,7 @@ void Nave::drawShape(){
     glDisableClientState(GL_VERTEX_ARRAY);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
+
+void Nave::Update(){
+    
+}

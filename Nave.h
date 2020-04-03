@@ -10,6 +10,7 @@ class Nave : public Object{
 
     protected:
         void drawShape();
+        void Update();
 
     private:
         GLuint pattern_buffer;

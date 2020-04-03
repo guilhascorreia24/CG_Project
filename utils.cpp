@@ -7,6 +7,9 @@ AngleRotation::AngleRotation(float x_angle,float y_angle, float z_angle){
         setZRotation(z_angle);
 }
 
+Vector::Vector(float x, float y, float z) : x(x), y(y), z(z){
+}
+
 bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals){
     std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
     std::vector< glm::vec3 > temp_vertices;

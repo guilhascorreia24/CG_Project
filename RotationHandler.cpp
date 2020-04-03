@@ -28,23 +28,23 @@ void RotationHandler::keyboardHandler(int key,int x, int y){
         case GLUT_KEY_DOWN:
             glLoadIdentity();
             rotateDown();
-            glutPostRedisplay();
+            //glutPostRedisplay()();
             break;
         case GLUT_KEY_UP:
             glLoadIdentity();
             rotateUp();
-            glutPostRedisplay();
+            //glutPostRedisplay()();
             break;
 
         case GLUT_KEY_LEFT:
             glLoadIdentity();
             rotateLeft();
-            glutPostRedisplay();
+            //glutPostRedisplay()();
             break;
         case GLUT_KEY_RIGHT:
             glLoadIdentity();
             rotateRight();
-            glutPostRedisplay();
+            //glutPostRedisplay()();
             break;
         default:
         break;
@@ -58,13 +58,13 @@ void RotationHandler::keyboardSpeed(unsigned char key, int x,int y){
         //printf("%d\n",Rotate);
             glLoadIdentity();
             moreSpeed();
-            glutPostRedisplay();
+            //glutPostRedisplay()();
             break;
         case 'z':
         //printf("%d\n",Rotate);
             glLoadIdentity();
             lessSpeed();
-            glutPostRedisplay();
+            //glutPostRedisplay()();
             break;
     }
 }

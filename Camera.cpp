@@ -22,40 +22,38 @@ void Camera::keyboardCamera(int key, int x, int y){
 		     glLoadIdentity();
 			camera1();
 			camara=1;
-			    glutPostRedisplay();
+			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F2:
 		     glLoadIdentity();
 			camera2();
 			camara=2;
-			    glutPostRedisplay();
+			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F3:
 		     glLoadIdentity();
 			camera3();
 			camara=3;
-			    glutPostRedisplay();
+			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F4:
 		     glLoadIdentity();
 			camera4();
 			camara=4;
-			    glutPostRedisplay();
+			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F5:
 		     glLoadIdentity();
 			camera5();
 			camara=5;
-			    glutPostRedisplay();
+			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F6:
 		     glLoadIdentity();
 			camera6();
 			camara=6;
-			    glutPostRedisplay();
-			break;
-		default:
-        break; 			
+			    //glutPostRedisplay()();
+			break;		
 	}
 }
 void Camera::camera1(){

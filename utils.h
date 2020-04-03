@@ -7,7 +7,9 @@
 #include <GL/glew.h>
 #include <stdbool.h>
 #include <GL/glut.h>
+#include <GL/freeglut.h>
 #include <glm/glm.hpp>
+#include <unistd.h>
 #define TRUE true
 #define FALSE false
 
@@ -42,19 +44,42 @@ struct AngleRotation{
         return _angle;
     }
 
-    inline void operator+=(AngleRotation* a){
-        setXRotation(x+= a->x);
-        setYRotation(y+= a->y);
-        setZRotation(z+= a->z);
+    inline void operator+=(AngleRotation & a){
+        setXRotation(x+= a.x);
+        setYRotation(y+= a.y);
+        setZRotation(z+= a.z);
     }
-    inline void operator-=(AngleRotation* a){
-        setXRotation(x-= a->x);
-        setYRotation(y-= a->y);
-        setZRotation(z-= a->z);
+    inline void operator-=(AngleRotation & a){
+        setXRotation(x-= a.x);
+        setYRotation(y-= a.y);
+        setZRotation(z-= a.z);
     }
 
     float x,y,z;
 };
+
+struct Vector{
+    Vector(float x, float y, float z);
+
+    inline Vector operator*(float _const){
+        return Vector(x*_const,y*_const,z*_const);
+    }
+
+    inline void operator+=(Vector& a){
+        x+= a.x;
+        y+= a.y;
+        z+= a.z;
+    }
+    inline void operator-=(Vector& a){
+        x-= a.x;
+        y-= a.y;
+        z-= a.z;
+    }
+
+    float x,y,z;
+};
+
+
 void debugPrint(const char* format, ...);
 
 void errorPrint(const char* format, ...);
@@ -62,6 +87,13 @@ void errorPrint(const char* format, ...);
 
 struct Point{
     Point(float x, float y, float z) : x(x) , y(y) , z(z){}
+
+    inline void operator+=(Vector & a){
+        x+= a.x;
+        y+= a.y;
+        z+= a.z;
+    }
+    
     float x,y,z;
 };
 //http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/

@@ -9,6 +9,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#define FRAME_DELTA 1000/60
+
 
 #define PI 3.14159
 //static GLfloat spin = 0.0;
@@ -39,18 +41,18 @@ void teclas(unsigned char key, int x,int y){
         if(!pressed){pressed=true;}
         else{pressed=false;} 
         glLoadIdentity();
-        glutPostRedisplay();
+        //glutPostRedisplay()();
         break;      
     case 'a':
      rot->keyboardSpeed(key, x, y);
      break;
     case 'z':
         rot->keyboardSpeed(key,x,y);
-        glutPostRedisplay();
+        //glutPostRedisplay()();
         break;
     case 27:
         glutDestroyWindow(Window);
-        glutPostRedisplay();
+        //glutPostRedisplay()();
         exit(0);
         break;
     case '+':
@@ -74,7 +76,8 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-                glutPostRedisplay();
+        //glutPostRedisplay()();
+
         break;
 
     case '-':
@@ -99,16 +102,16 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-                glutPostRedisplay();
-        break;
+            //glutPostRedisplay()();
+        break; 
     }
  
 }
 
 void display(void)
 {
-    
-    //glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW); 
+    glPushMatrix(); 
 
     
 
@@ -123,8 +126,8 @@ void display(void)
 
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     //gluLookAt(0,0,100,0,0,0,0,0,0);
-    glScalef(3.0, 3.0, 3.0);
-    glColor3f (0.0, 0.0, 1.0);
+    glScalef(3.0,3.0,3.0);
+    glColor3f (1.0, 1.0, 0.0);
 
 
     if(iluminacao==true){    
@@ -171,7 +174,7 @@ void display(void)
     //glutSolidTeapot(1);
 
 
-   glPopMatrix();
+    glPopMatrix();
     glutSwapBuffers();
     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
 
@@ -244,8 +247,13 @@ void init(void)
     glEnable(GLUT_MULTISAMPLE);
 
     //Nave::inicializarTextura();
-
-    world = new World(new Nave());
+    Object *nave = new Nave();
+    Point a(5,5,5);
+    Vector dir(1,1,1);
+    nave->setPosition(a);
+    nave->setDirection(dir);
+    nave->setVelocity(0.1);
+    world = new World(nave);
     rot = new RotationHandler(world);
     cam= new Camera();
     rot->Start();
@@ -450,6 +458,17 @@ void GerenciaMouse(int button, int state, int x, int y)
 }
      
 
+void mainloop(){
+    static long last_time = glutGet(GLUT_ELAPSED_TIME);
+    long currTime = glutGet(GLUT_ELAPSED_TIME);
+    if(currTime-last_time>FRAME_DELTA){
+        world->update();
+        glutPostRedisplay();
+        i = 0;
+    }
+    i++;
+}
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
@@ -468,8 +487,8 @@ int main(int argc, char** argv)
     glutMouseFunc(GerenciaMouse); 
     glutSpecialFunc(keyboardHandler);
 	glutKeyboardFunc(teclas);
-
-
+    init();
+    glutIdleFunc(mainloop);
     glutMainLoop();
     destroy();
     return 0;

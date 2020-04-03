@@ -24,3 +24,9 @@ void World::draw(){
         object->draw();
     }
 } 
+
+void World::update(){
+    for(Object * object : objects){
+        object->update();
+    }
+}
