@@ -5,7 +5,7 @@
 #include "utils.h"
 #include "Nave.h"
 #include "nave_sem_pernas.h"
-#include <GL/glut.h>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -21,8 +21,8 @@ Camera* cam;
 GLint Window;
 GLfloat win;
 
-
-bool iluminacao,shading=true,antialiasing=true;
+GLfloat luzAmbiente[4];
+bool iluminacao=true,shading=false,antialiasing=false;
 
 
 
@@ -71,7 +71,7 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-
+                glutPostRedisplay();
         break;
 
     case '-':
@@ -96,44 +96,24 @@ void teclas(unsigned char key, int x,int y){
 		        gluLookAt(0,0,50,0,0,0,1,0,0);
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-        break; 
+                glutPostRedisplay();
+        break;
     }
-    glutPostRedisplay();
+ 
 }
 
 void display(void)
 {
     
-    
-    // if(iluminacao==true){    
-    //     luzAmbiente[4]={0.2,0.2,0.2,1.0}; 
-    // }
-    // else{
-    //    luzAmbiente[4]={0.0,0.0,0.0,0.0}; 
-    // }
+    //glLoadIdentity();
 
-    // if (shading==true)
-    //     glShadeModel (GL_FLAT);
-    // else
-    //     glShadeModel(GL_SMOOTH);
-    
-
-    if (antialiasing==false){
-        glEnable(GL_BLEND);
-        glDisable(GL_DEPTH_TEST);
-        glEnable(GLUT_MULTISAMPLE);
-        glEnable(GL_MULTISAMPLE);
-    }
-    else{
-        //glDisable(GL_BLEND);
-        //glEnable(GL_DEPTH_TEST);
-        glDisable(GL_MULTISAMPLE);
-    }
-         
     
 
     //glEnable(GL_TEXTURE_2D);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+
+
 /*    glFrontFace(GL_CCW);
     glCullFace(GL_FRONT);
     glEnable(GL_CULL_FACE); */
@@ -142,6 +122,42 @@ void display(void)
     //gluLookAt(0,0,100,0,0,0,0,0,0);
     glScalef(3.0, 3.0, 3.0);
     glColor3f (1.0, 1.0, 0.0);
+
+
+    if(iluminacao==true){    
+        luzAmbiente[0]=0.2;
+        luzAmbiente[1]=0.2;
+        luzAmbiente[2]=0.2;
+        luzAmbiente[3]=1.0; 
+    }
+    else{
+        luzAmbiente[0]=0.0;
+        luzAmbiente[1]=0.0;
+        luzAmbiente[2]=0.0;
+        luzAmbiente[3]=0.0; 
+    }
+
+    if (shading==true)
+        glShadeModel (GL_FLAT);
+    else
+        glShadeModel(GL_SMOOTH);
+    
+
+    if (antialiasing==false){
+        glEnable(GL_BLEND);
+        glDisable(GL_DEPTH_TEST);
+        glEnable(GLUT_MULTISAMPLE);
+        //glEnable(GL_MULTISAMPLE);
+    }
+    else{
+        //glDisable(GL_MULTISAMPLE);
+
+        glEnable(GL_BLEND);
+		glDisable(GL_DEPTH_TEST);
+		glEnable(GLUT_MULTISAMPLE);
+    }
+         
+
     if(pressed){
         glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     }else{
@@ -149,10 +165,12 @@ void display(void)
     }
     world->draw();
     //nave_sem_perna->draw();
+    //glutSolidTeapot(1);
 
-    glPopMatrix();
+
+   glPopMatrix();
     glutSwapBuffers();
-    //glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
+    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
 
 }
 
@@ -161,17 +179,31 @@ void init(void)
 {
     win=50;
 
+    luzAmbiente[0]=0.2;
+    luzAmbiente[1]=0.2;
+    luzAmbiente[2]=0.2;
+    luzAmbiente[3]=1.0; 
 
-    
-    GLfloat luzAmbiente[4]={0.2,0.2,0.2,1.0}; 
+    GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+	// Define os parâmetros da luz de número 0
+	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
+	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );	
+
+
+
 	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor" 
 	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho" 
-	GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
+
 
 
     // Capacidade de brilho do material
 	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
-	GLint especMaterial = 120;
+	GLint especMaterial = 60;
+
+ 	// Especifica que a cor de fundo da janela será preta
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
 
 
     // Habilita o modelo de colorização de Gouraud
@@ -183,10 +215,10 @@ void init(void)
     glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
 
     // Ativa o uso da luz ambiente
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
 
 
-    // Define os parâmetros da luz de número 0
+    // // Define os parâmetros da luz de número 0
     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
     glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular);
@@ -205,6 +237,8 @@ void init(void)
     // Habilita o depth-buffering
     glEnable(GL_DEPTH_TEST);
 
+
+    glEnable(GLUT_MULTISAMPLE);
 
     //Nave::inicializarTextura();
 
@@ -252,7 +286,7 @@ void reshape(int w, int h)
     // Especifica posição do observador e do alvo
     gluLookAt(0,0,50, 0,0,0, 0,1,0);
 }*/
-
+/*
 // Função callback chamada quando o tamanho da janela é alterado 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 {
@@ -265,14 +299,139 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
     // Calcula a correção de aspecto
     fAspect = (GLfloat)w/(GLfloat)h;
 
-    //EspecificaParametrosVisualizacao();
-}
+    glMatrixMode(GL_PROJECTION);
+
+    glLoadIdentity();
+    int L = 100;
+
+    if (w <= h)
+        glOrtho(-L, L, -L * h / w, L * h / w, -L * 2, L * 2);
+    else
+        glOrtho(-L * w / h, L * w / h, -L, L, -L * 2, L * 2);
+
+    glMatrixMode(GL_MODELVIEW);
+
+}*/
 
 void destroy(){
     delete rot;
     delete cam;
     delete world;
 }
+//----------------------------------------------------
+
+// Gerenciamento do menu com as opções de cores           
+void Menu_Flat_Wireframe(int op)
+{
+   switch(op) {
+            case 0:
+                    //glLoadIdentity();
+                    pressed=true;
+                    //glLoadIdentity();
+                    break;
+            case 1:
+                    //glLoadIdentity();
+                    pressed=false; 
+                    //glLoadIdentity();
+                    break;
+
+    }
+    glutPostRedisplay();
+}           
+
+// Gerenciamento do menu principal           
+void MenuPrincipal(int op)
+{
+}
+    
+
+// Gerenciamento do menu com as opções de cores           
+void Iluminacao(int op)
+{
+   switch(op) {
+            case 0:
+                    iluminacao=true;
+                    break;
+            case 1:
+                    iluminacao=false;
+                    break;
+    }
+    glutPostRedisplay();
+}   
+        
+
+// Gerenciamento do menu com as opções de cores           
+void GouraudShading(int op)
+{
+   switch(op) {
+            case 0:
+                    shading=true;
+                    break;
+            case 1:
+                    shading=false;
+                    break;
+    }
+    glutPostRedisplay();
+}   
+         
+
+// Gerenciamento do menu com as opções de cores           
+void Antialiasing(int op)
+{
+   switch(op) {
+            case 0:
+                     antialiasing=true;
+                     break;
+            case 1:
+                     antialiasing=false;
+                     break;
+
+    }
+    glutPostRedisplay();
+}   
+          
+  
+
+
+// Criacao do Menu
+void CriaMenu() 
+{
+    int menu,submenu1,submenu2,submenu3,submenu4;
+    //glLoadIdentity();
+    submenu1 = glutCreateMenu(Menu_Flat_Wireframe);
+    glutAddMenuEntry("Wireframe",0);
+    glutAddMenuEntry("Flat",1);
+
+    submenu2 = glutCreateMenu(Iluminacao);
+    glutAddMenuEntry("ON",0);
+    glutAddMenuEntry("OFF",1);
+
+    submenu3 = glutCreateMenu(GouraudShading);
+    glutAddMenuEntry("ON",0);
+    glutAddMenuEntry("OFF",1);
+
+    submenu4 = glutCreateMenu(Antialiasing);
+    glutAddMenuEntry("ON",0);
+    glutAddMenuEntry("OFF",1);
+
+    menu = glutCreateMenu(MenuPrincipal);
+    glutAddSubMenu("Flat ou Wireframe",submenu1);
+    glutAddSubMenu("Iluminacao",submenu2);
+    glutAddSubMenu("Gouraud Shading",submenu3);
+    glutAddSubMenu("Antialiasing",submenu4);
+
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+      
+void GerenciaMouse(int button, int state, int x, int y)
+{        
+    if (button == GLUT_RIGHT_BUTTON)
+        if (state == GLUT_DOWN) 
+            CriaMenu();
+         
+    glutPostRedisplay();
+}
+     
 
 int main(int argc, char** argv)
 {
@@ -284,11 +443,16 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glewInit();
- 
+    init();
+
+
+
+
+    glutMouseFunc(GerenciaMouse); 
     glutSpecialFunc(keyboardHandler);
 	glutKeyboardFunc(teclas);
 
-    init();
+
     glutMainLoop();
     destroy();
     return 0;

@@ -54,7 +54,9 @@ void Camera::keyboardCamera(int key, int x, int y){
 			camera6();
 			camara=6;
 			    glutPostRedisplay();
-			break;		
+			break;
+		default:
+        break; 			
 	}
 }
 void Camera::camera1(){
