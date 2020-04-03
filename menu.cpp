@@ -112,7 +112,7 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 void MoveMouseBotaoPressionado(int x, int y)
 {
      sprintf(texto, "Botao pressionado (%d,%d)", x, y);
-     glutPostRedisplay();
+     //glutPostRedisplay()();
 }
 
 // Função callback chamada sempre que o mouse é movimentado
@@ -120,7 +120,7 @@ void MoveMouseBotaoPressionado(int x, int y)
 void MoveMouse(int x, int y)
 {
      sprintf(texto, "(%d,%d)", x, y);
-     glutPostRedisplay();
+     //glutPostRedisplay()();
 }
 
 // Função callback chamada para gerenciar eventos do teclado   
@@ -141,7 +141,7 @@ void TeclasEspeciais(int key, int x, int y)
            glLoadIdentity();
            gluOrtho2D (-win, win, -win, win);
     }
-    glutPostRedisplay();
+    //glutPostRedisplay()();
 }
            
 
@@ -160,7 +160,7 @@ void Menu_Iluminacao(int op)
                      b = 0.0f;
                      break;
     }
-    glutPostRedisplay();
+    //glutPostRedisplay()();
 }           
 
 // Gerenciamento do menu iluminacao        
@@ -178,7 +178,7 @@ void Menu_Gouraud(int op)
                      b = 0.0f;
                      break;
     }
-    glutPostRedisplay();
+    //glutPostRedisplay()();
 }           
 
 // Gerenciamento do menu iluminacao        
@@ -196,7 +196,7 @@ void Menu_Antialiasing(int op)
                      b = 0.0f;
                      break;
     }
-    glutPostRedisplay();
+    //glutPostRedisplay()();
 }           
  
         
@@ -238,7 +238,7 @@ void GerenciaMouse(int button, int state, int x, int y)
          if (state == GLUT_DOWN) 
             CriaMenu();
          
-    glutPostRedisplay();
+    //glutPostRedisplay()();
 }
 
 

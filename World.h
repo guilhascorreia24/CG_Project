@@ -10,6 +10,7 @@ class World{
         ~World();
         Object* getMainObject();
         void draw();
+        void update();
 
         void addObject(Object* obj);
 
