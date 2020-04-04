@@ -13,25 +13,27 @@ void World::fillObjects(){
     Point nave_point(0,0,0);
     Point planet_point(10,10,0);
     Point satelite_point(12,8,0);
-    Point sol_point(-8,5,0);
+    Point metero_point(-8,5,0);
 
     Object* nave = new Nave();
     nave->setPosition(nave_point);
-    Object* sol = new Sol(sol_point);
-    sol->setPosition(sol_point);
-    sol->setVelocity(0.0);
+
+    /*Object* meteoro = new Meteoro(nave_point);
+    meteoro->setPosition(metero_point);
+    meteoro->setVelocity(0.1);
 
     Object* planeta = new Planeta(nave_point);
-    planeta->setPosition(planet_point);
-    planeta->setVelocity(0.1);
+    meteoro->setPosition(planet_point);
+    meteoro->setVelocity(0.1);
 
     Object* satelite = new Satelite(planet_point);
     satelite->setPosition(satelite_point);
     satelite->setVelocity(0.1);
 
-    addObject(sol);
+    addObject(nave);
+    addObject(meteoro);
     addObject(satelite);
-    addObject(planeta);
+    addObject(planeta);*/
     addObject(nave);
     main = nave;
 }

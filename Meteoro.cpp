@@ -1,12 +1,12 @@
-#include "Sol.h"
+#include "Meteoro.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Sol::width=0;
-GLint Sol::height=0;
+GLint Meteoro::width=0;
+GLint Meteoro::height=0;
 
 
 
-void Sol::inicializarTextura(){
+void Meteoro::inicializarTextura(){
     unsigned int texture;
     int n;
     //int width,height;
@@ -24,7 +24,7 @@ void Sol::inicializarTextura(){
 
 }
 
-Sol::Sol(Point &center):center(center){
+Meteoro::Meteoro(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -32,18 +32,18 @@ Sol::Sol(Point &center):center(center){
     std::vector< arr > f;
     std::vector< glm::vec2 > uv; // Won't be used at the moment.
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/planeta.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/meteoro.obj", &points, &uv,&normals,&f);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
     }
 }
 
-Sol::~Sol(){
+Meteoro::~Meteoro(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Sol::drawShape(){
+void Meteoro::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
@@ -56,11 +56,11 @@ void Sol::drawShape(){
 }
 
 
-const char* Sol::getLabel(){
-    return "Sol";
+const char* Meteoro::getLabel(){
+    return "Meteoro";
 }
 
-void Sol::Update(){
+void Meteoro::Update(){
     static Point p(0,0,0);
     //printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
     //printf("Distance from last frame: %f\n",p.distance(position));
