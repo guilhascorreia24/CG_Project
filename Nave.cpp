@@ -30,10 +30,9 @@ Nave::Nave(){
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    std::vector< arr > f;
-    std::vector< glm::vec2 > uv; // Won't be used at the moment.
-    std::vector< glm::vec3 > normals; // Won't be used at the moment.
     bool res = loadObj("objs/nave.obj", &points, &uv,&normals,&f);
+
+  
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
@@ -57,10 +56,10 @@ void Nave::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
-    GLfloat Ka[4]={0.8, 0.8, 0.8, 1.0};
+    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
     GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8, 1.0};
-    GLfloat Ks[4]={0.8, 0.8, 0.8, 1.0};
+    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
@@ -68,31 +67,32 @@ void Nave::drawShape(){
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
 
 
-    for (int i = 0; i < model->n_f; i++)
+    for (int i = 0; i < points.size(); i++)
     {
-        for (int j = 0; j < 3; j++)
-        {
-            glTexCoord2f(model->vt[model->vt_i[i][j] - 1][0], -model->vt[model->vt_i[i][j] - 1][1]);
-            glNormal3f(model->vn[model->vn_i[i][j] - 1][0], model->vn[model->vn_i[i][j] - 1][1], model->vn[model->vn_i[i][j] - 1][2]);
-            glVertex3f(model->v[model->v_i[i][j] - 1][0], model->v[model->v_i[i][j] - 1][1], model->v[model->v_i[i][j] - 1][2]);
-        }
+        glTexCoord2f(uv[i].x, -uv[i].y );
+        //3f(points[i].x/width, points[i].y/height, points[i].z); 
+        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
-*     
-    for(glm::vec3 point : points){
-        //glTexCoord3d(point.x,point.y,point.z);
-        //glTexCoord2f(model->vt[model->vt_i[i][j] - 1][0], -model->vt[model->vt_i[i][j] - 1][1]);
-        //glNormal3f(model->vn[model->vn_i[i][j] - 1][0], model->vn[model->vn_i[i][j] - 1][1], model->vn[model->vn_i[i][j] - 1][2]);
-        //glVertex3f(point.x,point.y,point.z);
 
-        glVertex3f(point.x,point.y,point.z);
-    }
+
+    // for(glm::vec3 point : points){
+    //     //glTexCoord3d(point.x,point.y,point.z);
+    //     //glTexCoord2f(model->vt[model->vt_i[i][j] - 1][0], -model->vt[model->vt_i[i][j] - 1][1]);
+    //     //glNormal3f(model->vn[model->vn_i[i][j] - 1][0], model->vn[model->vn_i[i][j] - 1][1], model->vn[model->vn_i[i][j] - 1][2]);
+    //     //glVertex3f(point.x,point.y,point.z);
+
+    //     //glTexCoord3d(point.x,point.y,point.z);
+    //    // glVertex3f(point.x,point.y,point.z);
+    //     glVertex3f(point.x,point.y,point.z);
+    // }
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 
 
     //glDrawArrays(GL_TRIANGLES, 0, points.size());
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+   // glDisableClientState(GL_VERTEX_ARRAY);
+   // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Nave::Update(){

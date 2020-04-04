@@ -13,7 +13,7 @@ hello:  $(SRC2) makefile
 
 
 compile:
-	g++ utils.cpp main.cpp Object.cpp RotationHandler.cpp World.cpp Nave.cpp Camera.cpp -lm -lGLEW -lGLU -lGL -lglut -o a.out
+	g++ utils.cpp main.cpp Object.cpp RotationHandler.cpp World.cpp Nave.cpp Camera.cpp Meteoro.cpp -lm -lGLEW -lGLU -lGL -lglut -o a.out
 
 run:
 	./a.out	

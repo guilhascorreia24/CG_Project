@@ -59,7 +59,7 @@ void teclas(unsigned char key, int x,int y){
            if (win < 10) win = 10;
            glMatrixMode(GL_PROJECTION);
            glLoadIdentity();
-           //glOrtho(-win, win, -win, win, -win*2, win*2);
+           glOrtho(-win, win, -win, win, -win*2, win*2);
            glMatrixMode(GL_MODELVIEW);
            glLoadIdentity();
            
@@ -116,7 +116,7 @@ void display(void)
 
     //glEnable(GL_TEXTURE_2D);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glPushMatrix();
+ //   glPushMatrix();
 
 
 /*    glFrontFace(GL_CCW);
@@ -129,53 +129,53 @@ void display(void)
     glColor3f (1.0, 1.0, 0.0);
 
 
-    if(iluminacao==true){    
-        luzAmbiente[0]=0.2;
-        luzAmbiente[1]=0.2;
-        luzAmbiente[2]=0.2;
-        luzAmbiente[3]=1.0; 
-    }
-    else{
-        luzAmbiente[0]=0.0;
-        luzAmbiente[1]=0.0;
-        luzAmbiente[2]=0.0;
-        luzAmbiente[3]=0.0; 
-    }
+    // if(iluminacao==true){    
+    //     luzAmbiente[0]=0.2;
+    //     luzAmbiente[1]=0.2;
+    //     luzAmbiente[2]=0.2;
+    //     luzAmbiente[3]=1.0; 
+    // }
+    // else{
+    //     luzAmbiente[0]=0.0;
+    //     luzAmbiente[1]=0.0;
+    //     luzAmbiente[2]=0.0;
+    //     luzAmbiente[3]=0.0; 
+    // }
 
-    if (shading==true)
-        glShadeModel (GL_FLAT);
-    else
-        glShadeModel(GL_SMOOTH);
+    // if (shading==true)
+    //     glShadeModel (GL_FLAT);
+    // else
+    //     glShadeModel(GL_SMOOTH);
     
 
-    if (antialiasing==false){
-        glEnable(GL_BLEND);
-        glDisable(GL_DEPTH_TEST);
-        glEnable(GLUT_MULTISAMPLE);
-        //glEnable(GL_MULTISAMPLE);
-    }
-    else{
-        //glDisable(GL_MULTISAMPLE);
+    // if (antialiasing==false){
+    //     glEnable(GL_BLEND);
+    //     glDisable(GL_DEPTH_TEST);
+    //     glEnable(GLUT_MULTISAMPLE);
+    //     //glEnable(GL_MULTISAMPLE);
+    // }
+    // else{
+    //     //glDisable(GL_MULTISAMPLE);
 
-        glEnable(GL_BLEND);
-		glDisable(GL_DEPTH_TEST);
-		glEnable(GLUT_MULTISAMPLE);
-    }
+    //     glEnable(GL_BLEND);
+	// 	glDisable(GL_DEPTH_TEST);
+	// 	glEnable(GLUT_MULTISAMPLE);
+    // }
          
 
-    if(pressed){
-        glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-    }else{
-        glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-    }
+    // if(pressed){
+    //     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    // }else{
+    //     glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+    // }
     world->draw();
     //nave_sem_perna->draw();
     //glutSolidTeapot(1);
 
 
     glPopMatrix();
-    glutSwapBuffers();
-    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
+   glutSwapBuffers();
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
 
 }
 
@@ -184,68 +184,68 @@ void init(void)
 {
     win=50;
 
-    luzAmbiente[0]=0.2;
-    luzAmbiente[1]=0.2;
-    luzAmbiente[2]=0.2;
-    luzAmbiente[3]=1.0; 
+//     luzAmbiente[0]=0.2;
+//     luzAmbiente[1]=0.2;
+//     luzAmbiente[2]=0.2;
+//     luzAmbiente[3]=1.0; 
 
-    GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
-	// Define os parâmetros da luz de número 0
-	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
-	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );	
-
-
-
-	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor" 
-	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho" 
+//     GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
+//     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+// 	// Define os parâmetros da luz de número 0
+// 	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
+// 	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );	
 
 
 
-    // Capacidade de brilho do material
-	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
-	GLint especMaterial = 60;
-
- 	// Especifica que a cor de fundo da janela será preta
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+// 	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor" 
+// 	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho" 
 
 
 
-    // Habilita o modelo de colorização de Gouraud
-    glShadeModel(GL_SMOOTH);
+//     // Capacidade de brilho do material
+// 	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
+// 	GLint especMaterial = 60;
 
-    // Define a refletância do material
-    glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
-    // Define a concentração do brilho
-    glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
-
-    // Ativa o uso da luz ambiente
-    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
-
-
-    // // Define os parâmetros da luz de número 0
-    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular);
-    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+//  	// Especifica que a cor de fundo da janela será preta
+//     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 
 
+//     // Habilita o modelo de colorização de Gouraud
+//     glShadeModel(GL_SMOOTH);
+
+//     // Define a refletância do material
+//     glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
+//     // Define a concentração do brilho
+//     glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
+
+//     // Ativa o uso da luz ambiente
+//     // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
 
 
-    // Habilita a definição da cor do material a partir da cor corrente
-    glEnable(GL_COLOR_MATERIAL);
-    //Habilita o uso de iluminação
-    glEnable(GL_LIGHTING);
-    // Habilita a luz de número 0
-    glEnable(GL_LIGHT0);
-    // Habilita o depth-buffering
-    glEnable(GL_DEPTH_TEST);
+//     // // Define os parâmetros da luz de número 0
+//     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
+//     glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
+//     glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular);
+//     glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
 
 
-   glEnable(GLUT_MULTISAMPLE);
 
-    //Nave::inicializarTextura();
+
+
+//     // Habilita a definição da cor do material a partir da cor corrente
+//     glEnable(GL_COLOR_MATERIAL);
+//     //Habilita o uso de iluminação
+//     glEnable(GL_LIGHTING);
+//     // Habilita a luz de número 0
+//     glEnable(GL_LIGHT0);
+//     // Habilita o depth-buffering
+//     glEnable(GL_DEPTH_TEST);
+
+
+//    glEnable(GLUT_MULTISAMPLE);
+
+    Nave::inicializarTextura();
     world = new World();
     rot = new RotationHandler(world);
     cam= new Camera();

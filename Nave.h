@@ -17,6 +17,7 @@ class Nave : public Object{
         std::vector<glm::vec3> points;
         std::vector<glm::vec2> uv;
         std::vector< glm::vec3 > normals;
+        std::vector< arr > f;
         static GLint width, height;
         static unsigned int texture; 
 };
