@@ -4,8 +4,25 @@ void World::addObject(Object* obj){
     objects.push_back(obj);
 }
 
-World::World(Object* obj) : main(obj){
-    addObject(obj);
+World::World() : main(0){
+    fillObjects();
+}
+
+void World::fillObjects(){
+    Point center(0,0,0);
+    Point Planet(3,3,0);
+    Object* nave = new Nave();
+    Object* meteoro = new Meteoro(center);
+    nave->setPosition(center);
+    Vector v(0,0,-1);
+    nave->setDirection(v);
+    meteoro->setPosition(Planet);
+    meteoro->setVelocity(0.01);
+    nave->setVelocity(0.1);
+
+    addObject(nave);
+    //addObject(meteoro);
+    main = nave;
 }
 
 World::~World(){

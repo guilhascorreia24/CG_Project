@@ -24,7 +24,7 @@
 #define PRINT_ERRORS TRUE
 #define PRINT_DEBUG TRUE
 
-
+struct Point;
 struct AngleRotation{
     AngleRotation(float x_angle, float y_angle, float z_angle);
 
@@ -61,6 +61,8 @@ struct AngleRotation{
 struct Vector{
     Vector(float x, float y, float z);
 
+    Vector(Point & a, Point & b);
+
     inline Vector operator*(float _const){
         return Vector(x*_const,y*_const,z*_const);
     }
@@ -96,7 +98,11 @@ struct Point{
     
     float x,y,z;
 };
+
+struct arr{
+    unsigned int f[9];
+};
 //http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
-bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals);
+bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals,std::vector<arr>* f);
 
 int getFileSize(FILE * file);

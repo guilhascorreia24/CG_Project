@@ -25,14 +25,15 @@ void Meteoro::inicializarTextura(){
 
 }
 
-Meteoro::Meteoro(){
+Meteoro::Meteoro(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
+    std::vector< arr > f;
     std::vector< glm::vec2 > uv; // Won't be used at the moment.
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/meteoro.obj", &points, &uv,&normals);
+    bool res = loadObj("objs/meteoro.obj", &points, &uv,&normals,&f);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
@@ -53,4 +54,9 @@ void Meteoro::drawShape(){
     glDrawArrays(GL_TRIANGLES, 0, points.size());
     glDisableClientState(GL_VERTEX_ARRAY);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void Meteoro::Update(){
+    Vector vec(position,center);
+    direction = Vector(vec.y,-vec.x,vec.z);
 }

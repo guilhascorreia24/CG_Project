@@ -18,10 +18,6 @@ void Object::draw(){
 Point Object::getPosition(){
     return position;
 }
-void Object::setPosition(Point & point){
-    position = point;
-}
-
 Object::Object() : position(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0){
 
 }
@@ -29,7 +25,7 @@ Object::~Object(){
 }
 
 Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, float velocity) : position(pos),rot(rotation) ,velocity(velocity),direction(direction){
-
+    
 }
 
 void Object::update(){
