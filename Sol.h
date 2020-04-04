@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Meteoro : public Object{
+class Sol : public Object{
     public:
-        Meteoro(Point &center);
-        ~Meteoro();
+        Sol(Point &center);
+        ~Sol();
         static  void inicializarTextura();
 
     protected:
