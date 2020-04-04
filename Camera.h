@@ -8,6 +8,7 @@ public:
  void Stop();
  ~Camera();
  void keyboardCamera(int key,int x, int y);
+ void keyboardZoom(unsigned char key, int x, int y);
  int camara;
 private:
 	void camera1();
@@ -16,9 +17,13 @@ private:
 	void camera4();
 	void camera5();
 	void camera6();
+public:
+	void changeCamera();
 
 private:
 	bool start;
+	int distance;
+	Point eye,center,up;
 	
 
 };

@@ -21,7 +21,7 @@ void World::fillObjects(){
     nave->setVelocity(0.0);
 
     addObject(nave);
-    //addObject(meteoro);
+    addObject(meteoro);
     main = nave;
 }
 

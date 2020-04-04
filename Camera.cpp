@@ -1,6 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(){
+Camera::Camera() : eye(0,0,1),center(0,0,0),up(0,1,0){
+	distance = 50;
 }
 
 Camera::~Camera(){
@@ -19,58 +20,90 @@ void Camera::keyboardCamera(int key, int x, int y){
 	}
 	switch(key){
 		case GLUT_KEY_F1:
-		     glLoadIdentity();
+		     
 			camera1();
 			camara=1;
 			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F2:
-		     glLoadIdentity();
+		     
 			camera2();
 			camara=2;
 			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F3:
-		     glLoadIdentity();
+		     
 			camera3();
 			camara=3;
 			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F4:
-		     glLoadIdentity();
+		     
 			camera4();
 			camara=4;
 			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F5:
-		     glLoadIdentity();
+		     
 			camera5();
 			camara=5;
 			    //glutPostRedisplay()();
 			break;
 		case GLUT_KEY_F6:
-		     glLoadIdentity();
+		     
 			camera6();
 			camara=6;
 			    //glutPostRedisplay()();
 			break;		
 	}
+	changeCamera();
+}
+
+void Camera::keyboardZoom(unsigned char key,int x, int y){
+	if(!start){
+		return;
+	}
+	switch(key){
+		case '+':
+			distance-=2;
+			break;
+		case '-':
+			distance+=2;
+			break;
+	}
+	changeCamera();
+}
+void Camera::changeCamera(){
+	glLoadIdentity();
+	gluLookAt(distance*eye.x,distance*eye.y,distance*eye.z,center.x,center.y,center.z,up.x,up.y,up.z);
 }
 void Camera::camera1(){
-	gluLookAt(50,0,0,0,0,0,0,1,0);
+	eye = Point(1,0,0);
+	up = Point(0,1,0);
+	//gluLookAt(distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera2(){
-	gluLookAt(-50,0,0,0,0,0,0,1,0);
+	eye = Point(-1,0,0);
+	up = Point(0,1,0);
+	//gluLookAt(-distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera3(){
-	gluLookAt(0,50,0,0,0,0,1,0,0);
+	eye = Point(0,1,0);
+	up = Point(1,0,0);
+	//gluLookAt(0,distance,0,0,0,0,1,0,0);
 }
 void Camera::camera4(){
-	gluLookAt(0,-50,0,0,0,0,1,0,0);
+	eye = Point(0,-1,0);
+	up = Point(1,0,0);
+	//gluLookAt(0,-distance,0,0,0,0,1,0,0);
 }
 void Camera::camera5(){
-	gluLookAt(0,0,50,0,0,0,1,0,0);
+	eye = Point(0,0,1);
+	up = Point(1,0,0);
+	//gluLookAt(0,0,distance,0,0,0,1,0,0);
 }
 void Camera::camera6(){
-	gluLookAt(0,0,-50,0,0,0,1,0,0);
+	eye = Point(1,0,0);
+	up = Point(0,0,-1);
+	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
