@@ -52,7 +52,7 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
             std::string vertex1, vertex2, vertex3;
             unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
 
-            if(s == 0){
+            if(s > -1){
                 int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
                 if (matches != 9){
                     errorPrint("Error parsing, s = 1 line = %d\n",line);

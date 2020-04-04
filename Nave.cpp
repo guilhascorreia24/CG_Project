@@ -10,7 +10,7 @@ void Nave::inicializarTextura(){
 
     int n;
     //int width,height;
-    unsigned char *dados = stbi_load("preto.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("metal.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -66,26 +66,20 @@ void Nave::drawShape(){
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
 
-
+    
     for (int i = 0; i < points.size(); i++)
     {
+
         glTexCoord2f(uv[i].x, -uv[i].y );
         //3f(points[i].x/width, points[i].y/height, points[i].z); 
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        
+        //glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
+        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
 
-    // for(glm::vec3 point : points){
-    //     //glTexCoord3d(point.x,point.y,point.z);
-    //     //glTexCoord2f(model->vt[model->vt_i[i][j] - 1][0], -model->vt[model->vt_i[i][j] - 1][1]);
-    //     //glNormal3f(model->vn[model->vn_i[i][j] - 1][0], model->vn[model->vn_i[i][j] - 1][1], model->vn[model->vn_i[i][j] - 1][2]);
-    //     //glVertex3f(point.x,point.y,point.z);
-
-    //     //glTexCoord3d(point.x,point.y,point.z);
-    //    // glVertex3f(point.x,point.y,point.z);
-    //     glVertex3f(point.x,point.y,point.z);
-    // }
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 

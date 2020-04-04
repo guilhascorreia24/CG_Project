@@ -127,7 +127,7 @@ void display(void)
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     //gluLookAt(0,0,100,0,0,0,0,0,0);
     glScalef(1.0,1.0,1.0);
-    glColor3f (1.0, 1.0, 0.0);
+    //glColor3f (1.0, 1.0, 0.0);
 
 
     // if(iluminacao==true){    
@@ -143,23 +143,23 @@ void display(void)
     //     luzAmbiente[3]=0.0; 
     // }
 
-    // if (shading==true)
+    // if (shading==false)
     //     glShadeModel (GL_FLAT);
     // else
     //     glShadeModel(GL_SMOOTH);
     
 
     // if (antialiasing==false){
-    //     glEnable(GL_BLEND);
-    //     glDisable(GL_DEPTH_TEST);
-    //     glEnable(GLUT_MULTISAMPLE);
-    //     //glEnable(GL_MULTISAMPLE);
+    //     
+    //     
+    //    // glEnable(GLUT_MULTISAMPLE);
+    //     glEnable(GL_MULTISAMPLE);
     // }
     // else{
     //     //glDisable(GL_MULTISAMPLE);
 
-    //     glEnable(GL_BLEND);
-	// 	glDisable(GL_DEPTH_TEST);
+    //       //glEnable(GL_BLEND);
+	// 	    //glDisable(GL_DEPTH_TEST);
 	// 	glEnable(GLUT_MULTISAMPLE);
     // }
          
