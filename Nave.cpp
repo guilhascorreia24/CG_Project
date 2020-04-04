@@ -6,6 +6,10 @@ GLint Nave::height=0;
 
 
 
+const char* Nave::getLabel(){
+    return "Nave";
+}
+
 void Nave::inicializarTextura(){
     unsigned int texture;
     int n;

@@ -11,7 +11,6 @@ void Meteoro::inicializarTextura(){
     int n;
     //int width,height;
     unsigned char *dados = stbi_load("cinza.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -56,8 +55,22 @@ void Meteoro::drawShape(){
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+
+const char* Meteoro::getLabel(){
+    return "Meteoro";
+}
+
 void Meteoro::Update(){
-    printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
-    Vector vec(position,center);
-    direction = Vector(vec.y,-vec.x,vec.z);
+    static Point p(0,0,0);
+    //printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
+    //printf("Distance from last frame: %f\n",p.distance(position));
+    p=position;
+    Vector vec(center,position);
+
+    //Vector result(1,0.5,0);
+    //Prependicular plane equation
+    //result.z = (vec.x*(result.x - position.x) + vec.y*(result.y - position.y) - vec.z*position.z)/(-vec.z);
+    direction = Vector(vec.y,-vec.x,0);
+    setDirection(direction);
+
 }

@@ -50,7 +50,6 @@ void RotationHandler::keyboardSpeed(unsigned char key, int x,int y){
             moreSpeed();
             break;
         case 'z':
-            glLoadIdentity();
             lessSpeed();
             break;
     }

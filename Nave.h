@@ -6,11 +6,12 @@ class Nave : public Object{
     public:
         Nave();
         ~Nave();
-        static  void inicializarTextura();
+        static void inicializarTextura();
 
     protected:
         void drawShape();
         void Update();
+        const char* getLabel();
 
     private:
         GLuint pattern_buffer;

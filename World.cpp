@@ -1,5 +1,6 @@
 #include "World.h"
 
+
 void World::addObject(Object* obj){
     objects.push_back(obj);
 }
@@ -10,14 +11,14 @@ World::World() : main(0){
 
 void World::fillObjects(){
     Point center(0,0,0);
-    Point Planet(3,3,0);
+    Point Planet(10,10,0);
     Object* nave = new Nave();
     Object* meteoro = new Meteoro(center);
     nave->setPosition(center);
     Vector v(0,0,-1);
     nave->setDirection(v);
     meteoro->setPosition(Planet);
-    meteoro->setVelocity(0.01);
+    meteoro->setVelocity(0.05);
     nave->setVelocity(0.0);
 
     addObject(nave);

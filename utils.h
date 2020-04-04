@@ -67,6 +67,18 @@ struct Vector{
         return Vector(x*_const,y*_const,z*_const);
     }
 
+    inline float norma(){
+        return sqrt(x*x + y*y +z*z);
+    }
+
+    inline Vector unitVector(){
+        float n = norma();
+        float x = this->x/n;
+        float y = this->y/n;
+        float z = this->z/n;
+        return Vector(x,y,z);
+    }
+
     inline void operator+=(Vector& a){
         x+= a.x;
         y+= a.y;
@@ -94,6 +106,11 @@ struct Point{
         x+= a.x;
         y+= a.y;
         z+= a.z;
+    }
+
+    inline float distance(Point & a){
+         
+        return sqrt((a.x-x)*(a.x-x) + (a.y-y)*(a.y-y));
     }
     
     float x,y,z;

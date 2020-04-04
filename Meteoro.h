@@ -11,6 +11,7 @@ class Meteoro : public Object{
     protected:
         void drawShape();
         void Update();
+        const char* getLabel();
 
     private:
         GLuint pattern_buffer;
