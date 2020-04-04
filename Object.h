@@ -8,12 +8,13 @@ class Object{
         Object(Point & pos, AngleRotation & rotation, Vector & direction, float velocity);
         virtual ~Object();
 
+
         void draw();
         void rotate(AngleRotation &rot);
         inline void setRotation(AngleRotation & rot){this->rot = rot;};
         AngleRotation getRotation();
         Point getPosition();
-        void setPosition(Point & point);
+        inline void setPosition(Point & point){this->position = point;}
 
         inline void setVelocity(float vel){velocity = vel;}
         inline float getVelocity(){return velocity;}
@@ -28,7 +29,7 @@ class Object{
         void virtual drawShape() = 0;
         void virtual Update() = 0;
 
-    private:
+    protected:
         Point position;
     
     protected:

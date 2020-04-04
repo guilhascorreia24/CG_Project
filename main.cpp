@@ -4,7 +4,6 @@
 #include "Camera.h"
 #include "utils.h"
 #include "Nave.h"
-#include "nave_sem_pernas.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -60,7 +59,7 @@ void teclas(unsigned char key, int x,int y){
            if (win < 10) win = 10;
            glMatrixMode(GL_PROJECTION);
            glLoadIdentity();
-           glOrtho(-win, win, -win, win, -win*2, win*2);
+           //glOrtho(-win, win, -win, win, -win*2, win*2);
            glMatrixMode(GL_MODELVIEW);
            glLoadIdentity();
            
@@ -126,7 +125,7 @@ void display(void)
 
 /*    glTranslatef(-10.0,-10.0,0.0);  */
     //gluLookAt(0,0,100,0,0,0,0,0,0);
-    glScalef(3.0,3.0,3.0);
+    glScalef(1.0,1.0,1.0);
     glColor3f (1.0, 1.0, 0.0);
 
 
@@ -247,13 +246,7 @@ void init(void)
     glEnable(GLUT_MULTISAMPLE);
 
     //Nave::inicializarTextura();
-    Object *nave = new Nave();
-    Point a(5,5,5);
-    Vector dir(1,1,1);
-    nave->setPosition(a);
-    nave->setDirection(dir);
-    nave->setVelocity(0.1);
-    world = new World(nave);
+    world = new World();
     rot = new RotationHandler(world);
     cam= new Camera();
     rot->Start();
@@ -274,8 +267,10 @@ void reshape(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-win, win, -win, win, -win*2, win*2);
+    //gluPerspective(45,w/h,0.5,50);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    //gluLookAt(4000000.0,4000000.0,-50000.0,0.0,0.0,0.0,0.0,1.0,0.0);
 }
 
 // Função usada para especificar o volume de visualização
@@ -473,7 +468,6 @@ int main(int argc, char** argv)
     glutMouseFunc(GerenciaMouse); 
     glutSpecialFunc(keyboardHandler);
 	glutKeyboardFunc(teclas);
-    init();
     glutIdleFunc(mainloop);
     glutMainLoop();
     destroy();

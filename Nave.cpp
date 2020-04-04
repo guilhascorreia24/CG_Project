@@ -30,9 +30,10 @@ Nave::Nave(){
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
+    std::vector< arr > f;
     std::vector< glm::vec2 > uv; // Won't be used at the moment.
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/nave.obj", &points, &uv,&normals);
+    bool res = loadObj("objs/nave.obj", &points, &uv,&normals,&f);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");

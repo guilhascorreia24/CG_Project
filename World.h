@@ -1,16 +1,20 @@
 #pragma once
 #include <vector>
 #include "Object.h"
+#include "Nave.h"
+#include "Meteoro.h"
 
 
 //Cleanup needed
 class World{
     public:
-        World(Object* obj);
+        World();
         ~World();
         Object* getMainObject();
         void draw();
         void update();
+
+        void fillObjects();
 
         void addObject(Object* obj);
 

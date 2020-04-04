@@ -10,7 +10,7 @@ AngleRotation::AngleRotation(float x_angle,float y_angle, float z_angle){
 Vector::Vector(float x, float y, float z) : x(x), y(y), z(z){
 }
 
-bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals){
+bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals,std::vector<arr>* f){
     std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
     std::vector< glm::vec3 > temp_vertices;
     std::vector< glm::vec2 > temp_uvs;
@@ -68,6 +68,18 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
                 normalIndices.push_back(normalIndex[0]);
                 normalIndices.push_back(normalIndex[1]);
                 normalIndices.push_back(normalIndex[2]);
+
+                arr this_f;
+                this_f.f[0] = vertexIndex[0];
+                this_f.f[2] = vertexIndex[1];
+                this_f.f[3] = vertexIndex[2];
+                this_f.f[4] = uvIndex[0];
+                this_f.f[5] = uvIndex[1];
+                this_f.f[6] = uvIndex[2];
+                this_f.f[7] = normalIndex[0];
+                this_f.f[8] = normalIndex[1];
+                this_f.f[9] = normalIndex[2];
+                f->push_back(this_f);
             }else if(s == 1){
                 int matches = fscanf(file, "%d//%d %d//%d %d//%d\n", &vertexIndex[0], &normalIndex[0], &vertexIndex[1], &normalIndex[1], &vertexIndex[2], &normalIndex[2] );
                 if (matches != 6){
@@ -105,7 +117,7 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
         glm::vec3 vertex = temp_normals[ uvIndex-1 ];
         normals->push_back(vertex);
     }
-        debugPrint("Model %s with %d vertices\n",filename,vertices->size());
+    debugPrint("Model %s with %d vertices\n",filename,vertices->size());
     fclose(file);
     return true;
 }
@@ -136,4 +148,10 @@ void errorPrint(const char* format, ...){
     va_start(argptr, format);
     vprintf(format, argptr);
     va_end(argptr);
+}
+
+Vector::Vector(Point & a, Point & b){
+    x = b.x-a.x;
+    y = b.y-a.y;
+    z = b.z-a.z;
 }
