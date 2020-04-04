@@ -52,7 +52,7 @@ void Nave::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-    glColor3f(1.0,1.0,0.0);
+    //glColor3f(1.0,1.0,0.0);
     
 
     // glEnableClientState(GL_VERTEX_ARRAY);
@@ -60,26 +60,26 @@ void Nave::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
-    // GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
-    // GLfloat Ns = 500;
-    // GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    // GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ns = 500;
+    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
 
-    // glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
-    // glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
-    // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
-    // glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
 
   
     for (int i = 0; i < points.size(); i++)
     {
 
-     //   glTexCoord2f(uv[i].x, -uv[i].y );
+        glTexCoord2f(uv[i].x, uv[i].y);
         //3f(points[i].x/width, points[i].y/height, points[i].z); 
         
-       // glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
-        //glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
+       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
         
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
