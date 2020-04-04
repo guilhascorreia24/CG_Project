@@ -10,19 +10,31 @@ World::World() : main(0){
 }
 
 void World::fillObjects(){
-    Point center(0,0,0);
-    Point Planet(10,10,0);
+    Point nave_point(0,0,0);
+    Point planet_point(10,10,0);
+    Point satelite_point(12,8,0);
+    Point metero_point(-8,5,0);
+
     Object* nave = new Nave();
-    Object* meteoro = new Meteoro(center);
-    nave->setPosition(center);
-    Vector v(0,0,-1);
-    nave->setDirection(v);
-    meteoro->setPosition(Planet);
-    meteoro->setVelocity(0.05);
-    nave->setVelocity(0.0);
+    nave->setPosition(nave_point);
+
+    /*Object* meteoro = new Meteoro(nave_point);
+    meteoro->setPosition(metero_point);
+    meteoro->setVelocity(0.1);
+
+    Object* planeta = new Planeta(nave_point);
+    meteoro->setPosition(planet_point);
+    meteoro->setVelocity(0.1);
+
+    Object* satelite = new Satelite(planet_point);
+    satelite->setPosition(satelite_point);
+    satelite->setVelocity(0.1);
 
     addObject(nave);
     addObject(meteoro);
+    addObject(satelite);
+    addObject(planeta);*/
+    addObject(nave);
     main = nave;
 }
 
