@@ -9,7 +9,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-#define FRAME_DELTA 1000/60
+#define FRAME_DELTA 1000/100
 
 
 #define PI 3.14159
@@ -244,15 +244,16 @@ void init(void)
     glEnable(GL_DEPTH_TEST);
 
 
-    glEnable(GLUT_MULTISAMPLE);
+   glEnable(GLUT_MULTISAMPLE);
 
-    //Nave::inicializarTextura();
+    Nave::inicializarTextura();
     Object *nave = new Nave();
-    Point a(5,5,5);
+    Point a(0,0,0);
     Vector dir(1,1,1);
     nave->setPosition(a);
     nave->setDirection(dir);
-    nave->setVelocity(0.1);
+    nave->setVelocity(0.0);
+ 
     world = new World(nave);
     rot = new RotationHandler(world);
     cam= new Camera();
@@ -487,7 +488,7 @@ int main(int argc, char** argv)
     glutMouseFunc(GerenciaMouse); 
     glutSpecialFunc(keyboardHandler);
 	glutKeyboardFunc(teclas);
-    init();
+    //init();
     glutIdleFunc(mainloop);
     glutMainLoop();
     destroy();

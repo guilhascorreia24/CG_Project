@@ -7,7 +7,7 @@ class Nave : public Object{
         Nave();
         ~Nave();
         static  void inicializarTextura();
-
+        //static unsigned int texture;
     protected:
         void drawShape();
         void Update();
@@ -15,6 +15,8 @@ class Nave : public Object{
     private:
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
+        std::vector<glm::vec2> uv;
+        std::vector< glm::vec3 > normals;
         static GLint width, height;
-        static unsigned int texture;
+        static unsigned int texture; 
 };

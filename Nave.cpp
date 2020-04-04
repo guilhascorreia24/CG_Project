@@ -3,11 +3,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 GLint Nave::width=0;
 GLint Nave::height=0;
-
+unsigned int Nave::texture=0;
 
 
 void Nave::inicializarTextura(){
-    unsigned int texture;
+
     int n;
     //int width,height;
     unsigned char *dados = stbi_load("cinza.jpg", &width, &height, &n, 0);
@@ -30,8 +30,6 @@ Nave::Nave(){
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    std::vector< glm::vec2 > uv; // Won't be used at the moment.
-    std::vector< glm::vec3 > normals; // Won't be used at the moment.
     bool res = loadObj("objs/nave.obj", &points, &uv,&normals);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
@@ -44,13 +42,52 @@ Nave::~Nave(){
 }
 
 void Nave::drawShape(){
+    glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
-    glVertexPointer(3, GL_FLOAT, 0, 0);
+    glBegin(GL_TRIANGLES);
+
+
     
-    
-    glDrawArrays(GL_TRIANGLES, 0, points.size());
+
+    // glEnableClientState(GL_VERTEX_ARRAY);
+    // glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
+    // glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    GLfloat Ka[4]={0.8, 0.8, 0.8, 1.0};
+    GLfloat Ns = 500;
+    GLfloat Kd[4]={0.8, 0.8, 0.8, 1.0};
+    GLfloat Ks[4]={0.8, 0.8, 0.8, 1.0};
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
+
+
+    for (int i = 0; i < model->n_f; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            glTexCoord2f(model->vt[model->vt_i[i][j] - 1][0], -model->vt[model->vt_i[i][j] - 1][1]);
+            glNormal3f(model->vn[model->vn_i[i][j] - 1][0], model->vn[model->vn_i[i][j] - 1][1], model->vn[model->vn_i[i][j] - 1][2]);
+            glVertex3f(model->v[model->v_i[i][j] - 1][0], model->v[model->v_i[i][j] - 1][1], model->v[model->v_i[i][j] - 1][2]);
+        }
+    }
+*     
+    for(glm::vec3 point : points){
+        //glTexCoord3d(point.x,point.y,point.z);
+        //glTexCoord2f(model->vt[model->vt_i[i][j] - 1][0], -model->vt[model->vt_i[i][j] - 1][1]);
+        //glNormal3f(model->vn[model->vn_i[i][j] - 1][0], model->vn[model->vn_i[i][j] - 1][1], model->vn[model->vn_i[i][j] - 1][2]);
+        //glVertex3f(point.x,point.y,point.z);
+
+        glVertex3f(point.x,point.y,point.z);
+    }
+    glEnd();
+    glDisable(GL_TEXTURE_2D);  
+
+
+    //glDrawArrays(GL_TRIANGLES, 0, points.size());
     glDisableClientState(GL_VERTEX_ARRAY);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
