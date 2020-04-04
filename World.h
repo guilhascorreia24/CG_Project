@@ -3,6 +3,9 @@
 #include "Object.h"
 #include "Nave.h"
 #include "Meteoro.h"
+#include "Satelite.h"
+#include "Planeta.h"
+
 
 
 //Cleanup needed

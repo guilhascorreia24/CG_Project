@@ -20,14 +20,14 @@ class Object{
         inline float getVelocity(){return velocity;}
 
         inline Vector getDirection(){return direction;};
-        inline void setDirection(Vector & direction){this->direction = direction;};
+        inline void setDirection(Vector & direction){this->direction = direction.unitVector();};
 
         void update();
-
         
     protected:
         void virtual drawShape() = 0;
         void virtual Update() = 0;
+        virtual const char* getLabel() = 0;
 
     protected:
         Point position;
@@ -36,5 +36,8 @@ class Object{
         AngleRotation rot;
         float velocity;
         Vector direction;
+
+    public:
+        static bool drawLabels; 
 };
 

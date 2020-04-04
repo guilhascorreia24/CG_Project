@@ -36,6 +36,9 @@ void teclas(unsigned char key, int x,int y){
     cam->keyboardZoom(key,x,y);
     switch (key)
     {
+    case '1':
+        Object::drawLabels = !Object::drawLabels;
+        break;
     case 'w':
      glLoadIdentity();
         if(!pressed){pressed=true;}
@@ -268,7 +271,7 @@ void reshape(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     //glOrtho(-win, win, -win, win, -win*2, win*2);
-    gluPerspective(45,w/h,0.5,300);
+    gluPerspective(45,(float)w/h,0.5,300);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     cam->changeCamera();

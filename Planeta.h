@@ -2,11 +2,11 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Nave : public Object{
+class Planeta : public Object{
     public:
-        Nave();
-        ~Nave();
-        static void inicializarTextura();
+        Planeta(Point &center);
+        ~Planeta();
+        static  void inicializarTextura();
 
     protected:
         void drawShape();
@@ -16,9 +16,6 @@ class Nave : public Object{
     private:
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
-        std::vector<glm::vec2> uv;
-        std::vector< glm::vec3 > normals;
-        std::vector< arr > f;
         static GLint width, height;
-        static unsigned int texture; 
+        Point center;
 };

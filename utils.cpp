@@ -9,7 +9,11 @@ AngleRotation::AngleRotation(float x_angle,float y_angle, float z_angle){
 
 Vector::Vector(float x, float y, float z) : x(x), y(y), z(z){
 }
-
+Vector::Vector(Point & a, Point & b){
+    x = b.x-a.x;
+    y = b.y-a.y;
+    z = b.z-a.z;
+}
 bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals,std::vector<arr>* f){
     std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
     std::vector< glm::vec3 > temp_vertices;
@@ -148,10 +152,4 @@ void errorPrint(const char* format, ...){
     va_start(argptr, format);
     vprintf(format, argptr);
     va_end(argptr);
-}
-
-Vector::Vector(Point & a, Point & b){
-    x = b.x-a.x;
-    y = b.y-a.y;
-    z = b.z-a.z;
 }
