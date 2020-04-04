@@ -10,6 +10,10 @@ const char* Nave::getLabel(){
     return "Nave";
 }
 
+const char* Nave::getLabel(){
+    return "Nave";
+}
+
 void Nave::inicializarTextura(){
 
     int n;
