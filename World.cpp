@@ -18,10 +18,10 @@ void World::fillObjects(){
     nave->setDirection(v);
     meteoro->setPosition(Planet);
     meteoro->setVelocity(0.01);
-    nave->setVelocity(0.1);
+    nave->setVelocity(0.0);
 
     addObject(nave);
-    //addObject(meteoro);
+    addObject(meteoro);
     main = nave;
 }
 

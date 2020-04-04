@@ -33,6 +33,7 @@ void keyboardHandler(int key,int x, int y){
 }
 
 void teclas(unsigned char key, int x,int y){
+    cam->keyboardZoom(key,x,y);
     switch (key)
     {
     case 'w':
@@ -54,7 +55,7 @@ void teclas(unsigned char key, int x,int y){
         //glutPostRedisplay()();
         exit(0);
         break;
-    case '+':
+    /*case '+':
         win -= 1;
            if (win < 10) win = 10;
            glMatrixMode(GL_PROJECTION);
@@ -102,7 +103,7 @@ void teclas(unsigned char key, int x,int y){
             else if(cam->camara==6)
 		        gluLookAt(0,0,-50,0,0,0,1,0,0);
             //glutPostRedisplay()();
-        break; 
+        break;*/ 
     }
  
 }
@@ -266,10 +267,11 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-win, win, -win, win, -win*2, win*2);
-    //gluPerspective(45,w/h,0.5,50);
+    //glOrtho(-win, win, -win, win, -win*2, win*2);
+    gluPerspective(45,w/h,0.5,300);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    cam->changeCamera();
     //gluLookAt(4000000.0,4000000.0,-50000.0,0.0,0.0,0.0,0.0,1.0,0.0);
 }
 

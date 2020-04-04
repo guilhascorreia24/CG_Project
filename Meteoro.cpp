@@ -33,7 +33,7 @@ Meteoro::Meteoro(Point &center):center(center){
     std::vector< arr > f;
     std::vector< glm::vec2 > uv; // Won't be used at the moment.
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/meteoro.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
@@ -57,6 +57,7 @@ void Meteoro::drawShape(){
 }
 
 void Meteoro::Update(){
+    printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
     Vector vec(position,center);
     direction = Vector(vec.y,-vec.x,vec.z);
 }

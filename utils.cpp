@@ -71,14 +71,14 @@ bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<
 
                 arr this_f;
                 this_f.f[0] = vertexIndex[0];
-                this_f.f[2] = vertexIndex[1];
-                this_f.f[3] = vertexIndex[2];
-                this_f.f[4] = uvIndex[0];
-                this_f.f[5] = uvIndex[1];
-                this_f.f[6] = uvIndex[2];
-                this_f.f[7] = normalIndex[0];
-                this_f.f[8] = normalIndex[1];
-                this_f.f[9] = normalIndex[2];
+                this_f.f[1] = vertexIndex[1];
+                this_f.f[2] = vertexIndex[2];
+                this_f.f[3] = uvIndex[0];
+                this_f.f[4] = uvIndex[1];
+                this_f.f[5] = uvIndex[2];
+                this_f.f[6] = normalIndex[0];
+                this_f.f[7] = normalIndex[1];
+                this_f.f[8] = normalIndex[2];
                 f->push_back(this_f);
             }else if(s == 1){
                 int matches = fscanf(file, "%d//%d %d//%d %d//%d\n", &vertexIndex[0], &normalIndex[0], &vertexIndex[1], &normalIndex[1], &vertexIndex[2], &normalIndex[2] );
