@@ -250,6 +250,9 @@ void init(void)
    glEnable(GLUT_MULTISAMPLE);
 
     Nave::inicializarTextura();
+    Planeta::inicializarTextura();
+    Sol::inicializarTextura();
+    Satelite::inicializarTextura();
     world = new World();
     rot = new RotationHandler(world);
     cam= new Camera();
