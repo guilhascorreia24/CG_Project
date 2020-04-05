@@ -146,7 +146,7 @@ void display(void)
         luzAmbiente[3]=0.0; 
     }
 
-    if (shading==true)
+    if (shading==false)
         glShadeModel (GL_FLAT);
     else
         glShadeModel(GL_SMOOTH);
@@ -245,8 +245,8 @@ void init(void)
    glEnable(GLUT_MULTISAMPLE);
 
     Nave::inicializarTextura();
-  //  Planeta::inicializarTextura1();
-  //  Planeta::inicializarTextura2();
+    Planeta::inicializarTextura1();
+    Planeta::inicializarTextura2();
     Sol::inicializarTextura();
     Satelite::inicializarTextura();
     world = new World();

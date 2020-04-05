@@ -12,7 +12,7 @@ void Planeta::inicializarTextura1(){
     int n;
     //int width1,height2;
     unsigned char *dados = stbi_load("planeta1.jpg", &width, &height, &n, 0);
-
+    printf("planeta1 %d %d\n",width,height);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -32,7 +32,7 @@ void Planeta::inicializarTextura2(){
     int n;
     int width1,height1;
     unsigned char *dados = stbi_load("planeta2.jpg", &width1, &height1, &n, 0);
-
+    printf("planeta2 %d %d\n",width,height);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -76,15 +76,15 @@ void Planeta::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
-    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
+    // GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
+    // GLfloat Ns = 500;
+    // GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
+    // GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
 
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
+    // glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
+    // glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
+    // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
+    // glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
 
   
     for (int i = 0; i < (int)points.size(); i++)
