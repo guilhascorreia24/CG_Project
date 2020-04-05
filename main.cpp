@@ -156,6 +156,13 @@ void display(void)
         //glutSetOption(GL_MULTISAMPLE, 4);
         glEnable(GL_MULTISAMPLE);
         glHint(GL_MULTISAMPLE_FILTER_HINT_NV,GL_NICEST);
+
+             int iMultiSample,iNumSample;
+        glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
+        glGetIntegerv(GL_SAMPLES,&iNumSample);
+        //printf("-> %d %d",iMultiSample,iNumSample);
+        // cout << "iMultiSample: " << iMultiSample << endl;
+        // cout << "iNumSamples: " << iNumSample << endl; 
     }
     else{
        // glutSetOption(GL_MULTISAMPLE, 0);
@@ -466,12 +473,7 @@ int main(int argc, char** argv)
     glewInit();
     init();
 
-     int iMultiSample,iNumSample;
-     glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
-     glGetIntegerv(GL_SAMPLES,&iNumSample);
-     //printf("-> %d %d",iMultiSample,iNumSample);
-    // cout << "iMultiSample: " << iMultiSample << endl;
-    // cout << "iNumSamples: " << iNumSample << endl;    
+   
 
 
     glutMouseFunc(GerenciaMouse); 
