@@ -6,12 +6,12 @@ GLint Satelite::height=0;
 unsigned int Satelite::texture=0;
 
 
-
 void Satelite::inicializarTextura(){
-    unsigned int texture;
+
     int n;
     //int width,height;
-    unsigned char *dados = stbi_load("cinza.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("metal.jpg", &width, &height, &n, 0);
+    printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -24,7 +24,6 @@ void Satelite::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-
 Satelite::Satelite(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
@@ -56,10 +55,10 @@ void Satelite::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
-    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ka[4]={0.8, 0.8, 0.8};
     GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Kd[4]={0.8, 0.8, 0.8};
+    GLfloat Ks[4]={0.8, 0.8, 0.8};
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);

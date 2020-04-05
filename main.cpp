@@ -23,7 +23,7 @@ GLint Window;
 GLfloat win;
 
 GLfloat luzAmbiente[4];
-bool iluminacao=true,shading=true,antialiasing=false;
+bool iluminacao=true,shading=true,antialiasing=true;
 
 
 
@@ -155,6 +155,7 @@ void display(void)
     if (antialiasing==true){
         //glutSetOption(GL_MULTISAMPLE, 4);
         glEnable(GL_MULTISAMPLE);
+        glHint(GL_MULTISAMPLE_FILTER_HINT_NV,GL_NICEST);
     }
     else{
        // glutSetOption(GL_MULTISAMPLE, 0);
@@ -456,7 +457,7 @@ void mainloop(){
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
     glutInitWindowSize(350, 300);
     glutInitWindowPosition(100, 100);
     Window=glutCreateWindow(argv[0]);
@@ -465,7 +466,12 @@ int main(int argc, char** argv)
     glewInit();
     init();
 
-
+     int iMultiSample,iNumSample;
+     glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
+     glGetIntegerv(GL_SAMPLES,&iNumSample);
+     //printf("-> %d %d",iMultiSample,iNumSample);
+    // cout << "iMultiSample: " << iMultiSample << endl;
+    // cout << "iNumSamples: " << iNumSample << endl;    
 
 
     glutMouseFunc(GerenciaMouse); 

@@ -6,7 +6,7 @@ class Sol : public Object{
     public:
         Sol(Point &center);
         ~Sol();
-        static  void inicializarTextura();
+        static void inicializarTextura();
 
     protected:
         void drawShape();

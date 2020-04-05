@@ -6,6 +6,7 @@ GLint Sol::height=0;
 unsigned int Sol::texture=0;
 
 
+
 void Sol::inicializarTextura(){
 
     int n;
@@ -24,15 +25,15 @@ void Sol::inicializarTextura(){
     stbi_image_free(dados);
 
 }
+
 Sol::Sol(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    std::vector< arr > f;
-    std::vector< glm::vec2 > uv; // Won't be used at the moment.
-    std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/sun.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/sol.obj", &points, &uv,&normals,&f);
+
+  
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
@@ -48,7 +49,7 @@ void Sol::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-    //glColor3f(1.0,1.0,0.0);
+  //  glColor3f(1.0,1.0,0.0);
     
 
     // glEnableClientState(GL_VERTEX_ARRAY);
@@ -56,12 +57,11 @@ void Sol::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
+
     GLfloat Ka[4]={1.000000,1.000000,1.000000};
     GLfloat Ns = 225.000000;
     GLfloat Kd[4]={0.800000,0.800000,0.800000};
     GLfloat Ks[4]={0.500000,0.500000,0.500000};
-
-
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
@@ -72,12 +72,13 @@ void Sol::drawShape(){
     for (int i = 0; i < (int)points.size(); i++)
     {
 
-         glTexCoord2f(uv[i].x, uv[i].y);
-        // //3f(points[i].x/width, points[i].y/height, points[i].z); 
+        glTexCoord2f(uv[i].x, uv[i].y);
+        //3f(points[i].x/width, points[i].y/height, points[i].z); 
         
-         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
-
+       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
+        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
@@ -94,22 +95,10 @@ void Sol::drawShape(){
    // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+void Sol::Update(){
+    
+}
 
 const char* Sol::getLabel(){
     return "Sol";
-}
-
-void Sol::Update(){
-    static Point p(0,0,0);
-    //printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
-    //printf("Distance from last frame: %f\n",p.distance(position));
-    p=position;
-    Vector vec(center,position);
-
-    //Vector result(1,0.5,0);
-    //Prependicular plane equation
-    //result.z = (vec.x*(result.x - position.x) + vec.y*(result.y - position.y) - vec.z*position.z)/(-vec.z);
-    direction = Vector(vec.y,-vec.x,0);
-    setDirection(direction);
-
 }
