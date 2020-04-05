@@ -15,11 +15,14 @@ void Object::draw(){
     glRotatef(rot.x,0,0,1);
     glScalef(size,size,size);
     drawShape();
+    //glColor3f(1.0f, 0.0f, 0.0f);//needs to be called before RasterPos
 
     if(drawLabels){
         std::string s = getLabel();
+       
         int h = glutGet(GLUT_WINDOW_HEIGHT);
         glRasterPos2i(0, 5 + (h*0.0005));
+        
         void * font = GLUT_BITMAP_9_BY_15;
 
         for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -46,8 +49,4 @@ Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, float 
 
 void Object::update(){
     Update();
-
-    //To be fixed next version
-    //Vector a = direction*velocity;
-    //position += a;
 }

@@ -23,37 +23,37 @@ void Camera::keyboardCamera(int key, int x, int y){
 		     
 			camera1();
 			camara=1;
-			    //glutPostRedisplay()();
+			    
 			break;
 		case GLUT_KEY_F2:
 		     
 			camera2();
 			camara=2;
-			    //glutPostRedisplay()();
+			    
 			break;
 		case GLUT_KEY_F3:
 		     
 			camera3();
 			camara=3;
-			    //glutPostRedisplay()();
+			    
 			break;
 		case GLUT_KEY_F4:
 		     
 			camera4();
 			camara=4;
-			    //glutPostRedisplay()();
+			    
 			break;
 		case GLUT_KEY_F5:
 		     
 			camera5();
 			camara=5;
-			    //glutPostRedisplay()();
+			    
 			break;
 		case GLUT_KEY_F6:
 		     
 			camera6();
 			camara=6;
-			    //glutPostRedisplay()();
+			    
 			break;		
 	}
 	changeCamera();

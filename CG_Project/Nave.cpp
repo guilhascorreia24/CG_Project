@@ -1,16 +1,17 @@
-#include "Satelite.h"
+#include "Nave.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Satelite::width=0;
-GLint Satelite::height=0;
-unsigned int Satelite::texture=0;
+GLint Nave::width=0;
+GLint Nave::height=0;
+unsigned int Nave::texture=0;
 
 
-void Satelite::inicializarTextura(){
+
+void Nave::inicializarTextura(){
 
     int n;
-    //int width,height;
-    unsigned char *dados = stbi_load("metal.jpg", &width, &height, &n, 0);
+
+    unsigned char *dados = stbi_load("img/aco.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -24,12 +25,13 @@ void Satelite::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-Satelite::Satelite(Point &center):center(center){
+
+Nave::Nave(){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/nave.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -38,27 +40,23 @@ Satelite::Satelite(Point &center):center(center){
     }
 }
 
-Satelite::~Satelite(){
+Nave::~Nave(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Satelite::drawShape(){
+void Nave::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-    //glColor3f(1.0,1.0,0.0);
+
+
     
 
-    // glEnableClientState(GL_VERTEX_ARRAY);
-    // glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
-    // glVertexPointer(3, GL_FLOAT, 0, 0);
-
-
-    GLfloat Ka[4]={0.8, 0.8, 0.8};
+    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
     GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8};
-    GLfloat Ks[4]={0.8, 0.8, 0.8};
+    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
@@ -70,11 +68,11 @@ void Satelite::drawShape(){
     {
 
         glTexCoord2f(uv[i].x, uv[i].y);
-        //3f(points[i].x/width, points[i].y/height, points[i].z); 
+
         
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
-       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
+
         
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
@@ -87,20 +85,12 @@ void Satelite::drawShape(){
     glDisable(GL_TEXTURE_2D);  
 
 
-    //glDrawArrays(GL_TRIANGLES, 0, points.size());
-   // glDisableClientState(GL_VERTEX_ARRAY);
-   // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-
-const char* Satelite::getLabel(){
-    return "Satelite";
+void Nave::Update(){
+    
 }
 
-void Satelite::Update(){
-    static long time = glutGet(GLUT_ELAPSED_TIME);
-    long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-    float dist = center.distance(position);
-    position.x = center.x + dist * cos(time_elapsed*velocity);
-    position.y = center.y + dist * sin(time_elapsed*velocity);
+const char* Nave::getLabel(){
+    return "Nave";
 }
