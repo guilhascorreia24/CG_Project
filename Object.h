@@ -20,7 +20,12 @@ class Object{
         inline float getVelocity(){return velocity;}
 
         inline Vector getDirection(){return direction;};
-        inline void setDirection(Vector & direction){this->direction = direction.unitVector();};
+        inline void setDirection(Vector & direction){this->direction = direction.unitVector();}
+
+        inline void setSize(int num){this->size = num;}
+        inline int getSize(){return size;}
+
+
 
         void update();
         
@@ -36,6 +41,7 @@ class Object{
         AngleRotation rot;
         float velocity;
         Vector direction;
+        int size;
 
     public:
         static bool drawLabels; 

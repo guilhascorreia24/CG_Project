@@ -21,6 +21,7 @@ void World::fillObjects(){
     Object* sol = new Sol(nave_point);
     sol->setPosition(sol_point);
     sol->setVelocity(0.0);
+    sol->setSize(3);
     
     Object* planeta = new Planeta(nave_point);
     planeta->setPosition(planet_point);

@@ -71,10 +71,10 @@ void Sol::drawShape(){
     for (int i = 0; i < (int)points.size(); i++)
     {
 
-        glTexCoord2f(uv[i].x, uv[i].y);
+        //glTexCoord2f(uv[i].x, uv[i].y);
         //3f(points[i].x/width, points[i].y/height, points[i].z); 
         
-        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        //glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
        // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
         

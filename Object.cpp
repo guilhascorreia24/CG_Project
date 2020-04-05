@@ -13,12 +13,14 @@ void Object::draw(){
     glRotatef(rot.z,1,0,0);
     glRotatef(rot.y,0,1,0);
     glRotatef(rot.x,0,0,1);
+    glScalef(size,size,size);
+    printf("%d\n",size);
     drawShape();
     //glColor3f(1.0f, 0.0f, 0.0f);//needs to be called before RasterPos
 
     if(drawLabels){
         std::string s = getLabel();
-        int w = glutGet(GLUT_WINDOW_WIDTH)*0.001;
+        //int w = glutGet(GLUT_WINDOW_WIDTH)*0.001;
         int h = glutGet(GLUT_WINDOW_HEIGHT);
         glRasterPos2i(0, 5 + (h*0.0005));
         //glRasterPos2i(-(s.size()/2.5) + w, 5 + (h*0.0005));
@@ -37,13 +39,13 @@ Point Object::getPosition(){
     return position;
 }
 Object::Object() : position(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0){
-
+    size = 1;
 }
 Object::~Object(){
 }
 
 Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, float velocity) : position(pos),rot(rotation) ,velocity(velocity),direction(direction){
-    
+    size = 1;
 }
 
 void Object::update(){
