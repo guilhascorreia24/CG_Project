@@ -272,7 +272,7 @@ void reshape(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     //glOrtho(-win, win, -win, win, -win*2, win*2);
-    gluPerspective(45,(float)w/h,0.5,300);
+    gluPerspective(45,(float)w/h,0.5,600);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     cam->changeCamera();

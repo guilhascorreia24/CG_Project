@@ -49,7 +49,7 @@ Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, float 
 
 void Object::update(){
     Update();
-    Vector a = direction*velocity;
-    position += a;
+    //Vector a = direction*velocity;
+    //position += a;
     //printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
 }
