@@ -12,7 +12,6 @@
 
 
 #define PI 3.14159
-//static GLfloat spin = 0.0;
 int i, more;
 bool pressed=false;
 GLfloat angle, fAspect;
@@ -36,7 +35,7 @@ void teclas(unsigned char key, int x,int y){
     cam->keyboardZoom(key,x,y);
     switch (key)
     {
-    case '1':
+    case 'l':
         Object::drawLabels = !Object::drawLabels;
         break;
     case 'w':
@@ -44,69 +43,18 @@ void teclas(unsigned char key, int x,int y){
         if(!pressed){pressed=true;}
         else{pressed=false;} 
         glLoadIdentity();
-        //glutPostRedisplay()();
         break;      
     case 'a':
      rot->keyboardSpeed(key, x, y);
      break;
     case 'z':
         rot->keyboardSpeed(key,x,y);
-        //glutPostRedisplay()();
         break;
     case 27:
         glutDestroyWindow(Window);
-        //glutPostRedisplay()();
         exit(0);
         break;
-    /*case '+':
-        win -= 1;
-           if (win < 10) win = 10;
-           glMatrixMode(GL_PROJECTION);
-           glLoadIdentity();
-           glOrtho(-win, win, -win, win, -win*2, win*2);
-           glMatrixMode(GL_MODELVIEW);
-           glLoadIdentity();
-           
-            if(cam->camara==1)
-	           gluLookAt(50,0,0,0,0,0,0,1,0);
-            else if(cam->camara==2)
-	           gluLookAt(-50,0,0,0,0,0,0,1,0);
-            else if(cam->camara==3)
-	            gluLookAt(0,50,0,0,0,0,1,0,0);
-            else if(cam->camara==4)
-	            gluLookAt(0,-50,0,0,0,0,1,0,0);
-            else if(cam->camara==5)
-		        gluLookAt(0,0,50,0,0,0,1,0,0);
-            else if(cam->camara==6)
-		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-        //glutPostRedisplay()();
-
-        break;
-
-    case '-':
-            win += 1;
-           if (win < 10) win = 10;
-           glMatrixMode(GL_PROJECTION);
-           glLoadIdentity();
-           glOrtho(-win, win, -win, win, -win*2, win*2);
-           glMatrixMode(GL_MODELVIEW);
-           glLoadIdentity();
-           
-
-            if(cam->camara==1)
-	           gluLookAt(50,0,0,0,0,0,0,1,0);
-            else if(cam->camara==2)
-	           gluLookAt(-50,0,0,0,0,0,0,1,0);
-            else if(cam->camara==3)
-	            gluLookAt(0,50,0,0,0,0,1,0,0);
-            else if(cam->camara==4)
-	            gluLookAt(0,-50,0,0,0,0,1,0,0);
-            else if(cam->camara==5)
-		        gluLookAt(0,0,50,0,0,0,1,0,0);
-            else if(cam->camara==6)
-		        gluLookAt(0,0,-50,0,0,0,1,0,0);
-            //glutPostRedisplay()();
-        break;*/ 
+  
     }
  
 }
@@ -115,22 +63,8 @@ void display(void)
 {
     glMatrixMode(GL_MODELVIEW); 
     glPushMatrix(); 
-
-    
-
-    //glEnable(GL_TEXTURE_2D);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
- //   glPushMatrix();
-
-
-/*    glFrontFace(GL_CCW);
-    glCullFace(GL_FRONT);
-    glEnable(GL_CULL_FACE); */
-
-/*    glTranslatef(-10.0,-10.0,0.0);  */
-    //gluLookAt(0,0,100,0,0,0,0,0,0);
     glScalef(1.0,1.0,1.0);
-   // glColor3f (1.0, 0.0, 0.0);
 
 
     if(iluminacao==true){    
@@ -153,14 +87,10 @@ void display(void)
     
 
     if (antialiasing==true){
-        //glutSetOption(GL_MULTISAMPLE, 4);
         glEnable(GL_MULTISAMPLE);
         glHint(GL_MULTISAMPLE_FILTER_HINT_NV,GL_NICEST);
-
-
     }
     else{
-       // glutSetOption(GL_MULTISAMPLE, 0);
         glDisable(GL_MULTISAMPLE);
     }
          
@@ -171,9 +101,6 @@ void display(void)
         glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
     }
     world->draw();
-    //nave_sem_perna->draw();
-    //glutSolidTeapot(1);
-
 
     glPopMatrix();
     glutSwapBuffers();
@@ -193,25 +120,20 @@ void init(void)
 
     GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
-	// Define os parâmetros da luz de número 0
+
 	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
 	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );	
 
 
 
-	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor" 
-	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho" 
+	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	  
+	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};
 
 
 
     // Capacidade de brilho do material
 	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
 	GLint especMaterial = 15000;
-
-//  	// Especifica que a cor de fundo da janela será preta
-   // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-
 
     // Habilita o modelo de colorização de Gouraud
     glShadeModel(GL_SMOOTH);
@@ -221,8 +143,7 @@ void init(void)
     // Define a concentração do brilho
     glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
 
-    // Ativa o uso da luz ambiente
-    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+  
 
 
     // // Define os parâmetros da luz de número 0
@@ -277,51 +198,6 @@ void reshape(int w, int h)
     cam->changeCamera();
 }
 
-// Função usada para especificar o volume de visualização
-/*void EspecificaParametrosVisualizacao(void)
-{
-    // Especifica sistema de coordenadas de projeção
-    glMatrixMode(GL_PROJECTION);
-    // Inicializa sistema de coordenadas de projeção
-    glLoadIdentity();
-
-    // Especifica a projeção perspectiva
-    gluPerspective(45,fAspect,0.4,500);
-
-    // Especifica sistema de coordenadas do modelo
-    glMatrixMode(GL_MODELVIEW);
-    // Inicializa sistema de coordenadas do modelo
-    glLoadIdentity();
-
-    // Especifica posição do observador e do alvo
-    gluLookAt(0,0,50, 0,0,0, 0,1,0);
-}*/
-/*
-// Função callback chamada quando o tamanho da janela é alterado 
-void AlteraTamanhoJanela(GLsizei w, GLsizei h)
-{
-    // Para previnir uma divisão por zero
-    if ( h == 0 ) h = 1;
-
-    // Especifica o tamanho da viewport
-    glViewport(0, 0, w, h);
- 
-    // Calcula a correção de aspecto
-    fAspect = (GLfloat)w/(GLfloat)h;
-
-    glMatrixMode(GL_PROJECTION);
-
-    glLoadIdentity();
-    int L = 100;
-
-    if (w <= h)
-        glOrtho(-L, L, -L * h / w, L * h / w, -L * 2, L * 2);
-    else
-        glOrtho(-L * w / h, L * w / h, -L, L, -L * 2, L * 2);
-
-    glMatrixMode(GL_MODELVIEW);
-
-}*/
 
 void destroy(){
     delete rot;

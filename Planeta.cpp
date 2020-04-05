@@ -10,7 +10,6 @@ unsigned int Planeta::texture=0;
 void Planeta::inicializarTextura(){
 
     int n;
-    //int width,height;
     unsigned char *dados = stbi_load("saturno.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
@@ -25,8 +24,6 @@ void Planeta::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-
-
 
 Planeta::Planeta(Point &center):center(center){
     pattern_buffer = 0; 
@@ -51,14 +48,6 @@ void Planeta::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-    //glColor3f(1.0,1.0,0.0);
-    
-
-    // glEnableClientState(GL_VERTEX_ARRAY);
-    // glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
-    // glVertexPointer(3, GL_FLOAT, 0, 0);
-
-
      GLfloat Ka[4]={1.000000,1.000000,1.000000};
      GLfloat Ns = 225.000000;
      GLfloat Kd[4]={0.800000,0.800000,0.800000};
@@ -76,70 +65,17 @@ void Planeta::drawShape(){
     {
 
         glTexCoord2f(uv[i].x, uv[i].y);
-        //3f(points[i].x/width, points[i].y/height, points[i].z); 
         
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
-       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
-        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
-
-
-    
- 
 
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 
-
-    //glDrawArrays(GL_TRIANGLES, 0, points.size());
-   // glDisableClientState(GL_VERTEX_ARRAY);
-   // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-
-/*
-
-void Planeta::drawShape(){
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glEnable(GL_TEXTURE_2D);
-    glBegin(GL_TRIANGLES);
-
-  //  glColor3f(1.0,1.0,0.0);
-    
-
-    // glEnableClientState(GL_VERTEX_ARRAY);
-    // glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
-    // glVertexPointer(3, GL_FLOAT, 0, 0);
-
-    
-
-    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
-
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
-
-  
-    for (int i = 0; i < points.size(); i++)
-    {
-
-        glTexCoord2f(uv[i].x, uv[i].y);
-        //3f(points[i].x/width, points[i].y/height, points[i].z); 
-        
-        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        
-       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
-        
-        glVertex3f(points[i].x, points[i].y, points[i].z); 
-    }
-}
-*/
 const char* Planeta::getLabel(){
     return "Planeta";
 }

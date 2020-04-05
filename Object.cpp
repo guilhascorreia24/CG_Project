@@ -47,7 +47,4 @@ Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, float 
 void Object::update(){
     Update();
 
-    //To be fixed next version
-    //Vector a = direction*velocity;
-    //position += a;
 }
