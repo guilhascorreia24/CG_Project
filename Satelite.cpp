@@ -98,15 +98,23 @@ const char* Satelite::getLabel(){
 }
 
 void Satelite::Update(){
-    static Point p(0,0,0);
+    /*static Point p(0,0,0);
     //printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
     //printf("Distance from last frame: %f\n",p.distance(position));
     p=position;
     Vector vec(center,position);
 
+    
+
     //Vector result(1,0.5,0);
     //Prependicular plane equation
     //result.z = (vec.x*(result.x - position.x) + vec.y*(result.y - position.y) - vec.z*position.z)/(-vec.z);
     direction = Vector(vec.y,-vec.x,0);
-    setDirection(direction);
+    setDirection(direction);*/
+
+    static long time = glutGet(GLUT_ELAPSED_TIME);
+    long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
+    float dist = center.distance(position);
+    position.x = center.x + dist * cos(time_elapsed*velocity);
+    position.y = center.y + dist * sin(time_elapsed*velocity);
 }
