@@ -1,12 +1,13 @@
-#include "Meteoro.h"
+#include "Sol.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Meteoro::width=0;
-GLint Meteoro::height=0;
+GLint Sol::width=0;
+GLint Sol::height=0;
+unsigned int Sol::texture=0;
 
 
 
-void Meteoro::inicializarTextura(){
+void Sol::inicializarTextura(){
     unsigned int texture;
     int n;
     //int width,height;
@@ -24,7 +25,7 @@ void Meteoro::inicializarTextura(){
 
 }
 
-Meteoro::Meteoro(Point &center):center(center){
+Sol::Sol(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -32,35 +33,73 @@ Meteoro::Meteoro(Point &center):center(center){
     std::vector< arr > f;
     std::vector< glm::vec2 > uv; // Won't be used at the moment.
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/meteoro.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/sol.obj", &points, &uv,&normals,&f);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
     }
 }
 
-Meteoro::~Meteoro(){
+Sol::~Sol(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Meteoro::drawShape(){
+void Sol::drawShape(){
+    glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
-    glVertexPointer(3, GL_FLOAT, 0, 0);
+    glBegin(GL_TRIANGLES);
+
+    //glColor3f(1.0,1.0,0.0);
     
+
+    // glEnableClientState(GL_VERTEX_ARRAY);
+    // glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
+    // glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ns = 500;
+    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
+
+  
+    for (int i = 0; i < (int)points.size(); i++)
+    {
+
+        //glTexCoord2f(uv[i].x, uv[i].y);
+        //3f(points[i].x/width, points[i].y/height, points[i].z); 
+        
+        //glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        
+       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
+        
+        glVertex3f(points[i].x, points[i].y, points[i].z); 
+    }
+
+
     
-    glDrawArrays(GL_TRIANGLES, 0, points.size());
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+ 
+
+    glEnd();
+    glDisable(GL_TEXTURE_2D);  
+
+
+    //glDrawArrays(GL_TRIANGLES, 0, points.size());
+   // glDisableClientState(GL_VERTEX_ARRAY);
+   // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 
-const char* Meteoro::getLabel(){
-    return "Meteoro";
+const char* Sol::getLabel(){
+    return "Sol";
 }
 
-void Meteoro::Update(){
+void Sol::Update(){
     static Point p(0,0,0);
     //printf("X: %f Y: %f, Z: %f\n",position.x,position.y,position.z);
     //printf("Distance from last frame: %f\n",p.distance(position));

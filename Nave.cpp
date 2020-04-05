@@ -7,10 +7,6 @@ unsigned int Nave::texture=0;
 
 
 
-const char* Nave::getLabel(){
-    return "Nave";
-}
-
 void Nave::inicializarTextura(){
 
     int n;
@@ -73,7 +69,7 @@ void Nave::drawShape(){
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
 
   
-    for (int i = 0; i < points.size(); i++)
+    for (int i = 0; i < (int)points.size(); i++)
     {
 
         glTexCoord2f(uv[i].x, uv[i].y);

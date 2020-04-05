@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Meteoro : public Object{
+class Sol : public Object{
     public:
-        Meteoro(Point &center);
-        ~Meteoro();
+        Sol(Point &center);
+        ~Sol();
         static  void inicializarTextura();
 
     protected:
@@ -14,8 +14,12 @@ class Meteoro : public Object{
         const char* getLabel();
 
     private:
+        Point center;
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
+        std::vector<glm::vec2> uv;
+        std::vector< glm::vec3 > normals;
+        std::vector< arr > f;
         static GLint width, height;
-        Point center;
+        static unsigned int texture; 
 };

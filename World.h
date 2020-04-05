@@ -2,7 +2,7 @@
 #include <vector>
 #include "Object.h"
 #include "Nave.h"
-#include "Meteoro.h"
+#include "Sol.h"
 #include "Satelite.h"
 #include "Planeta.h"
 
