@@ -21,8 +21,8 @@
 #include <stdarg.h> 
 #include <string>
 
-#define PRINT_ERRORS TRUE
-#define PRINT_DEBUG TRUE
+#define PRINT_ERRORS FALSE
+#define PRINT_DEBUG FALSE
 
 struct Point;
 struct AngleRotation{

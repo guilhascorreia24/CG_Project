@@ -269,12 +269,10 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    //glOrtho(-win, win, -win, win, -win*2, win*2);
     gluPerspective(45,(float)w/h,0.5,600);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     cam->changeCamera();
-    //gluLookAt(4000000.0,4000000.0,-50000.0,0.0,0.0,0.0,0.0,1.0,0.0);
 }
 
 // Função usada para especificar o volume de visualização
