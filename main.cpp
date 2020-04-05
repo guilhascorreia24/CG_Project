@@ -23,7 +23,7 @@ GLint Window;
 GLfloat win;
 
 GLfloat luzAmbiente[4];
-bool iluminacao=true,shading=false,antialiasing=false;
+bool iluminacao=true,shading=true,antialiasing=false;
 
 
 
@@ -245,8 +245,7 @@ void init(void)
    glEnable(GLUT_MULTISAMPLE);
 
     Nave::inicializarTextura();
-    Planeta::inicializarTextura1();
-    Planeta::inicializarTextura2();
+    Planeta::inicializarTextura();
     Sol::inicializarTextura();
     Satelite::inicializarTextura();
     world = new World();

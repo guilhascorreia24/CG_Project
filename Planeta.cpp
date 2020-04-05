@@ -7,12 +7,13 @@ unsigned int Planeta::texture=0;
 
 
 
-void Planeta::inicializarTextura1(){
-    unsigned int texture;
+void Planeta::inicializarTextura(){
+
     int n;
-    //int width1,height2;
-    unsigned char *dados = stbi_load("planeta1.jpg", &width, &height, &n, 0);
-    printf("planeta1 %d %d\n",width,height);
+    //int width,height;
+    unsigned char *dados = stbi_load("saturno.jpg", &width, &height, &n, 0);
+    printf("%d %d\n",width,height);
+
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -26,31 +27,13 @@ void Planeta::inicializarTextura1(){
 }
 
 
-
-void Planeta::inicializarTextura2(){
-    unsigned int texture;
-    int n;
-    int width1,height1;
-    unsigned char *dados = stbi_load("planeta2.jpg", &width1, &height1, &n, 0);
-    printf("planeta2 %d %d\n",width,height);
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, dados);
-    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
-    stbi_image_free(dados);
-
-}
 
 Planeta::Planeta(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/planeta.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/planeta_com_anel.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -76,15 +59,17 @@ void Planeta::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
-    // GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
-    // GLfloat Ns = 500;
-    // GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    // GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
+     GLfloat Ka[4]={1.000000,1.000000,1.000000};
+     GLfloat Ns = 225.000000;
+     GLfloat Kd[4]={0.800000,0.800000,0.800000};
+     GLfloat Ks[4]={0.500000,0.500000,0.500000};
 
-    // glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
-    // glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
-    // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
-    // glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
+
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
 
   
     for (int i = 0; i < (int)points.size(); i++)

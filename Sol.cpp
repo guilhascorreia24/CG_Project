@@ -6,12 +6,12 @@ GLint Sol::height=0;
 unsigned int Sol::texture=0;
 
 
-
 void Sol::inicializarTextura(){
-    unsigned int texture;
+
     int n;
     //int width,height;
-    unsigned char *dados = stbi_load("cinza.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("sol.jpg", &width, &height, &n, 0);
+    printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -24,7 +24,6 @@ void Sol::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-
 Sol::Sol(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
@@ -33,7 +32,7 @@ Sol::Sol(Point &center):center(center){
     std::vector< arr > f;
     std::vector< glm::vec2 > uv; // Won't be used at the moment.
     std::vector< glm::vec3 > normals; // Won't be used at the moment.
-    bool res = loadObj("objs/sol.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/sun.obj", &points, &uv,&normals,&f);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
@@ -57,10 +56,12 @@ void Sol::drawShape(){
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
 
-    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
+    GLfloat Ka[4]={1.000000,1.000000,1.000000};
+    GLfloat Ns = 225.000000;
+    GLfloat Kd[4]={0.800000,0.800000,0.800000};
+    GLfloat Ks[4]={0.500000,0.500000,0.500000};
+
+
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
@@ -71,13 +72,12 @@ void Sol::drawShape(){
     for (int i = 0; i < (int)points.size(); i++)
     {
 
-        //glTexCoord2f(uv[i].x, uv[i].y);
-        //3f(points[i].x/width, points[i].y/height, points[i].z); 
+         glTexCoord2f(uv[i].x, uv[i].y);
+        // //3f(points[i].x/width, points[i].y/height, points[i].z); 
         
-        //glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
-       // glTextCoord3f(points[i].x/width, points[i].y, points[i].z); 
-        
+
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
