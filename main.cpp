@@ -245,7 +245,8 @@ void init(void)
    glEnable(GLUT_MULTISAMPLE);
 
     Nave::inicializarTextura();
-    Planeta::inicializarTextura();
+  //  Planeta::inicializarTextura1();
+  //  Planeta::inicializarTextura2();
     Sol::inicializarTextura();
     Satelite::inicializarTextura();
     world = new World();

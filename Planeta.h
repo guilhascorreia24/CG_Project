@@ -6,8 +6,8 @@ class Planeta : public Object{
     public:
         Planeta(Point &center);
         ~Planeta();
-        static  void inicializarTextura();
-
+        static  void inicializarTextura1();
+        static  void inicializarTextura2();
     protected:
         void drawShape();
         void Update();

@@ -98,3 +98,7 @@ void Nave::drawShape(){
 void Nave::Update(){
     
 }
+
+const char* Nave::getLabel(){
+    return "Nave";
+}

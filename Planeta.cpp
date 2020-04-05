@@ -62,7 +62,7 @@ Planeta::Planeta(Point &center):center(center){
 Planeta::~Planeta(){
     glDeleteBuffers(1,&pattern_buffer);
 }
-/*
+
 void Planeta::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
@@ -112,11 +112,11 @@ void Planeta::drawShape(){
    // glDisableClientState(GL_VERTEX_ARRAY);
    // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-*/
 
 
+/*
 
-void Nave::drawShape(){
+void Planeta::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -153,8 +153,8 @@ void Nave::drawShape(){
         
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
-
-
+}
+*/
 const char* Planeta::getLabel(){
     return "Planeta";
 }
