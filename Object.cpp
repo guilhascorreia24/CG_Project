@@ -14,7 +14,6 @@ void Object::draw(){
     glRotatef(rot.y,0,1,0);
     glRotatef(rot.x,0,0,1);
     glScalef(size,size,size);
-    printf("%d\n",size);
     drawShape();
     //glColor3f(1.0f, 0.0f, 0.0f);//needs to be called before RasterPos
 
