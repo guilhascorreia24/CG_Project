@@ -10,8 +10,7 @@ unsigned int Sol::texture=0;
 void Sol::inicializarTextura(){
 
     int n;
-
-    unsigned char *dados = stbi_load("img/sol.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("sol.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -49,10 +48,6 @@ void Sol::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-
-
-
-
     GLfloat Ka[4]={1.000000,1.000000,1.000000};
     GLfloat Ns = 225.000000;
     GLfloat Kd[4]={0.800000,0.800000,0.800000};
@@ -68,24 +63,14 @@ void Sol::drawShape(){
     {
 
         glTexCoord2f(uv[i].x, uv[i].y);
-
         
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        
-    
         
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
-
-    
- 
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
-
-
-   
 }
 
 void Sol::Update(){

@@ -35,7 +35,7 @@ void teclas(unsigned char key, int x,int y){
     cam->keyboardZoom(key,x,y);
     switch (key)
     {
-    case '1':
+    case 'l':
         Object::drawLabels = !Object::drawLabels;
         break;
     case 'w':
@@ -43,20 +43,18 @@ void teclas(unsigned char key, int x,int y){
         if(!pressed){pressed=true;}
         else{pressed=false;} 
         glLoadIdentity();
-    
         break;      
     case 'a':
      rot->keyboardSpeed(key, x, y);
      break;
     case 'z':
         rot->keyboardSpeed(key,x,y);
-  
         break;
     case 27:
         glutDestroyWindow(Window);
-       
         exit(0);
         break;
+  
     }
  
 }
@@ -65,13 +63,8 @@ void display(void)
 {
     glMatrixMode(GL_MODELVIEW); 
     glPushMatrix(); 
-
-    
-
-    //glEnable(GL_TEXTURE_2D);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glScalef(1.0,1.0,1.0);
-   // glColor3f (1.0, 0.0, 0.0);
 
 
     if(iluminacao==true){    
@@ -94,12 +87,10 @@ void display(void)
     
 
     if (antialiasing==true){
-        //glutSetOption(GL_MULTISAMPLE, 4);
         glEnable(GL_MULTISAMPLE);
         glHint(GL_MULTISAMPLE_FILTER_HINT_NV,GL_NICEST);
     }
     else{
-       // glutSetOption(GL_MULTISAMPLE, 0);
         glDisable(GL_MULTISAMPLE);
     }
          
@@ -110,7 +101,6 @@ void display(void)
         glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
     }
     world->draw();
-
 
     glPopMatrix();
     glutSwapBuffers();
@@ -123,29 +113,27 @@ void init(void)
 {
     win=50;
 
-    luzAmbiente[0]=0.2;
-    luzAmbiente[1]=0.2;
-    luzAmbiente[2]=0.2;
+    luzAmbiente[0]=0.8;
+    luzAmbiente[1]=0.8;
+    luzAmbiente[2]=0.8;
     luzAmbiente[3]=1.0; 
 
     GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
-	// Define os parâmetros da luz de número 0
+
 	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
 	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );	
 
 
 
-	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor" 
-	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho" 
+	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	  
+	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};
 
 
 
     // Capacidade de brilho do material
 	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
-	GLint especMaterial = 60;
-
-
+	GLint especMaterial = 15000;
 
     // Habilita o modelo de colorização de Gouraud
     glShadeModel(GL_SMOOTH);
@@ -155,8 +143,7 @@ void init(void)
     // Define a concentração do brilho
     glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
 
-    // Ativa o uso da luz ambiente
-    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+  
 
 
     // // Define os parâmetros da luz de número 0
@@ -194,6 +181,8 @@ void init(void)
 
 	
     
+    //glClearColor (0.0, 0.0, 1.0, 0.0);
+    //glShadeModel (GL_FLAT);
     glEnable(GL_DEPTH_TEST);
 }
 
@@ -203,7 +192,6 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-
     gluPerspective(45,(float)w/h,0.5,600);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -354,10 +342,11 @@ int main(int argc, char** argv)
     glewInit();
     init();
 
-     int iMultiSample,iNumSample;
-     glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
-     glGetIntegerv(GL_SAMPLES,&iNumSample); 
-
+   
+    int iMultiSample,iNumSample;
+    glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
+    glGetIntegerv(GL_SAMPLES,&iNumSample);
+    //printf("-> %d %d",iMultiSample,iNumSample);
 
     glutMouseFunc(GerenciaMouse); 
     glutSpecialFunc(keyboardHandler);

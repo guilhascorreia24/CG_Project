@@ -9,7 +9,8 @@ unsigned int Satelite::texture=0;
 void Satelite::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
+    //int width,height;
+    unsigned char *dados = stbi_load("metal.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -46,7 +47,6 @@ void Satelite::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-
     GLfloat Ka[4]={0.8, 0.8, 0.8};
     GLfloat Ns = 500;
     GLfloat Kd[4]={0.8, 0.8, 0.8};
@@ -60,22 +60,13 @@ void Satelite::drawShape(){
   
     for (int i = 0; i < (int)points.size(); i++)
     {
-
         glTexCoord2f(uv[i].x, uv[i].y);
-        
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        
-        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
-
-    
- 
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
-
 
 }
 
@@ -85,7 +76,6 @@ const char* Satelite::getLabel(){
 }
 
 void Satelite::Update(){
-
     static long time = glutGet(GLUT_ELAPSED_TIME);
     long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
     float dist = center.distance(position);

@@ -10,8 +10,7 @@ unsigned int Planeta::texture=0;
 void Planeta::inicializarTextura(){
 
     int n;
-    
-    unsigned char *dados = stbi_load("img/saturno.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("saturno.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -25,8 +24,6 @@ void Planeta::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-
-
 
 Planeta::Planeta(Point &center):center(center){
     pattern_buffer = 0; 
@@ -51,8 +48,6 @@ void Planeta::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-
-
      GLfloat Ka[4]={1.000000,1.000000,1.000000};
      GLfloat Ns = 225.000000;
      GLfloat Kd[4]={0.800000,0.800000,0.800000};
@@ -70,23 +65,14 @@ void Planeta::drawShape(){
     {
 
         glTexCoord2f(uv[i].x, uv[i].y);
-       
         
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        
-     
         
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
-
-    
- 
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
-
-
 
 }
 
@@ -95,11 +81,6 @@ const char* Planeta::getLabel(){
 }
 
 void Planeta::Update(){
-    static Point p(0,0,0);
-    p=position;
-    Vector vec(center,position);
 
-    direction = Vector(vec.y,-vec.x,0);
-    setDirection(direction);
 
 }

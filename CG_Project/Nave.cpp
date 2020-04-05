@@ -10,8 +10,7 @@ unsigned int Nave::texture=0;
 void Nave::inicializarTextura(){
 
     int n;
-
-    unsigned char *dados = stbi_load("img/aco.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("aco.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -49,10 +48,6 @@ void Nave::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-
-
-    
-
     GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
     GLfloat Ns = 500;
     GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
@@ -62,25 +57,13 @@ void Nave::drawShape(){
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
-
   
     for (int i = 0; i < (int)points.size(); i++)
     {
-
         glTexCoord2f(uv[i].x, uv[i].y);
-
-        
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        
-
-        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
-
-
-    
- 
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 
