@@ -157,12 +157,7 @@ void display(void)
         glEnable(GL_MULTISAMPLE);
         glHint(GL_MULTISAMPLE_FILTER_HINT_NV,GL_NICEST);
 
-             int iMultiSample,iNumSample;
-        glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
-        glGetIntegerv(GL_SAMPLES,&iNumSample);
-        //printf("-> %d %d",iMultiSample,iNumSample);
-        // cout << "iMultiSample: " << iMultiSample << endl;
-        // cout << "iNumSamples: " << iNumSample << endl; 
+
     }
     else{
        // glutSetOption(GL_MULTISAMPLE, 0);
@@ -191,9 +186,9 @@ void init(void)
 {
     win=50;
 
-    luzAmbiente[0]=0.2;
-    luzAmbiente[1]=0.2;
-    luzAmbiente[2]=0.2;
+    luzAmbiente[0]=0.8;
+    luzAmbiente[1]=0.8;
+    luzAmbiente[2]=0.8;
     luzAmbiente[3]=1.0; 
 
     GLfloat posicaoLuz[4]={0.0, 50.0, 50.0, 1.0};
@@ -211,7 +206,7 @@ void init(void)
 
     // Capacidade de brilho do material
 	GLfloat especularidade[4]={1.0,1.0,1.0,1.0}; 
-	GLint especMaterial = 60;
+	GLint especMaterial = 15000;
 
 //  	// Especifica que a cor de fundo da janela será preta
    // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -474,7 +469,10 @@ int main(int argc, char** argv)
     init();
 
    
-
+    int iMultiSample,iNumSample;
+    glGetIntegerv(GL_SAMPLE_BUFFERS,&iMultiSample);
+    glGetIntegerv(GL_SAMPLES,&iNumSample);
+    //printf("-> %d %d",iMultiSample,iNumSample);
 
     glutMouseFunc(GerenciaMouse); 
     glutSpecialFunc(keyboardHandler);
