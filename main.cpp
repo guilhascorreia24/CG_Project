@@ -8,7 +8,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-#define FRAME_DELTA 1000/100
+#define FRAME_DELTA 1000/150
 
 
 #define PI 3.14159

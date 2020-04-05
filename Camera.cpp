@@ -78,7 +78,7 @@ void Camera::keyboardZoom(unsigned char key,int x, int y){
 		return;	
 	}
 	if(distance>400){
-		distance = 499;
+		distance = 399;
 		return;	
 	}
 	changeCamera();
