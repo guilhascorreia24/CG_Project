@@ -146,25 +146,20 @@ void display(void)
         luzAmbiente[3]=0.0; 
     }
 
-    // if (shading==false)
-    //     glShadeModel (GL_FLAT);
-    // else
-    //     glShadeModel(GL_SMOOTH);
+    if (shading==true)
+        glShadeModel (GL_FLAT);
+    else
+        glShadeModel(GL_SMOOTH);
     
 
-    // if (antialiasing==false){
-    //     
-    //     
-    //    // glEnable(GLUT_MULTISAMPLE);
-    //     glEnable(GL_MULTISAMPLE);
-    // }
-    // else{
-    //     //glDisable(GL_MULTISAMPLE);
-
-    //       //glEnable(GL_BLEND);
-	// 	    //glDisable(GL_DEPTH_TEST);
-	// 	glEnable(GLUT_MULTISAMPLE);
-    // }
+    if (antialiasing==true){
+        //glutSetOption(GL_MULTISAMPLE, 4);
+        glEnable(GL_MULTISAMPLE);
+    }
+    else{
+       // glutSetOption(GL_MULTISAMPLE, 0);
+        glDisable(GL_MULTISAMPLE);
+    }
          
 
     if(pressed){
@@ -211,7 +206,7 @@ void init(void)
 	GLint especMaterial = 60;
 
 //  	// Especifica que a cor de fundo da janela será preta
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+   // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 
 

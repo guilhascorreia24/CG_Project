@@ -6,9 +6,6 @@ GLint Nave::height=0;
 unsigned int Nave::texture=0;
 
 
-const char* Nave::getLabel(){
-    return "Nave";
-}
 
 const char* Nave::getLabel(){
     return "Nave";
@@ -56,13 +53,14 @@ void Nave::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-    //glColor3f(1.0,1.0,0.0);
+  //  glColor3f(1.0,1.0,0.0);
     
 
     // glEnableClientState(GL_VERTEX_ARRAY);
     // glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);
     // glVertexPointer(3, GL_FLOAT, 0, 0);
 
+    
 
     GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
     GLfloat Ns = 500;
