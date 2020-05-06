@@ -75,5 +75,5 @@ void BaseNave::Update(){
 }
 
 const char* BaseNave::getLabel(){
-    return "BaseNave";
+    return "Base da Nave";
 }
