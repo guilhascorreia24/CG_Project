@@ -15,8 +15,8 @@ void World::fillObjects(){
     Point satelite_point(30,8,-50);
     Point sol_point(-100,100,-200);
 
-    Object* nave = new Nave();
-    nave->setPosition(nave_point);
+    // Object* nave = new Nave();
+    // nave->setPosition(nave_point);
 
     Object* sol = new Sol(nave_point);
     sol->setPosition(sol_point);
