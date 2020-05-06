@@ -11,7 +11,7 @@ World::World() : main(0){
 
 void World::fillObjects(){
     Point nave_point(0,0,0);
-    
+
     Point disco_nave_point(0,0,0);
     Point cupula_nave_point(5,0,0);
     Point base_nave_point(10,0,0);
@@ -23,11 +23,11 @@ void World::fillObjects(){
     Object* disco_nave = new DiscoNave();
     disco_nave->setPosition(disco_nave_point);
     
-    Object* cupula_nave = new DiscoNave();
-    cupula_nave->setPosition(cupula_point);
+    Object* cupula_nave = new CupulaNave();
+    cupula_nave->setPosition(cupula_nave_point);
 
-    Object* disco_nave = new DiscoNave();
-    disco_nave->setPosition(nave_point);
+    Object* base_nave = new DiscoNave();
+    base_nave->setPosition(base_nave_point);
 
 
     Object* sol = new Sol(nave_point);
