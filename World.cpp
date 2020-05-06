@@ -18,12 +18,12 @@ void World::fillObjects(){
 
     Point planet_point(10,10,-50);
     Point satelite_point(30,8,-50);
-    Point sol_point(-100,100,-200);
+    Point sol_point(0,0,-200);
 
-    Point asteroide1_point(-150,200,-200);
-    Point asteroide2_point(-50,150,-50);
-    Point asteroide3_point(-200,100,-90);
-    Point asteroide4_point(250,300,-20);
+    Point asteroide1_point(50,0,-50);
+    Point asteroide2_point(-50,0,-50);
+    Point asteroide3_point(0,20,-90);
+    Point asteroide4_point(25,20,-20);
 
 
     Object* disco_nave = new DiscoNave();
@@ -53,20 +53,20 @@ void World::fillObjects(){
 
     Object* asteroide1 = new Asteroide1(sol_point);
     asteroide1->setPosition(asteroide1_point);
-    asteroide1->setVelocity(0.0001);
+    asteroide1->setVelocity(0.01);
 
     Object* asteroide2 = new Asteroide1(sol_point);
     asteroide2->setPosition(asteroide2_point);
-    asteroide2->setVelocity(0.0001);
+    asteroide2->setVelocity(0.01);
 
 
     Object* asteroide3 = new Asteroide2(sol_point);
     asteroide3->setPosition(asteroide3_point);
-    asteroide3->setVelocity(0.0001);
+    asteroide3->setVelocity(0.01);
 
     Object* asteroide4 = new Asteroide2(sol_point);
     asteroide4->setPosition(asteroide4_point);
-    asteroide4->setVelocity(0.0001);
+    asteroide4->setVelocity(0.01);
 
 
 
