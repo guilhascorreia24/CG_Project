@@ -20,7 +20,6 @@
 #include <vector>
 #include <stdarg.h> 
 #include <string>
-#include <cstring>
 
 #define PRINT_ERRORS FALSE
 #define PRINT_DEBUG FALSE

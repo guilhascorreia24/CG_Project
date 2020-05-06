@@ -10,7 +10,7 @@ unsigned int Planeta::texture=0;
 void Planeta::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("saturno.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/saturno.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);

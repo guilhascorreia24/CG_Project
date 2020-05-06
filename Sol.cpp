@@ -10,7 +10,7 @@ unsigned int Sol::texture=0;
 void Sol::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("sol.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/sol.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);

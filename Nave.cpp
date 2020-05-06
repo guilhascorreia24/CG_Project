@@ -10,7 +10,7 @@ unsigned int Nave::texture=0;
 void Nave::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("aco.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/aco.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
