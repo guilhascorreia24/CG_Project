@@ -55,7 +55,7 @@ void teclas(unsigned char key, int x, int y)
 
     {
 
-    case '1':
+    case 'l':
 
         Object::drawLabels = !Object::drawLabels;
 
