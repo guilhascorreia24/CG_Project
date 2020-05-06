@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Object.h"
-#include "Nave.h"
+#include "DiscoNave.h"
 #include "Sol.h"
 #include "Satelite.h"
 #include "Planeta.h"

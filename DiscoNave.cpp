@@ -1,16 +1,16 @@
-#include "Nave.h"
+#include "DiscoNave.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Nave::width=0;
-GLint Nave::height=0;
-unsigned int Nave::texture=0;
+GLint DiscoNave::width=0;
+GLint DiscoNave::height=0;
+unsigned int DiscoNave::texture=0;
 
 
 
-void Nave::inicializarTextura(){
+void DiscoNave::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/aco.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/disco_nave.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -25,12 +25,12 @@ void Nave::inicializarTextura(){
 
 }
 
-Nave::Nave(){
+DiscoNave::DiscoNave(){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/nave.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/disco_nave.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -39,11 +39,11 @@ Nave::Nave(){
     }
 }
 
-Nave::~Nave(){
+DiscoNave::~DiscoNave(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Nave::drawShape(){
+void DiscoNave::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -70,10 +70,10 @@ void Nave::drawShape(){
 
 }
 
-void Nave::Update(){
+void DiscoNave::Update(){
     
 }
 
-const char* Nave::getLabel(){
-    return "Nave";
+const char* DiscoNave::getLabel(){
+    return "DiscoNave";
 }

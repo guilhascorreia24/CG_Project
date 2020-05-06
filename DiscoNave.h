@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Nave : public Object{
+class DiscoNave : public Object{
     public:
-        Nave();
-        ~Nave();
+        DiscoNave();
+        ~DiscoNave();
         static void inicializarTextura();
 
     protected:

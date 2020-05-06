@@ -15,8 +15,8 @@ void World::fillObjects(){
     Point satelite_point(30,8,-50);
     Point sol_point(-100,100,-200);
 
-    // Object* nave = new Nave();
-    // nave->setPosition(nave_point);
+    Object* disco_nave = new DiscoNave();
+    disco_nave->setPosition(nave_point);
 
     Object* sol = new Sol(nave_point);
     sol->setPosition(sol_point);
@@ -31,12 +31,12 @@ void World::fillObjects(){
     satelite->setPosition(satelite_point);
     satelite->setVelocity(0.001);
 
-    addObject(nave);
+    addObject(disco_nave);
     addObject(sol);
     addObject(satelite);
     addObject(planeta);
     //addObject(nave);
-    main = nave;
+    //main = nave;
 }
 
 World::~World(){

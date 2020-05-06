@@ -265,7 +265,7 @@ void init(void)
 
     glEnable(GLUT_MULTISAMPLE);
 
-    Nave::inicializarTextura();
+    DiscoNave::inicializarTextura();
 
     Planeta::inicializarTextura();
 
