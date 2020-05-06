@@ -75,5 +75,5 @@ void DiscoNave::Update(){
 }
 
 const char* DiscoNave::getLabel(){
-    return "DiscoNave";
+    return "Disco da Nave";
 }

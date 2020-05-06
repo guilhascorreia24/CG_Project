@@ -2,6 +2,8 @@
 #include <vector>
 #include "Object.h"
 #include "DiscoNave.h"
+#include "CupulaNave.h"
+#include "BaseNave.h"
 #include "Sol.h"
 #include "Satelite.h"
 #include "Planeta.h"

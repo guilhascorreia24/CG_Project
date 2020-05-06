@@ -11,12 +11,24 @@ World::World() : main(0){
 
 void World::fillObjects(){
     Point nave_point(0,0,0);
+    
+    Point disco_nave_point(0,0,0);
+    Point cupula_nave_point(5,0,0);
+    Point base_nave_point(10,0,0);
+
     Point planet_point(10,10,-50);
     Point satelite_point(30,8,-50);
     Point sol_point(-100,100,-200);
 
     Object* disco_nave = new DiscoNave();
+    disco_nave->setPosition(disco_nave_point);
+    
+    Object* cupula_nave = new DiscoNave();
+    cupula_nave->setPosition(cupula_point);
+
+    Object* disco_nave = new DiscoNave();
     disco_nave->setPosition(nave_point);
+
 
     Object* sol = new Sol(nave_point);
     sol->setPosition(sol_point);
@@ -32,6 +44,8 @@ void World::fillObjects(){
     satelite->setVelocity(0.001);
 
     addObject(disco_nave);
+    addObject(cupula_nave);
+    addObject(base_nave);
     addObject(sol);
     addObject(satelite);
     addObject(planeta);
