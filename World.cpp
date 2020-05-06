@@ -79,10 +79,10 @@ void World::fillObjects(){
     addObject(planeta);
 
 
-    addObject(asetroide1);
+    addObject(asteroide1);
     addObject(asteroide2);
     addObject(asteroide3);
-    addObject(asteroid4);
+    addObject(asteroide4);
 
     //addObject(nave);
     //main = nave;
