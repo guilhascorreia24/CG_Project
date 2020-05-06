@@ -20,6 +20,12 @@ void World::fillObjects(){
     Point satelite_point(30,8,-50);
     Point sol_point(-100,100,-200);
 
+    Point asteroide1_point(-150,200,-200);
+    Point asteroide2_point(-50,150,-50);
+    Point asteroide3_point(-200,100,-90);
+    Point asteroide4_point(250,300,-20);
+
+
     Object* disco_nave = new DiscoNave();
     disco_nave->setPosition(disco_nave_point);
     
@@ -43,6 +49,27 @@ void World::fillObjects(){
     satelite->setPosition(satelite_point);
     satelite->setVelocity(0.001);
 
+//--------------------------------------------------------------------
+
+    Object* asteroide1 = new Asteroide1(nave_point);
+    asteroide1->setPosition(asteroide1_point);
+    asteroide1->setVelocity(0.0001);
+
+    Object* asteroide2 = new Asteroide1(nave_point);
+    asteroide2->setPosition(asteroide2_point);
+    asteroide2->setVelocity(0.0001);
+
+
+    Object* asteroide3 = new Asteroide2(nave_point);
+    asteroide3->setPosition(asteroide3_point);
+    asteroide3->setVelocity(0.0001);
+
+    Object* asteroide4 = new Asteroide2(nave_point);
+    asteroide4->setPosition(asteroide4_point);
+    asteroide4->setVelocity(0.0001);
+
+
+
     addObject(disco_nave);
     addObject(cupula_nave);
     addObject(base_nave);
@@ -50,6 +77,13 @@ void World::fillObjects(){
     addObject(sol);
     addObject(satelite);
     addObject(planeta);
+
+
+    addObject(asetroide1);
+    addObject(asteroide2);
+    addObject(asteroide3);
+    addObject(asteroid4);
+
     //addObject(nave);
     //main = nave;
 }
