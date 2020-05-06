@@ -46,6 +46,7 @@ void World::fillObjects(){
     addObject(disco_nave);
     addObject(cupula_nave);
     addObject(base_nave);
+    
     addObject(sol);
     addObject(satelite);
     addObject(planeta);

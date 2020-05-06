@@ -1,13 +1,13 @@
-#include "Nave.h"
+#include "BaseNave.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Nave::width=0;
-GLint Nave::height=0;
-unsigned int Nave::texture=0;
+GLint BaseNave::width=0;
+GLint BaseNave::height=0;
+unsigned int BaseNave::texture=0;
 
 
 
-void Nave::inicializarTextura(){
+void BaseNave::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/aco.jpg", &width, &height, &n, 0);
@@ -25,7 +25,7 @@ void Nave::inicializarTextura(){
 
 }
 
-Nave::Nave(){
+BaseNave::BaseNave(){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -39,11 +39,11 @@ Nave::Nave(){
     }
 }
 
-Nave::~Nave(){
+BaseNave::~BaseNave(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Nave::drawShape(){
+void BaseNave::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -70,10 +70,10 @@ void Nave::drawShape(){
 
 }
 
-void Nave::Update(){
+void BaseNave::Update(){
     
 }
 
-const char* Nave::getLabel(){
-    return "Nave";
+const char* BaseNave::getLabel(){
+    return "BaseNave";
 }
