@@ -10,7 +10,7 @@ unsigned int Asteroide2::texture=0;
 void Asteroide2::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/sol.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/asteroide2.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -30,7 +30,7 @@ Asteroide2::Asteroide2(Point &center):center(center){
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/sol.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/asteroide2.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);

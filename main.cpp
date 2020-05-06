@@ -277,6 +277,10 @@ void init(void)
 
     Satelite::inicializarTextura();
 
+    Asteroide1::inicializarTextura();
+
+    Asteroide2::inicializarTextura();
+
     world = new World();
 
     rot = new RotationHandler(world);
