@@ -13,7 +13,7 @@ void World::fillObjects(){
     Point nave_point(0,0,0);
     Point planet_point(10,10,-50);
     Point satelite_point(30,8,-50);
-    Point sol_point(-100,100,-200);
+    Point sol_point(0,0,-200);
 
     Object* nave = new Nave();
     nave->setPosition(nave_point);
