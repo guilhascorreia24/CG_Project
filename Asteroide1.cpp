@@ -11,7 +11,7 @@ void Asteroide1::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/asteroide1.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    printf("asteroide1 %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -30,7 +30,7 @@ Asteroide1::Asteroide1(Point &center):center(center){
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/sol.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/asteroide1.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -67,5 +67,5 @@ void Asteroide1::Update(){
 }
 
 const char* Asteroide1::getLabel(){
-    return "Asteroide1";
+    return "Asteroide";
 }
