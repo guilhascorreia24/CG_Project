@@ -26,7 +26,7 @@ void World::fillObjects(){
     Object* cupula_nave = new CupulaNave();
     cupula_nave->setPosition(cupula_nave_point);
 
-    Object* base_nave = new DiscoNave();
+    Object* base_nave = new BaseNave();
     base_nave->setPosition(base_nave_point);
 
 

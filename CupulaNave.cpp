@@ -30,7 +30,7 @@ CupulaNave::CupulaNave(){
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/nave.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/cupula_nave.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
