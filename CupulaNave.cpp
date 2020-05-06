@@ -48,15 +48,6 @@ void CupulaNave::drawShape(){
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
 
-    GLfloat Ka[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ns = 500;
-    GLfloat Kd[4]={0.8, 0.8, 0.8, 0.8};
-    GLfloat Ks[4]={0.8, 0.8, 0.8, 0.8};
-
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
   
     for (int i = 0; i < (int)points.size(); i++)
     {

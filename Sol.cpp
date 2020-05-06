@@ -47,17 +47,6 @@ void Sol::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
-
-    GLfloat Ka[4]={1.000000,1.000000,1.000000};
-    GLfloat Ns = 225.000000;
-    GLfloat Kd[4]={0.800000,0.800000,0.800000};
-    GLfloat Ks[4]={0.500000,0.500000,0.500000};
-
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Ka);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Kd);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Ks);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Ns);
-
   
     for (int i = 0; i < (int)points.size(); i++)
     {

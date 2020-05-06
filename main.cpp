@@ -267,9 +267,9 @@ void init(void)
 
     DiscoNave::inicializarTextura();
 
-    BaseNave::inicializarTextura();
-
     CupulaNave::inicializarTextura();
+
+    BaseNave::inicializarTextura();
 
     Planeta::inicializarTextura();
 
