@@ -51,20 +51,20 @@ void World::fillObjects(){
 
 //--------------------------------------------------------------------
 
-    Object* asteroide1 = new Asteroide1(nave_point);
+    Object* asteroide1 = new Asteroide1(sol_point);
     asteroide1->setPosition(asteroide1_point);
     asteroide1->setVelocity(0.0001);
 
-    Object* asteroide2 = new Asteroide1(nave_point);
+    Object* asteroide2 = new Asteroide1(sol_point);
     asteroide2->setPosition(asteroide2_point);
     asteroide2->setVelocity(0.0001);
 
 
-    Object* asteroide3 = new Asteroide2(nave_point);
+    Object* asteroide3 = new Asteroide2(sol_point);
     asteroide3->setPosition(asteroide3_point);
     asteroide3->setVelocity(0.0001);
 
-    Object* asteroide4 = new Asteroide2(nave_point);
+    Object* asteroide4 = new Asteroide2(sol_point);
     asteroide4->setPosition(asteroide4_point);
     asteroide4->setVelocity(0.0001);
 
