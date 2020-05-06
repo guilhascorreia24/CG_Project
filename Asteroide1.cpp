@@ -1,16 +1,16 @@
-#include "Sol.h"
+#include "Asteroide1.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Sol::width=0;
-GLint Sol::height=0;
-unsigned int Sol::texture=0;
+GLint Asteroide1::width=0;
+GLint Asteroide1::height=0;
+unsigned int Asteroide1::texture=0;
 
 
 
-void Sol::inicializarTextura(){
+void Asteroide1::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/sol.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/asteroide1.jpg", &width, &height, &n, 0);
     printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
@@ -25,7 +25,7 @@ void Sol::inicializarTextura(){
 
 }
 
-Sol::Sol(Point &center):center(center){
+Asteroide1::Asteroide1(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -39,11 +39,11 @@ Sol::Sol(Point &center):center(center){
     }
 }
 
-Sol::~Sol(){
+Asteroide1::~Asteroide1(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Sol::drawShape(){
+void Asteroide1::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -62,10 +62,10 @@ void Sol::drawShape(){
     glDisable(GL_TEXTURE_2D);  
 }
 
-void Sol::Update(){
+void Asteroide1::Update(){
     
 }
 
-const char* Sol::getLabel(){
-    return "Sol";
+const char* Asteroide1::getLabel(){
+    return "Asteroide1";
 }
