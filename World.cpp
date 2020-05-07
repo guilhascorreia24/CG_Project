@@ -20,9 +20,9 @@ void World::fillObjects(){
     Point cupula_nave_point(2,10,-20);
     Point base_nave_point(0,-5,-10);
 
-    Point planet_point(10,10,-50);
-    Point satelite_point(30,8,-50);
-    Point sol_point(0,0,-200);
+    // Point planet_point(10,10,-50);
+    // Point satelite_point(30,8,-50);
+    // Point sol_point(0,0,-200);
 
     Point asteroide1_point(50,0,-50);
     Point asteroide2_point(-50,0,-50);
@@ -48,10 +48,10 @@ void World::fillObjects(){
     sol->setSize(5);
     sol->setMass(10000);
 
-    Object* nave = new Nave();
-    nave->setPosition(nave_point);
-    nave->setMass(100);
-    nave->applyGravityPull(sol);
+    // Object* nave = new Nave();
+    // nave->setPosition(nave_point);
+    // nave->setMass(100);
+    // nave->applyGravityPull(sol);
     
     Object* planeta = new Planeta(nave_point);
     planeta->setPosition(planet_point);
@@ -66,11 +66,11 @@ void World::fillObjects(){
     satelite->setMass(10);
     satelite->applyGravityPull(sol);
 
-    nave->setForceToOrbit(sol,1.55);
+    //nave->setForceToOrbit(sol,1.55);
     satelite->setForceToOrbit(sol,1.55);
     planeta->setForceToOrbit(sol,1.55);
 
-    nave->setVelocity(1);
+    //nave->setVelocity(1);
     satelite->setVelocity(0.1);
 
 
