@@ -66,6 +66,9 @@ void DiscoNave::Update(){
     float dist = center.distance(position);
     position.x = center.x + dist * cos(time_elapsed*velocity);
     position.y = center.y + dist * sin(time_elapsed*velocity);
+
+    if(position.x==center.x&&position.y==center.y)
+        separado=false;
 }
 
 const char* DiscoNave::getLabel(){
