@@ -66,5 +66,9 @@ void CupulaNave::Update(){
 }
 
 const char* CupulaNave::getLabel(){
-    return "Cupula da Nave";
+    if(separado==True)
+        return "Cupula da Nave";
+    else{
+        return "Nave"
+    }
 }
