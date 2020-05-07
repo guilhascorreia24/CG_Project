@@ -26,6 +26,5 @@ class World{
 
     private:
         Object* main;
-        Object* sun;
         std::vector<Object*> objects;
 };

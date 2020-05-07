@@ -63,6 +63,7 @@ void Sol::drawShape(){
 }
 
 void Sol::Update(){
+    
 }
 
 const char* Sol::getLabel(){

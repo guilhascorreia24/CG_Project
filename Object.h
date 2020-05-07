@@ -1,11 +1,11 @@
 #pragma once
 #include "utils.h"
-#include <set>
+
 
 class Object{
     public:
         Object();
-        Object(Point & pos, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
+        Object(Point & pos, AngleRotation & rotation, Vector & direction, float velocity);
         virtual ~Object();
 
 
@@ -16,7 +16,7 @@ class Object{
         Point getPosition();
         inline void setPosition(Point & point){this->position = point;}
 
-        inline void setVelocity(long double vel){velocity = vel;}
+        inline void setVelocity(float vel){velocity = vel;}
         inline float getVelocity(){return velocity;}
 
         inline Vector getDirection(){return direction;};
@@ -25,49 +25,23 @@ class Object{
         inline void setSize(int num){this->size = num;}
         inline int getSize(){return size;}
 
-        void setMomentum(Vector &a){setDirection(a);setVelocity(a.norma());}
-
-        inline void setMass(long double mass){this->mass = mass;}
-        inline long double getMass(){return mass;}
-
-        /*PHISICS*/
-
-        //Aply a force with and id
-        //oid aplyForce(int id,Vector& force);
-        //void deleteForce(int id);
-
-        void applyGravityPull(Object* obj);
-        void removeGravityPull(Object* obj);
 
 
-        void setForceToOrbit(Object* obj, float angle);
-
-        static Vector calcGravitationalForce(Object* obj1,Object* obj2);
-        
-
-
-
-        void update(time_t time);
+        void update();
         
     protected:
         void virtual drawShape() = 0;
         void virtual Update() = 0;
-    public:
         virtual const char* getLabel() = 0;
 
+    protected:
+        Point position;
     
     protected:
         AngleRotation rot;
-        long double velocity;
+        float velocity;
         Vector direction;
         int size;
-        Point position;
-    
-    private:
-        long double mass;
-        std::set<Object*> gravity;
-        time_t lastUpdateTime;
-
 
     public:
         static bool drawLabels; 

@@ -7,7 +7,7 @@ AngleRotation::AngleRotation(float x_angle,float y_angle, float z_angle){
         setZRotation(z_angle);
 }
 
-Vector::Vector(long double x, long double y, long double z) : x(x), y(y), z(z){
+Vector::Vector(float x, float y, float z) : x(x), y(y), z(z){
 }
 Vector::Vector(Point & a, Point & b){
     x = b.x-a.x;
@@ -152,65 +152,4 @@ void errorPrint(const char* format, ...){
     va_start(argptr, format);
     vprintf(format, argptr);
     va_end(argptr);
-}
-
-
-
-Vector crossProduct(Vector &a, Vector &b){
-    Vector result(0,0,0);
-    result.x = a.x*b.z - a.z*b.y;
-    result.y = a.z*b.x - a.x*b.z;
-    result.y = a.x*b.y - a.y*b.x;
-    return result;
-}
-
-float dotProduct(Vector &a, Vector &b){
-    return a.x*b.x + a.y*b.y + a.z*b.z;
-}
-
-float dotProduct(Vector &a, Point &b){
-    return a.x*b.x + a.y*b.y + a.z*b.z;
-}
-
-Point intersectPlaneLine(Point planePoint, Vector &planeNormal, Point linePoint, Vector &lineDirection){
-    Vector lineUnit = lineDirection.unitVector();
-    float dot = dotProduct(planeNormal,lineUnit);
-    if(dot == 0){
-        throw "Error dot product is 0";
-    }
-    double t = (dotProduct(planeNormal,planePoint) - dotProduct(planeNormal,linePoint))/dotProduct(planeNormal,lineUnit);
-    Vector scale = lineUnit*t;
-    Point result = Point(linePoint)+scale;
-    return result;
-
-}
-
-
-Vector rotateVector(Vector &vec, Vector &axis,float angle){
-    Vector unitAxis = axis.unitVector();
-    Vector result = crossProduct(unitAxis,vec);
-    float angleCos = cos(angle);
-    float angleSin = sin(angle);
-    Vector param = vec*angleCos;
-    result*=angleSin;
-    result+=param;
-
-    return result;
-}
-
-//angle in radians
-Vector getOrbitalDirection(Point a, Point b,float angle){
-    Vector ab(a,b);
-    Point c(b);
-    c.y+=1;
-    Vector ac(a,c);
-    Point intersect = intersectPlaneLine(b,ab,c,ac);
-    Vector bd (b,intersect);
-    intersect.print();
-    Vector result = rotateVector(bd,ab,angle);
-    return result.unitVector();
-}
-
-long double getOrbitalNeededVelocity(long double massCentral, float distance){
-    return sqrt((G*massCentral)/distance);
 }
