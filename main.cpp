@@ -8,7 +8,6 @@
 
 #include "utils.h"
 
-#include "Nave.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 

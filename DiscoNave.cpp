@@ -5,7 +5,7 @@ GLint DiscoNave::width=0;
 GLint DiscoNave::height=0;
 unsigned int DiscoNave::texture=0;
 
-
+//GLboolean separado;
 
 void DiscoNave::inicializarTextura(){
 

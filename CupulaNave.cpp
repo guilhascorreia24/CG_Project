@@ -5,7 +5,7 @@ GLint CupulaNave::width=0;
 GLint CupulaNave::height=0;
 unsigned int CupulaNave::texture=0;
 
-
+//GLboolean separado;
 
 void CupulaNave::inicializarTextura(){
 

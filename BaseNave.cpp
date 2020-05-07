@@ -5,7 +5,7 @@ GLint BaseNave::width=0;
 GLint BaseNave::height=0;
 unsigned int BaseNave::texture=0;
 
-
+//GLboolean separado;
 
 void BaseNave::inicializarTextura(){
 

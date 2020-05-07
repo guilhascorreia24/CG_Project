@@ -7,7 +7,6 @@
 #include "Sol.h"
 #include "Satelite.h"
 #include "Planeta.h"
-
 #include "Asteroide1.h"
 #include "Asteroide2.h"
 
