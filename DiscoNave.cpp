@@ -26,6 +26,7 @@ void DiscoNave::inicializarTextura(){
 }
 
 DiscoNave::DiscoNave(Point &center):center(center){
+    separado=True;
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -68,5 +69,9 @@ void DiscoNave::Update(){
 }
 
 const char* DiscoNave::getLabel(){
-    return "Disco da Nave";
+    if(separado==True)
+        return "Disco da Nave";
+    else{
+        return "Nave";
+    }
 }

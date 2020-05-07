@@ -26,6 +26,7 @@ void CupulaNave::inicializarTextura(){
 }
 
 CupulaNave::CupulaNave(Point &center):center(center){
+    separado=True;
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -69,6 +70,6 @@ const char* CupulaNave::getLabel(){
     if(separado==True)
         return "Cupula da Nave";
     else{
-        return "Nave"
+        return "Nave";
     }
 }

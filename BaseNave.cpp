@@ -26,6 +26,7 @@ void BaseNave::inicializarTextura(){
 }
 
 BaseNave::BaseNave(Point &center):center(center){
+    separado=True;
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -65,5 +66,9 @@ void BaseNave::Update(){
 }
 
 const char* BaseNave::getLabel(){
-    return "Base da Nave";
+    if(separado==True)
+        return "Disco da Nave";
+    else{
+        return "Nave";
+    }
 }
