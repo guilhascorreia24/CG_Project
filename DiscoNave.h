@@ -4,7 +4,7 @@
 
 class DiscoNave : public Object{
     public:
-        DiscoNave();
+        DiscoNave(Point &center);
         ~DiscoNave();
         static void inicializarTextura();
 
@@ -14,6 +14,7 @@ class DiscoNave : public Object{
         const char* getLabel();
 
     private:
+        Point center;
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
         std::vector<glm::vec2> uv;

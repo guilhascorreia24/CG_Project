@@ -26,15 +26,17 @@ void World::fillObjects(){
     Point asteroide4_point(25,20,-20);
 
 
-    Object* disco_nave = new DiscoNave();
+    Object* disco_nave = new DiscoNave(nave_point);
     disco_nave->setPosition(disco_nave_point);
-    
-    Object* cupula_nave = new CupulaNave();
+    disco_nave->setVelocity(0.001);
+
+    Object* cupula_nave = new CupulaNave(nave_point);
     cupula_nave->setPosition(cupula_nave_point);
+    cupula_nave->setVelocity(0.001);
 
-    Object* base_nave = new BaseNave();
+    Object* base_nave = new BaseNave(nave_point);
     base_nave->setPosition(base_nave_point);
-
+    base_nave->setVelocity(0.001);
 
     Object* sol = new Sol(nave_point);
     sol->setPosition(sol_point);

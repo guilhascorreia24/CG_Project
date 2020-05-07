@@ -25,7 +25,7 @@ void DiscoNave::inicializarTextura(){
 
 }
 
-DiscoNave::DiscoNave(){
+DiscoNave::DiscoNave(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -60,7 +60,11 @@ void DiscoNave::drawShape(){
 }
 
 void DiscoNave::Update(){
-    
+    static long time = glutGet(GLUT_ELAPSED_TIME);
+    long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
+    float dist = center.distance(position);
+    position.x = center.x + dist * cos(time_elapsed*velocity);
+    position.y = center.y + dist * sin(time_elapsed*velocity);
 }
 
 const char* DiscoNave::getLabel(){

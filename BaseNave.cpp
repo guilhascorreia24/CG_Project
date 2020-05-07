@@ -25,7 +25,7 @@ void BaseNave::inicializarTextura(){
 
 }
 
-BaseNave::BaseNave(){
+BaseNave::BaseNave(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
