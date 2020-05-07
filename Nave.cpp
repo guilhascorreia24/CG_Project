@@ -71,7 +71,8 @@ void Nave::drawShape(){
 }
 
 void Nave::Update(){
-    
+    //printf("X-> %f, Y-> %f, Z-> %f\n",position.x,position.y,position.z);
+    //printf("Velocity: %Lf \n",velocity);
 }
 
 const char* Nave::getLabel(){

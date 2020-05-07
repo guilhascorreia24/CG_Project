@@ -76,9 +76,4 @@ const char* Satelite::getLabel(){
 }
 
 void Satelite::Update(){
-    static long time = glutGet(GLUT_ELAPSED_TIME);
-    long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-    float dist = center.distance(position);
-    position.x = center.x + dist * cos(time_elapsed*velocity);
-    position.y = center.y + dist * sin(time_elapsed*velocity);
 }

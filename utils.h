@@ -21,9 +21,10 @@
 #include <stdarg.h> 
 #include <string>
 #include <cstring>
-
+#include <ctime>
 #define PRINT_ERRORS FALSE
-#define PRINT_DEBUG FALSE
+#define PRINT_DEBUG TRUE
+#define G 0.001
 
 struct Point;
 struct AngleRotation{
@@ -60,11 +61,15 @@ struct AngleRotation{
 };
 
 struct Vector{
-    Vector(float x, float y, float z);
+    Vector(long double x, long double y, long double z);
 
     Vector(Point & a, Point & b);
 
-    inline Vector operator*(float _const){
+    Vector(Vector* a) : x(a->x),y(a->y),z(a->z){
+
+    }
+
+    inline Vector operator*(long double _const){
         return Vector(x*_const,y*_const,z*_const);
     }
 
@@ -73,10 +78,17 @@ struct Vector{
     }
 
     inline Vector unitVector(){
-        float n = norma();
-        float x = this->x/n;
-        float y = this->y/n;
-        float z = this->z/n;
+        long double n = norma();
+        long double x,y,z;
+        if(n==0){
+            x=0;
+            y=0;
+            z=0;
+            return Vector(x,y,z);
+        }
+        x = this->x/n;
+        y = this->y/n;
+        z = this->z/n;
         return Vector(x,y,z);
     }
 
@@ -85,15 +97,30 @@ struct Vector{
         y+= a.y;
         z+= a.z;
     }
+    inline void operator*=(long double _const){
+        x*=_const;
+        y*=_const;
+        z*=_const;
+    }
+
     inline void operator-=(Vector& a){
         x-= a.x;
         y-= a.y;
         z-= a.z;
     }
 
-    float x,y,z;
+    inline void print(){
+        printf("Vector.x = %Lf, Vector.y = %Lf, Vector.z = %Lf\n",x,y,z);
+    }
+
+    long double x,y,z;
 };
 
+long double getOrbitalNeededVelocity(long double massCentral, float distance);
+Vector getOrbitalDirection(Point a, Point b,float angle);
+Vector rotateVector(Vector &vec, Vector &axis,float angle);
+Vector crossProduct(Vector &a, Vector &b);
+float dotProduct(Vector &a, Vector &b);
 
 void debugPrint(const char* format, ...);
 
@@ -102,6 +129,7 @@ void errorPrint(const char* format, ...);
 
 struct Point{
     Point(float x, float y, float z) : x(x) , y(y) , z(z){}
+    Point(Point *a) : x(a->x), y(a->y), z(a->z){} 
 
     inline void operator+=(Vector & a){
         x+= a.x;
@@ -109,9 +137,19 @@ struct Point{
         z+= a.z;
     }
 
+    inline Point operator+(Vector & a){
+        Point b(this);
+        b+=a;
+        return b;
+    }
+
     inline float distance(Point & a){
          
-        return sqrt((a.x-x)*(a.x-x) + (a.y-y)*(a.y-y));
+        return sqrt((a.x-x)*(a.x-x) + (a.y-y)*(a.y-y) + (a.z-z)*(a.z-z));
+    }
+
+    inline void print(){
+        printf("Point.x = %f, Point.y = %f, Point.z = %f\n",x,y,z);
     }
     
     float x,y,z;
@@ -124,3 +162,4 @@ struct arr{
 bool loadObj(const char* filename, std::vector<glm::vec3>* vertices,std::vector<glm::vec2>* uvs,std::vector<glm::vec3>* normals,std::vector<arr>* f);
 
 int getFileSize(FILE * file);
+inline clock_t getTimeInMili(){return glutGet(GLUT_ELAPSED_TIME);}
