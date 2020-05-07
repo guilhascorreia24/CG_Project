@@ -17,8 +17,8 @@ void World::fillObjects(){
 
 
     Point disco_nave_point(5,0,0);
-    Point cupula_nave_point(2,10,0);
-    Point base_nave_point(0,-5,0);
+    Point cupula_nave_point(2,10,-20);
+    Point base_nave_point(0,-5,-10);
 
     /*Point planet_point(10,10,-50);
     Point satelite_point(30,8,-50);

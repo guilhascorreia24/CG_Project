@@ -50,11 +50,11 @@ void Object::update(time_t time){
     Update();
     Vector sum(0,0,0);
     for(Object* a: gravity){
-        printf("%s\n",getLabel());
+        //printf("%s\n",getLabel());
         Vector b = calcGravitationalForce(this,a);
         sum+= b;
         Point B = a->getPosition();
-        printf("Distance to Sun: %f\n\n", position.distance(B));
+        //printf("Distance to Sun: %f\n\n", position.distance(B));
     }
     //printf("%ld\n",time);
     sum*=((double)(time-lastUpdateTime)/1000.0);
@@ -82,7 +82,7 @@ Vector Object::calcGravitationalForce(Object* obj1,Object* obj2){
         return Vector(0,0,0);
     }
     long double str = ((long double)(G*obj1->getMass()*obj2->getMass())/(long double)(dist*dist));
-    printf("Gravitic strength: %Lf\n",str);
+    //printf("Gravitic strength: %Lf\n",str);
     Vector vec(a,b);
     Vector vec_final = vec.unitVector();
     return vec_final*str;
