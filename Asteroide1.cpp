@@ -1,17 +1,17 @@
-#include "Satelite.h"
+#include "Asteroide1.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Satelite::width=0;
-GLint Satelite::height=0;
-unsigned int Satelite::texture=0;
+GLint Asteroide1::width=0;
+GLint Asteroide1::height=0;
+unsigned int Asteroide1::texture=0;
 
 
-void Satelite::inicializarTextura(){
+
+void Asteroide1::inicializarTextura(){
 
     int n;
-    //int width,height;
-    unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    unsigned char *dados = stbi_load("img/asteroide1.jpg", &width, &height, &n, 0);
+    printf("asteroide1 %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -24,12 +24,13 @@ void Satelite::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-Satelite::Satelite(Point &center):center(center){
+
+Asteroide1::Asteroide1(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/asteroide1.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -38,31 +39,33 @@ Satelite::Satelite(Point &center):center(center){
     }
 }
 
-Satelite::~Satelite(){
+Asteroide1::~Asteroide1(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Satelite::drawShape(){
+void Asteroide1::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
   
     for (int i = 0; i < (int)points.size(); i++)
     {
+
         glTexCoord2f(uv[i].x, uv[i].y);
+        
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
     glEnd();
     glDisable(GL_TEXTURE_2D);  
-
 }
 
-
-const char* Satelite::getLabel(){
-    return "Satelite";
+void Asteroide1::Update(){
+    
 }
 
-void Satelite::Update(){
+const char* Asteroide1::getLabel(){
+    return "Asteroide";
 }

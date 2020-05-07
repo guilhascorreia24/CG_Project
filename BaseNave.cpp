@@ -1,17 +1,17 @@
-#include "Satelite.h"
+#include "BaseNave.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Satelite::width=0;
-GLint Satelite::height=0;
-unsigned int Satelite::texture=0;
+GLint BaseNave::width=0;
+GLint BaseNave::height=0;
+unsigned int BaseNave::texture=0;
 
+//GLboolean separado;
 
-void Satelite::inicializarTextura(){
+void BaseNave::inicializarTextura(){
 
     int n;
-    //int width,height;
-    unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    unsigned char *dados = stbi_load("img/base_nave.jpg", &width, &height, &n, 0);
+    printf("base %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -24,12 +24,14 @@ void Satelite::inicializarTextura(){
     stbi_image_free(dados);
 
 }
-Satelite::Satelite(Point &center):center(center){
+
+BaseNave::BaseNave(Point &center):center(center){
+    separado=true;
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/base_nave.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -38,31 +40,35 @@ Satelite::Satelite(Point &center):center(center){
     }
 }
 
-Satelite::~Satelite(){
+BaseNave::~BaseNave(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Satelite::drawShape(){
+void BaseNave::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
-  
+
     for (int i = 0; i < (int)points.size(); i++)
     {
         glTexCoord2f(uv[i].x, uv[i].y);
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 
+
 }
 
-
-const char* Satelite::getLabel(){
-    return "Satelite";
+void BaseNave::Update(){
+    
 }
 
-void Satelite::Update(){
+const char* BaseNave::getLabel(){
+    if(separado==true)
+        return "Disco da Nave";
+    else{
+        return "Nave";
+    }
 }

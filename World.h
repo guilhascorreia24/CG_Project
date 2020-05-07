@@ -1,11 +1,14 @@
 #pragma once
 #include <vector>
 #include "Object.h"
-#include "Nave.h"
+#include "DiscoNave.h"
+#include "CupulaNave.h"
+#include "BaseNave.h"
 #include "Sol.h"
 #include "Satelite.h"
 #include "Planeta.h"
-
+#include "Asteroide1.h"
+#include "Asteroide2.h"
 
 
 //Cleanup needed

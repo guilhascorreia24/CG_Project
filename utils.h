@@ -22,6 +22,7 @@
 #include <string>
 #include <cstring>
 #include <ctime>
+
 #define PRINT_ERRORS FALSE
 #define PRINT_DEBUG TRUE
 #define G 0.001
