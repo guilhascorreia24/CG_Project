@@ -1,11 +1,10 @@
 #include "BaseNave.h"
+#include "math.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
 GLint BaseNave::width=0;
 GLint BaseNave::height=0;
 unsigned int BaseNave::texture=0;
-
-//GLboolean separado;
 
 void BaseNave::inicializarTextura(){
 
@@ -62,7 +61,18 @@ void BaseNave::drawShape(){
 }
 
 void BaseNave::Update(){
-    
+    if(separado=true){
+        static long time = glutGet(GLUT_ELAPSED_TIME);
+        long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
+        if(position.x!=center.x) 
+            position.x -= position.x*velocity*time_elapsed;
+        if(position.y!=center.y) 
+        position.y -= position.y*velocity*time_elapsed;
+        if(position.z!=center.z) 
+        position.z -= position.z*velocity*time_elapsed;
+    }
+    if(position.x==center.x&&position.y==center.y&&position.z==center.z)
+        separado=true;
 }
 
 const char* BaseNave::getLabel(){

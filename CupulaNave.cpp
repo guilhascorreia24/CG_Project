@@ -66,11 +66,11 @@ void CupulaNave::Update(){
     if(separado=true){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
-        if(position.x>center.x) 
+        if(position.x!=center.x) 
             position.x -= position.x*velocity*time_elapsed;
-        if(position.y>center.y) 
+        if(position.y!=center.y) 
         position.y -= position.y*velocity*time_elapsed;
-        if(position.z>center.z) 
+        if(position.z!=center.z) 
         position.z -= position.z*velocity*time_elapsed;
     }
     if(position.x==center.x&&position.y==center.y&&position.z==center.z)

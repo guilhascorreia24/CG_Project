@@ -1,11 +1,10 @@
 #include "DiscoNave.h"
 #include <stdexcept>
+#include "math.h"
 #define STB_IMAGE_IMPLEMENTATION
 GLint DiscoNave::width=0;
 GLint DiscoNave::height=0;
 unsigned int DiscoNave::texture=0;
-
-//GLboolean separado;
 
 void DiscoNave::inicializarTextura(){
 
@@ -61,14 +60,18 @@ void DiscoNave::drawShape(){
 }
 
 void DiscoNave::Update(){
-    static long time = glutGet(GLUT_ELAPSED_TIME);
-    long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-    float dist = center.distance(position);
-    position.x = center.x + dist * cos(time_elapsed*velocity);
-    position.y = center.y + dist * sin(time_elapsed*velocity);
-
-    if(position.x==center.x&&position.y==center.y)
-        separado=false;
+    if(separado=true){
+        static long time = glutGet(GLUT_ELAPSED_TIME);
+        long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
+        if(position.x!=center.x) 
+            position.x -= position.x*velocity*time_elapsed;
+        if(position.y!=center.y) 
+        position.y -= position.y*velocity*time_elapsed;
+        if(position.z!=center.z) 
+        position.z -= position.z*velocity*time_elapsed;
+    }
+    if(position.x==center.x&&position.y==center.y&&position.z==center.z)
+        separado=true;
 }
 
 const char* DiscoNave::getLabel(){
