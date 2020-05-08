@@ -28,15 +28,15 @@ void World::fillObjects(){
 
     Object* disco_nave = new DiscoNave(nave_point);
     disco_nave->setPosition(disco_nave_point);
-    disco_nave->setVelocity(0.001);
+    disco_nave->setVelocity(0.0001);
 
     Object* cupula_nave = new CupulaNave(nave_point);
     cupula_nave->setPosition(cupula_nave_point);
-    cupula_nave->setVelocity(0.001);
+    cupula_nave->setVelocity(0.0001);
 
     Object* base_nave = new BaseNave(nave_point);
     base_nave->setPosition(base_nave_point);
-    base_nave->setVelocity(0.001);
+    base_nave->setVelocity(0.0001);
 
     Object* sol = new Sol(nave_point);
     sol->setPosition(sol_point);
