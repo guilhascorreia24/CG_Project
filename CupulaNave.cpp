@@ -6,7 +6,6 @@ GLint CupulaNave::width=0;
 GLint CupulaNave::height=0;
 unsigned int CupulaNave::texture=0;
 
-GLint CupulaNave::tf=50000;
 
 void CupulaNave::inicializarTextura(){
 
@@ -28,9 +27,6 @@ void CupulaNave::inicializarTextura(){
 
 CupulaNave::CupulaNave(Point &center):center(center){
     separado=true;
-    xi=abs(position.x);
-    yi=abs(position.y);
-    zi=abs(position.z);
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -70,16 +66,12 @@ void CupulaNave::Update(){
     if(separado=true){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-        //float dist = center.distance(position);
-        //printf("time: %ld    elapsedtime: %ld ",time,time_elapsed);
-        //position.x = center.x + dist * cos(time_elapsed*velocity);
-        //position.y = center.y + dist * sin(time_elapsed*velocity);
-        position.x = -(xi/tf)*time_elapsed+xi;
-        position.y = -(yi/tf)*time_elapsed+yi;
-        position.z = -(zi/tf)*time_elapsed+zi;
+        position.x -= position.x*velocity*time_elapsed;
+        position.y -= position.y*velocity*time_elapsed;
+        position.z -= position.z*velocity*time_elapsed;
     }
     if(position.x==center.x&&position.y==center.y&&position.z==center.z)
-        separado=false;
+        separado=true;
 }
 
 const char* CupulaNave::getLabel(){
