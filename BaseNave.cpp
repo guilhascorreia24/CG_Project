@@ -72,7 +72,7 @@ void BaseNave::Update(){
         position.z -= position.z*velocity*time_elapsed;
     }
     if(position.x==center.x&&position.y==center.y&&position.z==center.z)
-        separado=true;
+        separado=false;
 }
 
 const char* BaseNave::getLabel(){
