@@ -214,3 +214,8 @@ Vector getOrbitalDirection(Point a, Point b,float angle){
 long double getOrbitalNeededVelocity(long double massCentral, float distance){
     return sqrt((G*massCentral)/distance);
 }
+
+bool equalFloat(float a, float b){
+   auto diff = a - b;
+   return (diff < EPSILON) && (-diff < EPSILON);
+}

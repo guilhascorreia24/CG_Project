@@ -27,8 +27,10 @@
 #define PRINT_DEBUG TRUE
 #define G 0.001
 #define SPEED 1
+#define EPSILON 0.00002
 
 struct Point;
+bool equalFloat(float a, float b);
 struct AngleRotation{
     AngleRotation(float x_angle, float y_angle, float z_angle);
 
@@ -143,6 +145,10 @@ struct Point{
         Point b(this);
         b+=a;
         return b;
+    }
+
+    inline bool operator==(Point & a){
+        return equalFloat(a.x,x) && equalFloat(a.y,y) && equalFloat(a.z,z); 
     }
 
     inline float distance(Point & a){

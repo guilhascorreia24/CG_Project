@@ -39,9 +39,7 @@ class Object{
         void applyGravityPull(Object* obj);
         void removeGravityPull(Object* obj);
 
-
         void setForceToOrbit(Object* obj, float angle);
-
         static Vector calcGravitationalForce(Object* obj1,Object* obj2);
         
         void update();

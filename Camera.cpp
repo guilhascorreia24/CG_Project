@@ -113,7 +113,7 @@ void Camera::camera5(){
 	//gluLookAt(0,0,distance,0,0,0,1,0,0);
 }
 void Camera::camera6(){
-	eye = Point(1,0,0);
-	up = Point(0,0,-1);
+	eye = Point(0,0,-1);
+	up = Point(1,0,0);
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }

@@ -46,22 +46,28 @@ Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, long d
 
 void Object::update(){ 
     Update();
+
+    //Gravity Forces sum
     Vector sum(0,0,0);
     for(Object* a: gravity){
-        //printf("%s\n",getLabel());
         Vector b = calcGravitationalForce(this,a);
         sum+= b;
         Point B = a->getPosition();
-        //printf("Distance to Sun: %f\n\n", position.distance(B));
     }
-    //printf("%ld\n",time);
     sum*=SPEED;
+
+
+    //Momentum
     Vector vec = direction*velocity;
+    //printf("Object: %s -> ",getLabel());
+    //position.print();
+
     sum+=vec;
     direction=sum.unitVector();
     velocity=sum.norma();
     position += sum;
     //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
+
 }
 
 void Object::applyGravityPull(Object* obj){
