@@ -26,6 +26,7 @@
 #define PRINT_ERRORS FALSE
 #define PRINT_DEBUG TRUE
 #define G 0.001
+#define SPEED 1
 
 struct Point;
 struct AngleRotation{

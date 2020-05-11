@@ -57,7 +57,7 @@ void Object::update(time_t time){
         //printf("Distance to Sun: %f\n\n", position.distance(B));
     }
     //printf("%ld\n",time);
-    sum*=((double)(time-lastUpdateTime)/1000.0);
+    sum*=SPEED;
     Vector vec = direction*velocity;
     sum+=vec;
     direction=sum.unitVector();
