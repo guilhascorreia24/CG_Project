@@ -44,10 +44,7 @@ class Object{
 
         static Vector calcGravitationalForce(Object* obj1,Object* obj2);
         
-
-
-
-        void update(time_t time);
+        void update();
         
     protected:
         void virtual drawShape() = 0;
@@ -66,7 +63,6 @@ class Object{
     private:
         long double mass;
         std::set<Object*> gravity;
-        time_t lastUpdateTime;
 
 
     public:

@@ -36,17 +36,15 @@ Point Object::getPosition(){
 }
 Object::Object() : position(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1){
     size = 1;
-    lastUpdateTime = getTimeInMili();
 }
 Object::~Object(){
 }
 
 Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),rot(rotation) ,velocity(velocity),direction(direction){
     size = 1;
-    lastUpdateTime = getTimeInMili();
 }
 
-void Object::update(time_t time){ 
+void Object::update(){ 
     Update();
     Vector sum(0,0,0);
     for(Object* a: gravity){
@@ -63,7 +61,6 @@ void Object::update(time_t time){
     direction=sum.unitVector();
     velocity=sum.norma();
     position += sum;
-    lastUpdateTime = time;
     //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
 }
 

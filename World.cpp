@@ -1,5 +1,5 @@
 #include "World.h"
-#define SUN_GRAVITY 1
+
 
 void World::addObject(Object* obj){
     objects.push_back(obj);
@@ -126,6 +126,6 @@ void World::draw(){
 
 void World::update(){
     for(Object * object : objects){
-        object->update(getTimeInMili());
+        object->update();
     }
 }

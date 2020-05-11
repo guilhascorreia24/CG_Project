@@ -8,6 +8,7 @@
 
 #include "utils.h"
 
+#include <stdexcept>
 
 #define STB_IMAGE_IMPLEMENTATION
 
@@ -16,6 +17,8 @@
 #define FRAME_DELTA 1000 / 150
 
 #define PI 3.14159
+
+GLuint texture=0;
 
 int i, more;
 
@@ -100,20 +103,103 @@ void teclas(unsigned char key, int x, int y)
     }
 }
 
+void textura_fundo()
+{
+    int n;
+    int width,height;
+    unsigned char *dados = stbi_load("img/fundo.jpg", &width, &height, &n, 0);
+    printf("%d %d\n",width,height);
+
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, dados);
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
+    stbi_image_free(dados);
+}
+
+void desenha_fundo()
+{
+    glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
+    //glEnable(GL_TEXTURE_2D);
+
+
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+     gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
+    glMatrixMode(GL_MODELVIEW);
+     glPushMatrix();
+    glLoadIdentity();
+
+//     glColor4f(1.0, 1.0, 0.0, 0.5);
+
+
+// // //-----
+
+
+
+
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2i(0,0);
+    glVertex2i(glutGet(GLUT_WINDOW_WIDTH), 0);
+    
+    
+    glTexCoord2i(1,0);
+    glVertex2i(0,0);
+
+    glTexCoord2i(1,1);
+    glVertex2i(0,glutGet(GLUT_WINDOW_HEIGHT));
+
+
+    glTexCoord2i(0,1);
+    glVertex2i(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
+    glEnd();
+
+    glDisable(GL_TEXTURE_2D); 
+
+// //-----
+
+
+
+
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_DEPTH_TEST);
+   glEnable(GL_LIGHTING);
+    
+}
+
 void display(void)
 
 {
 
+  
+
     glMatrixMode(GL_MODELVIEW);
 
     glPushMatrix();
-
+    
     //glEnable(GL_TEXTURE_2D);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glScalef(1.0, 1.0, 1.0);
+    
 
+    glScalef(1.0, 1.0, 1.0);
+    
     // glColor3f (1.0, 0.0, 0.0);
 
     if (iluminacao == true)
@@ -176,7 +262,7 @@ void display(void)
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
-
+    desenha_fundo();
     world->draw();
 
     glPopMatrix();
@@ -263,6 +349,8 @@ void init(void)
     glEnable(GL_DEPTH_TEST);
 
     glEnable(GLUT_MULTISAMPLE);
+
+    textura_fundo();
 
     DiscoNave::inicializarTextura();
 
@@ -535,12 +623,14 @@ int main(int argc, char **argv)
 
     glutReshapeFunc(reshape);
 
+
+
     glutDisplayFunc(display);
 
     glewInit();
 
     init();
-
+    
     int iMultiSample, iNumSample;
 
     glGetIntegerv(GL_SAMPLE_BUFFERS, &iMultiSample);

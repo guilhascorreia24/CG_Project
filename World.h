@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include "Object.h"
+#include <vector>
 #include "DiscoNave.h"
 #include "CupulaNave.h"
 #include "BaseNave.h"
@@ -26,6 +26,5 @@ class World{
 
     private:
         Object* main;
-        Object* sun;
         std::vector<Object*> objects;
 };
