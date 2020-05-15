@@ -9,8 +9,8 @@ unsigned int Lua::texture=0;
 void Lua::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/lua1.png", &width, &height, &n, 0);
-    printf("lua 1 %d %d\n",width,height);
+    unsigned char *dados = stbi_load("img/lua.jpg", &width, &height, &n, 0);
+    printf("lua %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -22,18 +22,6 @@ void Lua::inicializarTextura(){
     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
     stbi_image_free(dados);
 
-    dados = stbi_load("img/lua2.png", &width, &height, &n, 0);
-    printf("lua 2 %d %d\n",width,height);
-
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, dados);
-    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
-    stbi_image_free(dados);
     
 }
 
