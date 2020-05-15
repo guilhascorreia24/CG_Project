@@ -10,7 +10,7 @@ unsigned int Terra::texture=0;
 void Terra::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/terra.jpeg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/earth.jpg", &width, &height, &n, 0);
     printf("terra1 %d %d\n",width,height);
 
     glGenTextures(1, &texture);
