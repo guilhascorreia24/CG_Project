@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Satelite : public Object{
+class Lua : public Object{
     public:
-        Satelite(Point &center);
-        ~Satelite();
+        Lua(Point &center);
+        ~Lua();
         static  void inicializarTextura();
 
     protected:

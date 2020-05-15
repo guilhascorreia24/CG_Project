@@ -4,7 +4,9 @@
 
 #include "RotationHandler.h"
 
-#include "Camera.h"
+#include "Terra.h"
+
+#include "Lua.h"
 
 #include "utils.h"
 
@@ -367,6 +369,10 @@ void init(void)
     Asteroide1::inicializarTextura();
 
     Asteroide2::inicializarTextura();
+
+    Terra::inicializarTextura();
+
+    Lua::inicializarTextura();
 
     world = new World();
 

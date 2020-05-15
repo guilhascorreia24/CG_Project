@@ -9,7 +9,8 @@
 #include "Planeta.h"
 #include "Asteroide1.h"
 #include "Asteroide2.h"
-
+#include "Terra.h"
+#include "Lua.h"
 
 //Cleanup needed
 class World{

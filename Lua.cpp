@@ -1,17 +1,16 @@
-#include "Satelite.h"
+#include "Lua.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Satelite::width=0;
-GLint Satelite::height=0;
-unsigned int Satelite::texture=0;
+GLint Lua::width=0;
+GLint Lua::height=0;
+unsigned int Lua::texture=0;
 
 
-void Satelite::inicializarTextura(){
+void Lua::inicializarTextura(){
 
     int n;
-    //int width,height;
-    unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    unsigned char *dados = stbi_load("img/lua1.png", &width, &height, &n, 0);
+    printf("lua 1 %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -23,13 +22,28 @@ void Satelite::inicializarTextura(){
     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
     stbi_image_free(dados);
 
+    dados = stbi_load("img/lua2.png", &width, &height, &n, 0);
+    printf("lua 2 %d %d\n",width,height);
+
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, dados);
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
+    stbi_image_free(dados);
+    
 }
-Satelite::Satelite(Point &center):center(center){
+
+
+Lua::Lua(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/lua.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -38,11 +52,11 @@ Satelite::Satelite(Point &center):center(center){
     }
 }
 
-Satelite::~Satelite(){
+Lua::~Lua(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Satelite::drawShape(){
+void Lua::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -60,9 +74,9 @@ void Satelite::drawShape(){
 }
 
 
-const char* Satelite::getLabel(){
-    return "Satelite";
+const char* Lua::getLabel(){
+    return "Lua";
 }
 
-void Satelite::Update(){
+void Lua::Update(){
 }

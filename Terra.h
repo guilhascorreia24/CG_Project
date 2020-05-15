@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Planeta : public Object{
+class Terra : public Object{
     public:
-        Planeta(Point &center);
-        ~Planeta();
+        Terra(Point &center);
+        ~Terra();
         static  void inicializarTextura();
     protected:
         void drawShape();
