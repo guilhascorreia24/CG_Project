@@ -4,6 +4,8 @@
 
 #include "RotationHandler.h"
 
+#include "ControladorNave.h"
+
 #include "Terra.h"
 
 #include "Lua.h"
@@ -266,6 +268,13 @@ void display(void)
     }
     desenha_fundo();
     world->draw();
+
+
+//---------------
+
+
+//---------------
+
 
     glPopMatrix();
 
