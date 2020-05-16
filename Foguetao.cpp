@@ -63,14 +63,18 @@ void Foguetao::drawShape(){
 }
 
 void Foguetao::Update(){
-    if(limite_alcancado==false){
+    if(limite_alcancado == false){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
-        position.x += position.x*velocity*time_elapsed;
+        position.z -= position.z*velocity*time_elapsed;
+
+        if(position.z == -300);
+            limite_alcancado = true;
     }else{
         position.x=center.x;
         position.y=center.y;
         position.z=center.z;
+        limite_alcancado = false;
     }
 }
 

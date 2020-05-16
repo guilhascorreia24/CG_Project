@@ -10,6 +10,7 @@ World::World() : main(0){
 }
 
 void World::fillObjects(){
+    Point foguetao_point(-55,0,-30);
     Point nave_point(0,0,-25);
     Point planet_point(10,30,0);
     Point satelite_point(30,8,50);
@@ -83,7 +84,7 @@ void World::fillObjects(){
 
     Object* lua = new Lua(terra_point);
     lua->setPosition(lua_point);
-    lua->setVelocity(0.00000005);
+    lua->setVelocity(0.05);
     // lua->setMass(10);
     // lua->applyGravityPull(sol);
 
@@ -95,6 +96,9 @@ void World::fillObjects(){
     planeta->setVelocity(5);
     //terra->setVelocity(1.3);
     //lua->setVelocity(10);
+
+
+
 
 
 //--------------------------------------------------------------------
@@ -119,6 +123,16 @@ void World::fillObjects(){
     asteroide4->setVelocity(0.01);
 
 
+    Object* foguetao = new Foguetao(foguetao_point);
+    foguetao->setPosition(foguetao_point);
+    foguetao->setVelocity(0.01);
+    foguetao->setDirection(dir);
+
+
+
+//--------------------------------------------------------------------
+
+
 
     addObject(disco_nave);
     addObject(cupula_nave);
@@ -135,6 +149,8 @@ void World::fillObjects(){
     addObject(asteroide2);
     addObject(asteroide3);
     addObject(asteroide4);
+
+    addObject(foguetao);
 
     //addObject(nave);
     main = base_nave;

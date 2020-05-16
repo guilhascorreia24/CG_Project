@@ -11,6 +11,7 @@
 #include "Asteroide2.h"
 #include "Terra.h"
 #include "Lua.h"
+#include "Foguetao.h"
 
 //Cleanup needed
 class World{

@@ -67,11 +67,11 @@ const char* Lua::getLabel(){
 }
 
 void Lua::Update(){
-    static long time = glutGet(GLUT_ELAPSED_TIME);
-    long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-    float dist = center.distance(position);
-    printf("velocity = %lf; x = %lf; y = %lf; dist = %lf;\ncenter.x = %lf; center.y = %lf\n\n",velocity, position.x, position.y, dist,center.x,center.y);
+    // static long time = glutGet(GLUT_ELAPSED_TIME);
+    // long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
+    // float dist = center.distance(position);
+    // printf("velocity = %lf; x = %lf; y = %lf; dist = %lf;\ncenter.x = %lf; center.y = %lf\n\n",velocity, position.x, position.y, dist,center.x,center.y);
     
-    position.x = center.x + dist * cos(time_elapsed*velocity);
+    // position.x = center.x + dist * cos(time_elapsed*velocity);
     // position.y = center.y + dist * sin(time_elapsed*velocity);
 }
