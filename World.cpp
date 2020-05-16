@@ -83,7 +83,7 @@ void World::fillObjects(){
 
     Object* lua = new Lua(terra_point);
     lua->setPosition(lua_point);
-    lua->setVelocity(0.5);
+    lua->setVelocity(0.00000005);
     // lua->setMass(10);
     // lua->applyGravityPull(sol);
 
@@ -120,24 +120,24 @@ void World::fillObjects(){
 
 
 
-    // addObject(disco_nave);
-    // addObject(cupula_nave);
-    // addObject(base_nave);
+    addObject(disco_nave);
+    addObject(cupula_nave);
+    addObject(base_nave);
 
-    // addObject(sol);
-    // addObject(satelite);
-    // addObject(planeta);
+    addObject(sol);
+    addObject(satelite);
+    addObject(planeta);
 
     addObject(terra);
     addObject(lua);
 
-    // addObject(asteroide1);
-    // addObject(asteroide2);
-    // addObject(asteroide3);
-    // addObject(asteroide4);
+    addObject(asteroide1);
+    addObject(asteroide2);
+    addObject(asteroide3);
+    addObject(asteroide4);
 
     //addObject(nave);
-   // main = base_nave;
+    main = base_nave;
 }
 
 World::~World(){

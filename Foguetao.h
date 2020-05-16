@@ -6,7 +6,8 @@ class Foguetao : public Object{
     public:
         Foguetao(Point &center);
         ~Foguetao();
-        static  void inicializarTextura();
+        static void inicializarTextura();
+
     protected:
         void drawShape();
         void Update();
@@ -21,4 +22,5 @@ class Foguetao : public Object{
         std::vector< arr > f;
         static GLint width, height;
         static unsigned int texture; 
+        GLboolean limite_alcancado;
 };

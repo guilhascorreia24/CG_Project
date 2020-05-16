@@ -1,4 +1,5 @@
 #include "Foguetao.h"
+#include "math.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
 GLint Foguetao::width=0;
@@ -6,12 +7,11 @@ GLint Foguetao::height=0;
 unsigned int Foguetao::texture=0;
 
 
-
 void Foguetao::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/missil.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    printf("missil %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -26,6 +26,7 @@ void Foguetao::inicializarTextura(){
 }
 
 Foguetao::Foguetao(Point &center):center(center){
+    limite_alcancado=false;
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -51,24 +52,28 @@ void Foguetao::drawShape(){
   
     for (int i = 0; i < (int)points.size(); i++)
     {
-
         glTexCoord2f(uv[i].x, uv[i].y);
-        
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 
+
+}
+
+void Foguetao::Update(){
+    if(limite_alcancado==false){
+        static long time = glutGet(GLUT_ELAPSED_TIME);
+        long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
+        position.x += position.x*velocity*time_elapsed;
+    }else{
+        position.x=center.x;
+        position.y=center.y;
+        position.z=center.z;
+    }
 }
 
 const char* Foguetao::getLabel(){
     return "Foguetao";
-}
-
-void Foguetao::Update(){
-
-
 }

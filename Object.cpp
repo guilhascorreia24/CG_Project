@@ -47,26 +47,26 @@ Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, long d
 void Object::update(){ 
     Update();
 
-    //Gravity Forces sum
-    Vector sum(0,0,0);
-    for(Object* a: gravity){
-        Vector b = calcGravitationalForce(this,a);
-        sum+= b;
-        Point B = a->getPosition();
-    }
-    sum*=SPEED;
+    // //Gravity Forces sum
+    // Vector sum(0,0,0);
+    // for(Object* a: gravity){
+    //     Vector b = calcGravitationalForce(this,a);
+    //     sum+= b;
+    //     Point B = a->getPosition();
+    // }
+    // sum*=SPEED;
 
 
-    //Momentum
-    Vector vec = direction*velocity;
-    //printf("Object: %s -> ",getLabel());
-    //position.print();
+    // //Momentum
+    // Vector vec = direction*velocity;
+    // //printf("Object: %s -> ",getLabel());
+    // //position.print();
 
-    sum+=vec;
-    direction=sum.unitVector();
-    velocity=sum.norma();
-    position += sum;
-    //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
+    // sum+=vec;
+    // direction=sum.unitVector();
+    // velocity=sum.norma();
+    // position += sum;
+    // //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
 
 }
 
