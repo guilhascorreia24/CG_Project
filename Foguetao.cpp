@@ -1,13 +1,13 @@
-#include "Missil.h"
+#include "Foguetao.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Missil::width=0;
-GLint Missil::height=0;
-unsigned int Missil::texture=0;
+GLint Foguetao::width=0;
+GLint Foguetao::height=0;
+unsigned int Foguetao::texture=0;
 
 
 
-void Missil::inicializarTextura(){
+void Foguetao::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/missil.jpg", &width, &height, &n, 0);
@@ -25,7 +25,7 @@ void Missil::inicializarTextura(){
 
 }
 
-Missil::Missil(Point &center):center(center){
+Foguetao::Foguetao(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -39,11 +39,11 @@ Missil::Missil(Point &center):center(center){
     }
 }
 
-Missil::~Missil(){
+Foguetao::~Foguetao(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
-void Missil::drawShape(){
+void Foguetao::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -64,11 +64,11 @@ void Missil::drawShape(){
 
 }
 
-const char* Missil::getLabel(){
-    return "Missil";
+const char* Foguetao::getLabel(){
+    return "Foguetao";
 }
 
-void Missil::Update(){
+void Foguetao::Update(){
 
 
 }

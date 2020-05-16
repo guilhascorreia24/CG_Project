@@ -16,8 +16,8 @@ void World::fillObjects(){
     Point sol_point(0,0,100);
 
 
-    Point terra_point(0,0,0);
-    Point lua_point(5,5,-5);
+    Point terra_point(10,10,-5);
+    Point lua_point(15,15,-10);
 
     Point disco_nave_point(5,0,0);
     Point cupula_nave_point(2,10,-20);
@@ -77,14 +77,13 @@ void World::fillObjects(){
     Object* terra = new Terra(nave_point);
     terra->setPosition(terra_point);
     terra->setVelocity(0.f);
-    //terra->setSize(5);
     // terra->setMass(1000);
     // terra->applyGravityPull(sol);
 
 
     Object* lua = new Lua(terra_point);
     lua->setPosition(lua_point);
-    lua->setVelocity(0.f);
+    lua->setVelocity(0.5);
     // lua->setMass(10);
     // lua->applyGravityPull(sol);
 

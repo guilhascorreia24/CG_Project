@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Missil : public Object{
+class Foguetao : public Object{
     public:
-        Missil(Point &center);
-        ~Missil();
+        Foguetao(Point &center);
+        ~Foguetao();
         static  void inicializarTextura();
     protected:
         void drawShape();
