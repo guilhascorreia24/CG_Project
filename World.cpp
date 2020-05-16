@@ -10,7 +10,7 @@ World::World() : main(0){
 }
 
 void World::fillObjects(){
-    Point foguetao_point(-55,0,-30);
+    Point foguetao_point(100,0,-30);
     Point nave_point(0,0,-25);
     Point planet_point(10,30,0);
     Point satelite_point(30,8,50);
@@ -125,8 +125,8 @@ void World::fillObjects(){
 
     Object* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
-    foguetao->setVelocity(0.10);
-    foguetao->setDirection(dir);
+    foguetao->setVelocity(0.5);
+    // foguetao->setDirection(dir);
 
 
 
@@ -134,9 +134,9 @@ void World::fillObjects(){
 
 
 
-    addObject(disco_nave);
-    addObject(cupula_nave);
-    addObject(base_nave);
+    // addObject(disco_nave);
+    // addObject(cupula_nave);
+    // addObject(base_nave);
 
     addObject(sol);
     addObject(satelite);

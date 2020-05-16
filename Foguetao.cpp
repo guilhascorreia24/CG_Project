@@ -66,19 +66,21 @@ void Foguetao::Update(){
     if(limite_alcancado == false){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
-        printf("velocity: %lf", velocity);
-        position.z -= position.z*velocity*time_elapsed;
+        printf("velocity: %Lf;    elapsedtime: %ld\n", velocity,time_elapsed);
+        position.x -= velocity;//*time_elapsed;
+        position.z -= velocity*0.5;
         printf("ola 0 %s\n",limite_alcancado ? "true" : "false");
-        if(position.z == 300)
+        if(position.x < 0)
             limite_alcancado = true;
 
         printf("ola 1 %s\n",limite_alcancado ? "true" : "false");
+        printf("help    x: %f     y: %f      z: %f \n", position.x,position.y,position.z);
     }else{
         printf("ola 2 %s\n",limite_alcancado ? "true" : "false");
-        // position.x=center.x;
-        // position.y=center.y;
-        // position.z=center.z;
-        // limite_alcancado = false;
+        position.x=center.x;
+        position.y=center.y;
+        position.z=center.z;
+        limite_alcancado = false;
     }
 }
 
