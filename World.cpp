@@ -126,17 +126,15 @@ void World::fillObjects(){
     Object* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
     foguetao->setVelocity(0.5);
-    // foguetao->setDirection(dir);
-
 
 
 //--------------------------------------------------------------------
 
 
 
-    // addObject(disco_nave);
-    // addObject(cupula_nave);
-    // addObject(base_nave);
+    addObject(disco_nave);
+    addObject(cupula_nave);
+    addObject(base_nave);
 
     addObject(sol);
     addObject(satelite);
