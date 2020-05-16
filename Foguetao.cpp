@@ -63,20 +63,23 @@ void Foguetao::drawShape(){
 }
 
 void Foguetao::Update(){
-    // if(limite_alcancado == false){
-    //     static long time = glutGet(GLUT_ELAPSED_TIME);
-    //     long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
-        
-    //     position.z -= position.z*velocity*time_elapsed;
+    if(limite_alcancado == false){
+        static long time = glutGet(GLUT_ELAPSED_TIME);
+        long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
+        printf("velocity: %lf", velocity);
+        position.z -= position.z*velocity*time_elapsed;
+        printf("ola 0 %s\n",limite_alcancado ? "true" : "false");
+        if(position.z == 300)
+            limite_alcancado = true;
 
-    //     if(position.z == -300);
-    //         limite_alcancado = true;
-    // }else{
-    //     position.x=center.x;
-    //     position.y=center.y;
-    //     position.z=center.z;
-    //     limite_alcancado = false;
-    // }
+        printf("ola 1 %s\n",limite_alcancado ? "true" : "false");
+    }else{
+        printf("ola 2 %s\n",limite_alcancado ? "true" : "false");
+        // position.x=center.x;
+        // position.y=center.y;
+        // position.z=center.z;
+        // limite_alcancado = false;
+    }
 }
 
 const char* Foguetao::getLabel(){
