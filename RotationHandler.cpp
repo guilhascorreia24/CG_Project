@@ -25,17 +25,17 @@ void RotationHandler::keyboardHandler(int key,int x, int y){
         return;
     }
     switch(key){
-        case GLUT_KEY_DOWN:
+        case 'b':
             rotateDown();
             break;
-        case GLUT_KEY_UP:
+        case 'c':
             rotateUp();
             break;
 
-        case GLUT_KEY_LEFT:
+        case 'e':
             rotateLeft();
             break;
-        case GLUT_KEY_RIGHT:
+        case 'd':
             rotateRight();
             break;
         default:

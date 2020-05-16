@@ -27,29 +27,35 @@ void Camera::keyboardCamera(int key, int x, int y){
 			break;
 		case GLUT_KEY_F2:
 		     
+			camera1();
+			camara=1;
+			    
+			break;
+		case GLUT_KEY_F3:
+		     
 			camera2();
 			camara=2;
 			    
 			break;
-		case GLUT_KEY_F3:
+		case GLUT_KEY_F4:
 		     
 			camera3();
 			camara=3;
 			    
 			break;
-		case GLUT_KEY_F4:
+		case GLUT_KEY_F5:
 		     
 			camera4();
 			camara=4;
 			    
 			break;
-		case GLUT_KEY_F5:
+		case GLUT_KEY_F6:
 		     
 			camera5();
 			camara=5;
 			    
 			break;
-		case GLUT_KEY_F6:
+		case GLUT_KEY_F7:
 		     
 			camera6();
 			camara=6;
