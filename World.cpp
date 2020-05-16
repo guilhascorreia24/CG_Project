@@ -125,7 +125,7 @@ void World::fillObjects(){
 
     Object* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
-    foguetao->setVelocity(0.01);
+    foguetao->setVelocity(0.10);
     foguetao->setDirection(dir);
 
 

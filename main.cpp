@@ -374,6 +374,8 @@ void init(void)
 
     Lua::inicializarTextura();
 
+    Foguetao::inicializarTextura();
+
     world = new World();
 
     rot = new RotationHandler(world);
