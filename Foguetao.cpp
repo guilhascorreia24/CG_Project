@@ -10,7 +10,7 @@ unsigned int Foguetao::texture=0;
 void Foguetao::inicializarTextura(){
 
     int n;
-    unsigned char *dados = stbi_load("img/missil.jpg", &width, &height, &n, 0);
+    unsigned char *dados = stbi_load("img/foguetao.jpg", &width, &height, &n, 0);
     printf("missil %d %d\n",width,height);
 
     glGenTextures(1, &texture);
