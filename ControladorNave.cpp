@@ -4,6 +4,7 @@
 ControladorNave::ControladorNave(World* world){
     ControladorNave::world = world;
     start = false;
+    colidiu = false;
 }
 
 ControladorNave::~ControladorNave(){

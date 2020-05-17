@@ -24,4 +24,5 @@ class ControladorNave{
     private:
         bool start;
         World* world;
+        bool colidiu;
 };
