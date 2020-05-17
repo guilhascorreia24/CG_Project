@@ -435,15 +435,18 @@ void display(void)
                 double intervalo = 10 + glutGet(GLUT_WINDOW_WIDTH)*0.02;
                 double x = 200;
                 double y = 700;
+
                 s = "Inclinar a nave para baixo: Tecla 'b'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glColor4f(0.0, 0.0, 0.0, 0.0);
+               // glColor4f(0.0, 0.0, 0.0, 0.0);
                 glRasterPos2i(x , y - (intervalo*1));
+
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
+                
                 s = "Inclinar a nave para cima: Tecla 'c'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*2));
@@ -609,7 +612,8 @@ void display(void)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
-                }                
+                }   
+                     
                 glMatrixMode(GL_PROJECTION);
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
