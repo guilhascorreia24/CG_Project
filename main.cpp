@@ -44,7 +44,7 @@ GLfloat luzAmbiente[4];
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
-bool ganhou = true, perdeu = false, ajuda = false;
+bool ganhou = false, perdeu = false, ajuda = false;
 
 void keyboardHandler(int key, int x, int y)
 {
@@ -414,7 +414,7 @@ void display(void)
                 glEnd();
                 glColor3f(1.0, 1.0, 1.0);
                 void *font = GLUT_BITMAP_TIMES_ROMAN_24;
-                glRasterPos2i(290, 820);
+                glRasterPos2i(350+glutGet(GLUT_WINDOW_WIDTH)*0.05, 820-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
 
 //******
                 std::string s = "Ajudas do Jogo";
@@ -432,9 +432,13 @@ void display(void)
                 glVertex2i(900, 100);
                 glVertex2i(900, 750);
                 glEnd();
+                double intervalo = 10 + glutGet(GLUT_WINDOW_WIDTH)*0.02;
+                double x = 200;
+                double y = 700;
                 s = "Inclinar a nave para baixo: Tecla 'b'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glColor4f(0.0, 0.0, 0.0, 0.0);
+                glRasterPos2i(x , y - (intervalo*1));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -442,7 +446,7 @@ void display(void)
                 }
                 s = "Inclinar a nave para cima: Tecla 'c'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*2));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -450,20 +454,13 @@ void display(void)
                 }
 
 
-                s = " ";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
+
 
 
 
                 s = "Rodar a nave  para a direita: Tecla 'd'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*3));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -472,27 +469,20 @@ void display(void)
 
                 s = "Rodar a nave  para a esquerda: Tecla 'e'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*4));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
 
-                s = " ";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
+
 
 
 
                 s = "Aumentar a velocidade da nave: Tecla 'a'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*5));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -501,26 +491,19 @@ void display(void)
 
                 s = "Diminuir a velocidade da nave: Tecla 'z'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*6));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = " ";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
+
 
 
 
                 s = "Movimentar a nave para a frente: Tecla 'Seta para Cima'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*8));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -529,7 +512,7 @@ void display(void)
 
                 s = "Movimentar a nave para trás: Tecla 'Seta para Baixo'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*9));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -537,7 +520,7 @@ void display(void)
                 }
                 s = "Movimentar a nave para a esquerda: Tecla 'Seta para Esquerda'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*10));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -546,26 +529,19 @@ void display(void)
 
                 s = "Movimentar a nave para a direita: Tecla 'Seta para Direita'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*11));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = " ";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
+
 
 
 
                 s = "Zoom In: Tecla '+'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*13));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -574,15 +550,7 @@ void display(void)
 
                 s = "Zoom Out: Tecla '-'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
-                s = " ";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*14));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -591,51 +559,52 @@ void display(void)
 
 
 
-                s = "Câmara 1** - Tecla 'F2'";
+
+                s = "Camara 1**: Tecla 'F2'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*16));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
 
-                s = "Câmara 2** - Tecla 'F3'";
+                s = "Camara 2**: Tecla 'F3'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*17));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = "Câmara 3** - Tecla 'F4'";
+                s = "Camara 3**: Tecla 'F4'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*18));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = "Câmara 4** - Tecla 'F5'";
+                s = "Camara 4**: Tecla 'F5'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*19));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
 
-                s = "Câmara 5** - Tecla 'F6'";
+                s = "Camara 5**: Tecla 'F6'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*20));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = "Câmara 6** - Tecla 'F7'";
+                s = "Camara 6**: Tecla 'F7'";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(x , y - (intervalo*21));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
