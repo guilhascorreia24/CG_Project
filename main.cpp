@@ -335,7 +335,7 @@ void display(void)
 
                 s = "Para jogar outra vez pressione a tecla Enter";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(330, 480);
+                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -364,7 +364,7 @@ void display(void)
     
                 glColor3f(1.0, 0.0, 0.0);
                 void *font = GLUT_BITMAP_TIMES_ROMAN_24;
-                glRasterPos2i(400, 520);
+                glRasterPos2i(450, 520);
 
 //******
                 std::string s = "Perdeu!";
@@ -378,7 +378,7 @@ void display(void)
 
                 s = "Para jogar outra vez pressione a tecla Enter";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
