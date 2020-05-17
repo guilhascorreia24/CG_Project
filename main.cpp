@@ -203,24 +203,6 @@ void desenha_fundo()
 
 
 
-double conversao(bool x, double vc){
-    double result =  0, v = 0;
-    double vi = -1;
-    if (x){
-        v = glutGet(GLUT_WINDOW_WIDTH);
-        vi = 750; //valor da janela inicial
-    }
-    else{
-        v = glutGet(GLUT_WINDOW_WIDTH);
-        vi = 700; //valor da janela inicial
-    }
-    
-    result = (vc*v)/vi;
-
-    return result;
-}
-
-
 void display(void)
 
 {
@@ -437,10 +419,10 @@ void display(void)
                 double y = 700;
 
                 s = "Inclinar a nave para baixo: Tecla 'b'";
+                glColor3f(0.0, 0.0, 0.0);
                 font = GLUT_BITMAP_HELVETICA_12;
-               // glColor4f(0.0, 0.0, 0.0, 0.0);
+                
                 glRasterPos2i(x , y - (intervalo*1));
-
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
@@ -612,8 +594,8 @@ void display(void)
                 {
                     char c = *i;
                     glutBitmapCharacter(font, c);
-                }   
-                     
+                }    
+                glColor3f(1.0, 1.0, 1.0);
                 glMatrixMode(GL_PROJECTION);
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
