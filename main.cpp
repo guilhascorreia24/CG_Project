@@ -203,12 +203,22 @@ void desenha_fundo()
 
 
 
-// double conversao(bool x, double xc){
-//     if (x)
-//         glutGet(GLUT_WINDOW_WIDTH)
-//     double result =  
+double conversao(bool x, double vc){
+    double result =  0, v = 0;
+    double vi = -1;
+    if (x){
+        v = glutGet(GLUT_WINDOW_WIDTH);
+        vi = 750; //valor da janela inicial
+    }
+    else{
+        v = glutGet(GLUT_WINDOW_WIDTH);
+        vi = 700; //valor da janela inicial
+    }
+    
+    result = (vc*v)/vi;
 
-// }
+    return result;
+}
 
 
 void display(void)
@@ -312,7 +322,7 @@ void display(void)
     
                 glColor3f(0.0, 1.0, 0.0);
                 void *font = GLUT_BITMAP_TIMES_ROMAN_24;
-                glRasterPos2i(400, 520);
+                glRasterPos2i(450, 520);
 
 //******
                 std::string s = "Ganhou!";
@@ -325,7 +335,7 @@ void display(void)
 
                 s = "Para jogar outra vez pressione a tecla Enter";
                 font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(190, 480);
+                glRasterPos2i(330, 480);
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;
