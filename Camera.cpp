@@ -19,12 +19,6 @@ void Camera::keyboardCamera(int key, int x, int y){
 		return;
 	}
 	switch(key){
-		case GLUT_KEY_F1:
-		     
-			camera1();
-			camara=1;
-			    
-			break;
 		case GLUT_KEY_F2:
 		     
 			camera1();

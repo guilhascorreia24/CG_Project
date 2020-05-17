@@ -44,12 +44,23 @@ GLfloat luzAmbiente[4];
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
+bool ganhou = true, perdeu = false, ajuda = false;
+
 void keyboardHandler(int key, int x, int y)
 {
 
     rot->keyboardHandler(key, x, y);
 
     cam->keyboardCamera(key, x, y);
+
+    switch(key){
+		case GLUT_KEY_F1:
+		    
+			ajuda ? false : true;
+			    
+			break;
+
+	}
 }
 
 void teclas(unsigned char key, int x, int y)
@@ -272,6 +283,55 @@ void display(void)
 
 //---------------
 
+    if (ganhou)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+    
+                glColor3f(0.0, 1.0, 0.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(400, 520);
+
+//******
+                std::string s = "Ganhou!";
+                // int h = glutGet(GLUT_WINDOW_HEIGHT);
+                //glRasterPos2i(0, 5 + (h*0.0005));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+
+                s = "Para jogar outra vez pressione a tecla Enter";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(190, 480);
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+            else if (perdeu)
+            {
+                
+            }
 
 //---------------
 
