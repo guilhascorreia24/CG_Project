@@ -44,7 +44,7 @@ GLfloat luzAmbiente[4];
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
-bool ganhou = true, perdeu = false, ajuda = false;
+bool ganhou = false, perdeu = true, ajuda = false;
 
 void keyboardHandler(int key, int x, int y)
 {
@@ -330,8 +330,50 @@ void display(void)
             }
             else if (perdeu)
             {
-                
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+    
+                glColor3f(1.0, 0.0, 0.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(400, 520);
+
+//******
+                std::string s = "Perdeu!";
+                // int h = glutGet(GLUT_WINDOW_HEIGHT);
+                //glRasterPos2i(0, 5 + (h*0.0005));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+
+                s = "Para jogar outra vez pressione a tecla Enter";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(190, 480);
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
             }
+
 
 //---------------
 
