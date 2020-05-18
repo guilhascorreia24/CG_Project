@@ -43,19 +43,19 @@ void World::fillObjects(){
 
     DiscoNave* disco_nave = new DiscoNave(center);
     disco_nave->setPosition(disco_nave_point);
-    disco_nave->setVelocity(0.0009);
+    disco_nave->setVelocity(0.11);
     disco_nave->setDirection(dir);
     disco_nave->setSizeObject();
 
     CupulaNave* cupula_nave = new CupulaNave(center);
     cupula_nave->setPosition(cupula_nave_point);
-    cupula_nave->setVelocity(0.0009);
+    cupula_nave->setVelocity(0.11);
     cupula_nave->setDirection(dir);
     cupula_nave->setSizeObject();
 
     BaseNave* base_nave = new BaseNave(center);
     base_nave->setPosition(base_nave_point);
-    base_nave->setVelocity(0.0009);
+    base_nave->setVelocity(0.11);
     base_nave->setDirection(dir);
     base_nave->setSizeObject();
 

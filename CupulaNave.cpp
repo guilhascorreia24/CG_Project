@@ -27,6 +27,7 @@ void CupulaNave::inicializarTextura(){
 
 CupulaNave::CupulaNave(Point &center):center(center){
     separado=true;
+    colidiu=false;
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
@@ -89,14 +90,12 @@ void CupulaNave::drawShape(){
 
 void CupulaNave::Update(){
     if(separado==true){
-        static long time = glutGet(GLUT_ELAPSED_TIME);
-        long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
         if(position.x!=center.x) 
-            position.x -= position.x*velocity*time_elapsed;
+            position.x -= position.x*velocity;
         if(position.y!=center.y) 
-            position.y -= position.y*velocity*time_elapsed;
+            position.y -= position.y*velocity;
         if(position.z!=center.z) 
-            position.z -= position.z*velocity*time_elapsed;
+            position.z -= position.z*velocity;
         if(position == center){
             separado=false;
         }

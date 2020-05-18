@@ -24,4 +24,5 @@ class CupulaNave : public Object{
         static GLint width, height;
         static unsigned int texture; 
         GLboolean separado;
+        GLboolean colidiu;
 };
