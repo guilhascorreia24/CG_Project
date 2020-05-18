@@ -42,17 +42,17 @@ void World::fillObjects(){
 
     Object* disco_nave = new DiscoNave(center);
     disco_nave->setPosition(disco_nave_point);
-    disco_nave->setVelocity(0.0001);
+    disco_nave->setVelocity(0.0009);
     disco_nave->setDirection(dir);
 
     Object* cupula_nave = new CupulaNave(center);
     cupula_nave->setPosition(cupula_nave_point);
-    cupula_nave->setVelocity(0.0001);
+    cupula_nave->setVelocity(0.0009);
     cupula_nave->setDirection(dir);
 
     Object* base_nave = new BaseNave(center);
     base_nave->setPosition(base_nave_point);
-    base_nave->setVelocity(0.0001);
+    base_nave->setVelocity(0.0009);
     base_nave->setDirection(dir);
 
     Object* sol = new Sol(nave_point);
@@ -128,7 +128,7 @@ void World::fillObjects(){
 
     Object* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
-    foguetao->setVelocity(0.5);
+    foguetao->setVelocity(0.8);
 
 
 //--------------------------------------------------------------------
