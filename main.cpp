@@ -284,7 +284,8 @@ void display(void)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     desenha_fundo();
-    world->draw();
+    if(!ajuda){
+    world->draw();}
 
 
 //---------------
@@ -545,7 +546,7 @@ void display(void)
 
 
 
-                s = "Camara 1**: Tecla 'F2'";
+                s = "Camara 1: Tecla 'F2'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*16));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -554,7 +555,7 @@ void display(void)
                     glutBitmapCharacter(font, c);
                 }
 
-                s = "Camara 2**: Tecla 'F3'";
+                s = "Camara 2: Tecla 'F3'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*17));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -562,7 +563,7 @@ void display(void)
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = "Camara 3**: Tecla 'F4'";
+                s = "Camara 3: Tecla 'F4'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*18));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -570,7 +571,7 @@ void display(void)
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = "Camara 4**: Tecla 'F5'";
+                s = "Camara 4: Tecla 'F5'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*19));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -579,7 +580,7 @@ void display(void)
                     glutBitmapCharacter(font, c);
                 }
 
-                s = "Camara 5**: Tecla 'F6'";
+                s = "Camara 5: Tecla 'F6'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*20));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -587,7 +588,7 @@ void display(void)
                     char c = *i;
                     glutBitmapCharacter(font, c);
                 }
-                s = "Camara 6**: Tecla 'F7'";
+                s = "Camara 6: Tecla 'F7'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x , y - (intervalo*21));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
