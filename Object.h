@@ -17,7 +17,7 @@ class Object{
         Point getPosition();
         inline void setPosition(Point & point){this->position = point;}
         Point getSizeObject();
-        inline void setSizeObject(Point & point){this->size_object = point;}
+        // inline void setSizeObject(std::vector<glm::vec3> points);
 
         inline void setVelocity(long double vel){velocity = vel;}
         inline float getVelocity(){return velocity;}

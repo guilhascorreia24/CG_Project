@@ -7,7 +7,6 @@ class BaseNave : public Object{
         BaseNave(Point &center);
         ~BaseNave();
         static void inicializarTextura();
-
     protected:
         void drawShape();
         void Update();

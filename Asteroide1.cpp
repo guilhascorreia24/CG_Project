@@ -1,5 +1,6 @@
 #include "Asteroide1.h"
 #include <stdexcept>
+#include <math.h>
 #define STB_IMAGE_IMPLEMENTATION
 GLint Asteroide1::width=0;
 GLint Asteroide1::height=0;
@@ -25,6 +26,32 @@ void Asteroide1::inicializarTextura(){
 
 }
 
+void Asteroide1::setSizeObject(){
+    int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
+    for (int i = 0; i < (int)points.size(); i++)
+    {
+        if(points[i].x>max_x)
+            max_x = points[i].x;
+        if(points[i].x<min_x)
+            min_x = points[i].x; 
+        
+        if(points[i].y>max_y)
+            max_y = points[i].y;
+        if(points[i].x<min_y)
+            min_y = points[i].y;  
+
+        if(points[i].z>max_z)
+            max_z = points[i].z;
+        if(points[i].z<min_z)
+            min_z = points[i].z;       
+    }
+    this->size_object.x= abs(min_x-max_x);
+    this->size_object.y= abs(min_y-max_y);
+    this->size_object.z= abs(min_z-max_z);
+}
+
+
+
 Asteroide1::Asteroide1(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
@@ -32,7 +59,6 @@ Asteroide1::Asteroide1(Point &center):center(center){
 
     bool res = loadObj("objs/asteroide1.obj", &points, &uv,&normals,&f);
 
-  
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
     if(!res){
         throw std::runtime_error("Error loading object");
@@ -43,11 +69,12 @@ Asteroide1::~Asteroide1(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
+
+
 void Asteroide1::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
-  
     for (int i = 0; i < (int)points.size(); i++)
     {
 
@@ -56,8 +83,8 @@ void Asteroide1::drawShape(){
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
         
         glVertex3f(points[i].x, points[i].y, points[i].z); 
+     
     }
-
     glEnd();
     glDisable(GL_TEXTURE_2D);  
 }

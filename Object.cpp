@@ -58,6 +58,7 @@ Object::Object(Point & pos, Point & size_obj,AngleRotation & rotation, Vector & 
     size = 1;
 }
 
+
 void Object::update(){ 
     Update();
 
