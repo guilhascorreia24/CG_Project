@@ -37,16 +37,24 @@ void Object::draw(){
     glPopMatrix();
 }
 
+Point Object::getSizeObject(){
+    Point tmp = size_object;
+    tmp.x=size_object.x*size;
+    tmp.y=size_object.y*size;
+    tmp.z=size_object.z*size;
+    return tmp;
+}
+
 Point Object::getPosition(){
     return position;
 }
-Object::Object() : position(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1){
+Object::Object() : position(0,0,0),size_object(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1){
     size = 1;
 }
 Object::~Object(){
 }
 
-Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),rot(rotation) ,velocity(velocity),direction(direction){
+Object::Object(Point & pos, Point & size_obj,AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),size_object(size_obj),rot(rotation) ,velocity(velocity),direction(direction){
     size = 1;
 }
 

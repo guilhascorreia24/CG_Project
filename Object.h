@@ -5,7 +5,7 @@
 class Object{
     public:
         Object();
-        Object(Point & pos, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
+        Object(Point & pos,Point & size_obj, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
         virtual ~Object();
 
 
@@ -16,6 +16,8 @@ class Object{
         AngleRotation getRotation();
         Point getPosition();
         inline void setPosition(Point & point){this->position = point;}
+        Point getSizeObject();
+        inline void setSizeObject(Point & point){this->size_object = point;}
 
         inline void setVelocity(long double vel){velocity = vel;}
         inline float getVelocity(){return velocity;}
@@ -58,7 +60,7 @@ class Object{
         Vector direction;
         int size;
         Point position;
-    
+        Point size_object;
     private:
         long double mass;
         std::set<Object*> gravity;

@@ -13,7 +13,7 @@ World::World() : main(0){
 }
 
 void World::fillObjects(){
-    Point foguetao_point(100,0,-30);
+    Point foguetao_point(300,0,-30);
     Point nave_point(0,0,-25);
     Point planet_point(10,30,0);
     Point satelite_point(30,8,50);
@@ -135,9 +135,9 @@ void World::fillObjects(){
 
 
 
-    addObject(disco_nave);
-    addObject(cupula_nave);
-    addObject(base_nave);
+    // addObject(disco_nave);
+    // addObject(cupula_nave);
+    // addObject(base_nave);
 
     addObject(sol);
     addObject(satelite);
@@ -174,10 +174,36 @@ void World::draw(){
     for(Object* object : objects){
         object->draw();
     }
+    for(Object* object : main){
+        object->draw();
+    }
+
 } 
 
 void World::update(){
     for(Object * object : objects){
+        object->update();
+
+        // para verificar a colisao
+        Point po = object->getPosition();
+        Point po_size = object->getSizeObject();
+        for(Object* parte : main){
+            Point pp = parte->getPosition();
+            Point pp_size = parte->getSizeObject();
+            // Collision x
+            bool collisionX = po.x + po_size.x >= pp.x &&
+                pp.x + pp_size.x >= po.x;
+            // Collision y
+            bool collisionY = po.y + po_size.y >= pp.y &&
+                pp.y + pp_size.y >= po.y;
+            // Collision z
+            bool collisionZ = po.z + po_size.z >= pp.z &&
+                pp.z + pp_size.z >= po.z;
+            if( collisionX && collisionY && collisionY )
+                printf("colidiu");
+        }
+    }
+    for(Object * object : main){
         object->update();
     }
 }
