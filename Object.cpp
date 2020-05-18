@@ -8,9 +8,9 @@ void Object::rotate(AngleRotation& rot){
 }
 
 void Object::mover(double x, double y, double z){
-    // this->position.x += x;
-    // this->position.y += y;
-    // this->position.z += z;
+    this->position.x += x;
+    this->position.y += y;
+    this->position.z += z;
 }
 
 void Object::draw(){

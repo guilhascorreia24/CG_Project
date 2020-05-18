@@ -3,7 +3,7 @@
 #include "World.h"
 class Camera{
 public:
- Camera();
+ Camera(World* w);
  void Start();
  void Stop();
  ~Camera();
@@ -26,6 +26,7 @@ public:
 
 private:
 	bool start;
+	World* world;
 	int distance;
 	Point eye,center,up;
 	

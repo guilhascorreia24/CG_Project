@@ -721,7 +721,7 @@ void init(void)
 
     rot = new RotationHandler(world);
 
-    cam = new Camera();
+    cam = new Camera(world);
 
     rot->Start();
 

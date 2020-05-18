@@ -1,6 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera() : eye(0,0,1),center(0,0,0),up(0,1,0){
+Camera::Camera(World* world) : eye(0,0,1),center(0,0,0),up(0,1,0){
+	Camera::world = world;
 	distance = 50;
 }
 
@@ -19,56 +20,56 @@ void Camera::keyboardCamera(int key, int x, int y){
 		return;
 	}
 	switch(key){
-		// case GLUT_KEY_DOWN:
-        //     movimento_traz();
-        //     break;
-        // case GLUT_KEY_UP:
+		case GLUT_KEY_DOWN:
+            movimento_traz();
+            break;
+        case GLUT_KEY_UP:
             
-        //     movimento_frente();
-        //     break;
+            movimento_frente();
+            break;
 
-        // case GLUT_KEY_LEFT:
+        case GLUT_KEY_LEFT:
             
-        //     movimento_esquerda();
-        //     break;
-        // case GLUT_KEY_RIGHT:
+            movimento_esquerda();
+            break;
+        case GLUT_KEY_RIGHT:
             
-        //     movimento_direita();
-        //     break;
+            movimento_direita();
+            break;
 		case GLUT_KEY_F2:
 		     
 			camera1();
-			camara=1;
+			// Camera=1;
 			    
 			break;
 		case GLUT_KEY_F3:
 		     
 			camera2();
-			camara=2;
+			// Camera=2;
 			    
 			break;
 		case GLUT_KEY_F4:
 		     
 			camera3();
-			camara=3;
+			// Camera=3;
 			    
 			break;
 		case GLUT_KEY_F5:
 		     
 			camera4();
-			camara=4;
+			// Camera=4;
 			    
 			break;
 		case GLUT_KEY_F6:
 		     
 			camera5();
-			camara=5;
+			// Camera=5;
 			    
 			break;
 		case GLUT_KEY_F7:
 		     
 			camera6();
-			camara=6;
+			// Camera=6;
 			    
 			break;		
 	}
@@ -135,33 +136,33 @@ void Camera::camera6(){
 }
 
 
-// void Camara::movimento_direita(){
-//     std::vector<Object*> mainObjects = world->getMainObject();
-//     // cam->seguir_nave();
-//     for(Object * object : mainObjects){
-//         object->mover(0,5,0);
-//     }
-// }
+void Camera::movimento_direita(){
+    std::vector<Object*> mainObjects = world->getMainObject();
+    // cam->seguir_nave();
+    for(Object * object : mainObjects){
+        object->mover(-5,0,0);
+    }
+}
 
-// void Camara::movimento_esquerda(){
-//     std::vector<Object*> mainObjects = world->getMainObject();
-//     // cam->seguir_nave();
-//     for(Object * object : mainObjects){
-//         object->mover(0,5,0);
-//     }
+void Camera::movimento_esquerda(){
+    std::vector<Object*> mainObjects = world->getMainObject();
+    // cam->seguir_nave();
+    for(Object * object : mainObjects){
+        object->mover(-5,0,0);
+    }
 
-// }
-// void Camara::movimento_frente(){
-//     std::vector<Object*> mainObjects = world->getMainObject();
-//     // cam->seguir_nave();
-//     for(Object * object : mainObjects){
-//         object->mover(0,5,0);
-//     }
-// }
-// void Camara::movimento_traz(){
-//     std::vector<Object*> mainObjects = world->getMainObject();
-//     // cam->seguir_nave();
-//     for(Object * object : mainObjects){
-//         object->mover(0,5,0);
-//     }
-// }
+}
+void Camera::movimento_frente(){
+    std::vector<Object*> mainObjects = world->getMainObject();
+    // cam->seguir_nave();
+    for(Object * object : mainObjects){
+        object->mover(-5,0,0);
+    }
+}
+void Camera::movimento_traz(){
+    std::vector<Object*> mainObjects = world->getMainObject();
+    // cam->seguir_nave();
+    for(Object * object : mainObjects){
+        object->mover(0,5,0);
+    }
+}
