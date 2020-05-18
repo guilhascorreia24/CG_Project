@@ -7,6 +7,12 @@ void Object::rotate(AngleRotation& rot){
     this->rot += rot;
 }
 
+void Object::mover(double x, double y, double z){
+    // this->position.x += x;
+    // this->position.y += y;
+    // this->position.z += z;
+}
+
 void Object::draw(){
     glPushMatrix(); 
     glTranslatef(position.x,position.y,position.z);

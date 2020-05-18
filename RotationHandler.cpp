@@ -58,7 +58,7 @@ void RotationHandler::keyboardSpeed(unsigned char key, int x,int y){
 void RotationHandler::rotateRight(){
     std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(0,Rotate,0);
-        for(Object * object : mainObjects){
+    for(Object * object : mainObjects){
         object->rotate(rot);
     }
 }
@@ -66,7 +66,7 @@ void RotationHandler::rotateRight(){
 void RotationHandler::rotateLeft(){
     std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(0,-Rotate,0);
-        for(Object * object : mainObjects){
+    for(Object * object : mainObjects){
         object->rotate(rot);
     }
 
@@ -74,14 +74,14 @@ void RotationHandler::rotateLeft(){
 void RotationHandler::rotateUp(){
     std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(Rotate,0,0);
-        for(Object * object : mainObjects){
+    for(Object * object : mainObjects){
         object->rotate(rot);
     }
 }
 void RotationHandler::rotateDown(){
     std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(-Rotate,0,0);
-        for(Object * object : mainObjects){
+    for(Object * object : mainObjects){
         object->rotate(rot);
     }
 }

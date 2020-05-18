@@ -11,6 +11,7 @@ class Object{
 
         void draw();
         void rotate(AngleRotation &rot);
+        void mover(double x,double y, double z);
         inline void setRotation(AngleRotation & rot){this->rot = rot;};
         AngleRotation getRotation();
         Point getPosition();
