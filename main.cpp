@@ -36,6 +36,8 @@ RotationHandler *rot;
 
 Camera *cam;
 
+ControladorNave *controlo;
+
 GLint Window;
 
 GLfloat win;
@@ -49,7 +51,7 @@ bool ganhou = false, perdeu = false, ajuda = false;
 void keyboardHandler(int key, int x, int y)
 {
 
-    rot->keyboardHandler(key, x, y);
+    controlo->keyboardHandler(key, x, y);
 
     cam->keyboardCamera(key, x, y);
 
@@ -69,6 +71,8 @@ void keyboardHandler(int key, int x, int y)
 
 void teclas(unsigned char key, int x, int y)
 {
+
+    rot->keyboardHandler(key, x, y);
 
     cam->keyboardZoom(key, x, y);
 

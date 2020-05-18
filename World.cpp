@@ -1,5 +1,8 @@
 #include "World.h"
 
+void World::addMainObject(Object* obj){
+    main.push_back(obj);
+}
 
 void World::addObject(Object* obj){
     objects.push_back(obj);
@@ -151,7 +154,9 @@ void World::fillObjects(){
     addObject(foguetao);
 
     //addObject(nave);
-    main = base_nave;
+    addMainObject(disco_nave);
+    addMainObject(cupula_nave);
+    addMainObject(base_nave);
 }
 
 World::~World(){
@@ -161,7 +166,7 @@ World::~World(){
     objects.clear();
 }
 
-Object* World::getMainObject(){
+std::vector<Object*> World::getMainObject(){
     return main;
 } 
 

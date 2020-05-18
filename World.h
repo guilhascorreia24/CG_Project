@@ -18,15 +18,15 @@ class World{
     public:
         World();
         ~World();
-        Object* getMainObject();
+        std::vector<Object*> getMainObject();
         void draw();
         void update();
 
         void fillObjects();
-
+        void addMainObject(Object* obj);
         void addObject(Object* obj);
 
     private:
-        Object* main;
+        std::vector<Object*> main;
         std::vector<Object*> objects;
 };
