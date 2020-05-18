@@ -140,7 +140,7 @@ void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // cam->seguir_nave();
     for(Object * object : mainObjects){
-        object->mover(-5,0,0);
+        object->mover(5,0,0);
     }
 }
 
@@ -156,13 +156,13 @@ void Camera::movimento_frente(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // cam->seguir_nave();
     for(Object * object : mainObjects){
-        object->mover(-5,0,0);
+        object->mover(0,0,-5);
     }
 }
 void Camera::movimento_traz(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // cam->seguir_nave();
     for(Object * object : mainObjects){
-        object->mover(0,5,0);
+        object->mover(0,0,5);
     }
 }
