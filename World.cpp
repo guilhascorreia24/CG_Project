@@ -13,7 +13,7 @@ World::World() : main(0){
 }
 
 void World::fillObjects(){
-    Point foguetao_point(300,0,-30);
+    Point foguetao_point(10,11,-5);
     Point nave_point(0,0,-25);
     Point planet_point(10,30,0);
     Point satelite_point(30,8,50);
@@ -128,7 +128,7 @@ void World::fillObjects(){
 
     Object* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
-    foguetao->setVelocity(0.8);
+    foguetao->setVelocity(0.3);
 
 
 //--------------------------------------------------------------------
