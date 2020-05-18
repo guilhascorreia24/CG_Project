@@ -4,7 +4,7 @@
 
 class CupulaNave : public Object{
     public:
-        CupulaNave(Point &center);
+        CupulaNave(Point &center,Point &pos_incial);
         ~CupulaNave();
         static void inicializarTextura();
         void setSizeObject();
@@ -16,6 +16,7 @@ class CupulaNave : public Object{
 
     private:
         Point center;
+        Point pos_incial;
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
         std::vector<glm::vec2> uv;
@@ -24,5 +25,5 @@ class CupulaNave : public Object{
         static GLint width, height;
         static unsigned int texture; 
         GLboolean separado;
-        GLboolean colidiu;
+        
 };

@@ -41,19 +41,19 @@ void World::fillObjects(){
     Point center(0,0,0);
 
 
-    DiscoNave* disco_nave = new DiscoNave(center);
+    DiscoNave* disco_nave = new DiscoNave(center,disco_nave_point);
     disco_nave->setPosition(disco_nave_point);
     disco_nave->setVelocity(0.11);
     disco_nave->setDirection(dir);
     disco_nave->setSizeObject();
 
-    CupulaNave* cupula_nave = new CupulaNave(center);
+    CupulaNave* cupula_nave = new CupulaNave(center,cupula_nave_point);
     cupula_nave->setPosition(cupula_nave_point);
     cupula_nave->setVelocity(0.11);
     cupula_nave->setDirection(dir);
     cupula_nave->setSizeObject();
 
-    BaseNave* base_nave = new BaseNave(center);
+    BaseNave* base_nave = new BaseNave(center,base_nave_point);
     base_nave->setPosition(base_nave_point);
     base_nave->setVelocity(0.11);
     base_nave->setDirection(dir);
@@ -221,8 +221,10 @@ void World::update(){
             // Collision z
             bool collisionZ = po.z + po_size.z >= pp.z &&
                 pp.z + pp_size.z >= po.z;
-            if( collisionX && collisionY && collisionY )
+            if( collisionX && collisionY && collisionY ){
                 printf("colidiu");
+                parte->colidiu=true;
+            }
         }
     }
     for(Object * object : main){

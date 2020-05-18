@@ -24,10 +24,11 @@ void DiscoNave::inicializarTextura(){
 
 }
 
-DiscoNave::DiscoNave(Point &center):center(center){
+DiscoNave::DiscoNave(Point &center,Point & pos_incial):center(center),pos_incial(pos_incial){
     separado=true;
     colidiu=false;
     pattern_buffer = 0; 
+    this->pos_incial=pos_incial;
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
@@ -95,9 +96,17 @@ void DiscoNave::Update(){
         if(position == center){
             separado=false;
         }
-    }
-    if(colidiu==true){
-        
+    }else if(colidiu == true){
+        if(position.x<pos_incial.x) 
+            position.x += position.x*velocity;
+        if(position.y<pos_incial.y) 
+            position.y += position.y*velocity;
+        if(position.z<pos_incial.z) 
+            position.z += position.z*velocity;
+        if(position == pos_incial){
+            colidiu=false;
+        }
+
     }
 }
 

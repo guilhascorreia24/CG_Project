@@ -68,5 +68,6 @@ class Object{
 
     public:
         static bool drawLabels; 
+        GLboolean colidiu;
 };
 
