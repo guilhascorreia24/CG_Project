@@ -7,6 +7,7 @@ class DiscoNave : public Object{
         DiscoNave(Point &center);
         ~DiscoNave();
         static void inicializarTextura();
+        void setSizeObject();
 
     protected:
         void drawShape();

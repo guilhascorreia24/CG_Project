@@ -7,6 +7,7 @@ class Foguetao : public Object{
         Foguetao(Point &center);
         ~Foguetao();
         static void inicializarTextura();
+        void setSizeObject();
 
     protected:
         void drawShape();

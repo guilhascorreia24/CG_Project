@@ -44,6 +44,32 @@ Lua::~Lua(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
+
+void Lua::setSizeObject(){
+    int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
+    for (int i = 0; i < (int)points.size(); i++)
+    {
+        if(points[i].x>max_x)
+            max_x = points[i].x;
+        if(points[i].x<min_x)
+            min_x = points[i].x; 
+        
+        if(points[i].y>max_y)
+            max_y = points[i].y;
+        if(points[i].x<min_y)
+            min_y = points[i].y;  
+
+        if(points[i].z>max_z)
+            max_z = points[i].z;
+        if(points[i].z<min_z)
+            min_z = points[i].z;       
+    }
+    this->size_object.x= abs(min_x-max_x);
+    this->size_object.y= abs(min_y-max_y);
+    this->size_object.z= abs(min_z-max_z);
+}
+
+
 void Lua::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);

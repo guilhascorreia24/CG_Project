@@ -7,6 +7,7 @@ class Satelite : public Object{
         Satelite(Point &center);
         ~Satelite();
         static  void inicializarTextura();
+        void setSizeObject();
 
     protected:
         void drawShape();

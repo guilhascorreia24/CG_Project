@@ -39,9 +39,6 @@ void Object::draw(){
 
 Point Object::getSizeObject(){
     Point tmp = size_object;
-    tmp.x=size_object.x*size;
-    tmp.y=size_object.y*size;
-    tmp.z=size_object.z*size;
     return tmp;
 }
 

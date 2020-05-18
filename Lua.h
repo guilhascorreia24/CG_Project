@@ -7,6 +7,7 @@ class Lua : public Object{
         Lua(Point &center);
         ~Lua();
         static  void inicializarTextura();
+        void setSizeObject();
 
     protected:
         void drawShape();

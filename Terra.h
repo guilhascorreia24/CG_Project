@@ -7,6 +7,7 @@ class Terra : public Object{
         Terra(Point &center);
         ~Terra();
         static  void inicializarTextura();
+        void setSizeObject();
     protected:
         void drawShape();
         void Update();

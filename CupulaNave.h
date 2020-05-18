@@ -7,6 +7,7 @@ class CupulaNave : public Object{
         CupulaNave(Point &center);
         ~CupulaNave();
         static void inicializarTextura();
+        void setSizeObject();
 
     protected:
         void drawShape();
