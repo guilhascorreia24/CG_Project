@@ -19,6 +19,22 @@ void Camera::keyboardCamera(int key, int x, int y){
 		return;
 	}
 	switch(key){
+		// case GLUT_KEY_DOWN:
+        //     movimento_traz();
+        //     break;
+        // case GLUT_KEY_UP:
+            
+        //     movimento_frente();
+        //     break;
+
+        // case GLUT_KEY_LEFT:
+            
+        //     movimento_esquerda();
+        //     break;
+        // case GLUT_KEY_RIGHT:
+            
+        //     movimento_direita();
+        //     break;
 		case GLUT_KEY_F2:
 		     
 			camera1();
@@ -117,3 +133,35 @@ void Camera::camera6(){
 	up = Point(1,0,0);
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
+
+
+// void Camara::movimento_direita(){
+//     std::vector<Object*> mainObjects = world->getMainObject();
+//     // cam->seguir_nave();
+//     for(Object * object : mainObjects){
+//         object->mover(0,5,0);
+//     }
+// }
+
+// void Camara::movimento_esquerda(){
+//     std::vector<Object*> mainObjects = world->getMainObject();
+//     // cam->seguir_nave();
+//     for(Object * object : mainObjects){
+//         object->mover(0,5,0);
+//     }
+
+// }
+// void Camara::movimento_frente(){
+//     std::vector<Object*> mainObjects = world->getMainObject();
+//     // cam->seguir_nave();
+//     for(Object * object : mainObjects){
+//         object->mover(0,5,0);
+//     }
+// }
+// void Camara::movimento_traz(){
+//     std::vector<Object*> mainObjects = world->getMainObject();
+//     // cam->seguir_nave();
+//     for(Object * object : mainObjects){
+//         object->mover(0,5,0);
+//     }
+// }

@@ -4,7 +4,6 @@
 
 #include "RotationHandler.h"
 
-#include "ControladorNave.h"
 
 #include "Terra.h"
 
@@ -36,7 +35,6 @@ RotationHandler *rot;
 
 Camera *cam;
 
-ControladorNave *controlo;
 
 GLint Window;
 
@@ -50,8 +48,6 @@ bool ganhou = false, perdeu = false, ajuda = false;
 
 void keyboardHandler(int key, int x, int y)
 {
-
-    controlo->keyboardHandler(key, x, y);
 
     cam->keyboardCamera(key, x, y);
 

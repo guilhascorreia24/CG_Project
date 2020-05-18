@@ -17,6 +17,10 @@ private:
 	void camera4();
 	void camera5();
 	void camera6();
+	void movimento_direita();
+    void movimento_frente();
+	void movimento_esquerda();
+    void movimento_traz();
 public:
 	void changeCamera();
 
