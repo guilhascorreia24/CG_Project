@@ -140,7 +140,7 @@ void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.x += 5;
 	// up.x += 5;
-	center.x += 5;
+	center.x -= 5;
     for(Object * object : mainObjects){
         object->mover(5,0,0);
     }
@@ -150,7 +150,7 @@ void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.x -= 5;
 	// up.x -= 5;
-	center.x -= 5;
+	center.x += 5;
     for(Object * object : mainObjects){
         object->mover(-5,0,0);
     }
