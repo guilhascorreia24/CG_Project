@@ -25,7 +25,7 @@
 
 #define PRINT_ERRORS FALSE
 #define PRINT_DEBUG TRUE
-#define G 0.001
+#define G 0.0001
 #define SPEED 1
 #define EPSILON 0.00002
 

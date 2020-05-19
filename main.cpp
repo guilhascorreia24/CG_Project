@@ -17,7 +17,7 @@
 
 #include "stb_image.h"
 
-#define FRAME_DELTA 1000 / 150
+#define FRAME_DELTA 1000/60
 
 #define PI 3.14159
 
@@ -730,9 +730,7 @@ void init(void)
     glEnable(GL_DEPTH_TEST);
 }
 
-void reshape(int w, int h)
-
-{
+void reshape(int w, int h){
 
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 
@@ -951,6 +949,7 @@ void mainloop()
         glutPostRedisplay();
 
         i = 0;
+        last_time = currTime;
     }
 
     i++;

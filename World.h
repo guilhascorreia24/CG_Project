@@ -12,6 +12,7 @@
 #include "Terra.h"
 #include "Lua.h"
 #include "Foguetao.h"
+#include "utils.h"
 
 //Cleanup needed
 class World{
@@ -27,6 +28,8 @@ class World{
         void addObject(Object* obj);
 
     private:
+        Sol *sol;
+        Terra *terra;
         std::vector<Object*> main;
         std::vector<Object*> objects;
 };
