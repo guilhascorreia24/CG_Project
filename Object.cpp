@@ -92,9 +92,9 @@ Vector Object::calcGravitationalForce(Object* obj1,Object* obj2){
 
 }
 
-void Object::setForceToOrbit(Object* center, float angle){
+void Object::setForceToOrbit(Object* center, float angle, float e){
     Point centerPos = center->getPosition();
     Point a_pos = position;
     direction = getOrbitalDirection(centerPos,a_pos,angle);
-    velocity = getOrbitalNeededVelocity(center->getMass(),centerPos.distance(a_pos))*2.5;
+    velocity = getOrbitalNeededVelocity(center->getMass(),centerPos.distance(a_pos))*e;
 }

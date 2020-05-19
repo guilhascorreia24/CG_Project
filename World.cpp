@@ -67,11 +67,11 @@ void World::fillObjects(){
     satelite->setMass(10);
     satelite->applyGravityPull(sol);
 
-    satelite->setForceToOrbit(sol,1.55);
-    planeta->setForceToOrbit(sol,1.55);
+    satelite->setForceToOrbit(sol,1.55,2);
+    planeta->setForceToOrbit(sol,1.55,2);
 
     //satelite->setVelocity(1.3);
-    planeta->setVelocity(10);
+    //planeta->setVelocity(10);
 
 
 //--------------------------------------------------------------------

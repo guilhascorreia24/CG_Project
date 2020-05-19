@@ -39,7 +39,9 @@ class Object{
         void applyGravityPull(Object* obj);
         void removeGravityPull(Object* obj);
 
-        void setForceToOrbit(Object* obj, float angle);
+        //Set the initial velocity needed for orbit
+        //variable e represents the eccentrecity
+        void setForceToOrbit(Object* obj, float angle, float e);
         static Vector calcGravitationalForce(Object* obj1,Object* obj2);
         
         void update();
