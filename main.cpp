@@ -4,7 +4,10 @@
 
 #include "RotationHandler.h"
 
-#include "Camera.h"
+
+#include "Terra.h"
+
+#include "Lua.h"
 
 #include "utils.h"
 
@@ -32,6 +35,7 @@ RotationHandler *rot;
 
 Camera *cam;
 
+
 GLint Window;
 
 GLfloat win;
@@ -40,16 +44,31 @@ GLfloat luzAmbiente[4];
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
+bool ganhou = false, perdeu = false, ajuda = false;
+
 void keyboardHandler(int key, int x, int y)
 {
 
-    rot->keyboardHandler(key, x, y);
-
     cam->keyboardCamera(key, x, y);
+
+    switch(key){
+		case GLUT_KEY_F1:
+            if(ajuda == false)  
+			    ajuda = true;
+            else
+            {
+                ajuda = false;
+            }
+   
+			break;
+
+	}
 }
 
 void teclas(unsigned char key, int x, int y)
 {
+
+    rot->keyboardHandler(key, x, y);
 
     cam->keyboardZoom(key, x, y);
 
@@ -182,6 +201,8 @@ void desenha_fundo()
     
 }
 
+
+
 void display(void)
 
 {
@@ -263,7 +284,329 @@ void display(void)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     desenha_fundo();
-    world->draw();
+    if(!ajuda){
+    world->draw();}
+
+
+//---------------
+
+    if (ganhou)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+    
+                glColor3f(0.0, 1.0, 0.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(450, 520);
+
+//******
+                std::string s = "Ganhou!";
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+                s = "Para jogar outra vez pressione a tecla Enter";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+            else if (perdeu)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+    
+                glColor3f(1.0, 0.0, 0.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(450, 520);
+
+//******
+                std::string s = "Perdeu!";
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+
+                s = "Para jogar outra vez pressione a tecla Enter";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+
+            if (ajuda)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+                glBegin(GL_QUADS);
+                glColor4f(0.184314, 0.309804, 0.309804, 0.0);
+                glVertex2i(100, 900);
+                glVertex2i(100, 750);
+                glVertex2i(900, 750);
+                glVertex2i(900, 900);
+                glEnd();
+                glColor3f(1.0, 1.0, 1.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(350+glutGet(GLUT_WINDOW_WIDTH)*0.05, 820-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
+
+//******
+                std::string s = "Ajudas do Jogo";
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+                glBegin(GL_QUADS);
+                glColor4f(1.0, 1.0, 1.0, 0.0);
+                glVertex2i(100, 750);
+                glVertex2i(100, 100);
+                glVertex2i(900, 100);
+                glVertex2i(900, 750);
+                glEnd();
+                double intervalo = 10 + glutGet(GLUT_WINDOW_WIDTH)*0.02;
+                double x = 200;
+                double y = 700;
+
+                s = "Inclinar a nave para baixo: Tecla 'b'";
+                glColor3f(0.0, 0.0, 0.0);
+                font = GLUT_BITMAP_HELVETICA_12;
+                
+                glRasterPos2i(x , y - (intervalo*1));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                
+                s = "Inclinar a nave para cima: Tecla 'c'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*2));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+
+
+
+
+
+                s = "Rodar a nave  para a direita: Tecla 'd'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*3));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Rodar a nave  para a esquerda: Tecla 'e'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*4));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+
+
+
+
+                s = "Aumentar a velocidade da nave: Tecla 'a'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*5));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Diminuir a velocidade da nave: Tecla 'z'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*6));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+
+
+
+                s = "Movimentar a nave para a frente: Tecla 'Seta para Cima'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*8));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Movimentar a nave para trás: Tecla 'Seta para Baixo'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*9));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                s = "Movimentar a nave para a esquerda: Tecla 'Seta para Esquerda'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*10));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Movimentar a nave para a direita: Tecla 'Seta para Direita'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*11));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+
+
+
+                s = "Zoom In: Tecla '+'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*13));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Zoom Out: Tecla '-'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*14));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+
+
+
+                s = "Camara 1: Tecla 'F2'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*16));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Camara 2: Tecla 'F3'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*17));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                s = "Camara 3: Tecla 'F4'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*18));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                s = "Camara 4: Tecla 'F5'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*19));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+
+                s = "Camara 5: Tecla 'F6'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*20));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                s = "Camara 6: Tecla 'F7'";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(x , y - (intervalo*21));
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }    
+                glColor3f(1.0, 1.0, 1.0);
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+//---------------
+
 
     glPopMatrix();
 
@@ -368,11 +711,17 @@ void init(void)
 
     Asteroide2::inicializarTextura();
 
+    Terra::inicializarTextura();
+
+    Lua::inicializarTextura();
+
+    Foguetao::inicializarTextura();
+
     world = new World();
 
     rot = new RotationHandler(world);
 
-    cam = new Camera();
+    cam = new Camera(world);
 
     rot->Start();
 
@@ -615,9 +964,9 @@ int main(int argc, char **argv)
 
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
-    glutInitWindowSize(350, 300);
+    glutInitWindowSize(750, 700);
 
-    glutInitWindowPosition(100, 100);
+    glutInitWindowPosition(550, 250);
 
     Window = glutCreateWindow(argv[0]);
 

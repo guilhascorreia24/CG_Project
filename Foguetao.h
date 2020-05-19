@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Asteroide2 : public Object{
+class Foguetao : public Object{
     public:
-        Asteroide2(Point &center);
-        ~Asteroide2();
+        Foguetao(Point &center);
+        ~Foguetao();
         static void inicializarTextura();
         void setSizeObject();
 
@@ -23,4 +23,5 @@ class Asteroide2 : public Object{
         std::vector< arr > f;
         static GLint width, height;
         static unsigned int texture; 
+        GLboolean limite_alcancado;
 };

@@ -4,10 +4,10 @@
 
 class BaseNave : public Object{
     public:
-        BaseNave(Point &center);
+        BaseNave(Point &center,Point &pos_incial);
         ~BaseNave();
         static void inicializarTextura();
-
+        void setSizeObject();
     protected:
         void drawShape();
         void Update();
@@ -15,6 +15,7 @@ class BaseNave : public Object{
 
     private:
         Point center;
+        Point pos_incial;
         GLuint pattern_buffer;
         std::vector<glm::vec3> points;
         std::vector<glm::vec2> uv;

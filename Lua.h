@@ -2,11 +2,11 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Asteroide2 : public Object{
+class Lua : public Object{
     public:
-        Asteroide2(Point &center);
-        ~Asteroide2();
-        static void inicializarTextura();
+        Lua(Point &center);
+        ~Lua();
+        static  void inicializarTextura();
         void setSizeObject();
 
     protected:

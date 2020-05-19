@@ -7,6 +7,7 @@ class Planeta : public Object{
         Planeta(Point &center);
         ~Planeta();
         static  void inicializarTextura();
+        void setSizeObject();
     protected:
         void drawShape();
         void Update();

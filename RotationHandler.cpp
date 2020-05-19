@@ -25,17 +25,17 @@ void RotationHandler::keyboardHandler(int key,int x, int y){
         return;
     }
     switch(key){
-        case GLUT_KEY_DOWN:
+        case 'b':
             rotateDown();
             break;
-        case GLUT_KEY_UP:
+        case 'c':
             rotateUp();
             break;
 
-        case GLUT_KEY_LEFT:
+        case 'e':
             rotateLeft();
             break;
-        case GLUT_KEY_RIGHT:
+        case 'd':
             rotateRight();
             break;
         default:
@@ -56,26 +56,34 @@ void RotationHandler::keyboardSpeed(unsigned char key, int x,int y){
 }
 
 void RotationHandler::rotateRight(){
-    Object* mainObject = world->getMainObject();
+    std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(0,Rotate,0);
-    mainObject->rotate(rot);
+    for(Object * object : mainObjects){
+        object->rotate(rot);
+    }
 }
 
 void RotationHandler::rotateLeft(){
-    Object* mainObject = world->getMainObject();
+    std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(0,-Rotate,0);
-    mainObject->rotate(rot);
+    for(Object * object : mainObjects){
+        object->rotate(rot);
+    }
 
 }
 void RotationHandler::rotateUp(){
-    Object* mainObject = world->getMainObject();
+    std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(Rotate,0,0);
-    mainObject->rotate(rot);
+    for(Object * object : mainObjects){
+        object->rotate(rot);
+    }
 }
 void RotationHandler::rotateDown(){
-    Object* mainObject = world->getMainObject();
+    std::vector<Object*> mainObjects = world->getMainObject();
     AngleRotation rot(-Rotate,0,0);
-    mainObject->rotate(rot);
+    for(Object * object : mainObjects){
+        object->rotate(rot);
+    }
 }
 void RotationHandler::moreSpeed(){
     Rotate++;

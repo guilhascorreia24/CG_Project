@@ -7,6 +7,8 @@ class Sol : public Object{
         Sol(Point &center);
         ~Sol();
         static void inicializarTextura();
+        void setSizeObject();
+        
 
     protected:
         void drawShape();
@@ -16,8 +18,8 @@ class Sol : public Object{
     private:
         Point center;
         GLuint pattern_buffer;
-        std::vector<glm::vec3> points;
         std::vector<glm::vec2> uv;
+        std::vector<glm::vec3> points;
         std::vector< glm::vec3 > normals;
         std::vector< arr > f;
         static GLint width, height;

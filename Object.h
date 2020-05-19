@@ -5,16 +5,19 @@
 class Object{
     public:
         Object();
-        Object(Point & pos, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
+        Object(Point & pos,Point & size_obj, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
         virtual ~Object();
 
 
         void draw();
         void rotate(AngleRotation &rot);
+        void mover(double x,double y, double z);
         inline void setRotation(AngleRotation & rot){this->rot = rot;};
         AngleRotation getRotation();
         Point getPosition();
         inline void setPosition(Point & point){this->position = point;}
+        Point getSizeObject();
+        // inline void setSizeObject(std::vector<glm::vec3> points);
 
         inline void setVelocity(long double vel){velocity = vel;}
         inline float getVelocity(){return velocity;}
@@ -59,7 +62,7 @@ class Object{
         Vector direction;
         int size;
         Point position;
-    
+        Point size_object;
     private:
         long double mass;
         std::set<Object*> gravity;
@@ -67,5 +70,6 @@ class Object{
 
     public:
         static bool drawLabels; 
+        GLboolean colidiu;
 };
 

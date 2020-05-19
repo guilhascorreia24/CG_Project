@@ -7,7 +7,7 @@ class Asteroide1 : public Object{
         Asteroide1(Point &center);
         ~Asteroide1();
         static void inicializarTextura();
-
+        void setSizeObject();
     protected:
         void drawShape();
         void Update();

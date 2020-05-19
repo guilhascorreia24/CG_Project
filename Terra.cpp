@@ -1,17 +1,17 @@
-#include "Satelite.h"
+#include "Terra.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Satelite::width=0;
-GLint Satelite::height=0;
-unsigned int Satelite::texture=0;
+GLint Terra::width=0;
+GLint Terra::height=0;
+unsigned int Terra::texture=0;
 
 
-void Satelite::inicializarTextura(){
+
+void Terra::inicializarTextura(){
 
     int n;
-    //int width,height;
-    unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    unsigned char *dados = stbi_load("img/earth.jpg", &width, &height, &n, 0);
+    printf("terra1 %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -23,13 +23,15 @@ void Satelite::inicializarTextura(){
     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
     stbi_image_free(dados);
 
+
 }
-Satelite::Satelite(Point &center):center(center){
+
+Terra::Terra(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/terra.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -38,12 +40,12 @@ Satelite::Satelite(Point &center):center(center){
     }
 }
 
-Satelite::~Satelite(){
+Terra::~Terra(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
 
-void Satelite::setSizeObject(){
+void Terra::setSizeObject(){
     int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
     for (int i = 0; i < (int)points.size(); i++)
     {
@@ -68,15 +70,19 @@ void Satelite::setSizeObject(){
 }
 
 
-void Satelite::drawShape(){
+void Terra::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
+
   
     for (int i = 0; i < (int)points.size(); i++)
     {
+
         glTexCoord2f(uv[i].x, uv[i].y);
+        
         glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        
         glVertex3f(points[i].x, points[i].y, points[i].z); 
     }
 
@@ -85,10 +91,11 @@ void Satelite::drawShape(){
 
 }
 
-
-const char* Satelite::getLabel(){
-    return "Satelite";
+const char* Terra::getLabel(){
+    return "Planeta Terra";
 }
 
-void Satelite::Update(){
+void Terra::Update(){
+
+
 }

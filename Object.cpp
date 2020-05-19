@@ -7,6 +7,12 @@ void Object::rotate(AngleRotation& rot){
     this->rot += rot;
 }
 
+void Object::mover(double x, double y, double z){
+    this->position.x += x;
+    this->position.y += y;
+    this->position.z += z;
+}
+
 void Object::draw(){
     glPushMatrix(); 
     glTranslatef(position.x,position.y,position.z);
@@ -31,42 +37,48 @@ void Object::draw(){
     glPopMatrix();
 }
 
+Point Object::getSizeObject(){
+    Point tmp = size_object;
+    return tmp;
+}
+
 Point Object::getPosition(){
     return position;
 }
-Object::Object() : position(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1){
+Object::Object() : position(0,0,0),size_object(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1){
     size = 1;
 }
 Object::~Object(){
 }
 
-Object::Object(Point & pos, AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),rot(rotation) ,velocity(velocity),direction(direction){
+Object::Object(Point & pos, Point & size_obj,AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),size_object(size_obj),rot(rotation) ,velocity(velocity),direction(direction){
     size = 1;
 }
+
 
 void Object::update(){ 
     Update();
 
-    //Gravity Forces sum
-    Vector sum(0,0,0);
-    for(Object* a: gravity){
-        Vector b = calcGravitationalForce(this,a);
-        sum+= b;
-        Point B = a->getPosition();
-    }
-    sum*=SPEED;
+    // //Gravity Forces sum
+    // Vector sum(0,0,0);
+    // for(Object* a: gravity){
+    //     Vector b = calcGravitationalForce(this,a);
+    //     sum+= b;
+    //     Point B = a->getPosition();
+    // }
+    // sum*=SPEED;
 
 
-    //Momentum
-    Vector vec = direction*velocity;
-    //printf("Object: %s -> ",getLabel());
-    //position.print();
+    // //Momentum
+    // Vector vec = direction*velocity;
+    // //printf("Object: %s -> ",getLabel());
+    // //position.print();
 
-    sum+=vec;
-    direction=sum.unitVector();
-    velocity=sum.norma();
-    position += sum;
-    //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
+    // sum+=vec;
+    // direction=sum.unitVector();
+    // velocity=sum.norma();
+    // position += sum;
+    // //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
 
 }
 

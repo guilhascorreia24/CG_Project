@@ -2,13 +2,12 @@
 #include "Object.h"
 #include "stb_image.h"
 
-class Asteroide2 : public Object{
+class Terra : public Object{
     public:
-        Asteroide2(Point &center);
-        ~Asteroide2();
-        static void inicializarTextura();
+        Terra(Point &center);
+        ~Terra();
+        static  void inicializarTextura();
         void setSizeObject();
-
     protected:
         void drawShape();
         void Update();

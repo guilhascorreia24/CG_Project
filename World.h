@@ -9,22 +9,24 @@
 #include "Planeta.h"
 #include "Asteroide1.h"
 #include "Asteroide2.h"
-
+#include "Terra.h"
+#include "Lua.h"
+#include "Foguetao.h"
 
 //Cleanup needed
 class World{
     public:
         World();
         ~World();
-        Object* getMainObject();
+        std::vector<Object*> getMainObject();
         void draw();
         void update();
 
         void fillObjects();
-
+        void addMainObject(Object* obj);
         void addObject(Object* obj);
 
     private:
-        Object* main;
+        std::vector<Object*> main;
         std::vector<Object*> objects;
 };

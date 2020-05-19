@@ -1,17 +1,16 @@
-#include "Satelite.h"
+#include "Lua.h"
 #include <stdexcept>
 #define STB_IMAGE_IMPLEMENTATION
-GLint Satelite::width=0;
-GLint Satelite::height=0;
-unsigned int Satelite::texture=0;
+GLint Lua::width=0;
+GLint Lua::height=0;
+unsigned int Lua::texture=0;
 
 
-void Satelite::inicializarTextura(){
+void Lua::inicializarTextura(){
 
     int n;
-    //int width,height;
-    unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
+    unsigned char *dados = stbi_load("img/lua.jpg", &width, &height, &n, 0);
+    printf("lua %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -23,13 +22,16 @@ void Satelite::inicializarTextura(){
     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, dados);
     stbi_image_free(dados);
 
+    
 }
-Satelite::Satelite(Point &center):center(center){
+
+
+Lua::Lua(Point &center):center(center){
     pattern_buffer = 0; 
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
-    bool res = loadObj("objs/satelite.obj", &points, &uv,&normals,&f);
+    bool res = loadObj("objs/lua.obj", &points, &uv,&normals,&f);
 
   
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec3), points.data(), GL_STATIC_DRAW);
@@ -38,12 +40,12 @@ Satelite::Satelite(Point &center):center(center){
     }
 }
 
-Satelite::~Satelite(){
+Lua::~Lua(){
     glDeleteBuffers(1,&pattern_buffer);
 }
 
 
-void Satelite::setSizeObject(){
+void Lua::setSizeObject(){
     int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
     for (int i = 0; i < (int)points.size(); i++)
     {
@@ -68,7 +70,7 @@ void Satelite::setSizeObject(){
 }
 
 
-void Satelite::drawShape(){
+void Lua::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -86,9 +88,16 @@ void Satelite::drawShape(){
 }
 
 
-const char* Satelite::getLabel(){
-    return "Satelite";
+const char* Lua::getLabel(){
+    return "Lua";
 }
 
-void Satelite::Update(){
+void Lua::Update(){
+    // static long time = glutGet(GLUT_ELAPSED_TIME);
+    // long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
+    // float dist = center.distance(position);
+    // printf("velocity = %lf; x = %lf; y = %lf; dist = %lf;\ncenter.x = %lf; center.y = %lf\n\n",velocity, position.x, position.y, dist,center.x,center.y);
+    
+    // position.x = center.x + dist * cos(time_elapsed*velocity);
+    // position.y = center.y + dist * sin(time_elapsed*velocity);
 }

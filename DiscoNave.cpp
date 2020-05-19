@@ -24,9 +24,11 @@ void DiscoNave::inicializarTextura(){
 
 }
 
-DiscoNave::DiscoNave(Point &center):center(center){
+DiscoNave::DiscoNave(Point &center,Point & pos_incial):center(center),pos_incial(pos_incial){
     separado=true;
+    colidiu=false;
     pattern_buffer = 0; 
+    this->pos_incial=pos_incial;
     glGenBuffers(1, &pattern_buffer);	
 	glBindBuffer(GL_ARRAY_BUFFER, pattern_buffer);		
 
@@ -41,6 +43,30 @@ DiscoNave::DiscoNave(Point &center):center(center){
 
 DiscoNave::~DiscoNave(){
     glDeleteBuffers(1,&pattern_buffer);
+}
+
+void DiscoNave::setSizeObject(){
+    int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
+    for (int i = 0; i < (int)points.size(); i++)
+    {
+        if(points[i].x>max_x)
+            max_x = points[i].x;
+        if(points[i].x<min_x)
+            min_x = points[i].x; 
+        
+        if(points[i].y>max_y)
+            max_y = points[i].y;
+        if(points[i].x<min_y)
+            min_y = points[i].y;  
+
+        if(points[i].z>max_z)
+            max_z = points[i].z;
+        if(points[i].z<min_z)
+            min_z = points[i].z;       
+    }
+    this->size_object.x= abs(min_x-max_x);
+    this->size_object.y= abs(min_y-max_y);
+    this->size_object.z= abs(min_z-max_z);
 }
 
 void DiscoNave::drawShape(){
@@ -61,17 +87,26 @@ void DiscoNave::drawShape(){
 
 void DiscoNave::Update(){
     if(separado==true){
-        static long time = glutGet(GLUT_ELAPSED_TIME);
-        long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
         if(position.x!=center.x) 
-            position.x -= position.x*velocity*time_elapsed;
+            position.x -= position.x*velocity;
         if(position.y!=center.y) 
-            position.y -= position.y*velocity*time_elapsed;
+            position.y -= position.y*velocity;
         if(position.z!=center.z) 
-            position.z -= position.z*velocity*time_elapsed;
+            position.z -= position.z*velocity;
         if(position == center){
             separado=false;
         }
+    }else if(colidiu == true){
+        if(position.x<pos_incial.x) 
+            position.x += position.x*velocity;
+        if(position.y<pos_incial.y) 
+            position.y += position.y*velocity;
+        if(position.z<pos_incial.z) 
+            position.z += position.z*velocity;
+        if(position == pos_incial){
+            colidiu=false;
+        }
+
     }
 }
 
