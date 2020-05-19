@@ -96,6 +96,6 @@ const char* Terra::getLabel(){
 }
 
 void Terra::Update(){
-
+    position.print();
 
 }
