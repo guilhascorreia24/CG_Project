@@ -4,6 +4,7 @@
 
 #include "RotationHandler.h"
 
+#include <string>
 
 #include "Terra.h"
 
@@ -48,7 +49,7 @@ int nivel=1;
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
-bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false;
+bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false, tempo_restante = true;
 
 void keyboardHandler(int key, int x, int y)
 {
@@ -229,10 +230,7 @@ void display(void)
 
 {
 
-    GLint64 timer;
-    glGetInteger64v(GL_TIMESTAMP, &timer);
-    
-    printf("Milliseconds: %f\n", timer/1000000000.0);
+
 
     glMatrixMode(GL_MODELVIEW);
 
@@ -247,6 +245,9 @@ void display(void)
     glScalef(1.0, 1.0, 1.0);
     
     // glColor3f (1.0, 0.0, 0.0);
+
+
+
 
     if (iluminacao == true)
     {
@@ -665,6 +666,53 @@ void display(void)
                     glutBitmapCharacter(font, c);
                 }    
                 glColor3f(1.0, 1.0, 1.0);
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+
+    GLint64 timer;
+    glGetInteger64v(GL_TIMESTAMP, &timer);
+    double t = timer/1000000000.0;
+    std::string time = std::to_string(t);
+            if (tempo_restante)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+                // glBegin(GL_QUADS);
+                // glColor4f(0.184314, 0.309804, 0.309804, 0.0);
+                // glVertex2i(0, 50);
+                // glVertex2i(0, 50);
+                // glVertex2i(50, 0);
+                // glVertex2i(0, 50);
+                // glEnd();
+                glColor3f(1.0, 1.0, 1.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(20+glutGet(GLUT_WINDOW_WIDTH)*0.05, 900-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
+
+//******
+
+                std::string s = "Tempo Restante: "+time;
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+                // glColor3f(1.0, 1.0, 1.0);
                 glMatrixMode(GL_PROJECTION);
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
