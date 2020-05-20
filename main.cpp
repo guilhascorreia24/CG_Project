@@ -349,14 +349,14 @@ void display(void)
                 }
 //******
 
-                s = "Para jogar outra vez pressione a tecla Space";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
+                // s = "Para jogar outra vez pressione a tecla Space";
+                // font = GLUT_BITMAP_HELVETICA_12;
+                // glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
+                // for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                // {
+                //     char c = *i;
+                //     glutBitmapCharacter(font, c);
+                // }
                 glMatrixMode(GL_PROJECTION);
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
@@ -392,14 +392,14 @@ void display(void)
 //******
 
 
-                s = "Para jogar outra vez pressione a tecla Space";
-                font = GLUT_BITMAP_HELVETICA_12;
-                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
-                }
+                // s = "Para jogar outra vez pressione a tecla Space";
+                // font = GLUT_BITMAP_HELVETICA_12;
+                // glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
+                // for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                // {
+                //     char c = *i;
+                //     glutBitmapCharacter(font, c);
+                // }
                 glMatrixMode(GL_PROJECTION);
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
@@ -736,7 +736,7 @@ void display(void)
 
 //******
 
-                std::string s = "Tempo Restante: "+time;
+                std::string s = "Tempo: "+time;
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                 {
                     char c = *i;

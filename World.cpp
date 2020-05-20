@@ -254,21 +254,21 @@ void World::update(){
         // para verificar a colisao
         Point po = object->getPosition();
         Point po_size = object->getSizeObject();
-        // printf("%f\n",po_size.x);
+        //printf("%f\n",po_size.x);
         for(Object* parte : main){
             Point pp = parte->getPosition();
             Point pp_size = parte->getSizeObject();
-            // Collision x
-            bool collisionX = po.x + po_size.x >= pp.x &&
-                pp.x + pp_size.x >= po.x;
-            // Collision y
-            bool collisionY = po.y + po_size.y >= pp.y &&
-                pp.y + pp_size.y >= po.y;
-            // Collision z
-            bool collisionZ = po.z + po_size.z >= pp.z &&
-                pp.z + pp_size.z >= po.z;
-            if( collisionX && collisionY && collisionY ){
-                //printf("colidiu");
+
+        // Collision x
+        bool collisionX = (pp.x - (pp_size.x/2) >= po.x - (po_size.x/2)) && ( pp.x + (pp_size.x/2) <= po.x + (po_size.x/2));
+        // Collision y
+        bool collisionY = (pp.y - (pp_size.y/2) >= po.y - (po_size.y/2)) && ( pp.y + (pp_size.y/2) <= po.y + (po_size.y/2));
+        // Collision z
+        bool collisionZ = (pp.z - (pp_size.z/2) >= po.z - (po_size.z/2)) && ( pp.z + (pp_size.z/2) <= po.z + (po_size.z/2));  
+
+            printf("collisionX: %d      collisionY: %d      collisionZ%d\n",collisionX,collisionY,collisionZ);                
+            if( collisionX && collisionY ){
+                printf("-------> colidiu\n");
                 parte->colidiu=true;
             }
         }
@@ -297,14 +297,14 @@ void World::update(){
             int intervalo = i*4+nivel*2;
 
             if (i%2==0)
-                Point asteroide_point(intervalo,20,-20);
+                Point asteroide_point(intervalo,0,-20);
             else          
-                Point asteroide_point(25,20,-intervalo);
+                Point asteroide_point(25,0,-intervalo);
 
             Asteroide1* asteroide1 = new Asteroide1(sol_point);
             asteroide1->setPosition(asteroide_point);
             asteroide1->setVelocity(0.01);
-            asteroide1->setUniformOrbit(sol,0.9,1);
+            //asteroide1->setUniformOrbit(sol,0.9,1);
 
             asteroide1->setSizeObject();
             asteroide1->setSizeObject();

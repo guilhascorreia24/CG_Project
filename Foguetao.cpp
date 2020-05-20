@@ -93,7 +93,7 @@ void Foguetao::Update(){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
         position.z -= velocity;
-        position.x -= velocity*0.5;
+       // position.x -= velocity*0.5;
         if(position.z < -300)
             limite_alcancado = true;
     }else{
