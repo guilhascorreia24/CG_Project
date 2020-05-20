@@ -147,6 +147,108 @@ void World::fillObjects(){
     asteroide4->setSizeObject();
 
 
+if(nivel>1){
+
+    Point asteroide5_point(70,0,-70);
+    Point asteroide6_point(-70,0,-70);
+    Point asteroide7_point(0,20,-200);
+    Point asteroide8_point(25,20,-20);
+
+    Point asteroide9_point(80,0,-80);
+    Point asteroide10_point(-80,0,-80);
+    Point asteroide11_point(0,20,-200);
+    Point asteroide12_point(25,20,-20);
+
+    Asteroide1* asteroide5 = new Asteroide1(sol_point);
+    asteroide5->setPosition(asteroide5_point);
+    asteroide5->setVelocity(0.01);
+
+    asteroide5->setSizeObject();
+    asteroide5->setSizeObject();
+    // Point tmp = asteroide5->getSizeObject();
+    // printf("%f %f %f",tmp.x,tmp.y,tmp.z);
+
+    Asteroide1* asteroide6 = new Asteroide1(sol_point);
+    asteroide6->setPosition(asteroide6_point);
+    asteroide6->setVelocity(0.01);
+    asteroide6->setSizeObject();
+
+    Asteroide2* asteroide7 = new Asteroide2(sol_point);
+    asteroide7->setPosition(asteroide7_point);
+    asteroide7->setVelocity(0.01);
+    asteroide7->setVelocity(0.0001);
+    asteroide7->setDirection(dir);
+    asteroide7->setSizeObject();
+
+    Asteroide2* asteroide8 = new Asteroide2(sol_point);
+    asteroide8->setPosition(asteroide8_point);
+    asteroide8->setVelocity(0.01);
+    asteroide8->setSizeObject();
+
+
+    Asteroide1* asteroide9 = new Asteroide1(sol_point);
+    asteroide9->setPosition(asteroide9_point);
+    asteroide9->setVelocity(0.01);
+
+    asteroide9->setSizeObject();
+    asteroide9->setSizeObject();
+    // Point tmp = asteroide5->getSizeObject();
+    // printf("%f %f %f",tmp.x,tmp.y,tmp.z);
+
+    Asteroide1* asteroide10 = new Asteroide1(sol_point);
+    asteroide10->setPosition(asteroide10_point);
+    asteroide10->setVelocity(0.01);
+    asteroide10->setSizeObject();
+
+    Asteroide2* asteroide11 = new Asteroide2(sol_point);
+    asteroide11->setPosition(asteroide11_point);
+    asteroide11->setVelocity(0.01);
+    asteroide11->setVelocity(0.0001);
+    asteroide11->setDirection(dir);
+    asteroide11->setSizeObject();
+
+    Asteroide2* asteroide12 = new Asteroide2(sol_point);
+    asteroide12->setPosition(asteroide12_point);
+    asteroide12->setVelocity(0.01);
+    asteroide12->setSizeObject();
+
+
+    addObject(asteroide5);
+    addObject(asteroide6);
+    addObject(asteroide7);
+    addObject(asteroide8);
+
+    addObject(asteroide9);
+    addObject(asteroide10);
+    addObject(asteroide11);
+    addObject(asteroide12);
+
+} 
+
+if(nivel==3){
+
+    Point planeta2_point(10,50,0);
+    Point planeta3_point(70,30,0);
+
+
+    Planeta* planeta2 = new Planeta(nave_point);
+    planeta2->setPosition(planeta2_point);
+    planeta2->setVelocity(0.f);
+    planeta2->setMass(1000);
+    planeta2->applyGravityPull(sol);
+    planeta2->setSizeObject();
+
+
+    Planeta* planeta3 = new Planeta(nave_point);
+    planeta3->setPosition(planeta3_point);
+    planeta3->setVelocity(0.f);
+    planeta3->setMass(1000);
+    planeta3->applyGravityPull(sol);
+    planeta3->setSizeObject();
+
+}
+
+
     Foguetao* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
     foguetao->setVelocity(0.3);

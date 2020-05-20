@@ -780,7 +780,7 @@ void init(void)
 
     Foguetao::inicializarTextura();
 
-    world = new World();
+    world = new World(nivel);
 
     rot = new RotationHandler(world);
 
