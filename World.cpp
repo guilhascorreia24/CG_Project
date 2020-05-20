@@ -8,7 +8,7 @@ void World::addObject(Object* obj){
     objects.push_back(obj);
 }
 
-World::World(int nivel) : main(0){
+World::World(int nivel) : main(0),nivel(nivel){
     this->nivel = nivel;
     fillObjects();
 }

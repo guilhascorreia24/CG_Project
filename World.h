@@ -16,7 +16,7 @@
 //Cleanup needed
 class World{
     public:
-        World(int nivel){this->nivel=nivel};
+        World(int nivel){this->nivel=nivel;};
         ~World();
         std::vector<Object*> getMainObject();
         void draw();
