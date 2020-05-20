@@ -125,6 +125,7 @@ void teclas(unsigned char key, int x, int y)
 
         break;
     case 32:
+        printf("olá\n");
         if(mudou_de_nivel==true)
             mudou_de_nivel=false;
         else if(perdeu==true)
@@ -342,7 +343,7 @@ void display(void)
                 }
 //******
 
-                s = "Para jogar outra vez pressione a tecla Enter";
+                s = "Para jogar outra vez pressione a tecla Space";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
