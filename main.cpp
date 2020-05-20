@@ -18,7 +18,7 @@
 
 #include "stb_image.h"
 
-#define FRAME_DELTA 1000 / 150
+#define FRAME_DELTA 1000 / 30
 
 #define PI 3.14159
 
@@ -230,7 +230,14 @@ void display(void)
 
 {
 
+<<<<<<< HEAD
 
+=======
+    GLint64 timer;
+    glGetInteger64v(GL_TIMESTAMP, &timer);
+    
+    //printf("Milliseconds: %f\n", timer/1000000000.0);
+>>>>>>> 5f1f67fc6849fc2df4ca23a71a8ce30cda037308
 
     glMatrixMode(GL_MODELVIEW);
 
@@ -1067,6 +1074,8 @@ void mainloop()
         glutPostRedisplay();
 
         i = 0;
+
+        last_time = currTime;
     }
 
     i++;

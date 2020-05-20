@@ -160,7 +160,7 @@ Vector crossProduct(Vector &a, Vector &b){
     Vector result(0,0,0);
     result.x = a.x*b.z - a.z*b.y;
     result.y = a.z*b.x - a.x*b.z;
-    result.y = a.x*b.y - a.y*b.x;
+    result.z = a.x*b.y - a.y*b.x;
     return result;
 }
 
@@ -186,6 +186,7 @@ Point intersectPlaneLine(Point planePoint, Vector &planeNormal, Point linePoint,
 }
 
 
+//Rotates a 3D vector based on a axis
 Vector rotateVector(Vector &vec, Vector &axis,float angle){
     Vector unitAxis = axis.unitVector();
     Vector result = crossProduct(unitAxis,vec);

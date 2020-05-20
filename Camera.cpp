@@ -1,8 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(World* world) : eye(0,0,1),center(0,0,0),up(0,1,0){
+Camera::Camera(World* world) : eye(0,0,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
-	distance = 50;
 }
 
 Camera::~Camera(){
@@ -81,56 +80,62 @@ void Camera::keyboardZoom(unsigned char key,int x, int y){
 		return;
 	}
 	switch(key){
-		case '+':
-			distance-=2;
+		case '+':{
+			Vector dir1(eye,center);
+			dir1*=0.1;
+			eye += dir1;
 			break;
-		case '-':
-			distance+=2;
+		}
+		case '-':{
+			Vector dir2(eye,center);
+			dir2*=0.1;
+			eye -= dir2;
 			break;
+		}
 		default:
 			break;
 	}
-	if(distance<=10){
+	/*if(distance<=10){
 		distance = 11;
 		return;	
 	}
 	if(distance>400){
 		distance = 399;
 		return;	
-	}
+	}*/
 	changeCamera();
 }
 void Camera::changeCamera(){
 	glLoadIdentity();
-	gluLookAt(distance*eye.x,distance*eye.y,distance*eye.z,center.x,center.y,center.z,up.x,up.y,up.z);
+	gluLookAt(eye.x,eye.y,eye.z,center.x,center.y,center.z,up.x,up.y,up.z);
 }
 void Camera::camera1(){
-	eye = Point(1,0,0);
+	eye = Point(50,0,0);
 	up = Point(0,1,0);
 	//gluLookAt(distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera2(){
-	eye = Point(-1,0,0);
+	eye = Point(-50,0,0);
 	up = Point(0,1,0);
 	//gluLookAt(-distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera3(){
-	eye = Point(0,1,0);
+	eye = Point(0,50,0);
 	up = Point(1,0,0);
 	//gluLookAt(0,distance,0,0,0,0,1,0,0);
 }
 void Camera::camera4(){
-	eye = Point(0,-1,0);
+	eye = Point(0,-50,0);
 	up = Point(1,0,0);
 	//gluLookAt(0,-distance,0,0,0,0,1,0,0);
 }
 void Camera::camera5(){
-	eye = Point(0,0,1);
+	eye = Point(0,0,50);
 	up = Point(1,0,0);
 	//gluLookAt(0,0,distance,0,0,0,1,0,0);
 }
 void Camera::camera6(){
-	eye = Point(0,0,-1);
+	eye = Point(0,0,-50);
 	up = Point(1,0,0);
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
@@ -139,10 +144,11 @@ void Camera::camera6(){
 void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.x += 5;
-	// up.x += 5;
-	center.x -= 5;
+	// up.x += 5; 
+	eye.x += CHANGE_SPEED;
+	center.x += CHANGE_SPEED;
     for(Object * object : mainObjects){
-        object->mover(5,0,0);
+        object->mover(CHANGE_SPEED,0,0);
     }
 }
 
@@ -150,9 +156,10 @@ void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.x -= 5;
 	// up.x -= 5;
-	center.x += 5;
+	eye.x -= CHANGE_SPEED;
+	center.x -= CHANGE_SPEED;
     for(Object * object : mainObjects){
-        object->mover(-5,0,0);
+        object->mover(-CHANGE_SPEED,0,0);
     }
 
 }
@@ -160,19 +167,21 @@ void Camera::movimento_frente(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.z -= 5;
 	// up.z -= 5;
-	distance -= 5;
-	center.z -= 5;
+	//distance -= 5;
+	eye.z -= CHANGE_SPEED;
+	center.z -= CHANGE_SPEED;
     for(Object * object : mainObjects){
-        object->mover(0,0,-5);
+        object->mover(0,0,-CHANGE_SPEED);
     }
 }
 void Camera::movimento_traz(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.z += 5;
 	// up.z += 5;
-	distance += 5;
-	center.z += 5;
+	//distance += 5;
+	eye.z += CHANGE_SPEED;
+	center.z += CHANGE_SPEED;
     for(Object * object : mainObjects){
-        object->mover(0,0,5);
+        object->mover(0,0,CHANGE_SPEED);
     }
 }
