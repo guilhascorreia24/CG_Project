@@ -17,7 +17,7 @@
 
 #include "stb_image.h"
 
-#define FRAME_DELTA 1000/60
+#define FRAME_DELTA 1000 / 150
 
 #define PI 3.14159
 
@@ -42,9 +42,11 @@ GLfloat win;
 
 GLfloat luzAmbiente[4];
 
+int nivel=1;
+
 bool iluminacao = true, shading = true, antialiasing = true;
 
-bool ganhou = false, perdeu = false, ajuda = false;
+bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false;
 
 void keyboardHandler(int key, int x, int y)
 {
@@ -118,6 +120,14 @@ void teclas(unsigned char key, int x, int y)
 
         exit(0);
 
+        break;
+    case 32:
+        if(mudou_de_nivel==true)
+            mudou_de_nivel=false;
+        else if(perdeu==true)
+            perdeu=false;
+        else if(ganhou==true)
+            ganhou=false;
         break;
     }
 }
@@ -201,7 +211,17 @@ void desenha_fundo()
     
 }
 
-
+// Função callback chamada pela GLUT a cada intervalo de tempo
+void Timer(int value)
+{
+    
+    nivel++;
+    if(nivel==4){
+        ganhou=true;
+    }
+    glutPostRedisplay();
+    glutTimerFunc(33,Timer, 1);
+}
 
 void display(void)
 
@@ -360,6 +380,49 @@ void display(void)
 
 
                 s = "Para jogar outra vez pressione a tecla Enter";
+                font = GLUT_BITMAP_HELVETICA_12;
+                glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+            else if (mudou_de_nivel)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+    
+                glColor3f(0.0, 0.0, 1.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(450, 520);
+
+//******
+                std::string s = "Nivel "+nivel;
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+
+                s = "Para avançar para o nivel +"+nivel+" pressione a tecla Enter";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -730,7 +793,9 @@ void init(void)
     glEnable(GL_DEPTH_TEST);
 }
 
-void reshape(int w, int h){
+void reshape(int w, int h)
+
+{
 
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 
@@ -949,7 +1014,6 @@ void mainloop()
         glutPostRedisplay();
 
         i = 0;
-        last_time = currTime;
     }
 
     i++;
@@ -990,6 +1054,8 @@ int main(int argc, char **argv)
     glutSpecialFunc(keyboardHandler);
 
     glutKeyboardFunc(teclas);
+    
+    glutTimerFunc(30000, Timer, 1);
 
     glutIdleFunc(mainloop);
 
