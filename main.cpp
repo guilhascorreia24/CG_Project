@@ -145,7 +145,7 @@ void teclas(unsigned char key, int x, int y)
         if(mudou_de_nivel==true){
             mudou_de_nivel=false;
             glutTimerFunc(33000,Timer, 1);
-            world->aumentarNivel();
+            world->aumentarNivel(nivel);
             }
         else if(perdeu==true)
             perdeu=false;

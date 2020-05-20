@@ -15,13 +15,23 @@ World::World() : main(0){
 void World::fillObjects(){
     this->nivel = 1;
     Point dist_point(0,0,0);
-    Point foguetao_point(0,0,-5);
+    // Point foguetao_point(0,0,-5);
     Point nave_point(0,0,-25);
     Point planet_point(0,0,-30);
     Point satelite_point(0,0,-50);
-    Point sol_point(20,0,-70);
-    Point terra_point(0,0,0);
-    Point lua_point(0,0,-120);
+    Point sol_point(20,0,-200);
+    // Point terra_point(0,0,0);
+    // Point lua_point(0,0,-120);
+
+    // //----
+    Point foguetao_point(10,0,-5);
+    // Point planet_point(10,0,0);
+    // Point satelite_point(30,0,50);
+
+
+    Point terra_point(10,0,-5);
+    Point lua_point(15,0,-10);
+    // //----
 
     Point disco_nave_point(5,0,0);
     Point cupula_nave_point(2,10,-20);
@@ -95,16 +105,17 @@ void World::fillObjects(){
     terra->setVelocity(0.f);
     terra->setMass(100);
     terra->setSizeObject();
-    terra->setUniformOrbit(sol,0.9,1);
-    //terra->setForceToOrbit(sol,0.55,0.20);
-    //terra->setVelocity(1);
+    
+    // terra->setUniformOrbit(sol,0.9,1);
+    // terra->setForceToOrbit(sol,0.55,0.20);
+    // terra->setVelocity(1);
 
 
     Lua* lua = new Lua(terra_point);
     lua->setPosition(lua_point);
     lua->setVelocity(0.05);
     lua->setMass(10);
-    lua->setUniformOrbit(sol,0.9,1);
+    //lua->setUniformOrbit(sol,0.9,1);
 
     // lua->setForceToOrbit(sol,0.55);
     // terra->setForceToOrbit(sol,0.55);
@@ -155,7 +166,8 @@ void World::fillObjects(){
     foguetao->setVelocity(0.3);
     //foguetao->setUniformOrbit(sol,0.9,1);
     foguetao->setSizeObject();
-
+    Vector direcao (1,1,1);
+    foguetao->setDirection(direcao);
 
 //--------------------------------------------------------------------
 
@@ -269,7 +281,7 @@ void World::update(){
 
     */
 
-    void World::aumentarNivel(){
+    void World::aumentarNivel(int nivel){
         Point nave_point(0,0,-25);
         Point asteroide_point(25,20,-20);
         Point sol_point(0,0,70);
@@ -280,9 +292,9 @@ void World::update(){
         sol->setMass(10000);
 
         sol->setSizeObject();
-
+        printf("oi");
         for(int i = 20; i < 20 ; i++){
-            int intervalo = i*4;
+            int intervalo = i*4+nivel*2;
 
             if (i%2==0)
                 Point asteroide_point(intervalo,20,-20);
