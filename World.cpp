@@ -17,11 +17,11 @@ void World::fillObjects(){
     Point dist_point(0,0,0);
     Point foguetao_point(0,0,-5);
     Point nave_point(0,0,-25);
-    Point planet_point(0,0,30);
-    Point satelite_point(0,0,50);
-    Point sol_point(0,0,70);
+    Point planet_point(0,0,-30);
+    Point satelite_point(0,0,-50);
+    Point sol_point(20,0,-70);
     Point terra_point(0,0,0);
-    Point lua_point(0,0,-10);
+    Point lua_point(0,0,-120);
 
     Point disco_nave_point(5,0,0);
     Point cupula_nave_point(2,10,-20);
@@ -33,8 +33,8 @@ void World::fillObjects(){
 
     Point asteroide1_point(50,0,-50);
     Point asteroide2_point(-50,0,-50);
-    Point asteroide3_point(0,20,-90);
-    Point asteroide4_point(25,20,-20);
+    Point asteroide3_point(0,0,-90);
+    Point asteroide4_point(25,0,-20);
 
     Vector dir (1,1,1);
     Point center(0,0,0);
@@ -82,8 +82,8 @@ void World::fillObjects(){
     planeta->setSizeObject();
 
 
-    Satelite* satelite = new Satelite(planet_point);
-    satelite->setPosition(planet_point);
+    Satelite* satelite = new Satelite(satelite_point);
+    satelite->setPosition(satelite_point);
     satelite->setVelocity(0.f);
     satelite->setMass(10);
     satelite->setUniformOrbit(sol,0.9,1);

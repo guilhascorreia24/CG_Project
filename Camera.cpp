@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(World* world) : eye(0,0,50),center(0,0,0),up(0,1,0){
+Camera::Camera(World* world) : eye(0,10,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
 }
 

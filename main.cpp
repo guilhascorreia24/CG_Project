@@ -49,7 +49,7 @@ int nivel=1;
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
-bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=true, tempo_restante = true;
+bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false, tempo_restante = true;
 
 void keyboardHandler(int key, int x, int y)
 {
