@@ -26,6 +26,7 @@ class World{
         void addMainObject(Object* obj);
         void addObject(Object* obj);
         int nivel;
+        void aumentarNivel();
 
     private:
         std::vector<Object*> main;
