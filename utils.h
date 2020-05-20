@@ -25,7 +25,7 @@
 
 #define PRINT_ERRORS FALSE
 #define PRINT_DEBUG TRUE
-#define G 0.001
+#define G 0.0001
 #define SPEED 1
 #define EPSILON 0.00002
 
@@ -141,9 +141,21 @@ struct Point{
         z+= a.z;
     }
 
+    inline void operator-=(Vector & a){
+        x-= a.x;
+        y-= a.y;
+        z-= a.z;
+    }
+
     inline Point operator+(Vector & a){
         Point b(this);
         b+=a;
+        return b;
+    }
+
+    inline Point operator-(Vector & a){
+        Point b(this);
+        b-=a;
         return b;
     }
 

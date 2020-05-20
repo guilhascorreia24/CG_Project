@@ -8,7 +8,6 @@ RotationHandler::RotationHandler(World* world){
 }
 
 RotationHandler::~RotationHandler(){
-    printf("Destructed\n");
     Stop();
 }
 

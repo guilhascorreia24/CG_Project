@@ -1,6 +1,9 @@
 #pragma once
 #include "utils.h"
 #include "World.h"
+
+#define CHANGE_SPEED 0.8	//Velocidade da nave
+#define ZOOM_FACTOR 0.1 //Muda o zoom exponecialmente
 class Camera{
 public:
  Camera(World* w);
@@ -27,8 +30,5 @@ public:
 private:
 	bool start;
 	World* world;
-	int distance;
 	Point eye,center,up;
-	
-
 };

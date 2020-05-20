@@ -91,4 +91,13 @@ const char* Satelite::getLabel(){
 }
 
 void Satelite::Update(){
+    /*printf("Satelite Position->");
+    position.print();
+    printf("Satelite Velocity-> %Lf\n",velocity);
+    printf("Satelite Direction->");
+    direction.print();
+    auto it = gravity.begin();
+    Point obj = (*it)->getPosition();
+    printf("Distance to Sun-> %lf\n",obj.distance(position));*/
+
 }

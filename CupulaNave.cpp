@@ -100,7 +100,7 @@ void CupulaNave::Update(){
         if(position == center){
             separado=false;
         }
-    } else if(colidiu == true){
+    } /*else if(colidiu == true){
         if(position.x<pos_incial.x) 
             position.x += position.x*velocity;
         if(position.y<pos_incial.y) 
@@ -111,7 +111,7 @@ void CupulaNave::Update(){
             colidiu=false;
         }
 
-    }
+    }*/
 }
 
 const char* CupulaNave::getLabel(){

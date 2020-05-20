@@ -9,21 +9,19 @@ void World::addObject(Object* obj){
 }
 
 World::World() : main(0){
-    this->nivel = 1;
     fillObjects();
 }
 
 void World::fillObjects(){
+    this->nivel = 1;
     Point dist_point(0,0,0);
-    Point foguetao_point(10,11,-5);
+    Point foguetao_point(0,0,-5);
     Point nave_point(0,0,-25);
-    Point planet_point(10,30,0);
-    Point satelite_point(30,8,50);
-    Point sol_point(0,0,100);
-
-
-    Point terra_point(10,10,-5);
-    Point lua_point(15,15,-10);
+    Point planet_point(0,0,30);
+    Point satelite_point(0,0,50);
+    Point sol_point(0,0,70);
+    Point terra_point(0,0,0);
+    Point lua_point(0,0,-10);
 
     Point disco_nave_point(5,0,0);
     Point cupula_nave_point(2,10,-20);
@@ -47,18 +45,21 @@ void World::fillObjects(){
     disco_nave->setVelocity(0.11);
     disco_nave->setDirection(dir);
     disco_nave->setSizeObject();
+    disco_nave->disablePhisycs();
 
     CupulaNave* cupula_nave = new CupulaNave(center,cupula_nave_point);
     cupula_nave->setPosition(cupula_nave_point);
     cupula_nave->setVelocity(0.11);
     cupula_nave->setDirection(dir);
     cupula_nave->setSizeObject();
+    cupula_nave->disablePhisycs();
 
     BaseNave* base_nave = new BaseNave(center,base_nave_point);
     base_nave->setPosition(base_nave_point);
     base_nave->setVelocity(0.11);
     base_nave->setDirection(dir);
     base_nave->setSizeObject();
+    base_nave->disablePhisycs();
 
     Sol* sol = new Sol(nave_point);
     sol->setPosition(sol_point);
@@ -75,42 +76,42 @@ void World::fillObjects(){
     planeta->setPosition(planet_point);
     planeta->setVelocity(0.f);
     planeta->setMass(1000);
-    planeta->applyGravityPull(sol);
+    //planeta->applyGravityPull(sol);
+    //planeta->setForceToOrbit(sol,0.55,0.15);
+    planeta->setUniformOrbit(sol,0.9,1);
     planeta->setSizeObject();
 
 
     Satelite* satelite = new Satelite(planet_point);
-    satelite->setPosition(satelite_point);
+    satelite->setPosition(planet_point);
     satelite->setVelocity(0.f);
     satelite->setMass(10);
-    satelite->applyGravityPull(sol);
-
-    satelite->setForceToOrbit(sol,0.55);
-    planeta->setForceToOrbit(sol,0.55);
+    satelite->setUniformOrbit(sol,0.9,1);
     satelite->setSizeObject();
 
 
     Terra* terra = new Terra(nave_point);
     terra->setPosition(terra_point);
     terra->setVelocity(0.f);
-    // terra->setMass(1000);
-    // terra->applyGravityPull(sol);
+    terra->setMass(100);
+    terra->applyGravityPull(sol);
     terra->setSizeObject();
+    terra->setForceToOrbit(sol,0.55,0.20);
+    //terra->setVelocity(1);
 
 
     Lua* lua = new Lua(terra_point);
     lua->setPosition(lua_point);
     lua->setVelocity(0.05);
-    // lua->setMass(10);
-    // lua->applyGravityPull(sol);
+    lua->setMass(10);
+    lua->setUniformOrbit(sol,0.9,1);
 
     // lua->setForceToOrbit(sol,0.55);
     // terra->setForceToOrbit(sol,0.55);
     lua->setSizeObject();
-
-
-    satelite->setVelocity(0.6);
-    planeta->setVelocity(5);
+    //terra->setVelocity(2);
+    //satelite->setVelocity(0.6);
+    //planeta->setVelocity(5);
     //terra->setVelocity(1.3);
     //lua->setVelocity(10);
 
@@ -123,6 +124,7 @@ void World::fillObjects(){
     Asteroide1* asteroide1 = new Asteroide1(sol_point);
     asteroide1->setPosition(asteroide1_point);
     asteroide1->setVelocity(0.01);
+    asteroide1->setUniformOrbit(sol,0.9,1);
 
     asteroide1->setSizeObject();
     asteroide1->setSizeObject();
@@ -132,126 +134,26 @@ void World::fillObjects(){
     Asteroide1* asteroide2 = new Asteroide1(sol_point);
     asteroide2->setPosition(asteroide2_point);
     asteroide2->setVelocity(0.01);
+    asteroide2->setUniformOrbit(sol,0.9,1);
     asteroide2->setSizeObject();
 
     Asteroide2* asteroide3 = new Asteroide2(sol_point);
     asteroide3->setPosition(asteroide3_point);
     asteroide3->setVelocity(0.01);
-    asteroide3->setVelocity(0.0001);
-    asteroide3->setDirection(dir);
+    asteroide3->setUniformOrbit(sol,0.9,1);
     asteroide3->setSizeObject();
 
     Asteroide2* asteroide4 = new Asteroide2(sol_point);
     asteroide4->setPosition(asteroide4_point);
     asteroide4->setVelocity(0.01);
+    asteroide4->setUniformOrbit(sol,0.9,1);
     asteroide4->setSizeObject();
-
-
-// if(nivel>1){
-
-    Point asteroide5_point(70,0,-70);
-    Point asteroide6_point(-70,0,-70);
-    Point asteroide7_point(0,20,-200);
-    Point asteroide8_point(25,20,-20);
-
-    Point asteroide9_point(80,0,-80);
-    Point asteroide10_point(-80,0,-80);
-    Point asteroide11_point(0,20,-200);
-    Point asteroide12_point(25,20,-20);
-
-    Asteroide1* asteroide5 = new Asteroide1(sol_point);
-    asteroide5->setPosition(asteroide5_point);
-    asteroide5->setVelocity(0.01);
-
-    asteroide5->setSizeObject();
-    asteroide5->setSizeObject();
-    // Point tmp = asteroide5->getSizeObject();
-    // printf("%f %f %f",tmp.x,tmp.y,tmp.z);
-
-    Asteroide1* asteroide6 = new Asteroide1(sol_point);
-    asteroide6->setPosition(asteroide6_point);
-    asteroide6->setVelocity(0.01);
-    asteroide6->setSizeObject();
-
-    Asteroide2* asteroide7 = new Asteroide2(sol_point);
-    asteroide7->setPosition(asteroide7_point);
-    asteroide7->setVelocity(0.01);
-    asteroide7->setVelocity(0.0001);
-    asteroide7->setDirection(dir);
-    asteroide7->setSizeObject();
-
-    Asteroide2* asteroide8 = new Asteroide2(sol_point);
-    asteroide8->setPosition(asteroide8_point);
-    asteroide8->setVelocity(0.01);
-    asteroide8->setSizeObject();
-
-
-    Asteroide1* asteroide9 = new Asteroide1(sol_point);
-    asteroide9->setPosition(asteroide9_point);
-    asteroide9->setVelocity(0.01);
-
-    asteroide9->setSizeObject();
-    asteroide9->setSizeObject();
-    // Point tmp = asteroide5->getSizeObject();
-    // printf("%f %f %f",tmp.x,tmp.y,tmp.z);
-
-    Asteroide1* asteroide10 = new Asteroide1(sol_point);
-    asteroide10->setPosition(asteroide10_point);
-    asteroide10->setVelocity(0.01);
-    asteroide10->setSizeObject();
-
-    Asteroide2* asteroide11 = new Asteroide2(sol_point);
-    asteroide11->setPosition(asteroide11_point);
-    asteroide11->setVelocity(0.01);
-    asteroide11->setVelocity(0.0001);
-    asteroide11->setDirection(dir);
-    asteroide11->setSizeObject();
-
-    Asteroide2* asteroide12 = new Asteroide2(sol_point);
-    asteroide12->setPosition(asteroide12_point);
-    asteroide12->setVelocity(0.01);
-    asteroide12->setSizeObject();
-
-
-    addObject(asteroide5);
-    addObject(asteroide6);
-    addObject(asteroide7);
-    addObject(asteroide8);
-
-    addObject(asteroide9);
-    addObject(asteroide10);
-    addObject(asteroide11);
-    addObject(asteroide12);
-
-// } 
-
-// if(nivel==3){
-
-    Point planeta2_point(10,50,0);
-    Point planeta3_point(70,30,0);
-
-
-    Planeta* planeta2 = new Planeta(nave_point);
-    planeta2->setPosition(planeta2_point);
-    planeta2->setVelocity(0.f);
-    planeta2->setMass(1000);
-    planeta2->applyGravityPull(sol);
-    planeta2->setSizeObject();
-
-
-    Planeta* planeta3 = new Planeta(nave_point);
-    planeta3->setPosition(planeta3_point);
-    planeta3->setVelocity(0.f);
-    planeta3->setMass(1000);
-    planeta3->applyGravityPull(sol);
-    planeta3->setSizeObject();
-
-// }
 
 
     Foguetao* foguetao = new Foguetao(foguetao_point);
     foguetao->setPosition(foguetao_point);
     foguetao->setVelocity(0.3);
+    foguetao->setUniformOrbit(sol,0.9,1);
     foguetao->setSizeObject();
 
 
@@ -281,6 +183,14 @@ void World::fillObjects(){
     addMainObject(disco_nave);
     addMainObject(cupula_nave);
     addMainObject(base_nave);
+
+    //sol->applyGravityPull(terra);
+    //terra->setVelocity(10);
+    //printf("%lf\n",terra->getVelocity());
+    //getchar();
+
+    //this->terra = terra;
+    //this->sol = sol;
 }
 
 World::~World(){
@@ -305,6 +215,26 @@ void World::draw(){
 } 
 
 void World::update(){
+    /*static bool t = false;
+    if(t)
+        return;
+    
+    t = true;
+
+    printf("Sun Position->");
+    sol->getPosition().print();
+    printf("Earth Position->");
+    terra->getPosition().print();
+    Point tmp = sol->getPosition();
+    Point tmo2 = terra->getPosition();
+    Vector v(tmp,tmo2);
+    printf("Earth to Sun->");
+    v.print();
+
+    printf("Earth Direction->");
+    terra->getDirection().print();
+
+    printf("Earth Velocity->%f\n",terra->getVelocity());*/
     for(Object * object : objects){
         object->update();
 
@@ -325,7 +255,7 @@ void World::update(){
             bool collisionZ = po.z + po_size.z >= pp.z &&
                 pp.z + pp_size.z >= po.z;
             if( collisionX && collisionY && collisionY ){
-                printf("colidiu");
+                //printf("colidiu");
                 parte->colidiu=true;
             }
         }
