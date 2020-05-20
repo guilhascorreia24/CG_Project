@@ -14,12 +14,13 @@ World::World() : main(0){
 
 void World::fillObjects(){
     this->nivel = 1;
+
     Point dist_point(0,0,0);
     // Point foguetao_point(0,0,-5);
-    Point nave_point(0,0,-25);
-    Point planet_point(0,0,-30);
-    Point satelite_point(0,0,-50);
-    Point sol_point(20,0,-200);
+    Point nave_point(0,0,0);
+    Point planet_point(0,0,-180);
+    Point satelite_point(0,0,-150);
+    Point sol_point(20,0,-100);
     // Point terra_point(0,0,0);
     // Point lua_point(0,0,-120);
 
@@ -76,7 +77,6 @@ void World::fillObjects(){
     sol->setVelocity(0.f);
     sol->setSize(5);
     sol->setMass(10000);
-
     sol->setSizeObject();
 
 
@@ -162,12 +162,13 @@ void World::fillObjects(){
 
 
     Foguetao* foguetao = new Foguetao(foguetao_point);
+    foguetao->disablePhisycs();
     foguetao->setPosition(foguetao_point);
     foguetao->setVelocity(0.3);
     //foguetao->setUniformOrbit(sol,0.9,1);
     foguetao->setSizeObject();
-    Vector direcao (1,1,1);
-    foguetao->setDirection(direcao);
+    //Vector direcao (0.0,1,0.0);
+    //foguetao->setDirection(direcao);
 
 //--------------------------------------------------------------------
 
