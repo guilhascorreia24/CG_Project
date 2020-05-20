@@ -8,6 +8,7 @@ class CupulaNave : public Object{
         ~CupulaNave();
         static void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return !separado;}
 
     protected:
         void drawShape();

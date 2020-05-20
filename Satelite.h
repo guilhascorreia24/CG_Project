@@ -8,6 +8,7 @@ class Satelite : public Object{
         ~Satelite();
         static  void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return true;}
 
     protected:
         void drawShape();

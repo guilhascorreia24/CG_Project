@@ -94,9 +94,9 @@ void World::fillObjects(){
     terra->setPosition(terra_point);
     terra->setVelocity(0.f);
     terra->setMass(100);
-    terra->applyGravityPull(sol);
     terra->setSizeObject();
-    terra->setForceToOrbit(sol,0.55,0.20);
+    terra->setUniformOrbit(sol,0.9,1);
+    //terra->setForceToOrbit(sol,0.55,0.20);
     //terra->setVelocity(1);
 
 

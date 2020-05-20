@@ -8,6 +8,7 @@ class Sol : public Object{
         ~Sol();
         static void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return true;}
         
 
     protected:
