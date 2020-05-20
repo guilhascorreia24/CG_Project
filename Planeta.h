@@ -8,6 +8,7 @@ class Planeta : public Object{
         ~Planeta();
         static  void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return true;}
     protected:
         void drawShape();
         void Update();

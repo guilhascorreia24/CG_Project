@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(World* world) : eye(0,0,50),center(0,0,0),up(0,1,0){
+Camera::Camera(World* world) : eye(0,10,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
 }
 
@@ -18,22 +18,41 @@ void Camera::keyboardCamera(int key, int x, int y){
 	if(!start){
 		return;
 	}
+	auto objects = world->getMainObject();
 	switch(key){
 		case GLUT_KEY_DOWN:
-            movimento_traz();
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_traz();
             break;
         case GLUT_KEY_UP:
-            
-            movimento_frente();
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_frente();
             break;
 
         case GLUT_KEY_LEFT:
-            
-            movimento_esquerda();
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_esquerda();
             break;
         case GLUT_KEY_RIGHT:
             
-            movimento_direita();
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_direita();
             break;
 		case GLUT_KEY_F2:
 		     

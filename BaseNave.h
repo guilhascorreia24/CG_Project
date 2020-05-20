@@ -8,6 +8,7 @@ class BaseNave : public Object{
         ~BaseNave();
         static void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return !separado;}
     protected:
         void drawShape();
         void Update();

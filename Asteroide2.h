@@ -8,6 +8,7 @@ class Asteroide2 : public Object{
         ~Asteroide2();
         static void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return true;}
 
     protected:
         void drawShape();

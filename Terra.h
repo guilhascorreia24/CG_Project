@@ -8,6 +8,7 @@ class Terra : public Object{
         ~Terra();
         static  void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return true;}
     protected:
         void drawShape();
         void Update();

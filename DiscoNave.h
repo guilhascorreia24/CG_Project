@@ -8,6 +8,7 @@ class DiscoNave : public Object{
         ~DiscoNave();
         static void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return !separado;}
 
     protected:
         void drawShape();

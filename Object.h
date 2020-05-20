@@ -56,6 +56,8 @@ class Object{
         void virtual drawShape() = 0;
         void virtual Update() = 0;
     public:
+        bool virtual canMove() = 0;
+    public:
         virtual const char* getLabel() = 0;
 
     

@@ -8,6 +8,7 @@ class Foguetao : public Object{
         ~Foguetao();
         static void inicializarTextura();
         void setSizeObject();
+        bool canMove(){return true;}
 
     protected:
         void drawShape();
