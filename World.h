@@ -16,7 +16,7 @@
 //Cleanup needed
 class World{
     public:
-        World();
+        World(int nivel){this->nivel=nivel};
         ~World();
         std::vector<Object*> getMainObject();
         void draw();
@@ -25,6 +25,7 @@ class World{
         void fillObjects();
         void addMainObject(Object* obj);
         void addObject(Object* obj);
+        int nivel;
 
     private:
         std::vector<Object*> main;

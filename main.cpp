@@ -422,7 +422,7 @@ void display(void)
 //******
 
 
-                s = "Para avançar para o nivel +"+nivel+" pressione a tecla Enter";
+                s = "Pressione a tecla Enter para avançar para o nivel +"+nivel;
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
