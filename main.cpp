@@ -42,6 +42,8 @@ GLfloat win;
 
 GLfloat luzAmbiente[4];
 
+
+
 int nivel=1;
 
 bool iluminacao = true, shading = true, antialiasing = true;
@@ -227,7 +229,10 @@ void display(void)
 
 {
 
-  
+    GLint64 timer;
+    glGetInteger64v(GL_TIMESTAMP, &timer);
+    
+    printf("Milliseconds: %f\n", timer/1000000000.0);
 
     glMatrixMode(GL_MODELVIEW);
 
@@ -780,7 +785,7 @@ void init(void)
 
     Foguetao::inicializarTextura();
 
-    world = new World(nivel);
+    world = new World();
 
     rot = new RotationHandler(world);
 

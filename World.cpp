@@ -8,8 +8,8 @@ void World::addObject(Object* obj){
     objects.push_back(obj);
 }
 
-World::World(int nivel) : main(0),nivel(nivel){
-    this->nivel = nivel;
+World::World() : main(0){
+    this->nivel = 1;
     fillObjects();
 }
 
@@ -147,7 +147,7 @@ void World::fillObjects(){
     asteroide4->setSizeObject();
 
 
-if(nivel>1){
+// if(nivel>1){
 
     Point asteroide5_point(70,0,-70);
     Point asteroide6_point(-70,0,-70);
@@ -223,9 +223,9 @@ if(nivel>1){
     addObject(asteroide11);
     addObject(asteroide12);
 
-} 
+// } 
 
-if(nivel==3){
+// if(nivel==3){
 
     Point planeta2_point(10,50,0);
     Point planeta3_point(70,30,0);
@@ -246,7 +246,7 @@ if(nivel==3){
     planeta3->applyGravityPull(sol);
     planeta3->setSizeObject();
 
-}
+// }
 
 
     Foguetao* foguetao = new Foguetao(foguetao_point);
