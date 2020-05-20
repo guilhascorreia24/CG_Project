@@ -230,14 +230,6 @@ void display(void)
 
 {
 
-<<<<<<< HEAD
-
-=======
-    GLint64 timer;
-    glGetInteger64v(GL_TIMESTAMP, &timer);
-    
-    //printf("Milliseconds: %f\n", timer/1000000000.0);
->>>>>>> 5f1f67fc6849fc2df4ca23a71a8ce30cda037308
 
     glMatrixMode(GL_MODELVIEW);
 
@@ -682,10 +674,13 @@ void display(void)
                 glEnable(GL_LIGHTING);
             }
 
-    GLint64 timer;
-    glGetInteger64v(GL_TIMESTAMP, &timer);
-    double t = timer/1000000000.0;
-    std::string time = std::to_string(t);
+            // GLint64 timer;
+            // glGetInteger64v(GL_TIMESTAMP, &timer);
+            // double t = timer/1000000000.0;
+            static long t = glutGet(GLUT_ELAPSED_TIME);
+            long time_elapsed = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
+            std::string time = std::to_string(time_elapsed);
+            
             if (tempo_restante)
             {
                 glDisable(GL_LIGHTING);
