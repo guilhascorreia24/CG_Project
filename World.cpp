@@ -14,13 +14,14 @@ World::World() : main(0){
 
 void World::fillObjects(){
     this->nivel = 1;
+
     Point dist_point(0,0,0);
     Point foguetao_point(0,0,-5);
     Point nave_point(0,0,-25);
     Point planet_point(0,0,-30);
     Point satelite_point(0,0,-50);
     Point sol_point(20,0,-70);
-    Point terra_point(0,0,0);
+    Point terra_point(10,10,-5);
     Point lua_point(0,0,-120);
 
     Point disco_nave_point(5,0,0);
@@ -66,7 +67,6 @@ void World::fillObjects(){
     sol->setVelocity(0.f);
     sol->setSize(5);
     sol->setMass(10000);
-
     sol->setSizeObject();
 
 
