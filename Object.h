@@ -33,8 +33,6 @@ class Object{
         inline void setMass(long double mass){this->mass = mass;}
         inline long double getMass(){return mass;}
 
-        void setUniformOrbit(Object *planet, double e, double velocity=0);
-
         /*PHISICS*/
 
         //Aply a force with and id
@@ -44,9 +42,7 @@ class Object{
         void applyGravityPull(Object* obj);
         void removeGravityPull(Object* obj);
 
-        //Set the initial velocity needed for orbit
-        //variable e represents the eccentrecity
-        void setForceToOrbit(Object* obj, float angle, float e);
+        void setForceToOrbit(Object* obj, float angle);
         static Vector calcGravitationalForce(Object* obj1,Object* obj2);
         
         void update();
@@ -65,19 +61,9 @@ class Object{
         int size;
         Point position;
         Point size_object;
-        std::set<Object*> gravity;
-
-        //Uniform Orbit
-        Object* orbit;
-        float lastAngle;
-        float lastRadius;
-        Point thisCenter;
-        double e;
-        bool useUniformOrbit;
     private:
-        bool useVelocityGravityPhisics;
         long double mass;
-        long last_update_time;
+        std::set<Object*> gravity;
 
 
     public:

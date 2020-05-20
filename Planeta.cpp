@@ -95,7 +95,6 @@ const char* Planeta::getLabel(){
 }
 
 void Planeta::Update(){
-    //printf("Planeta->");
-    //position.print();
+
 
 }
