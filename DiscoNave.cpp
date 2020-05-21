@@ -117,6 +117,7 @@ void DiscoNave::Update(){
         {
             position.z -= position.z*velocity;
         }
+    }
 
 }
 

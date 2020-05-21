@@ -98,7 +98,7 @@ void BaseNave::Update(){
         if(position == center){
             separado=false;
             printf("Nave pode ser Movida\n");
-            world->comecou = true;
+            //world->comecou = true;
         } 
 
     }else if(colidiu == true){
@@ -122,8 +122,10 @@ void BaseNave::Update(){
         {
             position.z -= position.z*velocity;
         }
+    }
 
 }
+
 
 const char* BaseNave::getLabel(){
     if(separado==true)
