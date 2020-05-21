@@ -223,10 +223,11 @@ void World::draw(){
     Point a = sol->getPosition();
     GLfloat posicaoLuz[4] = {a.x,a.y,a.z, 1.0};
     glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
-
+    
     for(Object* object : objects){
         object->draw();
     }
+    
     for(Object* object : main){
         object->draw();
     }
@@ -235,58 +236,39 @@ void World::draw(){
 
 
 void World::update(){
-    /*static bool t = false;
-    if(t)
-        return;
-    
-    t = true;
 
-    printf("Sun Position->");
-    sol->getPosition().print();
-    printf("Earth Position->");
-    terra->getPosition().print();
-    Point tmp = sol->getPosition();
-    Point tmo2 = terra->getPosition();
-    Vector v(tmp,tmo2);
-    printf("Earth to Sun->");
-    v.print();
-
-    printf("Earth Direction->");
-    terra->getDirection().print();
-
-    printf("Earth Velocity->%f\n",terra->getVelocity());*/
     for(Object * object : objects){
         object->update();
-
-        // para verificar a colisao
-        Point po = object->getPosition();
-        Point po_size = object->getSizeObject();
-        //printf("%f\n",po_size.x);
+        Point outro_min = object->min;
+        Point outro_max = object->max;
+        Point outro_pos = object->getPosition();
         for(Object* parte : main){
-            Point pp = parte->getPosition();
-            Point pp_size = parte->getSizeObject();
+            if(parte->comecou)
+                this->comecou = true;
+            Point nave_min = parte->min;
+            Point nave_max = parte->max;
+            Point nave_pos = parte->getPosition();
+            // // Collision x
+            // bool collisionX = (outro_min.x <= nave_min.x && outro_max.x <= nave_max.x) || (nave_min.x <= outro_min.x && nave_max.x <= outro_max.x);
+            // // Collision y
+            // bool collisionY = (outro_min.y <= nave_min.y && outro_max.y <= nave_max.y) || (nave_min.y <= outro_min.y && nave_max.y <= outro_max.y);
+            // // Collision z
+            // bool collisionZ = (outro_min.z <= nave_min.z && outro_max.z <= nave_max.z) || (nave_min.z <= outro_min.z && nave_max.z <= outro_max.z);  
+            
 
-        // Collision x
-        bool collisionX = (pp.x - (pp_size.x/2) >= po.x - (po_size.x/2)) && ( pp.x + (pp_size.x/2) <= po.x + (po_size.x/2));
-        // Collision y
-        bool collisionY = (pp.y - (pp_size.y/2) >= po.y - (po_size.y/2)) && ( pp.y + (pp_size.y/2) <= po.y + (po_size.y/2));
-        // Collision z
-        bool collisionZ = (pp.z - (pp_size.z/2) >= po.z - (po_size.z/2)) && ( pp.z + (pp_size.z/2) <= po.z + (po_size.z/2));  
-
-            printf("collisionX: %d      collisionY: %d      collisionZ%d\n",collisionX,collisionY,collisionZ);                
-            if( collisionX && collisionY ){
-                printf("-------> colidiu\n");
-                parte->colidiu=true;
-            }
+            //if( collisionX == true && collisionY == true && collisionZ == true )
+              //  printf("collisionX: %d      collisionY: %d      collisionZ%d \n",collisionX,collisionY,collisionZ);                
+            // if( collisionX == true && collisionY == true && collisionZ == true ){
+            //     //printf("-------> colidiu\n");
+            //     //parte->colidiu=true;
+            // }
         }
     }
     for(Object * object : main){
         object->update();
     }
 }
-    /*
 
-    */
 
     void World::aumentarNivel(int nivel){
         Point nave_point(0,0,-25);
@@ -299,7 +281,6 @@ void World::update(){
         sol->setMass(10000);
 
         sol->setSizeObject();
-        printf("oi");
         for(int i = 20; i < 20 ; i++){
             int intervalo = i*4+nivel*2;
 

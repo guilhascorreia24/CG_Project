@@ -45,7 +45,7 @@ Point Object::getSizeObject(){
 Point Object::getPosition(){
     return position;
 }
-Object::Object() : position(0,0,0),size_object(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1),thisCenter(0,0,0){
+Object::Object() : position(0,0,0),size_object(0,0,0),min(0,0,0),max(0,0,0),rot(0,0,0),velocity(0),direction(0,0,0),mass(1),thisCenter(0,0,0){
     size = 1;
     last_update_time = glutGet(GLUT_ELAPSED_TIME);
     lastAngle = 0;
@@ -58,7 +58,7 @@ Object::Object() : position(0,0,0),size_object(0,0,0),rot(0,0,0),velocity(0),dir
 Object::~Object(){
 }
 
-Object::Object(Point & pos, Point & size_obj,AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),size_object(size_obj),rot(rotation) ,velocity(velocity),direction(direction),thisCenter(0,0,0){
+Object::Object(Point & pos, Point & size_obj,Point & min, Point & max,AngleRotation & rotation, Vector & direction, long double velocity, long double mass) : mass(mass),position(pos),size_object(size_obj),min(min), max(max),rot(rotation) ,velocity(velocity),direction(direction),thisCenter(0,0,0){
     size = 1;
     last_update_time = glutGet(GLUT_ELAPSED_TIME);
     lastAngle = 0;
@@ -66,6 +66,7 @@ Object::Object(Point & pos, Point & size_obj,AngleRotation & rotation, Vector & 
     e = 0;
     useVelocityGravityPhisics = true;
     useUniformOrbit = false;
+    comecou = false;
 }
 
 

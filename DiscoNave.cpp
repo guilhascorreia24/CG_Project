@@ -64,9 +64,12 @@ void DiscoNave::setSizeObject(){
         if(points[i].z<min_z)
             min_z = points[i].z;       
     }
-    this->size_object.x= abs(min_x-max_x);
-    this->size_object.y= abs(min_y-max_y);
-    this->size_object.z= abs(min_z-max_z);
+    this->min.x = min_x;
+    this->min.y = min_y;
+    this->min.z = min_z;
+    this->max.x = max_x;
+    this->max.y = max_y;
+    this->max.z = max_z;
 }
 
 void DiscoNave::drawShape(){
@@ -86,6 +89,7 @@ void DiscoNave::drawShape(){
 }
 
 void DiscoNave::Update(){
+    setSizeObject();
     if(separado==true){
         if(position.x!=center.x) 
             position.x -= position.x*velocity;
@@ -97,27 +101,8 @@ void DiscoNave::Update(){
             separado=false;
         }
     }else if(colidiu == true){
-        if(position.x<0) 
-            position.x += position.x*velocity;
-        else
-        {
-            position.x -= position.x*velocity;
-        }
-            
-        if(position.y<0) 
-            position.y += position.y*velocity;
-        else
-        {
-            position.y -= position.y*velocity;
-        }
-            
-        if(position.z<0) 
-            position.z += position.z*velocity;
-        else
-        {
-            position.z -= position.z*velocity;
-        }
-
+        position.x += position.x*velocity;
+    }
 }
 
 const char* DiscoNave::getLabel(){
