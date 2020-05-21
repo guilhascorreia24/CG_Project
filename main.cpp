@@ -100,7 +100,8 @@ void teclas(unsigned char key, int x, int y)
 {
     setKeyState(key,KEY_PRESSED);
 
-    cam->keyboardZoom(key, x, y);
+    if(world->comecou)
+        cam->keyboardZoom(key, x, y);
 
     switch (key)
 
@@ -330,7 +331,7 @@ void display(void)
     }
     desenha_fundo();
     if(!ajuda){
-    world->draw();}
+        world->draw();}
 
 
 //---------------
