@@ -98,19 +98,31 @@ void BaseNave::Update(){
         if(position == center){
             separado=false;
             printf("Nave pode ser Movida\n");
+            world->comecou = true;
         } 
 
-    }/* else if(colidiu == true){
-        if(position.x<pos_incial.x) 
+    }else if(colidiu == true){
+        if(position.x<0) 
             position.x += position.x*velocity;
-        if(position.y<pos_incial.y) 
-            position.y += position.y*velocity;
-        if(position.z<pos_incial.z) 
-            position.z += position.z*velocity;
-        if(position == pos_incial){
-            colidiu=false;
+        else
+        {
+            position.x -= position.x*velocity;
         }
-    }*/
+            
+        if(position.y<0) 
+            position.y += position.y*velocity;
+        else
+        {
+            position.y -= position.y*velocity;
+        }
+            
+        if(position.z<0) 
+            position.z += position.z*velocity;
+        else
+        {
+            position.z -= position.z*velocity;
+        }
+
 }
 
 const char* BaseNave::getLabel(){

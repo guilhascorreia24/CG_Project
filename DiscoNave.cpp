@@ -96,18 +96,28 @@ void DiscoNave::Update(){
         if(position == center){
             separado=false;
         }
-    }/*else if(colidiu == true){
-        if(position.x<pos_incial.x) 
+    }else if(colidiu == true){
+        if(position.x<0) 
             position.x += position.x*velocity;
-        if(position.y<pos_incial.y) 
+        else
+        {
+            position.x -= position.x*velocity;
+        }
+            
+        if(position.y<0) 
             position.y += position.y*velocity;
-        if(position.z<pos_incial.z) 
+        else
+        {
+            position.y -= position.y*velocity;
+        }
+            
+        if(position.z<0) 
             position.z += position.z*velocity;
-        if(position == pos_incial){
-            colidiu=false;
+        else
+        {
+            position.z -= position.z*velocity;
         }
 
-    }*/
 }
 
 const char* DiscoNave::getLabel(){

@@ -96,6 +96,7 @@ void Foguetao::Update(){
        // position.x -= velocity*0.5;
         if(position.z < -300)
             limite_alcancado = true;
+
     }else{
         position.x=center.x;
         position.y=center.y;

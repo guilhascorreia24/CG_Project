@@ -10,6 +10,7 @@ void World::addObject(Object* obj){
 
 World::World() : main(0){
     fillObjects();
+    comecou = false;
 }
 
 void World::fillObjects(){
@@ -177,7 +178,7 @@ void World::fillObjects(){
     // addObject(disco_nave);
     // addObject(cupula_nave);
     // addObject(base_nave);
-
+    // terra->setUniformOrbit(sol,0.9,1);
     addObject(sol);
     addObject(satelite);
     addObject(planeta);
