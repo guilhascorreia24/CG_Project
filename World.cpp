@@ -272,9 +272,9 @@ void World::update(){
         // Collision z
         bool collisionZ = (pp.z - (pp_size.z/2) >= po.z - (po_size.z/2)) && ( pp.z + (pp_size.z/2) <= po.z + (po_size.z/2));  
 
-            printf("collisionX: %d      collisionY: %d      collisionZ%d\n",collisionX,collisionY,collisionZ);                
+            //printf("collisionX: %d      collisionY: %d      collisionZ%d\n",collisionX,collisionY,collisionZ);                
             if( collisionX && collisionY ){
-                printf("-------> colidiu\n");
+                //printf("-------> colidiu\n");
                 parte->colidiu=true;
             }
         }

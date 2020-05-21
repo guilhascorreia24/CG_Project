@@ -67,7 +67,7 @@ void Sol::setSizeObject(){
 }
 
 void Sol::drawShape(){
-    GLfloat white[] = {0.8f, 0.8f, 0.8f, 1.0f}; 
+    GLfloat white[] = {0.8f, 0.8f, 0.8f, 0.f}; 
     glMaterialfv(GL_FRONT, GL_EMISSION, white);
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
     glMaterialfv(GL_FRONT, GL_SPECULAR, white);

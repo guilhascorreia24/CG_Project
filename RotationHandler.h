@@ -10,8 +10,9 @@ class RotationHandler{
         void Start();
         void Stop();
         ~RotationHandler();
-        void keyboardHandler(int key,int x, int y);
         void keyboardSpeed(unsigned char key, int x,int y);
+
+        void update();
     private:
 
         void rotateRight();
