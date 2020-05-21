@@ -67,6 +67,11 @@ void Sol::setSizeObject(){
 }
 
 void Sol::drawShape(){
+    GLfloat white[] = {0.8f, 0.8f, 0.8f, 1.0f}; 
+    glMaterialfv(GL_FRONT, GL_EMISSION, white);
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+    glMaterialf(GL_FRONT, GL_SHININESS, 128);
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLES);
@@ -82,7 +87,13 @@ void Sol::drawShape(){
     }
 
     glEnd();
-    glDisable(GL_TEXTURE_2D);  
+    glDisable(GL_TEXTURE_2D);
+    GLfloat def[] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat def1[] = {0.2f, 0.2f, 0.2f, 1.0f}; 
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, def1);
+    glMaterialfv(GL_FRONT, GL_EMISSION, def);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, def);
+    glMaterialf(GL_FRONT, GL_SHININESS, 30);
 }
 
 void Sol::Update(){

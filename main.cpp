@@ -56,7 +56,7 @@ bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false, tempo_
 // Função callback chamada pela GLUT a cada intervalo de tempo
 void Timer(int value)
 {
-    mudou_de_nivel=true;
+    mudou_de_nivel=false;
     //tempo_restante=false;
     printf("%d\n",nivel);
     nivel++;
@@ -175,7 +175,7 @@ void textura_fundo()
 
 void desenha_fundo()
 {
-    glDisable(GL_LIGHTING);
+    //glDisableGL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
     //glEnable(GL_TEXTURE_2D);
 
@@ -230,7 +230,7 @@ void desenha_fundo()
     glPopMatrix();
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_DEPTH_TEST);
-   glEnable(GL_LIGHTING);
+   //glEnable(GL_LIGHTING);
     
 }
 
@@ -266,6 +266,7 @@ void display(void)
         luzAmbiente[2] = 0.2;
 
         luzAmbiente[3] = 1.0;
+        glEnable(GL_LIGHT0);
     }
 
     else
@@ -278,6 +279,7 @@ void display(void)
         luzAmbiente[2] = 0.0;
 
         luzAmbiente[3] = 0.0;
+        glDisable(GL_LIGHT0);
     }
 
     if (shading == false)
@@ -287,6 +289,8 @@ void display(void)
     else
 
         glShadeModel(GL_SMOOTH);
+    
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
 
     if (antialiasing == true)
     {
@@ -322,10 +326,10 @@ void display(void)
 
 
 //---------------
-
+    
     if (ganhou)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -363,11 +367,11 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
             else if (perdeu)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -406,11 +410,11 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
             else if (mudou_de_nivel)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -471,12 +475,12 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
 
             if (ajuda)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -594,7 +598,7 @@ void display(void)
                     glutBitmapCharacter(font, c);
                 }
 
-                s = "Movimentar a nave para trás: Tecla 'Seta para Baixo'";
+                s = "Movimentar a nave para tras: Tecla 'Seta para Baixo'";
                 font = GLUT_BITMAP_HELVETICA_12;
                 glRasterPos2i(x + intervalo*2 , y - (intervalo*9));
                 for (std::string::iterator i = s.begin(); i != s.end(); ++i)
@@ -701,7 +705,7 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
 
             // GLint64 timer;
@@ -713,7 +717,7 @@ void display(void)
             
             if (tempo_restante)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -751,7 +755,7 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
 //---------------
 
@@ -759,8 +763,6 @@ void display(void)
     glPopMatrix();
 
     glutSwapBuffers();
-
-    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
 }
 
 void init(void)
@@ -777,17 +779,17 @@ void init(void)
 
     luzAmbiente[3] = 1.0;
 
-    GLfloat posicaoLuz[4] = {0.0, 50.0, 50.0, 1.0};
+    //GLfloat posicaoLuz[4] = {0,0,0, 1.0};
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
 
     // Define os parâmetros da luz de número 0
 
-    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
 
-    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+    //glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
 
-    GLfloat luzDifusa[4] = {0.7, 0.7, 0.7, 1.0}; // "cor"
+    GLfloat luzDifusa[4] = {0.9, 0.9, 0.9, 1.0}; // "cor"
 
     GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0}; // "brilho"
 
@@ -795,7 +797,7 @@ void init(void)
 
     GLfloat especularidade[4] = {1.0, 1.0, 1.0, 1.0};
 
-    GLint especMaterial = 60;
+    GLint especMaterial = 10;
 
     // Habilita o modelo de colorização de Gouraud
 
@@ -803,11 +805,13 @@ void init(void)
 
     // Define a refletância do material
 
-    glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
+    //glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
 
     // Define a concentração do brilho
 
-    glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
+    //glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
+    //glMateriali(GL_FRONT, GL_DIFFUSE, especMaterial);
+    //glMaterialfv(GL_FRONT, GL_DIFFUSE, especularidade);
 
     // Ativa o uso da luz ambiente
 
@@ -817,11 +821,11 @@ void init(void)
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
 
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
+    //glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
 
     glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular);
 
-    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+    //glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
 
     // Habilita a definição da cor do material a partir da cor corrente
 

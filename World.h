@@ -29,6 +29,7 @@ class World{
         void aumentarNivel(int nivel);
 
     private:
+        Sol* sol;
         std::vector<Object*> main;
         std::vector<Object*> objects;
 };

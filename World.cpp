@@ -196,6 +196,7 @@ void World::fillObjects(){
     addMainObject(disco_nave);
     addMainObject(cupula_nave);
     addMainObject(base_nave);
+    this->sol = sol;
 
     //sol->applyGravityPull(terra);
     //terra->setVelocity(10);
@@ -218,6 +219,10 @@ std::vector<Object*> World::getMainObject(){
 } 
 
 void World::draw(){
+    Point a = sol->getPosition();
+    GLfloat posicaoLuz[4] = {a.x,a.y,a.z, 1.0};
+    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+
     for(Object* object : objects){
         object->draw();
     }
