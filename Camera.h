@@ -1,9 +1,10 @@
-#pragma once
-#include "utils.h"
+#pragma onc
 #include "World.h"
+#include "utils.h"
 
 #define CHANGE_SPEED 0.8	//Velocidade da nave
 #define ZOOM_FACTOR 0.1 //Muda o zoom exponecialmente
+#define ROTATION_SPEED 8
 class Camera{
 public:
  Camera(World* w);
@@ -14,6 +15,7 @@ public:
  void keyboardZoom(unsigned char key, int x, int y);
  int camara;
 private:
+	void mover();
 	void camera1();
 	void camera2();
 	void camera3();
@@ -25,6 +27,7 @@ private:
 	void movimento_esquerda();
     void movimento_traz();
 public:
+	void update();
 	void changeCamera();
 
 private:

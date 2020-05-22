@@ -28,15 +28,35 @@
 #define G 0.0001
 #define SPEED 1
 #define EPSILON 0.00002
+#define PI 3.14
+#define KEY_PRESSED true
+#define KEY_RELEASED false
+
 
 struct Point;
+static bool hotkeys[256] = {false};
+static bool spec_hotkeys[256] = {false};
+
+bool getKeyState(char key);
+void setKeyState(char key ,bool val);
+
+bool getSpecKeyState(int key);
+void setSpecKeyState(int key ,bool val);
+
+
 bool equalFloat(float a, float b);
+
+//Degres
 struct AngleRotation{
     AngleRotation(float x_angle, float y_angle, float z_angle);
 
     float getXRotation(){return x;}
     float getYRotation(){return y;}
     float getZRotation(){return z;}
+
+    float getXRadRotation(){return (x*PI)/180;}
+    float getYRadRotation(){return (y*PI)/180;}
+    float getZRadRotation(){return (z*PI)/180;}
 
     void setXRotation(float angle){x= normalizeAngle(angle);}
     void setYRotation(float angle){y= normalizeAngle(angle);}

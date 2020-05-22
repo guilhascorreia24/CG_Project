@@ -162,3 +162,13 @@ void Object::setUniformOrbit(Object *sun, double e, double velocity){
 
     this->e = e;    
 }
+
+void Object::moveForward(float distance){
+    Vector a(cos(rot.getYRadRotation()),0,sin(rot.getYRadRotation()));
+    direction = a.unitVector();
+    Vector b = direction * distance;
+    position+=(b);
+}
+
+
+
