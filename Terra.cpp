@@ -100,6 +100,7 @@ const char* Terra::getLabel(){
 }
 
 void Terra::Update(){
+    //position.print();
     //printf("Earth Position->");
     //position.print();
     //printf("Earth Velocity-> %Lf\n",velocity);
