@@ -31,8 +31,8 @@ void World::fillObjects(){
     // Point satelite_point(30,0,50);
 
 
-    Point terra_point(10,0,-5);
-    Point lua_point(15,0,-10);
+    Point terra_point(10,0,-50);
+    Point lua_point(15,0,-45);
     // //----
 
     Point disco_nave_point(5,0,0);
