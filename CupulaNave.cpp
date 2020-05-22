@@ -94,7 +94,7 @@ void CupulaNave::drawShape(){
 }
 
 void CupulaNave::Update(){
-    setSizeObject();
+    
     if(separado==true){
         if(position.x!=center.x) 
             position.x -= position.x*velocity;

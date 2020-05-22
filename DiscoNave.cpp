@@ -89,7 +89,6 @@ void DiscoNave::drawShape(){
 }
 
 void DiscoNave::Update(){
-    setSizeObject();
     if(separado==true){
         if(position.x!=center.x) 
             position.x -= position.x*velocity;

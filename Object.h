@@ -11,7 +11,6 @@ class Object{
 
         void draw();
         void rotate(AngleRotation &rot);
-        void moveForward(float distance);
         void mover(double x,double y, double z);
         inline void setRotation(AngleRotation & rot){this->rot = rot;};
         AngleRotation getRotation();
@@ -52,7 +51,8 @@ class Object{
         static Vector calcGravitationalForce(Object* obj1,Object* obj2);
         
         void update();
-        
+        std::vector<glm::vec3> getPoints();
+
     protected:
         void virtual drawShape() = 0;
         void virtual Update() = 0;
@@ -70,7 +70,7 @@ class Object{
         Point position;
         Point size_object;
         std::set<Object*> gravity;
-
+        
         //Uniform Orbit
         Object* orbit;
         float lastAngle;
@@ -90,5 +90,6 @@ class Object{
         bool comecou;
         Point min;
         Point max;
+        std::vector<glm::vec3> points;
 };
 
