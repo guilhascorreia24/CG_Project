@@ -55,6 +55,7 @@ Object::Object() : position(0,0,0),size_object(0,0,0),min(0,0,0),max(0,0,0),rot(
     useVelocityGravityPhisics = true;
     useUniformOrbit = false;
     perdeu = false;
+    separado = true;
 }
 Object::~Object(){
 }

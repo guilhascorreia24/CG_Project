@@ -93,5 +93,6 @@ class Object{
         std::vector<glm::vec3> points;
         bool perdeu;
         long double velocity;
+        bool separado;
 };
 

@@ -244,12 +244,13 @@ void World::update(){
         for(Object* parte : main){
             if(parte->comecou)
                 this->comecou = true;
-            if(collision(object,parte)){
+            if(parte->separado == false){
                 parte->colidiu=true;
-                perdeu = true;
-                if(parte->velocity>0)
-                    parte->velocity-=0.001;
+                 if(parte->velocity>0)
+                    parte->velocity-=0.00001;
                     }
+                if(parte->perdeu)  
+                    perdeu = true;      
         }
     }
     for(Object * object : main){
