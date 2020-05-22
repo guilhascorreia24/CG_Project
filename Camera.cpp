@@ -162,8 +162,6 @@ void Camera::camera6(){
 
 void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
-    // eye.x += 5;
-	// up.x += 5; 
 	eye.x += CHANGE_SPEED;
 	center.x += CHANGE_SPEED;
     for(Object * object : mainObjects){
@@ -173,8 +171,6 @@ void Camera::movimento_direita(){
 
 void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
-    // eye.x -= 5;
-	// up.x -= 5;
 	eye.x -= CHANGE_SPEED;
 	center.x -= CHANGE_SPEED;
     for(Object * object : mainObjects){
@@ -184,9 +180,6 @@ void Camera::movimento_esquerda(){
 }
 void Camera::movimento_frente(){
     std::vector<Object*> mainObjects = world->getMainObject();
-    // eye.z -= 5;
-	// up.z -= 5;
-	//distance -= 5;
 	eye.z -= CHANGE_SPEED;
 	center.z -= CHANGE_SPEED;
     for(Object * object : mainObjects){
@@ -195,9 +188,6 @@ void Camera::movimento_frente(){
 }
 void Camera::movimento_traz(){
     std::vector<Object*> mainObjects = world->getMainObject();
-    // eye.z += 5;
-	// up.z += 5;
-	//distance += 5;
 	eye.z += CHANGE_SPEED;
 	center.z += CHANGE_SPEED;
     for(Object * object : mainObjects){

@@ -26,7 +26,7 @@ void World::fillObjects(){
     // Point lua_point(0,0,-120);
 
     // //----
-    Point foguetao_point(10,0,-5);
+    Point foguetao_point(20,0,-5);
     // Point planet_point(10,0,0);
     // Point satelite_point(30,0,50);
 
@@ -175,23 +175,20 @@ void World::fillObjects(){
 
 
 
-    // addObject(disco_nave);
-    // addObject(cupula_nave);
-    // addObject(base_nave);
     // terra->setUniformOrbit(sol,0.9,1);
     addObject(sol);
-    // addObject(satelite);
-    // addObject(planeta);
+    addObject(satelite);
+    addObject(planeta);
 
-    // addObject(terra);
-    // addObject(lua);
+    addObject(terra);
+    addObject(lua);
 
-    // addObject(asteroide1);
-    // addObject(asteroide2);
-    // addObject(asteroide3);
-    // addObject(asteroide4);
+    addObject(asteroide1);
+    addObject(asteroide2);
+    addObject(asteroide3);
+    addObject(asteroide4);
 
-    // addObject(foguetao);
+    addObject(foguetao);
 
     //addObject(nave);
     addMainObject(disco_nave);
@@ -252,21 +249,13 @@ void World::update(){
     for(Object * object : main){
         object->update();
     }
+    
 }
 
 
     void World::aumentarNivel(int nivel){
         printf("INN\n");
         Point asteroide_point(25,20,-20);
-        /*Point nave_point(0,0,-25);
-        Point sol_point(0,0,70);
-        Sol* sol = new Sol(nave_point);
-        sol->setPosition(sol_point);
-        sol->setVelocity(0.f);
-        sol->setSize(5);
-        sol->setMass(10000);*/
-
-        //sol->setSizeObject();
         for(int i = 0; i < 20 ; i++){
             int intervalo = i*4+nivel*2;
             printf("Intervalo->%d\n",intervalo);

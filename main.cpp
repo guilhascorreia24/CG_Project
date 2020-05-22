@@ -61,7 +61,7 @@ void Timer(int value)
     //tempo_restante=false;
     printf("%d\n",nivel);
     nivel++;
-    if(nivel==4){
+    if(nivel==6){
         ganhou=true;
     }
 //     glutPostRedisplay();
@@ -93,7 +93,7 @@ void teclas(unsigned char key, int x, int y)
 
     rot->keyboardHandler(key, x, y);
 
-    if(world->comecou)
+    if(world->comecou&&!ganhou&&!perdeu)
         cam->keyboardZoom(key, x, y);
 
     switch (key)
