@@ -266,7 +266,7 @@ void World::update(){
     bool set = false;
     for(Object * object : main){
         object->update();
-        if(object->getPosition().z>=250)//Zmax
+        if(object->getPosition().z>=100)//Zmax
         {
             Point tmp(object->getPosition().x,object->getPosition().y,-250);
             if(!set){
@@ -280,7 +280,7 @@ void World::update(){
         }
         else if(object->getPosition().z<=-250)//Zmin
         {
-            Point tmp(object->getPosition().x,object->getPosition().y,250);
+            Point tmp(object->getPosition().x,object->getPosition().y,100);
             if(!set){
                 Point pos = object->getPosition();
                 Vector d(pos,tmp);
