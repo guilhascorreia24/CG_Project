@@ -219,6 +219,16 @@ std::vector<Object*> World::getMainObject(){
     return main;
 } 
 
+bool World::collision(Object* one,Object* two){
+
+    bool result = false;
+
+    if(abs(one->getPosition().x-two->getPosition().x)>=5&&(one->getPosition().y-two->getPosition().y)>=5)
+        printf("por amor de deus ");
+    
+    return result;
+}
+
 void World::draw(){
     Point a = sol->getPosition();
     GLfloat posicaoLuz[4] = {a.x,a.y,a.z, 1.0};
@@ -239,29 +249,10 @@ void World::update(){
 
     for(Object * object : objects){
         object->update();
-        Point outro_min = object->min;
-        Point outro_max = object->max;
-        Point outro_pos = object->getPosition();
         for(Object* parte : main){
             if(parte->comecou)
                 this->comecou = true;
-            Point nave_min = parte->min;
-            Point nave_max = parte->max;
-            Point nave_pos = parte->getPosition();
-            // // Collision x
-            // bool collisionX = (outro_min.x <= nave_min.x && outro_max.x <= nave_max.x) || (nave_min.x <= outro_min.x && nave_max.x <= outro_max.x);
-            // // Collision y
-            // bool collisionY = (outro_min.y <= nave_min.y && outro_max.y <= nave_max.y) || (nave_min.y <= outro_min.y && nave_max.y <= outro_max.y);
-            // // Collision z
-            // bool collisionZ = (outro_min.z <= nave_min.z && outro_max.z <= nave_max.z) || (nave_min.z <= outro_min.z && nave_max.z <= outro_max.z);  
-            
-
-            //if( collisionX == true && collisionY == true && collisionZ == true )
-              //  printf("collisionX: %d      collisionY: %d      collisionZ%d \n",collisionX,collisionY,collisionZ);                
-            // if( collisionX == true && collisionY == true && collisionZ == true ){
-            //     //printf("-------> colidiu\n");
-            //     //parte->colidiu=true;
-            // }
+            collision(object,parte);
         }
     }
     for(Object * object : main){
