@@ -165,6 +165,16 @@ void Object::setUniformOrbit(Object *sun, double e, double velocity){
     thisCenter = Vector(position,a);
     lastRadius = sun->getPosition().distance(position);
 
+    //start position needs to be fixed
+    /*if(thisCenter.x == 0){
+        lastAngle = 0;
+    }else{
+        lastAngle = atan(thisCenter.y/thisCenter.x);
+    }*/
+
+    lastAngle = 2.2;
+
+
     this->e = e;    
 }
 
