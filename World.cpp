@@ -318,18 +318,16 @@ void World::update(){
 
 
     void World::aumentarNivel(int nivel){
-        printf("INN\n");
         Point asteroide_point(25,20,-20);
         for(int i = 0; i < 20 ; i++){
             int intervalo = i*4+nivel*2;
-            printf("Intervalo->%d\n",intervalo);
 
             if (i%2==0)
                 asteroide_point = Point(intervalo,0,-20);
             else          
                 asteroide_point = Point(25,0,-intervalo);
 
-            Asteroide1* asteroide1 = new Asteroide1(asteroide_point);
+            Asteroide2* asteroide1 = new Asteroide2(asteroide_point);
             asteroide1->setPosition(asteroide_point);
             asteroide1->setVelocity(0.01);
             asteroide1->setUniformOrbit(sol,0.9,1);
