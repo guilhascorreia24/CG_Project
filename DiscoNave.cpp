@@ -101,6 +101,12 @@ void DiscoNave::Update(){
         }
     }else if(colidiu == true){
         position.x += position.x*velocity;
+        if(position.x>=center.x){
+            colidiu = false;
+            perdeu =true;
+            }
+
+
     }
 }
 

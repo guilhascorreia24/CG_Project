@@ -64,7 +64,7 @@ class Object{
     
     protected:
         AngleRotation rot;
-        long double velocity;
+        
         Vector direction;
         int size;
         Point position;
@@ -91,5 +91,7 @@ class Object{
         Point min;
         Point max;
         std::vector<glm::vec3> points;
+        bool perdeu;
+        long double velocity;
 };
 

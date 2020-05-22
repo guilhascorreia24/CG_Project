@@ -371,8 +371,9 @@ void display(void)
                 glEnable(GL_DEPTH_TEST);
                 glEnable(GL_LIGHTING);
             }
-            else if (perdeu)
+            else if (world->perdeu)
             {
+                perdeu=true;
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);

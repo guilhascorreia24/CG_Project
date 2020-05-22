@@ -11,6 +11,7 @@ void World::addObject(Object* obj){
 World::World() : main(0){
     fillObjects();
     comecou = false;
+    perdeu = false;
 }
 
 void World::fillObjects(){
@@ -26,7 +27,7 @@ void World::fillObjects(){
     // Point lua_point(0,0,-120);
 
     // //----
-    Point foguetao_point(20,0,-5);
+    Point foguetao_point(10,0,-50);
     // Point planet_point(10,0,0);
     // Point satelite_point(30,0,50);
 
@@ -34,6 +35,7 @@ void World::fillObjects(){
     Point terra_point(10,0,-50);
     Point lua_point(15,0,-45);
     // //----
+    
 
     Point disco_nave_point(5,0,0);
     Point cupula_nave_point(2,10,-20);
@@ -210,12 +212,12 @@ std::vector<Object*> World::getMainObject(){
 
 bool World::collision(Object* one,Object* two){
 
-    bool result = false;
+    bool result = true;
     // printf("%f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
     // printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
     // printf("posicao outro = %f %f %f \n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
-    if(abs(one->getPosition().x-two->getPosition().x)>=5&&(one->getPosition().y-two->getPosition().y)>=5)
-        printf("por amor de deus ");
+    // if(abs(one->getPosition().x-two->getPosition().x)>=5&&(one->getPosition().y-two->getPosition().y)>=5)
+    //     printf("por amor de deus ");
     
     return result;
 }
@@ -237,13 +239,17 @@ void World::draw(){
 
 
 void World::update(){
-
     for(Object * object : objects){
         object->update();
         for(Object* parte : main){
             if(parte->comecou)
                 this->comecou = true;
-            collision(object,parte);
+            if(collision(object,parte)){
+                parte->colidiu=true;
+                perdeu = true;
+                if(parte->velocity>0)
+                    parte->velocity-=0.001;
+                    }
         }
     }
     for(Object * object : main){

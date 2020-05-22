@@ -29,9 +29,11 @@ class World{
         void aumentarNivel(int nivel);
         bool collision(Object* one,Object* two);
         bool comecou;
+        bool perdeu;
 
     private:
         Sol* sol;
         std::vector<Object*> main;
         std::vector<Object*> objects;
+
 };

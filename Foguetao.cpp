@@ -103,7 +103,7 @@ void Foguetao::Update(){
     }else{
         position.x=center.x;
         position.y=center.y;
-        position.z=center.z;
+        position.z=300;
         limite_alcancado = false;
     }
 }

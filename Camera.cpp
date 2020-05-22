@@ -194,7 +194,7 @@ void Camera::movimento_esquerda(){
 void Camera::movimento_frente(){
     std::vector<Object*> mainObjects = world->getMainObject();
 	
-	printf("eye.z 	%f\n",eye.z);
+	// printf("eye.z 	%f\n",eye.z);
 	if(eye.z<=-290){
 		eye.z= 260;
 	}

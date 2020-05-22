@@ -106,27 +106,16 @@ void CupulaNave::Update(){
             separado=false;
         }
     } else if(colidiu == true){
-        if(position.x<0) 
-            position.x += position.x*velocity;
-        else
-        {
-            position.x -= position.x*velocity;
-        }
-            
-        if(position.y<0) 
-            position.y += position.y*velocity;
-        else
-        {
-            position.y -= position.y*velocity;
-        }
-            
-        if(position.z<0) 
-            position.z += position.z*velocity;
-        else
-        {
-            position.z -= position.z*velocity;
-        }
+        position.x += position.x*velocity;
+        
+        position.y += position.y*velocity;
 
+        position.z += position.z*velocity;
+        if(position.x>=center.x){
+            colidiu = false;
+            perdeu =true;
+        }
+        
     }
 }
 
