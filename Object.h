@@ -75,7 +75,7 @@ class Object{
         Object* orbit;
         float lastAngle;
         float lastRadius;
-        Point thisCenter;
+        Vector thisCenter;
         double e;
         bool useUniformOrbit;
     private:

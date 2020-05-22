@@ -50,7 +50,7 @@ Object::Object() : position(0,0,0),size_object(0,0,0),rot(0,0,0),velocity(0),dir
     last_update_time = glutGet(GLUT_ELAPSED_TIME);
     lastAngle = 0;
     lastRadius = 0;
-    thisCenter = Point(0,0,0);
+    thisCenter = Vector(0,0,0);
     e = 0;
     useVelocityGravityPhisics = true;
     useUniformOrbit = false;
@@ -98,6 +98,8 @@ void Object::update(){
     //Next position to orbit
     if(useUniformOrbit){
         Point sunPos = orbit->getPosition();
+        Point thisCenter = sunPos;
+        thisCenter+=this->thisCenter;
         double a = thisCenter.distance(sunPos)*2;
         double b = a * sqrt(-(e*e-1));
         lastAngle+=velocity/lastRadius;
@@ -156,7 +158,8 @@ void Object::setUniformOrbit(Object *sun, double e, double velocity){
     if(velocity!=0)
         this->velocity = velocity; 
     orbit = sun;
-    thisCenter = position;
+    Point a = sun->getPosition();
+    thisCenter = Vector(position,a);
     lastRadius = sun->getPosition().distance(position);
 
     this->e = e;    

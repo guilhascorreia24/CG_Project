@@ -106,8 +106,7 @@ void World::fillObjects(){
     terra->setVelocity(0.f);
     terra->setMass(100);
     terra->setSizeObject();
-    
-    // terra->setUniformOrbit(sol,0.9,1);
+    terra->setUniformOrbit(sol,0.9,0.3);
     // terra->setForceToOrbit(sol,0.55,0.20);
     // terra->setVelocity(1);
 
@@ -116,7 +115,8 @@ void World::fillObjects(){
     lua->setPosition(lua_point);
     lua->setVelocity(0.05);
     lua->setMass(10);
-    //lua->setUniformOrbit(sol,0.9,1);
+    lua->setUniformOrbit(terra,0.9,1);
+    terra->update();
 
     // lua->setForceToOrbit(sol,0.55);
     // terra->setForceToOrbit(sol,0.55);
