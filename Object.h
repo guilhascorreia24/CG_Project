@@ -5,7 +5,7 @@
 class Object{
     public:
         Object();
-        Object(Point & pos,Point & size_obj, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
+        Object(Point & pos,Point & size_obj,Point & min,Point & max, AngleRotation & rotation, Vector & direction, long double velocity, long double mass);
         virtual ~Object();
 
 
@@ -87,5 +87,8 @@ class Object{
     public:
         static bool drawLabels; 
         GLboolean colidiu;
+        bool comecou;
+        Point min;
+        Point max;
 };
 

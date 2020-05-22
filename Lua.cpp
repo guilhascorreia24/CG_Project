@@ -45,6 +45,7 @@ Lua::~Lua(){
 }
 
 
+
 void Lua::setSizeObject(){
     int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
     for (int i = 0; i < (int)points.size(); i++)
@@ -64,9 +65,12 @@ void Lua::setSizeObject(){
         if(points[i].z<min_z)
             min_z = points[i].z;       
     }
-    this->size_object.x= abs(min_x-max_x);
-    this->size_object.y= abs(min_y-max_y);
-    this->size_object.z= abs(min_z-max_z);
+    this->min.x = min_x;
+    this->min.y = min_y;
+    this->min.z = min_z;
+    this->max.x = max_x;
+    this->max.y = max_y;
+    this->max.z = max_z;
 }
 
 
@@ -93,11 +97,12 @@ const char* Lua::getLabel(){
 }
 
 void Lua::Update(){
-    //static long time = glutGet(GLUT_ELAPSED_TIME);
-    //long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-    //float dist = center.distance(position);
+    setSizeObject();
+    // static long time = glutGet(GLUT_ELAPSED_TIME);
+    // long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
+    // float dist = center.distance(position);
     // printf("velocity = %lf; x = %lf; y = %lf; dist = %lf;\ncenter.x = %lf; center.y = %lf\n\n",velocity, position.x, position.y, dist,center.x,center.y);
     
-    //position.x = dist + cos(time_elapsed*velocity);
-    //position.y = dist + sin(time_elapsed*velocity);
+    // position.x = center.x + dist * cos(time_elapsed*velocity);
+    // position.y = center.y + dist * sin(time_elapsed*velocity);
 }
