@@ -180,8 +180,8 @@ void Camera::movimento_direita(){
 void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
 	if(eye.x<=-240){
-		eye.x= 230;
-		}
+		eye.x= 225;
+	}
 	else{
 		eye.x -= CHANGE_SPEED;
 		center.x -= CHANGE_SPEED;
