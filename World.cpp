@@ -22,7 +22,6 @@ void World::fillObjects(){
     this->nivel = 1;
 
     Point dist_point(0,0,0);
-    // Point foguetao_point(0,0,-5);
     Point nave_point(0,0,0);
     Point planet_point(0,0,-180);
     Point satelite_point(0,0,-150);
@@ -256,8 +255,8 @@ void World::update(){
             bool c=collision(object, parte);
             if(c){
                 parte->colidiu=true;
-                 if(parte->velocity>0)
-                    parte->velocity-=0.00001;
+                 //if(parte->velocity>0)
+                    //parte->velocity-=0.00001;
                     }
                 if(parte->perdeu)  
                     perdeu = true;      
@@ -318,18 +317,16 @@ void World::update(){
 
 
     void World::aumentarNivel(int nivel){
-        printf("INN\n");
         Point asteroide_point(25,20,-20);
         for(int i = 0; i < 20 ; i++){
             int intervalo = i*4+nivel*2;
-            printf("Intervalo->%d\n",intervalo);
 
             if (i%2==0)
                 asteroide_point = Point(intervalo,0,-20);
             else          
                 asteroide_point = Point(25,0,-intervalo);
 
-            Asteroide1* asteroide1 = new Asteroide1(asteroide_point);
+            Asteroide2* asteroide1 = new Asteroide2(asteroide_point);
             asteroide1->setPosition(asteroide_point);
             asteroide1->setVelocity(0.01);
             asteroide1->setUniformOrbit(sol,0.9,1);

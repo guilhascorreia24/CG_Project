@@ -112,7 +112,7 @@ void CupulaNave::Update(){
         
         position.y += position.y*velocity;
 
-        position.z += position.z*velocity;
+        position.z -= position.z*velocity*0.1;
         if(position.x>=center.x){
             colidiu = false;
             // perdeu =true;
