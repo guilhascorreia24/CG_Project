@@ -50,7 +50,7 @@ int nivel=1;
 
 bool iluminacao = true, shading = true, antialiasing = true;
 
-bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false, tempo_restante = true;
+bool ganhou = false, ajuda = false, mudou_de_nivel=false, tempo_restante = true;
 
 
 
@@ -61,11 +61,10 @@ void Timer(int value)
     //tempo_restante=false;
     printf("%d\n",nivel);
     nivel++;
-    if(nivel==6){
+    if(nivel==5){
         ganhou=true;
     }
-//     glutPostRedisplay();
-//     glutTimerFunc(33,Timer, 1);
+
 }
 
 
@@ -93,7 +92,7 @@ void teclas(unsigned char key, int x, int y)
 
     rot->keyboardHandler(key, x, y);
 
-    if(world->comecou&&!ganhou&&!perdeu)
+    if(world->comecou&&!ganhou&&!world->perdeu)
         cam->keyboardZoom(key, x, y);
 
     switch (key)
@@ -146,13 +145,13 @@ void teclas(unsigned char key, int x, int y)
     case 32:
         if(mudou_de_nivel==true){
             mudou_de_nivel=false;
-            glutTimerFunc(33000,Timer, 1);
+            glutTimerFunc(30000,Timer, 1);
             world->aumentarNivel(nivel);
             }
-        else if(perdeu==true)
-            perdeu=false;
-        else if(ganhou==true)
-            ganhou=false;
+        // else if(perdeu==true)
+        //     perdeu=false;
+        // else if(ganhou==true)
+        //     ganhou=false;
         break;
     }
 }
@@ -240,7 +239,6 @@ void display(void)
 
 {
 
-
     glMatrixMode(GL_MODELVIEW);
 
     glPushMatrix();
@@ -323,7 +321,7 @@ void display(void)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     desenha_fundo();
-    if(!ajuda&&!mudou_de_nivel&&!ganhou&&!perdeu){
+    if(!ajuda&&!mudou_de_nivel&&!ganhou&&!world->perdeu){
         world->draw();}
 
 
@@ -373,7 +371,6 @@ void display(void)
             }
             else if (world->perdeu)
             {
-                perdeu=true;
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
@@ -398,7 +395,6 @@ void display(void)
                 }
 //******
 
-
                 // s = "Para jogar outra vez pressione a tecla Space";
                 // font = GLUT_BITMAP_HELVETICA_12;
                 // glRasterPos2i(330+glutGet(GLUT_WINDOW_WIDTH)*0.04, 480-glutGet(GLUT_WINDOW_HEIGHT)*0.03);
@@ -414,6 +410,7 @@ void display(void)
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
                 glEnable(GL_LIGHTING);
+                
             }
             else if (mudou_de_nivel)
             {
@@ -746,7 +743,7 @@ void display(void)
                 glRasterPos2i(20+glutGet(GLUT_WINDOW_WIDTH)*0.05, 900-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
 
 //******
-                if(!ganhou&&!perdeu){
+                if(!ganhou&&!world->perdeu){
                     std::string s = "Tempo: "+time;
                     for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                     {

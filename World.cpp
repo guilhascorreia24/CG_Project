@@ -179,18 +179,18 @@ void World::fillObjects(){
 
     // terra->setUniformOrbit(sol,0.9,1);
     addObject(sol);
-    addObject(satelite);
-    addObject(planeta);
+    // addObject(satelite);
+    // addObject(planeta);
 
-    addObject(terra);
-    addObject(lua);
+    // addObject(terra);
+    // addObject(lua);
 
-    addObject(asteroide1);
-    addObject(asteroide2);
-    addObject(asteroide3);
-    addObject(asteroide4);
+    // addObject(asteroide1);
+    // addObject(asteroide2);
+    // addObject(asteroide3);
+    // addObject(asteroide4);
 
-    addObject(foguetao);
+    // addObject(foguetao);
 
     //addObject(nave);
     addMainObject(disco_nave);
@@ -213,11 +213,13 @@ std::vector<Object*> World::getMainObject(){
 bool World::collision(Object* one,Object* two){
 
     bool result = true;
-    // printf("%f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
-    // printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
-    // printf("posicao outro = %f %f %f \n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
-    // if(abs(one->getPosition().x-two->getPosition().x)>=5&&(one->getPosition().y-two->getPosition().y)>=5)
-    //     printf("por amor de deus ");
+    printf("size %f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
+    printf("min %f %f %f\n",one->min.x,one->min.y,one->min.z);
+    printf("max %f %f %f\n",one->max.x,one->max.y,one->max.z);
+    printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
+    printf("posicao outro = %f %f %f \n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
+    if(abs(one->getPosition().x-two->getPosition().x)>=5&&(one->getPosition().y-two->getPosition().y)>=5)
+        printf("por amor de deus ");
     
     return result;
 }
@@ -244,13 +246,14 @@ void World::update(){
         for(Object* parte : main){
             if(parte->comecou)
                 this->comecou = true;
-            if(parte->separado == false){
-                parte->colidiu=true;
-                 if(parte->velocity>0)
-                    parte->velocity-=0.00001;
-                    }
-                if(parte->perdeu)  
-                    perdeu = true;      
+            bool c=collision(object, parte);
+            // if(c){
+            //     parte->colidiu=true;
+            //      if(parte->velocity>0)
+            //         parte->velocity-=0.00001;
+            //         }
+            //     if(parte->perdeu)  
+            //         perdeu = true;      
         }
     }
     for(Object * object : main){
