@@ -776,7 +776,7 @@ void display(void)
             time_elapsed = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
             std::string time = std::to_string(time_elapsed - stop_time);
             
-            if (tempo_restante&&!ajuda&&!mudou_de_nivel&&!ganhou&&!world->perdeu)
+            if (tempo_restante&&!ajuda&&!mudou_de_nivel&&!ganhou&&!world->perdeu&&world->comecou)
             {
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);

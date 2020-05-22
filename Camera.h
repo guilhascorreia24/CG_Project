@@ -2,7 +2,7 @@
 #include "utils.h"
 #include "World.h"
 
-#define CHANGE_SPEED 0.8	//Velocidade da nave
+#define CHANGE_SPEED 1.2	//Velocidade da nave
 #define ZOOM_FACTOR 0.1 //Muda o zoom exponecialmente
 
 class World;
