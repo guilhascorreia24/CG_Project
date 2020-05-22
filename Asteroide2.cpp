@@ -42,7 +42,6 @@ Asteroide2::Asteroide2(Point &center):center(center){
 Asteroide2::~Asteroide2(){
     glDeleteBuffers(1,&pattern_buffer);
 }
-
 void Asteroide2::setSizeObject(){
     int max_x = -1,min_x = 1000 ,max_y = -1,min_y = 1000 ,max_z = -1,min_z = 1000 ;
     for (int i = 0; i < (int)points.size(); i++)
@@ -62,14 +61,16 @@ void Asteroide2::setSizeObject(){
         if(points[i].z<min_z)
             min_z = points[i].z;       
     }
-    this->min.x = min_x;
-    this->min.y = min_y;
-    this->min.z = min_z;
-    this->max.x = max_x;
-    this->max.y = max_y;
-    this->max.z = max_z;
+    this->min.x = min_x*size;
+    this->min.y = min_y*size;
+    this->min.z = min_z*size;
+    this->max.x = max_x*size;
+    this->max.y = max_y*size;
+    this->max.z = max_z*size;
+    this->size_object.x=abs(min_x-max_x)*size;
+    this->size_object.y=abs(min_y-max_y)*size;
+    this->size_object.z=abs(min_z-max_z)*size;
 }
-
 void Asteroide2::drawShape(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glEnable(GL_TEXTURE_2D);
