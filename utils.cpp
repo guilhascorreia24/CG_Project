@@ -1,5 +1,6 @@
 #include "utils.h"
 
+
 AngleRotation::AngleRotation(float x_angle,float y_angle, float z_angle){
         setXRotation(x_angle);
         setYRotation(y_angle);
@@ -218,19 +219,4 @@ long double getOrbitalNeededVelocity(long double massCentral, float distance){
 bool equalFloat(float a, float b){
    auto diff = a - b;
    return (diff < EPSILON) && (-diff < EPSILON);
-}
-
-void setKeyState(char key ,bool val){
-    hotkeys[key] = val;
-}
-
-bool getKeyState(char key){
-    return hotkeys[key];
-}
-
-bool getSpecKeyState(int key){
-    return spec_hotkeys[key];
-}
-void setSpecKeyState(int key ,bool val){
-    spec_hotkeys[key] = val;
 }

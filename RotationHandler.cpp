@@ -19,6 +19,29 @@ void RotationHandler::Stop(){
     start = false;
 }
 
+void RotationHandler::keyboardHandler(int key,int x, int y){
+    if(!start){
+        return;
+    }
+    switch(key){
+        case 'b':
+            rotateDown();
+            break;
+        case 'c':
+            rotateUp();
+            break;
+
+        case 'e':
+            rotateLeft();
+            break;
+        case 'd':
+            rotateRight();
+            break;
+        default:
+        break;
+    }
+}
+
 void RotationHandler::keyboardSpeed(unsigned char key, int x,int y){
     if(!start){return;}
     switch(key){
@@ -29,18 +52,6 @@ void RotationHandler::keyboardSpeed(unsigned char key, int x,int y){
             lessSpeed();
             break;
     }
-}
-
-void RotationHandler::update(){
-
-    if(getKeyState('b') == KEY_PRESSED)
-        rotateDown();
-    if(getKeyState('c') == KEY_PRESSED)
-        rotateUp();
-    if(getKeyState('e') == KEY_PRESSED)
-        rotateLeft();
-    if(getKeyState('d') == KEY_PRESSED)
-        rotateRight();
 }
 
 void RotationHandler::rotateRight(){

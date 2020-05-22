@@ -67,16 +67,11 @@ void Timer(int value)
 //     glutTimerFunc(33,Timer, 1);
 }
 
-void keyboardHandlerUp(int key, int x, int y){
-    setSpecKeyState(key,KEY_RELEASED);
-    //printf("Released Key->%d\n",key);
-}
 
 void keyboardHandler(int key, int x, int y)
 {
-    setSpecKeyState(key,KEY_PRESSED);
+
     cam->keyboardCamera(key, x, y);
-    //printf("Key Value After->%d\n",hotkeys[key]);
 
     switch(key){
 		case GLUT_KEY_F1:
@@ -92,13 +87,10 @@ void keyboardHandler(int key, int x, int y)
 	}
 }
 
-void teclasUp(unsigned char key, int x, int y){
-    setKeyState(key,KEY_RELEASED);
-}
-
 void teclas(unsigned char key, int x, int y)
 {
-    setKeyState(key,KEY_PRESSED);
+
+    rot->keyboardHandler(key, x, y);
 
     if(world->comecou)
         cam->keyboardZoom(key, x, y);
@@ -184,7 +176,7 @@ void textura_fundo()
 
 void desenha_fundo()
 {
-    glDisable(GL_LIGHTING);
+    //glDisableGL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
     //glEnable(GL_TEXTURE_2D);
 
@@ -239,7 +231,7 @@ void desenha_fundo()
     glPopMatrix();
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
+   //glEnable(GL_LIGHTING);
     
 }
 
@@ -338,7 +330,7 @@ void display(void)
     
     if (ganhou)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -380,7 +372,7 @@ void display(void)
             }
             else if (perdeu)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -423,7 +415,7 @@ void display(void)
             }
             else if (mudou_de_nivel)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -484,12 +476,12 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
 
             if (ajuda)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -714,7 +706,7 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
 
             // GLint64 timer;
@@ -726,7 +718,7 @@ void display(void)
             
             if (tempo_restante)
             {
-                glDisable(GL_LIGHTING);
+                //glDisableGL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -764,7 +756,7 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
+                //glEnable(GL_LIGHTING);
             }
 //---------------
 
@@ -777,7 +769,6 @@ void display(void)
 void init(void)
 
 {
-    //memset(hotkeys,0,256);
 
     win = 50;
 
@@ -831,7 +822,7 @@ void init(void)
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
 
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
+    //glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
 
     glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular);
 
@@ -1109,8 +1100,6 @@ void mainloop()
     {
 
         world->update();
-        cam->update();
-        rot->update();
 
         glutPostRedisplay();
 
@@ -1152,15 +1141,12 @@ int main(int argc, char **argv)
 
     glGetIntegerv(GL_SAMPLES, &iNumSample);
 
-    glutIgnoreKeyRepeat(1);
-
     glutMouseFunc(GerenciaMouse);
 
     glutSpecialFunc(keyboardHandler);
-    glutSpecialUpFunc(keyboardHandlerUp);
 
     glutKeyboardFunc(teclas);
-    glutKeyboardUpFunc(teclasUp);
+    
     glutTimerFunc(30000, Timer, 1);
 
     glutIdleFunc(mainloop);

@@ -2,10 +2,6 @@
 
 Camera::Camera(World* world) : eye(0,10,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
-	for(Object* obj : world->getMainObject()){
-		Vector dir(0,0,-1);
-		obj->setDirection(dir);
-	}
 }
 
 Camera::~Camera(){
@@ -18,82 +14,46 @@ void Camera::Start(){
 void Camera::Stop(){
 	start = false;
 }
-
-void Camera::mover(){
-	auto objects = world->getMainObject();
-	for(auto object : objects){
-		if(!object->canMove()){
-			return;
-		}
-	}
-	//printf("State Up Key->%d\n",hotkeys[GLUT_KEY_UP]);
-	//printf("Key up->%d\n",GLUT_KEY_UP);
-	if(getKeyState(GLUT_KEY_DOWN) == KEY_PRESSED){
-		movimento_traz();
-	}
-
-	if(getKeyState(GLUT_KEY_UP) == KEY_PRESSED){
-		movimento_frente();
-	}
-
-	if(getKeyState(GLUT_KEY_RIGHT)== KEY_PRESSED){
-		movimento_direita();
-	}
-
-	if(getKeyState(GLUT_KEY_LEFT) == KEY_PRESSED){
-		movimento_esquerda();
-	}
-}
-void Camera::update(){
-	//printf("State Up Key->%d\n",hotkeys[GLUT_KEY_UP]);
-	//printf("Key up->%d\n",GLUT_KEY_UP);
-	if(getSpecKeyState(GLUT_KEY_DOWN) == KEY_PRESSED){
-		auto objects = world->getMainObject();
-		for(auto object : objects){
-			if(!object->canMove()){
-				return;
-			}
-		}
-		movimento_traz();
-	}
-
-	if(getSpecKeyState(GLUT_KEY_UP) == KEY_PRESSED){
-		auto objects = world->getMainObject();
-		for(auto object : objects){
-			if(!object->canMove()){
-				return;
-			}
-		}
-		movimento_frente();
-	}
-
-	if(getSpecKeyState(GLUT_KEY_RIGHT)== KEY_PRESSED){
-		auto objects = world->getMainObject();
-		for(auto object : objects){
-			if(!object->canMove()){
-				return;
-			}
-		}
-		movimento_direita();
-	}
-
-	if(getSpecKeyState(GLUT_KEY_LEFT) == KEY_PRESSED){
-		auto objects = world->getMainObject();
-		for(auto object : objects){
-			if(!object->canMove()){
-				return;
-			}
-		}
-		movimento_esquerda();
-	}
-	changeCamera();
-}
-
 void Camera::keyboardCamera(int key, int x, int y){
 	if(!start){
 		return;
 	}
+	auto objects = world->getMainObject();
 	switch(key){
+		case GLUT_KEY_DOWN:
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_traz();
+            break;
+        case GLUT_KEY_UP:
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_frente();
+            break;
+
+        case GLUT_KEY_LEFT:
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_esquerda();
+            break;
+        case GLUT_KEY_RIGHT:
+            
+			for(auto object : objects){
+				if(!object->canMove()){
+					return;
+				}
+			}
+			movimento_direita();
+            break;
 		case GLUT_KEY_F2:
 		     
 			camera1();
@@ -131,13 +91,6 @@ void Camera::keyboardCamera(int key, int x, int y){
 			    
 			break;		
 	}
-	//printf("Address %d\n",hotkeys);
-	/*
-	for(int i = 0; i<256;i++){
-		if(getKeyState(i) == true){
-			printf("Hotkey-> %d is Pressed\n",i);
-		}
-	}*/
 	changeCamera();
 }
 
@@ -210,39 +163,23 @@ void Camera::camera6(){
 void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.x += 5;
-	// up.x += 5;
-	for(Object * object : mainObjects){
-        AngleRotation rot(0,ROTATION_SPEED,0);
-        object->rotate(rot);
-		object->moveForward(0);
+	// up.x += 5; 
+	eye.x += CHANGE_SPEED;
+	center.x += CHANGE_SPEED;
+    for(Object * object : mainObjects){
+        object->mover(CHANGE_SPEED,0,0);
     }
-	eye.y-=10;
-	float dist = eye.distance(center);
-	center = mainObjects[0]->getPosition();
-	Vector dir =  mainObjects[0]->getDirection();
-	dir*=-dist;
-	eye = center;
-	eye +=dir;
-	eye.y = 10;
 }
 
 void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
     // eye.x -= 5;
 	// up.x -= 5;
-	for(Object * object : mainObjects){
-        AngleRotation rot(0,-ROTATION_SPEED,0);
-        object->rotate(rot);
-		object->moveForward(0);
+	eye.x -= CHANGE_SPEED;
+	center.x -= CHANGE_SPEED;
+    for(Object * object : mainObjects){
+        object->mover(-CHANGE_SPEED,0,0);
     }
-	eye.y-=10;
-	float dist = eye.distance(center);
-	center = mainObjects[0]->getPosition();
-	Vector dir =  mainObjects[0]->getDirection();
-	dir*=-dist;
-	eye = center;
-	eye +=dir;
-	eye.y = 10;
 
 }
 void Camera::movimento_frente(){
@@ -250,13 +187,10 @@ void Camera::movimento_frente(){
     // eye.z -= 5;
 	// up.z -= 5;
 	//distance -= 5;
-	Vector dir =  mainObjects[0]->getDirection();
-	dir*=CHANGE_SPEED;
-	eye+=dir;
-	center+=dir;
+	eye.z -= CHANGE_SPEED;
+	center.z -= CHANGE_SPEED;
     for(Object * object : mainObjects){
-        object->moveForward(CHANGE_SPEED);
-		//object->mover(0,0,-CHANGE_SPEED);
+        object->mover(0,0,-CHANGE_SPEED);
     }
 }
 void Camera::movimento_traz(){
@@ -264,12 +198,9 @@ void Camera::movimento_traz(){
     // eye.z += 5;
 	// up.z += 5;
 	//distance += 5;
-	Vector dir =  mainObjects[0]->getDirection();
-	dir*=-CHANGE_SPEED;
-	eye+=dir;
-	center+=dir;
+	eye.z += CHANGE_SPEED;
+	center.z += CHANGE_SPEED;
     for(Object * object : mainObjects){
-        object->moveForward(-CHANGE_SPEED);
-		//object->mover(0,0,-CHANGE_SPEED);
+        object->mover(0,0,CHANGE_SPEED);
     }
 }

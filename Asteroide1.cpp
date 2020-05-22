@@ -93,7 +93,6 @@ void Asteroide1::drawShape(){
 }
 
 void Asteroide1::Update(){
-    setSizeObject();
 }
 
 const char* Asteroide1::getLabel(){

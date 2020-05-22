@@ -92,7 +92,6 @@ void Foguetao::drawShape(){
 }
 
 void Foguetao::Update(){
-    setSizeObject();
     if(limite_alcancado == false){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;

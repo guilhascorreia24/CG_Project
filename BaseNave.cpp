@@ -93,7 +93,6 @@ void BaseNave::drawShape(){
 }
 
 void BaseNave::Update(){
-    setSizeObject();
     if(separado==true){
         if(position.x!=center.x) 
             position.x -= position.x*velocity;
@@ -104,7 +103,12 @@ void BaseNave::Update(){
         if(position == center){
             separado=false;
             printf("Nave pode ser Movida\n");
+            comecou = true;
         } 
+
+    }else if(colidiu == true){
+        if(position.x<0) 
+            position.x += position.x*velocity;
         else
         {
             position.x -= position.x*velocity;
@@ -125,7 +129,6 @@ void BaseNave::Update(){
         }
     }
 }
-
 
 const char* BaseNave::getLabel(){
     if(separado==true)

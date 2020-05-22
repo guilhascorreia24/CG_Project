@@ -97,7 +97,6 @@ const char* Lua::getLabel(){
 }
 
 void Lua::Update(){
-    setSizeObject();
     // static long time = glutGet(GLUT_ELAPSED_TIME);
     // long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
     // float dist = center.distance(position);
