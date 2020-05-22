@@ -212,7 +212,7 @@ std::vector<Object*> World::getMainObject(){
 
 bool World::collision(Object* one,Object* two){
 
-    bool result = true;
+    bool result = false;
 
     //printf("size %f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
     // printf("min %f %f %f\n",one->min.x,one->min.y,one->min.z);
@@ -222,7 +222,7 @@ bool World::collision(Object* one,Object* two){
     if(two->getPosition().x-two->getSizeObject().x <= one->getPosition().x + (one->getSizeObject().x/2) && one->getPosition().x - (one->getSizeObject().x/2) <= two->getPosition().x+two->getSizeObject().x
     &&
     two->getPosition().z-two->getSizeObject().z <= one->getPosition().z + one->getSizeObject().z && one->getPosition().z - one->getSizeObject().z <= two->getPosition().z+two->getSizeObject().z)
-        printf("por amor de deus ");
+        result = true;
     
     return result;
 }
@@ -250,13 +250,13 @@ void World::update(){
             if(parte->comecou)
                 this->comecou = true;
             bool c=collision(object, parte);
-            // if(c){
-            //     parte->colidiu=true;
-            //      if(parte->velocity>0)
-            //         parte->velocity-=0.00001;
-            //         }
-            //     if(parte->perdeu)  
-            //         perdeu = true;      
+            if(c){
+                parte->colidiu=true;
+                 if(parte->velocity>0)
+                    parte->velocity-=0.00001;
+                    }
+                if(parte->perdeu)  
+                    perdeu = true;      
         }
     }
     for(Object * object : main){
