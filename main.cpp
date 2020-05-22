@@ -57,13 +57,13 @@ bool ganhou = false, ajuda = false, mudou_de_nivel=false, tempo_restante = true;
 // Função callback chamada pela GLUT a cada intervalo de tempo
 void Timer(int value)
 {
-    // mudou_de_nivel=true;
-    // //tempo_restante=false;
-    // printf("%d\n",nivel);
-    // nivel++;
-    // if(nivel==5){
-    //     ganhou=true;
-    // }
+    mudou_de_nivel=true;
+    //tempo_restante=false;
+    printf("%d\n",nivel);
+    nivel++;
+    if(nivel==5){
+        ganhou=true;
+    }
 
 }
 
@@ -498,6 +498,43 @@ void display(void)
                 glEnable(GL_LIGHTING);
             }
 
+
+            if (!world->comecou)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_TEXTURE_2D);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+                gluOrtho2D(0, 1000, 0, 1000);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
+                glColor3f(1.0, 1.0, 1.0);
+                void *font = GLUT_BITMAP_TIMES_ROMAN_24;
+                glRasterPos2i(250+glutGet(GLUT_WINDOW_WIDTH)*0.05, 820-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
+
+//******
+                std::string n = std::to_string(nivel);
+                std::string s = "Preparado para uma viagem espacial?";
+                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                {
+                    char c = *i;
+                    glutBitmapCharacter(font, c);
+                }
+//******
+
+
+                glMatrixMode(GL_PROJECTION);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glPopMatrix();
+                glEnable(GL_TEXTURE_2D);
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_LIGHTING);
+            }
+
             if (ajuda)
             {
                 glDisable(GL_LIGHTING);
@@ -733,13 +770,13 @@ void display(void)
             // double t = timer/1000000000.0;
             
             static long t = glutGet(GLUT_ELAPSED_TIME);
-            if(ajuda||mudou_de_nivel)
+            if(ajuda||mudou_de_nivel||!world->comecou)
                 stop_time = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
             
             time_elapsed = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
             std::string time = std::to_string(time_elapsed - stop_time);
             
-            if (tempo_restante&&!ajuda&&!mudou_de_nivel)
+            if (tempo_restante&&!ajuda&&!mudou_de_nivel&&!ganhou&&!world->perdeu)
             {
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
@@ -763,7 +800,7 @@ void display(void)
                 glRasterPos2i(20+glutGet(GLUT_WINDOW_WIDTH)*0.05, 900-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
 
 //******
-                if(!ganhou&&!world->perdeu){
+                if(!ganhou&&!world->perdeu||world->comecou){
                     std::string s = "Tempo: "+time;
                     for (std::string::iterator i = s.begin(); i != s.end(); ++i)
                     {
