@@ -1,4 +1,5 @@
 #pragma once
+#include "Camera.h"
 #include "Object.h"
 #include <vector>
 #include "DiscoNave.h"
@@ -13,7 +14,7 @@
 #include "Lua.h"
 #include "Foguetao.h"
 
-//Cleanup needed
+class Camera;
 class World{
     public:
         World();
@@ -22,6 +23,7 @@ class World{
         void draw();
         void update();
 
+        void setCamera(Camera* cam);
         void fillObjects();
         void addMainObject(Object* obj);
         void addObject(Object* obj);
@@ -35,5 +37,6 @@ class World{
         Sol* sol;
         std::vector<Object*> main;
         std::vector<Object*> objects;
+        Camera *cam;
 
 };

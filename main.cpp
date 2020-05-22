@@ -883,6 +883,8 @@ void init(void)
 
     cam = new Camera(world);
 
+    world->setCamera(cam);
+
     rot->Start();
 
     cam->Start();
