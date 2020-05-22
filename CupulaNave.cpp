@@ -107,7 +107,7 @@ void CupulaNave::Update(){
             separado=false;
         }
     } else if(colidiu == true){
-        position.x += position.x*velocity;
+        position.x -= position.x*velocity;
         
         position.y += position.y*velocity;
 
