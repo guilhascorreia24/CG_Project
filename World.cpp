@@ -219,8 +219,7 @@ bool World::collision(Object* one,Object* two){
     // printf("max %f %f %f\n",one->max.x,one->max.y,one->max.z);
     // printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
     // printf("posicao outro = %f %f %f \n\n\n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
-    //printf("xmin da sol <= ");
-    if(two->getPosition().x-two->getSizeObject().x <= one->getPosition().x + one->getSizeObject().x && one->getPosition().x - one->getSizeObject().x <= two->getPosition().x+two->getSizeObject().x
+    if(two->getPosition().x-two->getSizeObject().x <= one->getPosition().x + (one->getSizeObject().x/2) && one->getPosition().x - (one->getSizeObject().x/2) <= two->getPosition().x+two->getSizeObject().x
     &&
     two->getPosition().z-two->getSizeObject().z <= one->getPosition().z + one->getSizeObject().z && one->getPosition().z - one->getSizeObject().z <= two->getPosition().z+two->getSizeObject().z)
         printf("por amor de deus ");
