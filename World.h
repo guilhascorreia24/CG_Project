@@ -27,6 +27,7 @@ class World{
         void addObject(Object* obj);
         int nivel;
         void aumentarNivel(int nivel);
+        bool collision(Object* one,Object* two);
         bool comecou;
 
     private:
