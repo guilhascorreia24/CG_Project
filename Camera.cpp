@@ -162,8 +162,16 @@ void Camera::camera6(){
 
 void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
-	eye.x += CHANGE_SPEED;
-	center.x += CHANGE_SPEED;
+	
+	if(eye.x>=230){
+		eye.x= -240;
+		changeCamera();
+		}
+	else{
+		eye.x += CHANGE_SPEED;
+		center.x += CHANGE_SPEED;
+	}	
+	
     for(Object * object : mainObjects){
         object->mover(CHANGE_SPEED,0,0);
     }
@@ -171,8 +179,13 @@ void Camera::movimento_direita(){
 
 void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
-	eye.x -= CHANGE_SPEED;
-	center.x -= CHANGE_SPEED;
+	if(eye.x<=-240){
+		eye.x= 230;
+		}
+	else{
+		eye.x -= CHANGE_SPEED;
+		center.x -= CHANGE_SPEED;
+	}	
     for(Object * object : mainObjects){
         object->mover(-CHANGE_SPEED,0,0);
     }
@@ -180,16 +193,32 @@ void Camera::movimento_esquerda(){
 }
 void Camera::movimento_frente(){
     std::vector<Object*> mainObjects = world->getMainObject();
-	eye.z -= CHANGE_SPEED;
-	center.z -= CHANGE_SPEED;
+	
+	printf("eye.z 	%f\n",eye.z);
+	if(eye.z<=-290){
+		eye.z= 260;
+	}
+	else{
+		eye.z -= CHANGE_SPEED;
+		center.z -= CHANGE_SPEED;
+	}	
+	
     for(Object * object : mainObjects){
         object->mover(0,0,-CHANGE_SPEED);
     }
 }
 void Camera::movimento_traz(){
     std::vector<Object*> mainObjects = world->getMainObject();
-	eye.z += CHANGE_SPEED;
-	center.z += CHANGE_SPEED;
+	
+	if(eye.z>=230){
+		eye.z= -290;
+		changeCamera();
+	}
+	else{
+		eye.z += CHANGE_SPEED;
+		center.z += CHANGE_SPEED;
+	}
+	
     for(Object * object : mainObjects){
         object->mover(0,0,CHANGE_SPEED);
     }

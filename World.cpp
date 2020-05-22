@@ -211,9 +211,9 @@ std::vector<Object*> World::getMainObject(){
 bool World::collision(Object* one,Object* two){
 
     bool result = false;
-    printf("%f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
-    printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
-    printf("posicao outro = %f %f %f \n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
+    // printf("%f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
+    // printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
+    // printf("posicao outro = %f %f %f \n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
     if(abs(one->getPosition().x-two->getPosition().x)>=5&&(one->getPosition().y-two->getPosition().y)>=5)
         printf("por amor de deus ");
     
@@ -248,6 +248,27 @@ void World::update(){
     }
     for(Object * object : main){
         object->update();
+        if(object->getPosition().z>=255)//Zmax
+        {
+            Point tmp(object->getPosition().x,object->getPosition().y,-350);
+            object->setPosition(tmp);
+        }
+        else if(object->getPosition().z<=-350)//Zmin
+        {
+            Point tmp(object->getPosition().x,object->getPosition().y,255);
+            object->setPosition(tmp);
+        }
+
+        if(object->getPosition().x>=230)//Xmax
+        {
+            Point tmp(-240,object->getPosition().y,object->getPosition().z);
+            object->setPosition(tmp);
+        }
+        else if (object->getPosition().x<=-240)//Xmin
+        {
+            Point tmp(230,object->getPosition().y,object->getPosition().z);
+            object->setPosition(tmp);
+        }
     }
     
 }
