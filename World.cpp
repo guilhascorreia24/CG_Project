@@ -179,18 +179,18 @@ void World::fillObjects(){
 
     // terra->setUniformOrbit(sol,0.9,1);
     addObject(sol);
-    // addObject(satelite);
-    // addObject(planeta);
+    addObject(satelite);
+    addObject(planeta);
 
-    // addObject(terra);
-    // addObject(lua);
+    addObject(terra);
+    addObject(lua);
 
-    // addObject(asteroide1);
-    // addObject(asteroide2);
-    // addObject(asteroide3);
-    // addObject(asteroide4);
+    addObject(asteroide1);
+    addObject(asteroide2);
+    addObject(asteroide3);
+    addObject(asteroide4);
 
-    // addObject(foguetao);
+    addObject(foguetao);
 
     //addObject(nave);
     addMainObject(disco_nave);
