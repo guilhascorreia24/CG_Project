@@ -332,6 +332,8 @@ void display(void)
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glMatrixMode(GL_PROJECTION);
                 glPushMatrix();
                 glLoadIdentity();
@@ -340,6 +342,13 @@ void display(void)
                 glPushMatrix();
                 glLoadIdentity();
     
+                glBegin(GL_QUADS);
+                glColor4f(0.0, 1, 0.0, 0.1);
+                glVertex2i(0, 1920);
+                glVertex2i(0, 0);
+                glVertex2i(1920, 0);
+                glVertex2i(1920, 1920);
+                glEnd();
                 glColor3f(0.0, 1.0, 0.0);
                 void *font = GLUT_BITMAP_TIMES_ROMAN_24;
                 glRasterPos2i(450, 520);
@@ -365,6 +374,7 @@ void display(void)
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
                 glPopMatrix();
+                glDisable(GL_BLEND);
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
                 glEnable(GL_LIGHTING);
@@ -374,6 +384,8 @@ void display(void)
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glMatrixMode(GL_PROJECTION);
                 glPushMatrix();
                 glLoadIdentity();
@@ -382,6 +394,13 @@ void display(void)
                 glPushMatrix();
                 glLoadIdentity();
     
+                glBegin(GL_QUADS);
+                glColor4f(1.0, 0, 0.0, 0.1);
+                glVertex2i(0, 1920);
+                glVertex2i(0, 0);
+                glVertex2i(1920, 0);
+                glVertex2i(1920, 1920);
+                glEnd();
                 glColor3f(1.0, 0.0, 0.0);
                 void *font = GLUT_BITMAP_TIMES_ROMAN_24;
                 glRasterPos2i(450, 520);
@@ -407,6 +426,7 @@ void display(void)
                 glPopMatrix();
                 glMatrixMode(GL_MODELVIEW);
                 glPopMatrix();
+                glDisable(GL_BLEND);
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
                 glEnable(GL_LIGHTING);
@@ -879,6 +899,8 @@ void init(void)
     rot = new RotationHandler(world);
 
     cam = new Camera(world);
+
+    world->setCamera(cam);
 
     rot->Start();
 

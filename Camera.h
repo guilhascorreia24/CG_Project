@@ -4,6 +4,8 @@
 
 #define CHANGE_SPEED 0.8	//Velocidade da nave
 #define ZOOM_FACTOR 0.1 //Muda o zoom exponecialmente
+
+class World;
 class Camera{
 public:
  Camera(World* w);
@@ -12,6 +14,9 @@ public:
  ~Camera();
  void keyboardCamera(int key,int x, int y);
  void keyboardZoom(unsigned char key, int x, int y);
+
+ //Muda a camara para outra direção
+ void mainPositionChange(Vector &a);
  int camara;
 private:
 	void camera1();

@@ -14,6 +14,10 @@ World::World() : main(0){
     perdeu = false;
 }
 
+void World::setCamera(Camera* cam){
+    this->cam = cam;
+}
+
 void World::fillObjects(){
     this->nivel = 1;
 
@@ -259,27 +263,53 @@ void World::update(){
                     perdeu = true;      
         }
     }
+    bool set = false;
     for(Object * object : main){
         object->update();
-        if(object->getPosition().z>=255)//Zmax
+        if(object->getPosition().z>=250)//Zmax
         {
-            Point tmp(object->getPosition().x,object->getPosition().y,-350);
+            Point tmp(object->getPosition().x,object->getPosition().y,-250);
+            if(!set){
+                Point pos = object->getPosition();
+                Vector d(pos,tmp);
+                cam->mainPositionChange(d);
+                set = true;
+            }
             object->setPosition(tmp);
+            
         }
-        else if(object->getPosition().z<=-350)//Zmin
+        else if(object->getPosition().z<=-250)//Zmin
         {
-            Point tmp(object->getPosition().x,object->getPosition().y,255);
+            Point tmp(object->getPosition().x,object->getPosition().y,250);
+            if(!set){
+                Point pos = object->getPosition();
+                Vector d(pos,tmp);
+                cam->mainPositionChange(d);
+                set = true;
+            }
             object->setPosition(tmp);
         }
 
-        if(object->getPosition().x>=230)//Xmax
+        if(object->getPosition().x>=250)//Xmax
         {
-            Point tmp(-240,object->getPosition().y,object->getPosition().z);
+            Point tmp(-250,object->getPosition().y,object->getPosition().z);
+            if(!set){
+                Point pos = object->getPosition();
+                Vector d(pos,tmp);
+                cam->mainPositionChange(d);
+                set = true;
+            }
             object->setPosition(tmp);
         }
-        else if (object->getPosition().x<=-240)//Xmin
+        else if (object->getPosition().x<=-250)//Xmin
         {
-            Point tmp(230,object->getPosition().y,object->getPosition().z);
+            Point tmp(250,object->getPosition().y,object->getPosition().z);
+            if(!set){
+                Point pos = object->getPosition();
+                Vector d(pos,tmp);
+                cam->mainPositionChange(d);
+                set = true;
+            }
             object->setPosition(tmp);
         }
     }
