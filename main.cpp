@@ -36,6 +36,7 @@ RotationHandler *rot;
 
 Camera *cam;
 
+long time_elapsed ;
 
 GLint Window;
 
@@ -43,7 +44,7 @@ GLfloat win;
 
 GLfloat luzAmbiente[4];
 
-
+long stop_time = 0;
 
 int nivel=1;
 
@@ -322,7 +323,7 @@ void display(void)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     desenha_fundo();
-    if(!ajuda){
+    if(!ajuda&&!mudou_de_nivel&&!ganhou&&!perdeu){
         world->draw();}
 
 
@@ -712,11 +713,15 @@ void display(void)
             // GLint64 timer;
             // glGetInteger64v(GL_TIMESTAMP, &timer);
             // double t = timer/1000000000.0;
-            static long t = glutGet(GLUT_ELAPSED_TIME);
-            long time_elapsed = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
-            std::string time = std::to_string(time_elapsed);
             
-            if (tempo_restante)
+            static long t = glutGet(GLUT_ELAPSED_TIME);
+            if(ajuda||mudou_de_nivel)
+                stop_time = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
+            
+            time_elapsed = (glutGet(GLUT_ELAPSED_TIME) - t)/1000; 
+            std::string time = std::to_string(time_elapsed - stop_time);
+            
+            if (tempo_restante&&!ajuda&&!mudou_de_nivel)
             {
                 glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
@@ -740,12 +745,13 @@ void display(void)
                 glRasterPos2i(20+glutGet(GLUT_WINDOW_WIDTH)*0.05, 900-glutGet(GLUT_WINDOW_HEIGHT)*0.02);
 
 //******
-
-                std::string s = "Tempo: "+time;
-                for (std::string::iterator i = s.begin(); i != s.end(); ++i)
-                {
-                    char c = *i;
-                    glutBitmapCharacter(font, c);
+                if(!ganhou&&!perdeu){
+                    std::string s = "Tempo: "+time;
+                    for (std::string::iterator i = s.begin(); i != s.end(); ++i)
+                    {
+                        char c = *i;
+                        glutBitmapCharacter(font, c);
+                    }
                 }
 //******
 
@@ -1098,7 +1104,7 @@ void mainloop()
 
     if (currTime - last_time > FRAME_DELTA)
     {
-
+        if(!ajuda&&!mudou_de_nivel)
         world->update();
 
         glutPostRedisplay();
