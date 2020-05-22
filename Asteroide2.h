@@ -18,7 +18,6 @@ class Asteroide2 : public Object{
     private:
         Point center;
         GLuint pattern_buffer;
-        std::vector<glm::vec3> points;
         std::vector<glm::vec2> uv;
         std::vector< glm::vec3 > normals;
         std::vector< arr > f;

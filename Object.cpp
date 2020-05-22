@@ -163,14 +163,6 @@ void Object::setUniformOrbit(Object *sun, double e, double velocity){
     this->e = e;    
 }
 
-void Object::setUniformOrbit(Object *sun, double e, double velocity){
-    useUniformOrbit = true;
-    useVelocityGravityPhisics = false;
-    if(velocity!=0)
-        this->velocity = velocity; 
-    orbit = sun;
-    thisCenter = position;
-    lastRadius = sun->getPosition().distance(position);
-
-    this->e = e;    
+std::vector<glm::vec3> Object::getPoints(){
+    return this->points;
 }
