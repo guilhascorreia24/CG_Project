@@ -62,6 +62,7 @@ void Timer(int value)
     printf("%d\n",nivel);
     nivel++;
     if(nivel==5){
+        if(!world->perdeu)
         ganhou=true;
     }
 
