@@ -24,6 +24,5 @@ class CupulaNave : public Object{
         std::vector< arr > f;
         static GLint width, height;
         static unsigned int texture; 
-        GLboolean separado;
         
 };
