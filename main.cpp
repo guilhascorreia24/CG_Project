@@ -56,7 +56,7 @@ bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false, tempo_
 // Função callback chamada pela GLUT a cada intervalo de tempo
 void Timer(int value)
 {
-    mudou_de_nivel=false;
+    mudou_de_nivel=true;
     //tempo_restante=false;
     printf("%d\n",nivel);
     nivel++;
