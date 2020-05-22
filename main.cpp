@@ -56,7 +56,7 @@ bool ganhou = false, perdeu = false, ajuda = false, mudou_de_nivel=false, tempo_
 // Função callback chamada pela GLUT a cada intervalo de tempo
 void Timer(int value)
 {
-    mudou_de_nivel=false;
+    mudou_de_nivel=true;
     //tempo_restante=false;
     printf("%d\n",nivel);
     nivel++;
@@ -176,7 +176,7 @@ void textura_fundo()
 
 void desenha_fundo()
 {
-    //glDisableGL_LIGHTING);
+    glDisable(GL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
     //glEnable(GL_TEXTURE_2D);
 
@@ -231,7 +231,7 @@ void desenha_fundo()
     glPopMatrix();
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_DEPTH_TEST);
-   //glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHTING);
     
 }
 
@@ -330,7 +330,7 @@ void display(void)
     
     if (ganhou)
             {
-                //glDisableGL_LIGHTING);
+                glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -368,11 +368,11 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                //glEnable(GL_LIGHTING);
+                glEnable(GL_LIGHTING);
             }
             else if (perdeu)
             {
-                //glDisableGL_LIGHTING);
+                glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -411,11 +411,11 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                //glEnable(GL_LIGHTING);
+                glEnable(GL_LIGHTING);
             }
             else if (mudou_de_nivel)
             {
-                //glDisableGL_LIGHTING);
+                glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -476,12 +476,12 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                //glEnable(GL_LIGHTING);
+                glEnable(GL_LIGHTING);
             }
 
             if (ajuda)
             {
-                //glDisableGL_LIGHTING);
+                glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -706,7 +706,7 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                //glEnable(GL_LIGHTING);
+                glEnable(GL_LIGHTING);
             }
 
             // GLint64 timer;
@@ -718,7 +718,7 @@ void display(void)
             
             if (tempo_restante)
             {
-                //glDisableGL_LIGHTING);
+                glDisable(GL_LIGHTING);
                 glDisable(GL_DEPTH_TEST);
                 glDisable(GL_TEXTURE_2D);
                 glMatrixMode(GL_PROJECTION);
@@ -756,7 +756,7 @@ void display(void)
                 glPopMatrix();
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
-                //glEnable(GL_LIGHTING);
+                glEnable(GL_LIGHTING);
             }
 //---------------
 

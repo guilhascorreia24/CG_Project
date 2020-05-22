@@ -31,8 +31,8 @@ void World::fillObjects(){
     // Point satelite_point(30,0,50);
 
 
-    Point terra_point(10,0,-5);
-    Point lua_point(15,0,-10);
+    Point terra_point(10,0,-50);
+    Point lua_point(15,0,-45);
     // //----
 
     Point disco_nave_point(5,0,0);
@@ -106,8 +106,7 @@ void World::fillObjects(){
     terra->setVelocity(0.f);
     terra->setMass(100);
     terra->setSizeObject();
-    
-    // terra->setUniformOrbit(sol,0.9,1);
+    terra->setUniformOrbit(sol,0.9,0.3);
     // terra->setForceToOrbit(sol,0.55,0.20);
     // terra->setVelocity(1);
 
@@ -116,7 +115,8 @@ void World::fillObjects(){
     lua->setPosition(lua_point);
     lua->setVelocity(0.05);
     lua->setMass(10);
-    //lua->setUniformOrbit(sol,0.9,1);
+    lua->setUniformOrbit(terra,0.9,1);
+    terra->update();
 
     // lua->setForceToOrbit(sol,0.55);
     // terra->setForceToOrbit(sol,0.55);
@@ -163,7 +163,8 @@ void World::fillObjects(){
 
     Foguetao* foguetao = new Foguetao(foguetao_point);
     foguetao->disablePhisycs();
-    foguetao->setPosition(foguetao_point);
+    Point p = terra->getPosition();
+    foguetao->setPosition(p);
     foguetao->setVelocity(0.3);
     //foguetao->setUniformOrbit(sol,0.9,1);
     foguetao->setSizeObject();
@@ -197,14 +198,6 @@ void World::fillObjects(){
     addMainObject(cupula_nave);
     addMainObject(base_nave);
     this->sol = sol;
-
-    //sol->applyGravityPull(terra);
-    //terra->setVelocity(10);
-    //printf("%lf\n",terra->getVelocity());
-    //getchar();
-
-    //this->terra = terra;
-    //this->sol = sol;
 }
 
 World::~World(){
@@ -263,28 +256,30 @@ void World::update(){
 
 
     void World::aumentarNivel(int nivel){
-        Point nave_point(0,0,-25);
+        printf("INN\n");
         Point asteroide_point(25,20,-20);
+        /*Point nave_point(0,0,-25);
         Point sol_point(0,0,70);
         Sol* sol = new Sol(nave_point);
         sol->setPosition(sol_point);
         sol->setVelocity(0.f);
         sol->setSize(5);
-        sol->setMass(10000);
+        sol->setMass(10000);*/
 
-        sol->setSizeObject();
-        for(int i = 20; i < 20 ; i++){
+        //sol->setSizeObject();
+        for(int i = 0; i < 20 ; i++){
             int intervalo = i*4+nivel*2;
+            printf("Intervalo->%d\n",intervalo);
 
             if (i%2==0)
-                Point asteroide_point(intervalo,0,-20);
+                asteroide_point = Point(intervalo,0,-20);
             else          
-                Point asteroide_point(25,0,-intervalo);
+                asteroide_point = Point(25,0,-intervalo);
 
-            Asteroide1* asteroide1 = new Asteroide1(sol_point);
+            Asteroide1* asteroide1 = new Asteroide1(asteroide_point);
             asteroide1->setPosition(asteroide_point);
             asteroide1->setVelocity(0.01);
-            //asteroide1->setUniformOrbit(sol,0.9,1);
+            asteroide1->setUniformOrbit(sol,0.9,1);
 
             asteroide1->setSizeObject();
             asteroide1->setSizeObject();
