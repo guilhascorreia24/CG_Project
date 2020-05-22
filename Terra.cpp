@@ -11,8 +11,6 @@ void Terra::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/earth.jpg", &width, &height, &n, 0);
-    printf("terra1 %d %d\n",width,height);
-
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -100,10 +98,4 @@ const char* Terra::getLabel(){
 }
 
 void Terra::Update(){
-    //position.print();
-    //printf("Earth Position->");
-    //position.print();
-    //printf("Earth Velocity-> %Lf\n",velocity);
-    //printf("Earth Direction->");
-    //direction.print();
 }

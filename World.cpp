@@ -26,27 +26,14 @@ void World::fillObjects(){
     Point planet_point(0,0,-180);
     Point satelite_point(0,0,-150);
     Point sol_point(20,0,-100);
-    // Point terra_point(0,0,0);
-    // Point lua_point(0,0,-120);
-
-    // //----
     Point foguetao_point(10,0,-50);
-    // Point planet_point(10,0,0);
-    // Point satelite_point(30,0,50);
-
 
     Point terra_point(10,0,-55);
     Point lua_point(10,0,-50);
-    // //----
-    
 
     Point disco_nave_point(5,0,0);
     Point cupula_nave_point(2,10,-20);
     Point base_nave_point(0,-5,-10);
-
-    /*Point planet_point(10,10,-50);
-    Point satelite_point(30,8,-50);
-    Point sol_point(0,0,-200);*/
 
     Point asteroide1_point(50,0,-50);
     Point asteroide2_point(-50,0,-50);
@@ -92,8 +79,6 @@ void World::fillObjects(){
     planeta->setPosition(planet_point);
     planeta->setVelocity(0.f);
     planeta->setMass(1000);
-    //planeta->applyGravityPull(sol);
-    //planeta->setForceToOrbit(sol,0.55,0.15);
     planeta->setUniformOrbit(sol,0.9,1);
     planeta->setSizeObject();
 
@@ -112,9 +97,6 @@ void World::fillObjects(){
     terra->setMass(100);
     terra->setSizeObject();
     terra->setUniformOrbit(sol,0.9,0.3);
-    // terra->setForceToOrbit(sol,0.55,0.20);
-    // terra->setVelocity(1);
-
 
     Lua* lua = new Lua(terra_point);
     lua->setPosition(lua_point);
@@ -123,29 +105,13 @@ void World::fillObjects(){
     lua->setUniformOrbit(terra,0.9,1);
     terra->update();
 
-    // lua->setForceToOrbit(sol,0.55);
-    // terra->setForceToOrbit(sol,0.55);
     lua->setSizeObject();
-    //terra->setVelocity(2);
-    //satelite->setVelocity(0.6);
-    //planeta->setVelocity(5);
-    //terra->setVelocity(1.3);
-    //lua->setVelocity(10);
-
-
-
-
-
-//--------------------------------------------------------------------
-
     Asteroide1* asteroide1 = new Asteroide1(sol_point);
     asteroide1->setPosition(asteroide1_point);
     asteroide1->setVelocity(0.01);
     asteroide1->setUniformOrbit(sol,0.9,1);
 
     asteroide1->setSizeObject();
-    // Point tmp = asteroide1->getSizeObject();
-    // printf("%f %f %f",tmp.x,tmp.y,tmp.z);
 
     Asteroide1* asteroide2 = new Asteroide1(sol_point);
     asteroide2->setPosition(asteroide2_point);
@@ -171,16 +137,8 @@ void World::fillObjects(){
     Point p = terra->getPosition();
     foguetao->setPosition(p);
     foguetao->setVelocity(0.3);
-    //foguetao->setUniformOrbit(sol,0.9,1);
     foguetao->setSizeObject();
-    //Vector direcao (0.0,1,0.0);
-    //foguetao->setDirection(direcao);
 
-//--------------------------------------------------------------------
-
-
-
-    // terra->setUniformOrbit(sol,0.9,1);
     addObject(sol);
     addObject(satelite);
     addObject(planeta);
@@ -195,7 +153,6 @@ void World::fillObjects(){
 
     addObject(foguetao);
 
-    //addObject(nave);
     addMainObject(disco_nave);
     addMainObject(cupula_nave);
     addMainObject(base_nave);
@@ -217,11 +174,6 @@ bool World::collision(Object* one,Object* two){
 
     bool result = false;
 
-    //printf("size %f %f %f\n",one->getSizeObject().x,one->getSizeObject().y,one->getSizeObject().z);
-    // printf("min %f %f %f\n",one->min.x,one->min.y,one->min.z);
-    // printf("max %f %f %f\n",one->max.x,one->max.y,one->max.z);
-    // printf("posicao nave = %f %f %f \n",two->getPosition().x,two->getPosition().y,two->getPosition().z);
-    // printf("posicao outro = %f %f %f \n\n\n",one->getPosition().x,one->getPosition().y,one->getPosition().z);
     if(two->getPosition().x-two->getSizeObject().x <= one->getPosition().x + (one->getSizeObject().x/2) && one->getPosition().x - (one->getSizeObject().x/2) <= two->getPosition().x+two->getSizeObject().x
     &&
     two->getPosition().z-two->getSizeObject().z <= one->getPosition().z + one->getSizeObject().z && one->getPosition().z - one->getSizeObject().z <= two->getPosition().z+two->getSizeObject().z)
@@ -255,9 +207,7 @@ void World::update(){
             bool c=collision(object, parte);
             if(c){
                 parte->colidiu=true;
-                 //if(parte->velocity>0)
-                    //parte->velocity-=0.00001;
-                    }
+                }
                 if(parte->perdeu)  
                     perdeu = true;      
         }

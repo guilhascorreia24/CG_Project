@@ -74,10 +74,6 @@ Object::Object(Point & pos, Point & size_obj,Point & min, Point & max,AngleRotat
 
 void Object::update(){
     Update();
-    //long currTime = glutGet(GLUT_ELAPSED_TIME);
-    //double time_elapsed = ((double)(currTime-last_update_time))/1000.f;
-
-    //Calculate new position according to direction and velocity
     if(useVelocityGravityPhisics){
         Vector sum(0,0,0);
         for(Object* a: gravity){
@@ -86,16 +82,12 @@ void Object::update(){
         }
     
 
-        //Momentum
         Vector vec = direction*velocity;
 
         sum+=vec;
         direction=sum.unitVector();
         velocity=sum.norma();
-        //sum*=time_elapsed;
         position += sum;
-        //debugPrint("Direction : x = %Lf, y = %Lf, z = %Lf\n",direction.x,direction.y,direction.z);
-        //last_update_time = currTime;
     }
 
     //Next position to orbit
@@ -164,13 +156,6 @@ void Object::setUniformOrbit(Object *sun, double e, double velocity){
     Point a = sun->getPosition();
     thisCenter = Vector(position,a);
     lastRadius = sun->getPosition().distance(position);
-
-    //start position needs to be fixed
-    /*if(thisCenter.x == 0){
-        lastAngle = 0;
-    }else{
-        lastAngle = atan(thisCenter.y/thisCenter.x);
-    }*/
 
     lastAngle = 2.2;
 

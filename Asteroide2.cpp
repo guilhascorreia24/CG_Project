@@ -11,7 +11,6 @@ void Asteroide2::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/asteroide2.jpg", &width, &height, &n, 0);
-    printf("asteroide 2 %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);

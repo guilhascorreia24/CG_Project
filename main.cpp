@@ -58,8 +58,6 @@ bool ganhou = false, ajuda = false, mudou_de_nivel=false, tempo_restante = true;
 void Timer(int value)
 {
     mudou_de_nivel=true;
-    //tempo_restante=false;
-    printf("%d\n",nivel);
     nivel++;
     if(nivel==5){
         if(!world->perdeu)
@@ -149,10 +147,6 @@ void teclas(unsigned char key, int x, int y)
             glutTimerFunc(30000,Timer, 1);
             world->aumentarNivel(nivel);
             }
-        // else if(perdeu==true)
-        //     perdeu=false;
-        // else if(ganhou==true)
-        //     ganhou=false;
         break;
     }
 }
@@ -162,8 +156,6 @@ void textura_fundo()
     int n;
     int width,height;
     unsigned char *dados = stbi_load("img/fundo.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
-
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

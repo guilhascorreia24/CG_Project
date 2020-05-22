@@ -11,7 +11,6 @@ void Foguetao::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/foguetao.jpg", &width, &height, &n, 0);
-    printf("missil %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -97,7 +96,6 @@ void Foguetao::Update(){
         static long time = glutGet(GLUT_ELAPSED_TIME);
         long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time;
         position.z -= velocity;
-       // position.x -= velocity*0.5;
         if(position.z < -300)
             limite_alcancado = true;
 

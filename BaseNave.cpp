@@ -10,8 +10,6 @@ void BaseNave::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/base_nave.jpg", &width, &height, &n, 0);
-    printf("base %d %d\n",width,height);
-
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -118,7 +116,6 @@ void BaseNave::Update(){
         position.z += position.z*velocity;
         if(position.x>=center.x){
             colidiu = false;
-            // perdeu =true;
         }
     }
 }

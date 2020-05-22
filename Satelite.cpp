@@ -9,9 +9,7 @@ unsigned int Satelite::texture=0;
 void Satelite::inicializarTextura(){
 
     int n;
-    //int width,height;
     unsigned char *dados = stbi_load("img/metal.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -97,13 +95,4 @@ const char* Satelite::getLabel(){
 }
 
 void Satelite::Update(){
-    /*printf("Satelite Position->");
-    position.print();
-    printf("Satelite Velocity-> %Lf\n",velocity);
-    printf("Satelite Direction->");
-    direction.print();
-    auto it = gravity.begin();
-    Point obj = (*it)->getPosition();
-    printf("Distance to Sun-> %lf\n",obj.distance(position));*/
-
 }

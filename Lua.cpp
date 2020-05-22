@@ -10,7 +10,6 @@ void Lua::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/lua.jpg", &width, &height, &n, 0);
-    printf("lua %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -98,11 +97,4 @@ const char* Lua::getLabel(){
 }
 
 void Lua::Update(){
-    // static long time = glutGet(GLUT_ELAPSED_TIME);
-    // long time_elapsed = glutGet(GLUT_ELAPSED_TIME) - time; 
-    // float dist = center.distance(position);
-    // printf("velocity = %lf; x = %lf; y = %lf; dist = %lf;\ncenter.x = %lf; center.y = %lf\n\n",velocity, position.x, position.y, dist,center.x,center.y);
-    
-    // position.x = center.x + dist * cos(time_elapsed*velocity);
-    // position.y = center.y + dist * sin(time_elapsed*velocity);
 }

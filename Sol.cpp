@@ -11,7 +11,6 @@ void Sol::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/sol.jpg", &width, &height, &n, 0);
-    printf("%d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);

@@ -10,7 +10,6 @@ void DiscoNave::inicializarTextura(){
 
     int n;
     unsigned char *dados = stbi_load("img/disco_nave.jpg", &width, &height, &n, 0);
-    printf("disco %d %d\n",width,height);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
