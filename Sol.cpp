@@ -68,6 +68,9 @@ void Sol::setSizeObject(){
     this->max.x = max_x;
     this->max.y = max_y;
     this->max.z = max_z;
+    this->size_object.x=abs(min_x-max_x)*size;
+    this->size_object.x=abs(min_y-max_y)*size;
+    this->size_object.x=abs(min_z-max_z)*size;
 }
 
 void Sol::drawShape(){
