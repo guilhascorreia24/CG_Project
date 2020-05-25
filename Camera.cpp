@@ -179,7 +179,7 @@ void Camera::movimento_direita(){
     for(Object * object : mainObjects){
         object->mover(CHANGE_SPEED,0,0);
 		AngleRotation tmp = object->getRotation();
-		if(tmp.getXRotation()<=-5){
+		if(tmp.getXRotation()>=-5){
 			AngleRotation rot(-Rotate,0,0);
 			object->rotate(rot);
 		}
@@ -213,7 +213,7 @@ void Camera::movimento_frente(){
     for(Object * object : mainObjects){
         object->mover(0,0,-CHANGE_SPEED);
 		AngleRotation tmp = object->getRotation();
-		if(tmp.getXRotation()<=-5){
+		if(tmp.getZRotation()>=-5){
 			AngleRotation rot(0,0,-Rotate);
 			object->rotate(rot);
 		}
@@ -228,7 +228,7 @@ void Camera::movimento_traz(){
     for(Object * object : mainObjects){
         object->mover(0,0,CHANGE_SPEED);
 		AngleRotation tmp = object->getRotation();
-		if(tmp.getXRotation()<=-5){
+		if(tmp.getZRotation()<=5){
 			AngleRotation rot(0,0,Rotate);
 			object->rotate(rot);
 		}
