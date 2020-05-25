@@ -2,6 +2,7 @@
 
 bool Object::drawLabels = false;
 
+
 void Object::rotate(AngleRotation& rot){
     this->rot += rot;
 }

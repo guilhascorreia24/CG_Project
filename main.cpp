@@ -64,6 +64,24 @@ void Timer(int value)
 
 }
 
+void keyUp (int key, int x, int y) {  
+    if  (key ==  GLUT_KEY_DOWN ) { 
+        
+        cam->endireitar_nave();
+    }  
+    else if (key ==  GLUT_KEY_UP){
+        
+        cam->endireitar_nave();
+    }
+    else if (key ==  GLUT_KEY_LEFT){
+        
+        cam->endireitar_nave();
+    }
+    else if (key ==  GLUT_KEY_RIGHT){
+        
+        cam->endireitar_nave();
+    }
+}  
 
 void keyboardHandler(int key, int x, int y)
 {
@@ -898,7 +916,7 @@ void init(void)
 
     glEnable(GLUT_MULTISAMPLE);
 
-    textura_fundo();
+    //textura_fundo();
 
     DiscoNave::inicializarTextura();
 
@@ -1195,11 +1213,15 @@ int main(int argc, char **argv)
 
     glGetIntegerv(GL_SAMPLES, &iNumSample);
 
+   
+
     glutMouseFunc(GerenciaMouse);
 
     glutSpecialFunc(keyboardHandler);
 
     glutKeyboardFunc(teclas);
+    
+    glutSpecialUpFunc(keyUp);
     
     glutTimerFunc(30000, Timer, 1);
 

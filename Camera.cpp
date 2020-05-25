@@ -1,8 +1,11 @@
 #include "Camera.h"
+#include "RotationHandler.h"
+#define ROTATION_PER_FRAME 10 
 
-Camera::Camera(World* world) : eye(0,0,50),center(0,0,0),up(0,1,0){
+Camera::Camera(World* world) : eye(0,UPP_OFFSET,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
 	isUpp = false;
+	Rotate=ROTATION_PER_FRAME;
 }
 
 Camera::~Camera(){
@@ -177,13 +180,20 @@ void Camera::camera6(){
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
 
+void Camera::endireitar_nave(){
+    std::vector<Object*> mainObjects = world->getMainObject();
+    for(Object * object : mainObjects){
+			AngleRotation rot(0,0,0);
+			object->setRotation(rot);
+    }
+}
+
 
 void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
 	
 		//eye.x += CHANGE_SPEED;
 		//center.x += CHANGE_SPEED;
-
 	if(!isUpp){
 		auto objs = world->getMainObject();
 		auto obj = objs[0];
@@ -200,17 +210,20 @@ void Camera::movimento_direita(){
 		finalPoint.y = x*sn - z*cs;
     	for(Object * object : mainObjects){
     	    object->mover(finalPoint.x,0,finalPoint.y);
+			AngleRotation rot(-finalPoint.x*Rotate,0,finalPoint.y*Rotate);
+			object->rotate(rot);
     	}
 	}else{
 		for(Object * object : mainObjects){
     	    object->mover(-CHANGE_SPEED,0,0);
+			AngleRotation rot(Rotate,0,0);
+			object->rotate(rot);
     	}
 	}
 }
 
 void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
-
 		//eye.x -= CHANGE_SPEED;
 		//center.x -= CHANGE_SPEED;
 	if(!isUpp){
@@ -229,10 +242,16 @@ void Camera::movimento_esquerda(){
 		finalPoint.y = x*sn - z*cs;
     	for(Object * object : mainObjects){
     	    object->mover(-finalPoint.x,0,-finalPoint.y);
+			AngleRotation tmp = object->getRotation();
+			AngleRotation rot(finalPoint.x*Rotate,0,-finalPoint.y*Rotate);
+			object->rotate(rot);
     	}
 	}else{
 		for(Object * object : mainObjects){
     	    object->mover(CHANGE_SPEED,0,0);
+			AngleRotation tmp = object->getRotation();
+				AngleRotation rot(-Rotate,0,0);
+				object->rotate(rot);
     	}
 	}
 
@@ -252,10 +271,20 @@ void Camera::movimento_frente(){
 		Vector result = vec.unitVector();
     	for(Object * object : mainObjects){
     	    object->mover(-CHANGE_SPEED*result.x,0,-CHANGE_SPEED*result.z);
+			AngleRotation tmp = object->getRotation();
+			//if(tmp.getZRotation()>=-5){
+				AngleRotation rot(-Rotate*result.x,0,-Rotate*result.z);
+				object->rotate(rot);
+			//}
     	}
 	}else{
 		for(Object * object : mainObjects){
     	    object->mover(0,0,CHANGE_SPEED);
+			AngleRotation tmp = object->getRotation();
+			if(tmp.getZRotation()>=-5){
+				AngleRotation rot(0,0,Rotate);
+				object->rotate(rot);
+			}
     	}
 	}
 }
@@ -273,10 +302,18 @@ void Camera::movimento_traz(){
 		Vector result = vec.unitVector();
     	for(Object * object : mainObjects){
     	    object->mover(CHANGE_SPEED*result.x,0,CHANGE_SPEED*result.z);
+			AngleRotation tmp = object->getRotation();
+			AngleRotation rot(Rotate*result.x,0,Rotate*result.z);
+			object->rotate(rot);
     	}
 	}else{
 		for(Object * object : mainObjects){
     	    object->mover(0,0,-CHANGE_SPEED);
+			AngleRotation tmp = object->getRotation();
+			if(tmp.getZRotation()<=5){
+				AngleRotation rot(0,0,-Rotate);
+				object->rotate(rot);
+			}
     	}
 	}
 }

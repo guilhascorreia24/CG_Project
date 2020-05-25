@@ -4,7 +4,7 @@
 
 #define CHANGE_SPEED 1.2	//Velocidade da nave
 #define ZOOM_FACTOR 0.1 //Muda o zoom exponecialmente
-#define UPP_OFFSET 0
+#define UPP_OFFSET 10
 
 class World;
 class Camera{
@@ -32,7 +32,8 @@ private:
     void movimento_traz();
 public:
 	void changeCamera();
-
+	void endireitar_nave();
+	int Rotate;
 private:
 	bool isUpp;
 	bool start;
