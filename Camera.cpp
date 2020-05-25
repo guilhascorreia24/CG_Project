@@ -122,14 +122,7 @@ void Camera::keyboardZoom(unsigned char key,int x, int y){
 		default:
 			break;
 	}
-	/*if(distance<=10){
-		distance = 11;
-		return;	
-	}
-	if(distance>400){
-		distance = 399;
-		return;	
-	}*/
+
 	changeCamera();
 }
 void Camera::changeCamera(){
@@ -137,12 +130,12 @@ void Camera::changeCamera(){
 	gluLookAt(eye.x,eye.y,eye.z,center.x,center.y,center.z,up.x,up.y,up.z);
 }
 void Camera::camera1(){
-	eye = Point(50,0,0);
+	eye = Point(50,UPP_OFFSET,0);
 	up = Point(0,1,0);
 	//gluLookAt(distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera2(){
-	eye = Point(-50,0,0);
+	eye = Point(-50,UPP_OFFSET,0);
 	up = Point(0,1,0);
 	//gluLookAt(-distance,0,0,0,0,0,0,1,0);
 }
@@ -157,13 +150,13 @@ void Camera::camera4(){
 	//gluLookAt(0,-distance,0,0,0,0,1,0,0);
 }
 void Camera::camera5(){
-	eye = Point(0,0,50);
-	up = Point(1,0,0);
+	eye = Point(0,UPP_OFFSET,50);
+	up = Point(0,1,0);
 	//gluLookAt(0,0,distance,0,0,0,1,0,0);
 }
 void Camera::camera6(){
-	eye = Point(0,0,-50);
-	up = Point(1,0,0);
+	eye = Point(0,UPP_OFFSET,-50);
+	up = Point(0,1,0);
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
 

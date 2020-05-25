@@ -66,21 +66,21 @@ void Timer(int value)
 
 }
 
-void keyUp (unsigned char key, int x, int y) {  
+void keyUp (int key, int x, int y) {  
     if  (key ==  GLUT_KEY_DOWN ) { 
-        printf("ola\n");
+        
         cam->endireitar_nave();
     }  
     else if (key ==  GLUT_KEY_UP){
-        printf("ola\n");
+        
         cam->endireitar_nave();
     }
     else if (key ==  GLUT_KEY_LEFT){
-        printf("ola\n");
+        
         cam->endireitar_nave();
     }
     else if (key ==  GLUT_KEY_RIGHT){
-        printf("ola\n");
+        
         cam->endireitar_nave();
     }
 }  
@@ -1215,13 +1215,15 @@ int main(int argc, char **argv)
 
     glGetIntegerv(GL_SAMPLES, &iNumSample);
 
+   
+
     glutMouseFunc(GerenciaMouse);
 
     glutSpecialFunc(keyboardHandler);
 
     glutKeyboardFunc(teclas);
-
-    glutKeyboardUpFunc(keyUp);
+    
+    glutSpecialUpFunc(keyUp);
     
     glutTimerFunc(30000, Timer, 1);
 
