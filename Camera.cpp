@@ -2,7 +2,7 @@
 #include "RotationHandler.h"
 #define ROTATION_PER_FRAME 10 
 
-Camera::Camera(World* world) : eye(0,0,50),center(0,0,0),up(0,1,0){
+Camera::Camera(World* world) : eye(0,UPP_OFFSET,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
 	Rotate=ROTATION_PER_FRAME;
 }
