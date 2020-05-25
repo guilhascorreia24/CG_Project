@@ -66,6 +66,24 @@ void Timer(int value)
 
 }
 
+void keyUp (unsigned char key, int x, int y) {  
+    if  (key ==  GLUT_KEY_DOWN ) { 
+        printf("ola\n");
+        cam->endireitar_nave();
+    }  
+    else if (key ==  GLUT_KEY_UP){
+        printf("ola\n");
+        cam->endireitar_nave();
+    }
+    else if (key ==  GLUT_KEY_LEFT){
+        printf("ola\n");
+        cam->endireitar_nave();
+    }
+    else if (key ==  GLUT_KEY_RIGHT){
+        printf("ola\n");
+        cam->endireitar_nave();
+    }
+}  
 
 void keyboardHandler(int key, int x, int y)
 {
@@ -313,7 +331,7 @@ void display(void)
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
-    desenha_fundo();
+    //desenha_fundo();
     if(!ajuda&&!mudou_de_nivel&&!ganhou&&!world->perdeu){
         world->draw();}
 
@@ -900,7 +918,7 @@ void init(void)
 
     glEnable(GLUT_MULTISAMPLE);
 
-    textura_fundo();
+    //textura_fundo();
 
     DiscoNave::inicializarTextura();
 
@@ -1202,6 +1220,8 @@ int main(int argc, char **argv)
     glutSpecialFunc(keyboardHandler);
 
     glutKeyboardFunc(teclas);
+
+    glutKeyboardUpFunc(keyUp);
     
     glutTimerFunc(30000, Timer, 1);
 

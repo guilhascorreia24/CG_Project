@@ -31,7 +31,8 @@ private:
     void movimento_traz();
 public:
 	void changeCamera();
-
+	void endireitar_nave();
+	int Rotate;
 private:
 	bool start;
 	World* world;

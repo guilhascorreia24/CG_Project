@@ -1,7 +1,10 @@
 #include "Camera.h"
+#include "RotationHandler.h"
+#define ROTATION_PER_FRAME 10 
 
 Camera::Camera(World* world) : eye(0,10,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
+	Rotate=ROTATION_PER_FRAME;
 }
 
 Camera::~Camera(){
@@ -164,6 +167,14 @@ void Camera::camera6(){
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
 
+void Camera::endireitar_nave(){
+    std::vector<Object*> mainObjects = world->getMainObject();
+    for(Object * object : mainObjects){
+			AngleRotation rot(0,0,0);
+			object->setRotation(rot);
+    }
+}
+
 
 void Camera::movimento_direita(){
     std::vector<Object*> mainObjects = world->getMainObject();
@@ -174,18 +185,29 @@ void Camera::movimento_direita(){
 	
     for(Object * object : mainObjects){
         object->mover(CHANGE_SPEED,0,0);
+		AngleRotation tmp = object->getRotation();
+		if(tmp.getXRotation()<=-5){
+			AngleRotation rot(-Rotate,0,0);
+			object->rotate(rot);
+		}
     }
 }
 
 void Camera::movimento_esquerda(){
     std::vector<Object*> mainObjects = world->getMainObject();
 
-		eye.x -= CHANGE_SPEED;
-		center.x -= CHANGE_SPEED;
+	eye.x -= CHANGE_SPEED;
+	center.x -= CHANGE_SPEED;
 
     for(Object * object : mainObjects){
         object->mover(-CHANGE_SPEED,0,0);
+		AngleRotation tmp = object->getRotation();
+		if(tmp.getXRotation()<=5){
+			AngleRotation rot(Rotate,0,0);
+			object->rotate(rot);
+		}
     }
+
 
 }
 void Camera::movimento_frente(){
@@ -197,6 +219,11 @@ void Camera::movimento_frente(){
 	
     for(Object * object : mainObjects){
         object->mover(0,0,-CHANGE_SPEED);
+		AngleRotation tmp = object->getRotation();
+		if(tmp.getXRotation()<=-5){
+			AngleRotation rot(0,0,-Rotate);
+			object->rotate(rot);
+		}
     }
 }
 void Camera::movimento_traz(){
@@ -207,5 +234,10 @@ void Camera::movimento_traz(){
 	
     for(Object * object : mainObjects){
         object->mover(0,0,CHANGE_SPEED);
+		AngleRotation tmp = object->getRotation();
+		if(tmp.getXRotation()<=-5){
+			AngleRotation rot(0,0,Rotate);
+			object->rotate(rot);
+		}
     }
 }

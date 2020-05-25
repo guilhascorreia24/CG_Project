@@ -12,12 +12,15 @@ class RotationHandler{
         ~RotationHandler();
         void keyboardHandler(int key,int x, int y);
         void keyboardSpeed(unsigned char key, int x,int y);
-    private:
 
         void rotateRight();
         void rotateUp();
         void rotateLeft();
         void rotateDown();
+
+
+    private:
+
         void moreSpeed();
         void lessSpeed();
 

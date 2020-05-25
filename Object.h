@@ -13,7 +13,7 @@ class Object{
         void rotate(AngleRotation &rot);
         void mover(double x,double y, double z);
         inline void setRotation(AngleRotation & rot){this->rot = rot;};
-        AngleRotation getRotation();
+        inline AngleRotation getRotation(){return this->rot;};
         Point getPosition();
         inline void setPosition(Point & point){this->position = point;}
         Point getSizeObject();
