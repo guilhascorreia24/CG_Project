@@ -313,7 +313,7 @@ void display(void)
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
-    desenha_fundo();
+    //desenha_fundo();
     if(!ajuda&&!mudou_de_nivel&&!ganhou&&!world->perdeu){
         world->draw();}
 

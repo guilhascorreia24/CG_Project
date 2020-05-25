@@ -1,5 +1,4 @@
 #include "Object.h"
-#include <stdexcept>
 
 bool Object::drawLabels = false;
 
