@@ -34,6 +34,7 @@ public:
 	void changeCamera();
 
 private:
+	bool isUpp;
 	bool start;
 	World* world;
 	Point eye,center,up;

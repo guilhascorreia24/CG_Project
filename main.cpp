@@ -20,8 +20,6 @@
 
 #define FRAME_DELTA 1000 / 30
 
-#define PI 3.14159
-
 GLuint texture=0;
 
 int i, more;

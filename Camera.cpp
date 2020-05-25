@@ -2,6 +2,7 @@
 
 Camera::Camera(World* world) : eye(0,0,50),center(0,0,0),up(0,1,0){
 	Camera::world = world;
+	isUpp = false;
 }
 
 Camera::~Camera(){
@@ -142,31 +143,37 @@ void Camera::changeCamera(){
 void Camera::camera1(){
 	eye = Point(50,UPP_OFFSET,0);
 	up = Point(0,1,0);
+	isUpp = false;
 	//gluLookAt(distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera2(){
 	eye = Point(-50,UPP_OFFSET,0);
 	up = Point(0,1,0);
+	isUpp = false;
 	//gluLookAt(-distance,0,0,0,0,0,0,1,0);
 }
 void Camera::camera3(){
 	eye = Point(0,50,0);
-	up = Point(1,0,0);
+	up = Point(0,0,1);
+	isUpp = true;
 	//gluLookAt(0,distance,0,0,0,0,1,0,0);
 }
 void Camera::camera4(){
 	eye = Point(0,-50,0);
-	up = Point(1,0,0);
+	up = Point(0,0,-1);
+	isUpp = true;
 	//gluLookAt(0,-distance,0,0,0,0,1,0,0);
 }
 void Camera::camera5(){
 	eye = Point(0,UPP_OFFSET,50);
 	up = Point(0,1,0);
+	isUpp = false;
 	//gluLookAt(0,0,distance,0,0,0,1,0,0);
 }
 void Camera::camera6(){
 	eye = Point(0,UPP_OFFSET,-50);
 	up = Point(0,1,0);
+	isUpp = false;
 	//gluLookAt(0,0,-distance,0,0,0,1,0,0);
 }
 
@@ -177,10 +184,28 @@ void Camera::movimento_direita(){
 		//eye.x += CHANGE_SPEED;
 		//center.x += CHANGE_SPEED;
 
-	
-    for(Object * object : mainObjects){
-        object->mover(CHANGE_SPEED,0,0);
-    }
+	if(!isUpp){
+		auto objs = world->getMainObject();
+		auto obj = objs[0];
+		Point a = obj->getPosition();
+		Point _eye = Point(a.x+eye.x,a.y+eye.y,a.z+eye.z);
+		Vector vec(a,_eye);
+		Vector result = vec.unitVector();
+		Point finalPoint(0,0,0);
+		double cs = cos(PI/2);
+		double sn = sin(PI/2);
+		double x = -CHANGE_SPEED*result.x;
+		double z = -CHANGE_SPEED*result.z;
+		finalPoint.x = x*cs - z*sn;
+		finalPoint.y = x*sn - z*cs;
+    	for(Object * object : mainObjects){
+    	    object->mover(finalPoint.x,0,finalPoint.y);
+    	}
+	}else{
+		for(Object * object : mainObjects){
+    	    object->mover(-CHANGE_SPEED,0,0);
+    	}
+	}
 }
 
 void Camera::movimento_esquerda(){
@@ -188,10 +213,28 @@ void Camera::movimento_esquerda(){
 
 		//eye.x -= CHANGE_SPEED;
 		//center.x -= CHANGE_SPEED;
-
-    for(Object * object : mainObjects){
-        object->mover(-CHANGE_SPEED,0,0);
-    }
+	if(!isUpp){
+		auto objs = world->getMainObject();
+		auto obj = objs[0];
+		Point a = obj->getPosition();
+		Point _eye = Point(a.x+eye.x,a.y+eye.y,a.z+eye.z);
+		Vector vec(a,_eye);
+		Vector result = vec.unitVector();
+		Point finalPoint(0,0,0);
+		double cs = cos(PI/2);
+		double sn = sin(PI/2);
+		double x = -CHANGE_SPEED*result.x;
+		double z = -CHANGE_SPEED*result.z;
+		finalPoint.x = x*cs - z*sn;
+		finalPoint.y = x*sn - z*cs;
+    	for(Object * object : mainObjects){
+    	    object->mover(-finalPoint.x,0,-finalPoint.y);
+    	}
+	}else{
+		for(Object * object : mainObjects){
+    	    object->mover(CHANGE_SPEED,0,0);
+    	}
+	}
 
 }
 void Camera::movimento_frente(){
@@ -200,18 +243,40 @@ void Camera::movimento_frente(){
 		//eye.z -= CHANGE_SPEED;
 		//center.z -= CHANGE_SPEED;
 
-	
-    for(Object * object : mainObjects){
-        object->mover(0,0,-CHANGE_SPEED);
-    }
+	if(!isUpp){
+		auto objs = world->getMainObject();
+		auto obj = objs[0];
+		Point a = obj->getPosition();
+		Point _eye = Point(a.x+eye.x,a.y+eye.y,a.z+eye.z);
+		Vector vec(a,_eye);
+		Vector result = vec.unitVector();
+    	for(Object * object : mainObjects){
+    	    object->mover(-CHANGE_SPEED*result.x,0,-CHANGE_SPEED*result.z);
+    	}
+	}else{
+		for(Object * object : mainObjects){
+    	    object->mover(0,0,CHANGE_SPEED);
+    	}
+	}
 }
 void Camera::movimento_traz(){
     std::vector<Object*> mainObjects = world->getMainObject();
 	
 	//eye.z += CHANGE_SPEED;
 	//center.z += CHANGE_SPEED;
-	
-    for(Object * object : mainObjects){
-        object->mover(0,0,CHANGE_SPEED);
-    }
+	if(!isUpp){
+		auto objs = world->getMainObject();
+		auto obj = objs[0];
+		Point a = obj->getPosition();
+		Point _eye = Point(a.x+eye.x,a.y+eye.y,a.z+eye.z);
+		Vector vec(a,_eye);
+		Vector result = vec.unitVector();
+    	for(Object * object : mainObjects){
+    	    object->mover(CHANGE_SPEED*result.x,0,CHANGE_SPEED*result.z);
+    	}
+	}else{
+		for(Object * object : mainObjects){
+    	    object->mover(0,0,-CHANGE_SPEED);
+    	}
+	}
 }
